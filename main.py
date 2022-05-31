@@ -77,7 +77,7 @@ POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 50)
 
 def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement function
 
-	if keys_pressed[pygame.K_LEFT]:
+	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0:
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_IMG ) # All Foots
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_LEFT_FOOT_IMG ) # Left foot
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_RIGHT_FOOT_IMG ) # Right foot
@@ -92,7 +92,7 @@ def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement functi
 
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_IMG ) # All Foots
 
-	if keys_pressed[pygame.K_RIGHT]  :
+	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80  :
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_RIGHT_IMG ) # All Foots
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_RIGHT_LEFT_FOOT_IMG ) # Left foot
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_RIGHT_RIGHT_FOOT_IMG ) # Right foot
@@ -127,7 +127,7 @@ def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement functi
 
 		
 
-	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT :
+	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT -100 :
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG ) # All Foots
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_FOOT_IMG ) # Left foot
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG ) # Right foot
