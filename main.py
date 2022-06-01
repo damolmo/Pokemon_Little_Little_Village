@@ -3,6 +3,8 @@
 # Credits to Pygame for the libs
 
 import os
+from random import randint
+import random
 
 os.system("pip3 install wget")
 os.system("pip3 install pygame")
@@ -45,8 +47,8 @@ def check_Assets_Exist() :
 check_Assets_Exist()
 
 ## Game Values
-FPS = 30
-VEL = 2
+FPS = 60
+VEL = 3
 WHITE = (255,255,255)
 BLUE = (0,0,204)
 GREEN = (0, 204, 102)
@@ -54,6 +56,7 @@ today = date.today()
 fecha = today.strftime("%B %d, %Y")
 now = datetime.now()
 hora = now.strftime("%H:%M")
+
 
 ## Map Values
 WIDTH, HEIGHT = 900, 507 # Map dimentions
@@ -65,8 +68,7 @@ HOUSE_1 = pygame.Rect(650, 20, 220, 250)
 HOUSE_2 = pygame.Rect(90, 0, 280, 180)
 TREE_1 = pygame.Rect(500, 140, 120, 120)
 TREE_2 = pygame.Rect(230, 280, 120, 120)
-
-
+GRASS_ZONE_SOUTH = pygame.Rect(320, 390, 500, 120)
 
 ## Character Values
 TRAINER_WIDTH, TRAINER_HEIGHT = 64, 76
@@ -129,13 +131,128 @@ TRAINER_BICICLE_BACK_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(o
 
 
 # Pikachu
-PIKACHU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pikachu.gif")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+PIKACHU_IMG_1 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_000_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_2 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_001_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_3 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_002_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_4 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_003_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_5 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_004_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_6 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_005_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_7 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_006_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_8 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_007_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_9 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_008_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_10 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_009_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_11 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_010_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_12 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_011_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_13 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_012_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_14 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_013_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_15 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_014_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_16 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_015_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_17 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_016_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_18 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_017_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_19 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_018_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_20 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_019_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_21 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_020_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_22 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_021_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_23 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_022_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_24 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_023_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_25 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_024_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_26 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_025_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_27 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_026_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_28 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_027_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_29 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_028_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_30 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_029_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_31 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_030_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_32 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_031_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_33 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_032_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_34 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_033_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_35 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_034_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_36 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_035_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_37 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_036_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_38 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_037_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_39 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_038_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_40 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_039_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_41 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_040_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_42 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_041_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_43 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_042_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_44 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_043_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_45 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_044_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_46 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_045_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_47 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_046_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_48 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_047_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_49 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_048_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_50 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_049_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_51 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_050_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_52 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_051_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_53 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_052_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_54 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_053_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_55 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_054_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_56 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_055_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_57 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_056_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_58 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_057_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_59 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_058_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_60 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_059_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_61 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_060_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_62 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_061_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_63 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_062_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_64 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_063_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_65 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_064_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_66 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_065_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_67 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_066_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_68 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_067_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_69 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_068_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_70 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_069_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_71 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_070_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_72 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_071_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_73 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_072_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_74 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_073_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_75 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_074_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_76 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_075_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_77 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_076_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_78 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_077_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_79 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_078_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_80 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_079_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_81 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_080_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_82 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_081_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_83 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_082_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_84 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_083_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_85 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_084_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_86 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_085_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_87 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_086_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_88 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_087_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_89 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_088_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_90 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_089_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_91 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_090_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_92 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_091_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_93 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_092_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_94 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_093_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_95 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_094_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_96 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_095_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_97 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_096_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_98 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_097_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_99 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_098_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_100 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_099_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_101 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_100_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_102 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_101_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_103 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_102_delay-0.15s.gif")), (200, 200))
+PIKACHU_IMG_104 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_103_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_105 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_104_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_106 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_105_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_107 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_106_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_108 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_107_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_109 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_108_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_110 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_109_delay-0.05s.gif")), (200, 200))
+PIKACHU_IMG_111 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_110_delay-0.1s.gif")), (200, 200))
+PIKACHU_IMG_112 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu', "frame_111_delay-0.1s.gif")), (200, 200))
 
 # Background
 ROUTE_IMG = pygame.image.load(os.path.join('Assets', "background.png"))
+BATTLE_ARENA_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "battle_arena.png")), (WIDTH, HEIGHT))
+ASH_BATTLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_battle_1.png")), (300,300))
 
 # Music
 BACKGROUND_SOUND = pygame.mixer.Sound("Assets/music.mp3")
+POKEMON_ENCOUNTER_SOUND = pygame.mixer.Sound("Assets/pokemon_encounter.mp3")
+GRASS_SOUND = pygame.mixer.Sound("Assets/grass.mp3")
 
 # Pokeball
 POKEBALL_IMG = pygame.image.load(os.path.join('Assets', "pokeball.png"))
@@ -149,131 +266,346 @@ POKEBALL_ITEM.convert()
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 50)
 RULES = pygame.font.SysFont('comicsans', 25)
 
-def movement_left (pokemon_trainer) :
+def movement_left (pokemon_trainer, wild) :
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
-	pokemon_trainer.x -= VEL
-	previous_x = pokemon_trainer.x
-	previous_y = pokemon_trainer.y
+	if not wild :
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
-	if pokemon_trainer.colliderect(HOUSE_2):
-		pokemon_trainer.x = previous_x + 5
-		pokemon_trainer.y = previous_y - 0
+		pokemon_trainer.x -= VEL
+		previous_x = pokemon_trainer.x
+		previous_y = pokemon_trainer.y
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, HOUSE_2)
+		if pokemon_trainer.colliderect(HOUSE_2):
+			pokemon_trainer.x = previous_x + 5
+			pokemon_trainer.y = previous_y - 0
 
-	if pokemon_trainer.colliderect(TREE_2):
-		pokemon_trainer.x = previous_x + 5
-		pokemon_trainer.y = previous_y - 0
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, TREE_2)
+		if pokemon_trainer.colliderect(TREE_2):
+			pokemon_trainer.x = previous_x + 5
+			pokemon_trainer.y = previous_y - 0
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, TREE_2)
+
+		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH):
+			wild = False
+			BACKGROUND_SOUND.stop()
+			GRASS_SOUND.play()
+
+			wild_encouter = randint(1, 100)
+
+			if wild_encouter == 95 :
+				previous_x = pokemon_trainer.x
+				previous_y = pokemon_trainer.y
+				wild = True
+				start_battle(wild,previous_x ,previous_y, pokemon_trainer)
 
 
-def movement_right (pokemon_trainer) :
+def create_area (POKEMON) :
+
+	WIN.blit(BATTLE_ARENA_IMG, (0,0)) # Place background image
+
+
+	#pygame.draw.rect(WIN, BLUE, HOUSE_1) # House 1 building
+	#pygame.draw.rect(WIN, BLUE, HOUSE_2) # House 2 building
+
+	#pygame.draw.rect(WIN, GREEN, TREE_1) # Tree 1 building
+	#pygame.draw.rect(WIN, GREEN, TREE_2) # Tree 2 building
+
+	#pygame.draw.rect(WIN, GREEN, GRASS_ZONE_SOUTH) # Grass zone south
+
+	pokeball = POKEBALL_IMG
+	WIN.blit(POKEBALL_IMG, (WIDTH - pokeball.get_width() - 10, 10))
+	pokeball = POKEBALL_IMG
+	WIN.blit(POKEBALL_IMG, (WIDTH - pokeball.get_width() - 65, 10))
+	pokeball = POKEBALL_IMG
+	WIN.blit(POKEBALL_IMG, (WIDTH - pokeball.get_width() - 120, 10))
+
+	WIN.blit(ASH_BATTLE_IMG, (0,250))
+	WIN.blit(POKEMON, (640,160))
+
+	warning = POKEBALLS_COUNTER.render("Un Pokemon Salvaje ha aparecido!", 1, WHITE)
+	WIN.blit(warning, (0, 0))
+
+	choice = POKEBALLS_COUNTER.render("(B) Run", 1, WHITE)
+	WIN.blit(choice, (WIDTH//2 , 150))
+
+	pygame.display.update()
+
+def create_Pikachu () :
+	create_area(PIKACHU_IMG_1)
+	create_area(PIKACHU_IMG_2)
+	create_area(PIKACHU_IMG_3)
+	create_area(PIKACHU_IMG_4)
+	create_area(PIKACHU_IMG_5)
+	create_area(PIKACHU_IMG_6)
+	create_area(PIKACHU_IMG_7)
+	create_area(PIKACHU_IMG_8)
+	create_area(PIKACHU_IMG_9)
+	create_area(PIKACHU_IMG_10)
+	create_area(PIKACHU_IMG_11)
+	create_area(PIKACHU_IMG_12)
+	create_area(PIKACHU_IMG_13)
+	create_area(PIKACHU_IMG_14)
+	create_area(PIKACHU_IMG_15)
+	create_area(PIKACHU_IMG_16)
+	create_area(PIKACHU_IMG_17)
+	create_area(PIKACHU_IMG_18)
+	create_area(PIKACHU_IMG_19)
+	create_area(PIKACHU_IMG_20)
+	create_area(PIKACHU_IMG_21)
+	create_area(PIKACHU_IMG_22)
+	create_area(PIKACHU_IMG_23)
+	create_area(PIKACHU_IMG_24)
+	create_area(PIKACHU_IMG_25)
+	create_area(PIKACHU_IMG_26)
+	create_area(PIKACHU_IMG_27)
+	create_area(PIKACHU_IMG_28)
+	create_area(PIKACHU_IMG_29)
+	create_area(PIKACHU_IMG_30)
+	create_area(PIKACHU_IMG_31)
+	create_area(PIKACHU_IMG_32)
+	create_area(PIKACHU_IMG_33)
+	create_area(PIKACHU_IMG_34)
+	create_area(PIKACHU_IMG_35)
+	create_area(PIKACHU_IMG_36)
+	create_area(PIKACHU_IMG_37)
+	create_area(PIKACHU_IMG_38)
+	create_area(PIKACHU_IMG_39)
+	create_area(PIKACHU_IMG_40)
+	create_area(PIKACHU_IMG_41)
+	create_area(PIKACHU_IMG_42)
+	create_area(PIKACHU_IMG_43)
+	create_area(PIKACHU_IMG_44)
+	create_area(PIKACHU_IMG_45)
+	create_area(PIKACHU_IMG_46)
+	create_area(PIKACHU_IMG_47)
+	create_area(PIKACHU_IMG_48)
+	create_area(PIKACHU_IMG_49)
+	create_area(PIKACHU_IMG_50)
+	create_area(PIKACHU_IMG_51)
+	create_area(PIKACHU_IMG_52)
+	create_area(PIKACHU_IMG_53)
+	create_area(PIKACHU_IMG_54)
+	create_area(PIKACHU_IMG_55)
+	create_area(PIKACHU_IMG_56)
+	create_area(PIKACHU_IMG_57)
+	create_area(PIKACHU_IMG_58)
+	create_area(PIKACHU_IMG_59)
+	create_area(PIKACHU_IMG_60)
+	create_area(PIKACHU_IMG_61)
+	create_area(PIKACHU_IMG_62)
+	create_area(PIKACHU_IMG_63)
+	create_area(PIKACHU_IMG_64)
+	create_area(PIKACHU_IMG_65)
+	create_area(PIKACHU_IMG_66)
+	create_area(PIKACHU_IMG_67)
+	create_area(PIKACHU_IMG_68)
+	create_area(PIKACHU_IMG_69)
+	create_area(PIKACHU_IMG_70)
+	create_area(PIKACHU_IMG_71)
+	create_area(PIKACHU_IMG_72)
+	create_area(PIKACHU_IMG_73)
+	create_area(PIKACHU_IMG_74)
+	create_area(PIKACHU_IMG_75)
+	create_area(PIKACHU_IMG_76)
+	create_area(PIKACHU_IMG_77)
+	create_area(PIKACHU_IMG_78)
+	create_area(PIKACHU_IMG_79)
+	create_area(PIKACHU_IMG_80)
+	create_area(PIKACHU_IMG_81)
+	create_area(PIKACHU_IMG_82)
+	create_area(PIKACHU_IMG_83)
+	create_area(PIKACHU_IMG_84)
+	create_area(PIKACHU_IMG_85)
+	create_area(PIKACHU_IMG_86)
+	create_area(PIKACHU_IMG_87)
+	create_area(PIKACHU_IMG_88)
+	create_area(PIKACHU_IMG_89)
+	create_area(PIKACHU_IMG_90)
+	create_area(PIKACHU_IMG_91)
+	create_area(PIKACHU_IMG_92)
+	create_area(PIKACHU_IMG_93)
+	create_area(PIKACHU_IMG_94)
+	create_area(PIKACHU_IMG_95)
+	create_area(PIKACHU_IMG_96)
+	create_area(PIKACHU_IMG_97)
+	create_area(PIKACHU_IMG_98)
+	create_area(PIKACHU_IMG_99)
+	create_area(PIKACHU_IMG_100)
+	create_area(PIKACHU_IMG_101)
+	create_area(PIKACHU_IMG_102)
+	create_area(PIKACHU_IMG_103)
+	create_area(PIKACHU_IMG_104)
+	create_area(PIKACHU_IMG_105)
+	create_area(PIKACHU_IMG_106)
+	create_area(PIKACHU_IMG_107)
+	create_area(PIKACHU_IMG_108)
+	create_area(PIKACHU_IMG_109)
+	create_area(PIKACHU_IMG_110)
+	create_area(PIKACHU_IMG_111)
+	create_area(PIKACHU_IMG_112)
+
+def random_pokemon () :
+
+	wild_appeared = 0
+	pokemon_route = [1,1,1,1]
+	wild_appeared = random.choice(pokemon_route)
+
+	if wild_appeared == 1 :
+		create_Pikachu()
+
+
+def start_battle(wild,x ,y, pokemon_trainer) :
+	GRASS_SOUND.stop()
+	BACKGROUND_SOUND.stop()
+	POKEMON_ENCOUNTER_SOUND.play()
+
+	
+	keys = pygame.key.get_pressed()
+
+	while wild:
+		random_pokemon()
+
+		for event in pygame.event.get() :
+
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_b :
+					wild = False
+					print("HAS HUIDO")
+					movement_down (pokemon_trainer, wild)
+
+	
+			
+
+
+
+def movement_right (pokemon_trainer, wild) :
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_IMG, trainer_pokeballs ) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
-	pokemon_trainer.x += VEL
-	previous_x = pokemon_trainer.x
-	previous_y = pokemon_trainer.y
+	if not wild :
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_IMG, trainer_pokeballs ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
-	if pokemon_trainer.colliderect(HOUSE_1):
-		pokemon_trainer.x = previous_x - 5
-		pokemon_trainer.y = previous_y - 0
+		pokemon_trainer.x += VEL
+		previous_x = pokemon_trainer.x
+		previous_y = pokemon_trainer.y
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, HOUSE_1)
+		if pokemon_trainer.colliderect(HOUSE_1):
+			pokemon_trainer.x = previous_x - 5
+			pokemon_trainer.y = previous_y - 0
 
-	if pokemon_trainer.colliderect(HOUSE_2):
-		pokemon_trainer.x = previous_x - 5
-		pokemon_trainer.y = previous_y - 0
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_1)
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, HOUSE_2)
+		if pokemon_trainer.colliderect(HOUSE_2):
+			pokemon_trainer.x = previous_x - 5
+			pokemon_trainer.y = previous_y - 0
 
-	if pokemon_trainer.colliderect(TREE_2):
-		pokemon_trainer.x = previous_x - 5
-		pokemon_trainer.y = previous_y - 0
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, TREE_2)
+		if pokemon_trainer.colliderect(TREE_2):
+			pokemon_trainer.x = previous_x - 5
+			pokemon_trainer.y = previous_y - 0
 
-	if pokemon_trainer.colliderect(TREE_1):
-		pokemon_trainer.x = previous_x - 5
-		pokemon_trainer.y = previous_y - 0
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, TREE_2)
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, TREE_2)
+		if pokemon_trainer.colliderect(TREE_1):
+			pokemon_trainer.x = previous_x - 5
+			pokemon_trainer.y = previous_y - 0
 
-def movement_up (pokemon_trainer) :
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, TREE_2)
+
+		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH):
+			BACKGROUND_SOUND.stop()
+			GRASS_SOUND.play()
+
+			wild_encouter = randint(1, 100)
+
+			if wild_encouter == 95 :
+				previous_x = pokemon_trainer.x
+				previous_y = pokemon_trainer.y
+				wild = True
+				start_battle(wild,previous_x ,previous_y, pokemon_trainer)
+
+
+def movement_up (pokemon_trainer, wild) :
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_IMG, trainer_pokeballs ) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
-	pokemon_trainer.y -= VEL
-	previous_y = pokemon_trainer.y
-	previous_x = pokemon_trainer.x
+	if not wild: 
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_IMG, trainer_pokeballs ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
-	if pokemon_trainer.colliderect(HOUSE_1):
-		pokemon_trainer.x = previous_x - 0
-		pokemon_trainer.y = previous_y + 5
+		pokemon_trainer.y -= VEL
+		previous_y = pokemon_trainer.y
+		previous_x = pokemon_trainer.x
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, HOUSE_1)
+		if pokemon_trainer.colliderect(HOUSE_1):
+			pokemon_trainer.x = previous_x - 0
+			pokemon_trainer.y = previous_y + 5
 
-	if pokemon_trainer.colliderect(HOUSE_2):
-		pokemon_trainer.x = previous_x - 0
-		pokemon_trainer.y = previous_y + 5
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_1)
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, HOUSE_2)
+		if pokemon_trainer.colliderect(HOUSE_2):
+			pokemon_trainer.x = previous_x - 0
+			pokemon_trainer.y = previous_y + 5
 
-	if pokemon_trainer.colliderect(TREE_1):
-		pokemon_trainer.x = previous_x - 0
-		pokemon_trainer.y = previous_y + 5
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, TREE_1)
+		if pokemon_trainer.colliderect(TREE_1):
+			pokemon_trainer.x = previous_x - 0
+			pokemon_trainer.y = previous_y + 5
 
-	if pokemon_trainer.colliderect(TREE_2):
-		pokemon_trainer.x = previous_x - 0
-		pokemon_trainer.y = previous_y + 5
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, TREE_1)
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, TREE_2)
+		if pokemon_trainer.colliderect(TREE_2):
+			pokemon_trainer.x = previous_x - 0
+			pokemon_trainer.y = previous_y + 5
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, TREE_2)
 
 
-def movement_down (pokemon_trainer) :
+def movement_down (pokemon_trainer, wild) :
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # Right foot
+	POKEMON_ENCOUNTER_SOUND.stop()
 
-	pokemon_trainer.y += VEL
-	previous_y = pokemon_trainer.y
-	previous_x = pokemon_trainer.x
+	if not wild :
 
-	if pokemon_trainer.colliderect(TREE_1):
-		pokemon_trainer.x = previous_x
-		pokemon_trainer.y = previous_y - 5
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # Right foot
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, TREE_1)
+		pokemon_trainer.y += VEL
+		previous_y = pokemon_trainer.y
+		previous_x = pokemon_trainer.x
 
-	if pokemon_trainer.colliderect(TREE_2):
-		pokemon_trainer.x = previous_x
-		pokemon_trainer.y = previous_y - 5
+		if pokemon_trainer.colliderect(TREE_1):
+			pokemon_trainer.x = previous_x
+			pokemon_trainer.y = previous_y - 5
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, TREE_2)
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, TREE_1)
+
+		if pokemon_trainer.colliderect(TREE_2):
+			pokemon_trainer.x = previous_x
+			pokemon_trainer.y = previous_y - 5
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, TREE_2)
 
 def bicicle_movement_left(pokemon_trainer) :
 	VEL = 4
@@ -407,31 +739,31 @@ def bicicle_movement_down (pokemon_trainer) :
 
 
 def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement function
-
+	wild = False
 	trainer_pokeballs = []
 
 	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0 :
 		fps = 0
 		while fps < 5 :
-			movement_left(pokemon_trainer)
+			movement_left(pokemon_trainer, wild)
 			fps +=1
 
 	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80:
 		fps = 0
 		while fps < 5 :
-			movement_right(pokemon_trainer)
+			movement_right(pokemon_trainer, wild)
 			fps +=1
 
 	if keys_pressed[pygame.K_UP] and pokemon_trainer.y - VEL > 0 :
 		fps = 0
 		while fps < 5 :
-			movement_up(pokemon_trainer)
+			movement_up(pokemon_trainer, wild)
 			fps +=1
 		
 	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT -100 :
 		fps = 0
 		while fps < 5 :
-			movement_down(pokemon_trainer)
+			movement_down(pokemon_trainer, wild)
 			fps +=1
 
 	if keys_pressed[pygame.K_b] :
@@ -479,14 +811,7 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs)
 	#pygame.draw.rect(WIN, GREEN, TREE_1) # Tree 1 building
 	#pygame.draw.rect(WIN, GREEN, TREE_2) # Tree 2 building
 
-
-	rules_1 = RULES.render("UP/DOWN/LEFT/RIGHT - Move", 1, WHITE)
-	rules_2 = RULES.render("W/S/A/D - Bicicle", 1, WHITE)
-	rules_3 = RULES.render("Space - Pokeball", 1, WHITE)
-
-	WIN.blit(rules_1, (WIDTH - rules_1.get_width() - 10, 20))
-	WIN.blit(rules_2, (WIDTH - rules_2.get_width() - 171, 40))
-	WIN.blit(rules_3, (WIDTH - rules_3.get_width() - 200, 60))
+	#pygame.draw.rect(WIN, GREEN, GRASS_ZONE_SOUTH) # Grass zone south
 
 	date = POKEBALLS_COUNTER.render("" + str(fecha), 1, WHITE)
 	WIN.blit(date, (10, 10))
