@@ -18,7 +18,7 @@ pygame.mixer.init() # Import sounds
 
 ## Game Values
 FPS = 30
-VEL = 6
+VEL = 2
 WHITE = (255,255,255)
 today = date.today()
 fecha = today.strftime("%B %d, %Y")
@@ -33,7 +33,7 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT)) # Draws the map with given diment
 pygame.display.set_caption("Pokémon Pi - Route")
 
 ## Map elements
-HOUSE_1 = pygame.Rect(WIDTH//2 -10, 0 ,10 , HEIGHT  )
+HOUSE_1 = pygame.Rect(WIDTH//2 -10, 0 ,100 , HEIGHT  )
 
 ## Character Values
 TRAINER_WIDTH, TRAINER_HEIGHT = 64, 76
@@ -120,26 +120,28 @@ def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement functi
 	trainer_pokeballs = []
 
 	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0:
-		movement_left(pokemon_trainer)
-		movement_left(pokemon_trainer)
-		movement_left(pokemon_trainer)
-
+		fps = 0
+		while fps < 5 :
+			movement_left(pokemon_trainer)
+			fps +=1
 
 	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80  :
-		movement_right(pokemon_trainer)
-		movement_right(pokemon_trainer)
-		movement_right(pokemon_trainer)
+		fps = 0
+		while fps < 5 :
+			movement_right(pokemon_trainer)
+			fps +=1
 
 	if keys_pressed[pygame.K_UP] and pokemon_trainer.y - VEL > 0 :
-		movement_up(pokemon_trainer)
-		movement_up(pokemon_trainer)
-		movement_up(pokemon_trainer)
-		movement_up(pokemon_trainer)
-
+		fps = 0
+		while fps < 5 :
+			movement_up(pokemon_trainer)
+			fps +=1
+		
 	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT -100 :
-		movement_down(pokemon_trainer)
-		movement_down(pokemon_trainer)
-		movement_down(pokemon_trainer)
+		fps = 0
+		while fps < 5 :
+			movement_down(pokemon_trainer)
+			fps +=1
 		
 
 
@@ -163,7 +165,7 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs)
 		pokemon_trainer.x, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 10, 5)
 
 	for pokeball in trainer_pokeballs :
-		WIN.blit(POKEBALL_ITEM, pokeball)
+		WIN.blit(POKEBALL_ITEM, (pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 1, 1))
 
 	pygame.display.update()
 
@@ -202,7 +204,7 @@ def main (): ## Main function
 			if event.type == pygame.KEYDOWN :
 				if event.key == pygame.K_SPACE and len(trainer_pokeballs) < MAX_POKEBALL:
 					pokeball = pygame.Rect(
-						pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 10, 5)
+						pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 1, 1)
 					trainer_pokeballs.append(pokeball)
 					BACKGROUND_SOUND.stop()
 					POKEBALL_SOUND.play()
