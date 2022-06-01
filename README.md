@@ -14,8 +14,16 @@ Pocket Monster Game Based on Python
 <br/>
 
 # Status
-W.I.P
-<br/>
+
+- [x] Draw Map
+- [x] Define map obstacles & limits
+- [x] Define player basic moves
+- [x] Define player bicicle moves
+- [x] Basic Pokémon wild encounter
+- [ ] Fully working wild encounter
+- [ ] Pokemon Inventory
+- [ ] Pokemon following the trainer
+- [ ] Create more Pokémon
 
 # Installation
 
