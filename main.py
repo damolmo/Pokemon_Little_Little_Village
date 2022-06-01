@@ -297,7 +297,7 @@ def movement_left (pokemon_trainer, wild) :
 			BACKGROUND_SOUND.stop()
 			GRASS_SOUND.play()
 
-			wild_encouter = randint(1, 100)
+			wild_encouter = randint(1, 300)
 
 			if wild_encouter == 95 :
 				previous_x = pokemon_trainer.x
@@ -529,7 +529,7 @@ def movement_right (pokemon_trainer, wild) :
 			BACKGROUND_SOUND.stop()
 			GRASS_SOUND.play()
 
-			wild_encouter = randint(1, 100)
+			wild_encouter = randint(1, 300)
 
 			if wild_encouter == 95 :
 				previous_x = pokemon_trainer.x
