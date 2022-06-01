@@ -20,12 +20,12 @@ pygame.mixer.init() # Import sounds
 FPS = 30
 VEL = 2
 WHITE = (255,255,255)
+BLUE = (0,0,204)
+GREEN = (0, 204, 102)
 today = date.today()
 fecha = today.strftime("%B %d, %Y")
 now = datetime.now()
 hora = now.strftime("%H:%M")
-
-
 
 ## Map Values
 WIDTH, HEIGHT = 900, 507 # Map dimentions
@@ -33,7 +33,12 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT)) # Draws the map with given diment
 pygame.display.set_caption("Pokémon Pi - Route")
 
 ## Map elements
-HOUSE_1 = pygame.Rect(WIDTH//2 -10, 0 ,100 , HEIGHT  )
+HOUSE_1 = pygame.Rect(650, 20, 220, 250)
+HOUSE_2 = pygame.Rect(90, 0, 280, 180)
+TREE_1 = pygame.Rect(500, 140, 120, 120)
+TREE_2 = pygame.Rect(230, 280, 120, 120)
+
+
 
 ## Character Values
 TRAINER_WIDTH, TRAINER_HEIGHT = 64, 76
@@ -41,10 +46,15 @@ TRAINER_WIDTH, TRAINER_HEIGHT = 64, 76
 
 ## Game Events
 THROW_POKEBALL = pygame.USEREVENT +1
+clock = pygame.time.Clock()
 
 ## Assets
 
 # Trainer
+pokemon_trainer = pygame.Rect(100, 300, TRAINER_WIDTH, TRAINER_HEIGHT) # Defines player coords
+previous_x, previous_y = 100, 300
+x_change, y_change = 0, 0
+
 ## Walking
 # --- Down Position ---
 TRAINER_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
@@ -118,6 +128,23 @@ def movement_left (pokemon_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
 	pokemon_trainer.x -= VEL
+	previous_x = pokemon_trainer.x
+	previous_y = pokemon_trainer.y
+
+	if pokemon_trainer.colliderect(HOUSE_2):
+		pokemon_trainer.x = previous_x + 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+	if pokemon_trainer.colliderect(TREE_2):
+		pokemon_trainer.x = previous_x + 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_2)
+
 
 def movement_right (pokemon_trainer) :
 	trainer_pokeballs = []
@@ -126,6 +153,36 @@ def movement_right (pokemon_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
 	pokemon_trainer.x += VEL
+	previous_x = pokemon_trainer.x
+	previous_y = pokemon_trainer.y
+
+	if pokemon_trainer.colliderect(HOUSE_1):
+		pokemon_trainer.x = previous_x - 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, HOUSE_1)
+
+	if pokemon_trainer.colliderect(HOUSE_2):
+		pokemon_trainer.x = previous_x - 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+	if pokemon_trainer.colliderect(TREE_2):
+		pokemon_trainer.x = previous_x - 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_2)
+
+	if pokemon_trainer.colliderect(TREE_1):
+		pokemon_trainer.x = previous_x - 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_2)
 
 def movement_up (pokemon_trainer) :
 	trainer_pokeballs = []
@@ -134,6 +191,37 @@ def movement_up (pokemon_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
 	pokemon_trainer.y -= VEL
+	previous_y = pokemon_trainer.y
+	previous_x = pokemon_trainer.x
+
+	if pokemon_trainer.colliderect(HOUSE_1):
+		pokemon_trainer.x = previous_x - 0
+		pokemon_trainer.y = previous_y + 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, HOUSE_1)
+
+	if pokemon_trainer.colliderect(HOUSE_2):
+		pokemon_trainer.x = previous_x - 0
+		pokemon_trainer.y = previous_y + 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+	if pokemon_trainer.colliderect(TREE_1):
+		pokemon_trainer.x = previous_x - 0
+		pokemon_trainer.y = previous_y + 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_1)
+
+	if pokemon_trainer.colliderect(TREE_2):
+		pokemon_trainer.x = previous_x - 0
+		pokemon_trainer.y = previous_y + 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_2)
+
 
 def movement_down (pokemon_trainer) :
 	trainer_pokeballs = []
@@ -142,6 +230,22 @@ def movement_down (pokemon_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # Right foot
 
 	pokemon_trainer.y += VEL
+	previous_y = pokemon_trainer.y
+	previous_x = pokemon_trainer.x
+
+	if pokemon_trainer.colliderect(TREE_1):
+		pokemon_trainer.x = previous_x
+		pokemon_trainer.y = previous_y - 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_1)
+
+	if pokemon_trainer.colliderect(TREE_2):
+		pokemon_trainer.x = previous_x
+		pokemon_trainer.y = previous_y - 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_2)
 
 def bicicle_movement_left(pokemon_trainer) :
 	VEL = 4
@@ -151,6 +255,22 @@ def bicicle_movement_left(pokemon_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_RIGHT_FOOT_IMG , trainer_pokeballs ) # Right foot
 
 	pokemon_trainer.x -= VEL
+	previous_y = pokemon_trainer.y
+	previous_x = pokemon_trainer.x
+
+	if pokemon_trainer.colliderect(HOUSE_2):
+		pokemon_trainer.x = previous_x + 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+	if pokemon_trainer.colliderect(TREE_2):
+		pokemon_trainer.x = previous_x + 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_2)
 
 def bicicle_movement_right(pokemon_trainer) :
 	VEL = 4
@@ -160,6 +280,36 @@ def bicicle_movement_right(pokemon_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_RIGHT_FOOT_IMG , trainer_pokeballs ) # Right foot
 
 	pokemon_trainer.x += VEL
+	previous_y = pokemon_trainer.y
+	previous_x = pokemon_trainer.x
+
+	if pokemon_trainer.colliderect(HOUSE_1):
+		pokemon_trainer.x = previous_x - 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, HOUSE_1)
+
+	if pokemon_trainer.colliderect(HOUSE_2):
+		pokemon_trainer.x = previous_x - 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+	if pokemon_trainer.colliderect(TREE_2):
+		pokemon_trainer.x = previous_x - 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_2)
+
+	if pokemon_trainer.colliderect(TREE_1):
+		pokemon_trainer.x = previous_x - 5
+		pokemon_trainer.y = previous_y - 0
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_2)
 
 def bicicle_movement_up (pokemon_trainer) :
 	VEL = 4
@@ -169,6 +319,36 @@ def bicicle_movement_up (pokemon_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
 	pokemon_trainer.y -= VEL
+	previous_y = pokemon_trainer.y
+	previous_x = pokemon_trainer.x
+
+	if pokemon_trainer.colliderect(HOUSE_1):
+		pokemon_trainer.x = previous_x - 0
+		pokemon_trainer.y = previous_y + 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, HOUSE_1)
+
+	if pokemon_trainer.colliderect(HOUSE_2):
+		pokemon_trainer.x = previous_x - 0
+		pokemon_trainer.y = previous_y + 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+	if pokemon_trainer.colliderect(TREE_1):
+		pokemon_trainer.x = previous_x - 0
+		pokemon_trainer.y = previous_y + 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_1)
+
+	if pokemon_trainer.colliderect(TREE_2):
+		pokemon_trainer.x = previous_x - 0
+		pokemon_trainer.y = previous_y + 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_2)
 
 def bicicle_movement_down (pokemon_trainer) :
 	VEL = 4
@@ -178,6 +358,22 @@ def bicicle_movement_down (pokemon_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
 	pokemon_trainer.y += VEL
+	previous_y = pokemon_trainer.y
+	previous_x = pokemon_trainer.x
+
+	if pokemon_trainer.colliderect(TREE_1):
+		pokemon_trainer.x = previous_x
+		pokemon_trainer.y = previous_y - 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_1)
+
+	if pokemon_trainer.colliderect(TREE_2):
+		pokemon_trainer.x = previous_x
+		pokemon_trainer.y = previous_y - 5
+
+		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+		pygame.draw.rect(WIN, WHITE, TREE_2)
 
 
 
@@ -186,13 +382,13 @@ def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement functi
 
 	trainer_pokeballs = []
 
-	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0:
+	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0 :
 		fps = 0
 		while fps < 5 :
 			movement_left(pokemon_trainer)
 			fps +=1
 
-	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80  :
+	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80:
 		fps = 0
 		while fps < 5 :
 			movement_right(pokemon_trainer)
@@ -241,10 +437,20 @@ def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement functi
 		while fps < 5 :
 			bicicle_movement_down(pokemon_trainer)
 			fps +=1
+
 		
 
 def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs) :
-	WIN.blit(ROUTE_IMG, (0,0))
+
+	WIN.blit(ROUTE_IMG, (0,0)) # Place background image
+
+
+	#pygame.draw.rect(WIN, BLUE, HOUSE_1) # House 1 building
+	#pygame.draw.rect(WIN, BLUE, HOUSE_2) # House 2 building
+
+	#pygame.draw.rect(WIN, GREEN, TREE_1) # Tree 1 building
+	#pygame.draw.rect(WIN, GREEN, TREE_2) # Tree 2 building
+
 
 	rules_1 = RULES.render("UP/DOWN/LEFT/RIGHT - Move", 1, WHITE)
 	rules_2 = RULES.render("W/S/A/D - Bicicle", 1, WHITE)
@@ -257,14 +463,15 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs)
 	date = POKEBALLS_COUNTER.render("" + str(fecha), 1, WHITE)
 	WIN.blit(date, (10, 10))
 
-	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
-
 	pokeball = POKEBALL_ITEM.get_rect()
 	pokeball = pygame.Rect(
 		pokemon_trainer.x, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 10, 5)
 
+
 	for pokeball in trainer_pokeballs :
 		WIN.blit(POKEBALL_ITEM, (pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 1, 1))
+
+	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
 
 	pygame.display.update()
 
@@ -272,7 +479,7 @@ def throw_pokeball(trainer_pokeballs, pokemon_trainer) :
 	for pokeball in trainer_pokeballs:
 		pokeball.x += POKEBALL_VEL
 
-		if pokemon_trainer.colliderect(pokeball):
+		if pokemon_trainer.collidelist(trainer_pokeballs) :
 			trainer_pokeballs.remove(pokeball)
 
 		if pokeball.x > WIDTH :
@@ -282,11 +489,13 @@ def throw_pokeball(trainer_pokeballs, pokemon_trainer) :
 
 def main (): ## Main function
 
-	pokemon_trainer = pygame.Rect(100, 300, TRAINER_WIDTH, TRAINER_HEIGHT) # Defines player rectangle
 	trainer_pokeballs = []
 	free_monster = []
 	pokeballs = 5
 	pressed = True
+
+	pokemon_trainer = pygame.Rect(100, 300, TRAINER_WIDTH, TRAINER_HEIGHT) # Defines player coords
+
 
 
 	clock = pygame.time.Clock()
@@ -345,12 +554,6 @@ def main (): ## Main function
 			if keys[pygame.K_s]:
 				TRAINER_IMG = TRAINER_BICICLE_IMG
 				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
-
-
-
-
-
-			
 
 
 		BACKGROUND_SOUND.play()
