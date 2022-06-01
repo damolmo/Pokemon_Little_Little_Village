@@ -32,6 +32,9 @@ WIDTH, HEIGHT = 900, 507 # Map dimentions
 WIN = pygame.display.set_mode((WIDTH, HEIGHT)) # Draws the map with given dimentions
 pygame.display.set_caption("Pokémon Pi - Route")
 
+## Map elements
+HOUSE_1 = pygame.Rect(WIDTH//2 -10, 0 ,10 , HEIGHT  )
+
 ## Character Values
 TRAINER_WIDTH, TRAINER_HEIGHT = 64, 76
 
@@ -70,81 +73,87 @@ BACKGROUND_SOUND = pygame.mixer.Sound("Assets/music.mp3")
 
 # Pokeball
 POKEBALL_IMG = pygame.image.load(os.path.join('Assets', "pokeball.png"))
-
+POKEBALL_ITEM = pygame.image.load(os.path.join('Assets', "pokeball_item.png"))
+POKEBALL_SOUND = pygame.mixer.Sound("Assets/pokeball_out.mp3")
+MAX_POKEBALL = 3
+POKEBALL_VEL = 3
+POKEBALL_ITEM.convert()
 
 # Displat Fonts
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 50)
 
 def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement function
 
+	trainer_pokeballs = []
+
 	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0:
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_RIGHT_FOOT_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
 		pokemon_trainer.x -= VEL
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_RIGHT_FOOT_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
 		pokemon_trainer.x -= VEL
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_IMG ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs ) # All Foots
 
 	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80  :
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_RIGHT_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_RIGHT_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_RIGHT_RIGHT_FOOT_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_IMG, trainer_pokeballs ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
 		pokemon_trainer.x += VEL
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_RIGHT_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_RIGHT_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_RIGHT_RIGHT_FOOT_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_IMG, trainer_pokeballs ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 		
 		pokemon_trainer.x += VEL
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_RIGHT_IMG ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_IMG, trainer_pokeballs ) # All Foots
 
 
 	if keys_pressed[pygame.K_UP] and pokemon_trainer.y - VEL > 0 :
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_BACK_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_BACK_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_BACK_RIGHT_FOOT_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_IMG, trainer_pokeballs ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
 		pokemon_trainer.y -= VEL
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,  TRAINER_BACK_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_BACK_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_BACK_RIGHT_FOOT_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_IMG, trainer_pokeballs ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
 
 		pokemon_trainer.y -= VEL
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_BACK_IMG ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_IMG, trainer_pokeballs ) # All Foots
 
 
 		
 
 	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT -100 :
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # Right foot
 
 		pokemon_trainer.y += VEL
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # Right foot
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # All Foots
 
 		pokemon_trainer.y += VEL
 		
 
 
-def create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER) :
+def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs) :
 	WIN.blit(ROUTE_IMG, (0,0))
 
 	pokeball = POKEBALL_IMG
@@ -159,7 +168,25 @@ def create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER) :
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
 
+	pokeball = POKEBALL_ITEM.get_rect()
+	pokeball = pygame.Rect(
+		pokemon_trainer.x, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 10, 5)
+
+	for pokeball in trainer_pokeballs :
+		WIN.blit(POKEBALL_ITEM, pokeball)
+
 	pygame.display.update()
+
+def throw_pokeball(trainer_pokeballs, pokemon_trainer) :
+	for pokeball in trainer_pokeballs:
+		pokeball.x += POKEBALL_VEL
+
+		if pokemon_trainer.colliderect(pokeball):
+			trainer_pokeballs.remove(pokeball)
+
+		if pokeball.x > WIDTH :
+			trainer_pokeballs.remove(pokeball)
+
 
 
 def main (): ## Main function
@@ -182,22 +209,31 @@ def main (): ## Main function
 				run = False
 				pygame.quit()
 
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_SPACE and len(trainer_pokeballs) < MAX_POKEBALL:
+					pokeball = pygame.Rect(
+						pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 10, 5)
+					trainer_pokeballs.append(pokeball)
+					BACKGROUND_SOUND.stop()
+					POKEBALL_SOUND.play()
+					BACKGROUND_SOUND.play()
+
 			keys = pygame.key.get_pressed()
 			if keys[pygame.K_LEFT]:
 				TRAINER_IMG = TRAINER_LEFT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
 			
 			if keys[pygame.K_RIGHT]:
 				TRAINER_IMG = TRAINER_RIGHT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
 
 			if keys[pygame.K_UP]:
 				TRAINER_IMG = TRAINER_BACK_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
 
 			if keys[pygame.K_DOWN]:
 				TRAINER_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG,   TRAINER_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
 
 			
 
@@ -205,7 +241,8 @@ def main (): ## Main function
 		BACKGROUND_SOUND.play()
 		keys_pressed = pygame.key.get_pressed()
 		trainer_movement(keys_pressed, pokemon_trainer)
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG)
+		throw_pokeball(trainer_pokeballs, pokemon_trainer )
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs)
 
 	main()
 
