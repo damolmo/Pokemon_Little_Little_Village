@@ -4,6 +4,7 @@
 
 import os
 
+os.system("pip3 install wget")
 os.system("pip3 install pygame")
 os.system("pip install pygame")
 os.system("pip3.10 install pygame")
@@ -12,9 +13,36 @@ import pygame
 import time
 from datetime import date
 from datetime import datetime
+import os.path
+import platform
+import zipfile
+from zipfile import ZipFile
+import wget 
 
 pygame.font.init() # Import font
 pygame.mixer.init() # Import sounds
+
+def download_assets() :
+	package = wget.download("https://github.com/daviiid99/Pokemon-Pi/raw/main/Assets.zip", "Assets.zip") #Download the platform-tools-latest-linux.zip from Google server
+
+	with ZipFile("Assets.zip") as zipObj:
+		zipObj.extractall()
+
+	if platform.system() == "Linux" :
+		os.system("rm Assets.zip ")
+
+	else :
+		os.system("del /f Assets.zip ")
+
+def check_Assets_Exist() :
+	exists = False
+	if os.path.exists("Assets") :
+		exists = True
+
+	else :
+		download_assets()
+
+check_Assets_Exist()
 
 ## Game Values
 FPS = 30
@@ -488,6 +516,9 @@ def throw_pokeball(trainer_pokeballs, pokemon_trainer) :
 
 
 def main (): ## Main function
+
+	# Download Game Resources
+
 
 	trainer_pokeballs = []
 	free_monster = []
