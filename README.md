@@ -6,6 +6,7 @@ Pocket Monster Game Based on Python
 
 # Screenshots
 <img src = "src/Pokemon_Pi.png">
+<img src="src/Pokemon_Pi_2.png">
 <br/>
 
 # System Requirements
