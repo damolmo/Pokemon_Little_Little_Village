@@ -45,6 +45,7 @@ THROW_POKEBALL = pygame.USEREVENT +1
 ## Assets
 
 # Trainer
+## Walking
 # --- Down Position ---
 TRAINER_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
 TRAINER_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_left_foot.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
@@ -65,6 +66,33 @@ TRAINER_BACK_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets
 TRAINER_BACK_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_back_left_foot.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
 TRAINER_BACK_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_back_right_foot.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
 
+## Running
+
+## Bicicle
+# --- Down Position ---
+TRAINER_BICICLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+TRAINER_BICICLE_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_left.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+TRAINER_BICICLE_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_right.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+
+# --- Left Position ---
+TRAINER_BICICLE_LEFT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_left_foots.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+TRAINER_BICICLE_LEFT_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_left_left_foot.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+TRAINER_BICICLE_LEFT_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_left_right_foot.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+
+# --- Right Position ---
+TRAINER_BICICLE_RIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_right_foots.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+TRAINER_BICICLE_RIGHT_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_right_left_foot.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+TRAINER_BICICLE_RIGHT_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_right_right_foot.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+
+# --- Up Position ---
+TRAINER_BICICLE_BACK_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_back_foots.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+TRAINER_BICICLE_BACK_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_back_left_foot.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+TRAINER_BICICLE_BACK_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_bicicle_back_right_foot.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+
+
+# Pikachu
+PIKACHU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pikachu.gif")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+
 # Background
 ROUTE_IMG = pygame.image.load(os.path.join('Assets', "background.png"))
 
@@ -81,6 +109,7 @@ POKEBALL_ITEM.convert()
 
 # Displat Fonts
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 50)
+RULES = pygame.font.SysFont('comicsans', 25)
 
 def movement_left (pokemon_trainer) :
 	trainer_pokeballs = []
@@ -114,6 +143,44 @@ def movement_down (pokemon_trainer) :
 
 	pokemon_trainer.y += VEL
 
+def bicicle_movement_left(pokemon_trainer) :
+	VEL = 4
+	trainer_pokeballs = []
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_IMG, trainer_pokeballs) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_RIGHT_FOOT_IMG , trainer_pokeballs ) # Right foot
+
+	pokemon_trainer.x -= VEL
+
+def bicicle_movement_right(pokemon_trainer) :
+	VEL = 4
+	trainer_pokeballs = []
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_IMG, trainer_pokeballs) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_RIGHT_FOOT_IMG , trainer_pokeballs ) # Right foot
+
+	pokemon_trainer.x += VEL
+
+def bicicle_movement_up (pokemon_trainer) :
+	VEL = 4
+	trainer_pokeballs = []
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_IMG, trainer_pokeballs ) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
+
+	pokemon_trainer.y -= VEL
+
+def bicicle_movement_down (pokemon_trainer) :
+	VEL = 4
+	trainer_pokeballs = []
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_IMG, trainer_pokeballs ) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
+
+	pokemon_trainer.y += VEL
+
+
+
 
 def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement function
 
@@ -142,18 +209,50 @@ def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement functi
 		while fps < 5 :
 			movement_down(pokemon_trainer)
 			fps +=1
-		
 
+	if keys_pressed[pygame.K_b] :
+		TRAINER_IMG = TRAINER_BICICLE_IMG
+
+
+	if keys_pressed[pygame.K_a]  and pokemon_trainer.x >0:
+		TRAINER_IMG = TRAINER_BICICLE_IMG
+		fps = 0
+		while fps < 5 :
+			bicicle_movement_left(pokemon_trainer)
+			fps +=1
+				
+	if keys_pressed[pygame.K_d] and pokemon_trainer.x < WIDTH - 80  :
+		TRAINER_IMG = TRAINER_BICICLE_RIGHT_IMG
+		fps = 0
+		while fps < 5 :
+			bicicle_movement_right(pokemon_trainer)
+			fps +=1
+
+	if keys_pressed[pygame.K_w]  and pokemon_trainer.y - VEL > 0:
+		TRAINER_IMG = TRAINER_BICICLE_BACK_IMG
+		fps = 0
+		while fps < 5 :
+			bicicle_movement_up(pokemon_trainer)
+			fps +=1
+
+	if keys_pressed[pygame.K_s] and pokemon_trainer.y - VEL < HEIGHT -100:
+		TRAINER_IMG = TRAINER_BICICLE_IMG
+		fps = 0
+		while fps < 5 :
+			bicicle_movement_down(pokemon_trainer)
+			fps +=1
+		
 
 def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs) :
 	WIN.blit(ROUTE_IMG, (0,0))
 
-	pokeball = POKEBALL_IMG
-	WIN.blit(POKEBALL_IMG, (WIDTH - pokeball.get_width() - 10, 10))
-	pokeball = POKEBALL_IMG
-	WIN.blit(POKEBALL_IMG, (WIDTH - pokeball.get_width() - 65, 10))
-	pokeball = POKEBALL_IMG
-	WIN.blit(POKEBALL_IMG, (WIDTH - pokeball.get_width() - 120, 10))
+	rules_1 = RULES.render("UP/DOWN/LEFT/RIGHT - Move", 1, WHITE)
+	rules_2 = RULES.render("W/S/A/D - Bicicle", 1, WHITE)
+	rules_3 = RULES.render("Space - Pokeball", 1, WHITE)
+
+	WIN.blit(rules_1, (WIDTH - rules_1.get_width() - 10, 20))
+	WIN.blit(rules_2, (WIDTH - rules_2.get_width() - 171, 40))
+	WIN.blit(rules_3, (WIDTH - rules_3.get_width() - 200, 60))
 
 	date = POKEBALLS_COUNTER.render("" + str(fecha), 1, WHITE)
 	WIN.blit(date, (10, 10))
@@ -185,6 +284,7 @@ def main (): ## Main function
 
 	pokemon_trainer = pygame.Rect(100, 300, TRAINER_WIDTH, TRAINER_HEIGHT) # Defines player rectangle
 	trainer_pokeballs = []
+	free_monster = []
 	pokeballs = 5
 	pressed = True
 
@@ -226,6 +326,29 @@ def main (): ## Main function
 			if keys[pygame.K_DOWN]:
 				TRAINER_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
 				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+
+			if keys[pygame.K_b]:
+				TRAINER_IMG = TRAINER_BICICLE_IMG
+
+			if keys[pygame.K_a]:
+				TRAINER_IMG = TRAINER_BICICLE_LEFT_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+				
+			if keys[pygame.K_d]:
+				TRAINER_IMG = TRAINER_BICICLE_RIGHT_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+
+			if keys[pygame.K_w]:
+				TRAINER_IMG = TRAINER_BICICLE_BACK_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+
+			if keys[pygame.K_s]:
+				TRAINER_IMG = TRAINER_BICICLE_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+
+
+
+
 
 			
 
