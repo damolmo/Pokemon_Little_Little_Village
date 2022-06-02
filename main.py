@@ -543,6 +543,7 @@ UMBREON_IMG_33 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/U
 UMBREON_IMG_34 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_34_delay-0.1s.png")), (270, 200))
 
 # Background
+TITLE_SCREEN_IMG = pygame.image.load(os.path.join('Assets', "welcome.png"))
 ROUTE_IMG = pygame.image.load(os.path.join('Assets', "background.png"))
 ROUTE_IMG_2 = pygame.image.load(os.path.join('Assets', "background_evening.png"))
 ROUTE_IMG_3 = pygame.image.load(os.path.join('Assets', "background_night.png"))
@@ -2072,6 +2073,26 @@ def throw_pokeball(trainer_pokeballs, pokemon_trainer) :
 			trainer_pokeballs.remove(pokeball)
 
 
+def create_title_screen() :
+
+	WIN.blit(TITLE_SCREEN_IMG, (0,0)) # Place background image
+	pygame.display.update()
+
+
+
+def welcome() :
+	start = False
+
+	while not start :
+		create_title_screen()
+
+		for event in pygame.event.get() :
+
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_a:
+					start = True
+					main()
+				
 
 def main (): ## Main function
 
@@ -2144,6 +2165,10 @@ def main (): ## Main function
 				TRAINER_IMG = TRAINER_BICICLE_IMG
 				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
 
+			if keys[pygame.K_e]:
+				BACKGROUND_SOUND.stop()
+				welcome()
+
 
 		BACKGROUND_SOUND.play()
 		keys_pressed = pygame.key.get_pressed()
@@ -2154,4 +2179,4 @@ def main (): ## Main function
 	main()
 
 if __name__ == "__main__":
-	main()
+	welcome()
