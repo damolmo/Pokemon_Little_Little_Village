@@ -5,8 +5,9 @@ Pocket Monster Game Based on Python
 <br/>
 
 # Screenshots
-<img src = "src/Pokemon_Pi.png">
-<img src="src/Pokemon_Pi_2.png">
+<img src = "src/Pokemon_Litle_Litle_Town.png">
+<img src="src/Pokemon_Litle_Litle_Town_2.png">
+<img src="src/Pokemon_Litle_Litle_Town_Title_Screen.png">
 <br/>
 
 # System Requirements
@@ -29,15 +30,15 @@ Pocket Monster Game Based on Python
 
 ```GNU/Linux ```
 ```
-git clone https://github.com/daviiid99/Pokemon-Pi.git Pokemon-Pi
-cd Pokemon-Pi
+git clone https://github.com/daviiid99/Pokemon-Little_Little_Town.git Pokemon-Little_Little_Town
+cd Pokemon-Little_Little_Town
 python3 main.py
 ```
 <br/>
 
 ``` Microsoft Windows```
 ```
-git clone https://github.com/daviiid99/Pokemon-Pi.git Pokemon-Pi
-cd Pokemon-Pi
+git clone https://github.com/daviiid99/Pokemon-Little_Little_Town.git Pokemon-Little_Little_Town
+cd Pokemon-Little_Little_Town
 python main.py
 ```

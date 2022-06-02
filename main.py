@@ -86,9 +86,9 @@ clock = pygame.time.Clock()
 ## Assets
 
 # Trainer
-pokemon_trainer = pygame.Rect(100, 300, TRAINER_WIDTH, TRAINER_HEIGHT) # Defines player coords
-previous_x, previous_y = 100, 300
-x_change, y_change = 0, 0
+pokemon_trainer = pygame.Rect(450, 253, TRAINER_WIDTH, TRAINER_HEIGHT) # Defines player coords
+previous_x, previous_y = 450, 253
+x_change, y_change = 450, 2531
 
 ## Walking
 # --- Down Position ---
@@ -1858,6 +1858,20 @@ def bicicle_movement_left(pokemon_trainer) :
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_2)
 
+	if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST):
+		wild = False
+
+		wild_encouter = randint(1, 500) # Generate random number 1
+		wild_encounter_2 = randint(1,500) # Generate random number 2
+		lucky = wild_encouter + wild_encounter_2 # Total
+
+		if lucky == 900 :
+			previous_x = pokemon_trainer.x
+			previous_y = pokemon_trainer.y
+			wild = True
+			POKEMON_ENCOUNTER_SOUND.play()
+			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
+
 def bicicle_movement_right(pokemon_trainer) :
 	VEL = 4
 	trainer_pokeballs = []
@@ -1896,6 +1910,20 @@ def bicicle_movement_right(pokemon_trainer) :
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_2)
+
+	if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST):
+		wild = False
+
+		wild_encouter = randint(1, 500) # Generate random number 1
+		wild_encounter_2 = randint(1,500) # Generate random number 2
+		lucky = wild_encouter + wild_encounter_2 # Total
+
+		if lucky == 900 :
+			previous_x = pokemon_trainer.x
+			previous_y = pokemon_trainer.y
+			wild = True
+			POKEMON_ENCOUNTER_SOUND.play()
+			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 def bicicle_movement_up (pokemon_trainer) :
 	VEL = 4
@@ -1936,6 +1964,20 @@ def bicicle_movement_up (pokemon_trainer) :
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_2)
 
+	if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST):
+		wild = False
+
+		wild_encouter = randint(1, 500) # Generate random number 1
+		wild_encounter_2 = randint(1,500) # Generate random number 2
+		lucky = wild_encouter + wild_encounter_2 # Total
+
+		if lucky == 900 :
+			previous_x = pokemon_trainer.x
+			previous_y = pokemon_trainer.y
+			wild = True
+			POKEMON_ENCOUNTER_SOUND.play()
+			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
+
 def bicicle_movement_down (pokemon_trainer) :
 	VEL = 4
 	trainer_pokeballs = []
@@ -1960,6 +2002,20 @@ def bicicle_movement_down (pokemon_trainer) :
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_2)
+
+	if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST):
+		wild = False
+
+		wild_encouter = randint(1, 500) # Generate random number 1
+		wild_encounter_2 = randint(1,500) # Generate random number 2
+		lucky = wild_encouter + wild_encounter_2 # Total
+
+		if lucky == 900 :
+			previous_x = pokemon_trainer.x
+			previous_y = pokemon_trainer.y
+			wild = True
+			POKEMON_ENCOUNTER_SOUND.play()
+			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement function
 	wild = False
@@ -2082,6 +2138,7 @@ def create_title_screen() :
 
 def welcome() :
 	start = False
+	BACKGROUND_SOUND.play()
 
 	while not start :
 		create_title_screen()
@@ -2096,7 +2153,7 @@ def welcome() :
 
 def main (): ## Main function
 
-	# Download Game Resources
+	BACKGROUND_SOUND.stop()
 
 
 	trainer_pokeballs = []
