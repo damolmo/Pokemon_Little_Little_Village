@@ -49,6 +49,7 @@ check_Assets_Exist()
 ## Game Values
 FPS = 60
 VEL = 2
+VEL_CURSOR = 50
 WHITE = (255,255,255)
 BLUE = (0,0,204)
 GREEN = (0, 204, 102)
@@ -519,6 +520,25 @@ UMBREON_IMG_34 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/U
 ROUTE_IMG = pygame.image.load(os.path.join('Assets', "background.png"))
 BATTLE_ARENA_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "battle_arena.png")), (WIDTH, HEIGHT))
 ASH_BATTLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_battle_1.png")), (300,300))
+BATTLE_MENU = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "menu.png")), (260,90))
+CURSOR = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "cursor.png")), (100,100))
+cursor_pos = pygame.Rect(620, 350, 100, 100) # Defines player coords
+
+
+# Battle opening
+BATTLE_ARENA_IMG_01 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_1.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_02 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_2.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_03 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_3.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_04 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_4.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_05 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_5.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_06 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_6.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_07 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_7.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_08 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_8.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_09 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_9.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_10 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_10.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_11 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_11.gif")), (WIDTH, HEIGHT))
+BATTLE_ARENA_IMG_12 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/fight', "grass_12.gif")), (WIDTH, HEIGHT))
+
 
 # Music
 BACKGROUND_SOUND = pygame.mixer.Sound("Assets/music.mp3")
@@ -560,14 +580,167 @@ def create_area (POKEMON) :
 
 	WIN.blit(ASH_BATTLE_IMG, (0,250))
 	WIN.blit(POKEMON, (640,160))
+	WIN.blit(BATTLE_MENU, (600,410)) # Place background image
 
 	warning = POKEBALLS_COUNTER.render("A wild Pokémon Appeared!", 1, WHITE)
 	WIN.blit(warning, (0, 0))
+	WIN.blit(CURSOR, (cursor_pos.x, cursor_pos.y))
 
-	choice = POKEBALLS_COUNTER.render("(Press (B) to run", 1, WHITE)
-	WIN.blit(choice, (640, 450))
 
 	pygame.display.update()
+
+def create_battle_opening (frame) :
+
+	WIN.blit(frame, (0,0)) # Place background image
+	pygame.display.update()
+
+
+def create_opening_anim () :
+
+	create_battle_opening(BATTLE_ARENA_IMG_01)
+	create_battle_opening(BATTLE_ARENA_IMG_01)
+	create_battle_opening(BATTLE_ARENA_IMG_01)
+	create_battle_opening(BATTLE_ARENA_IMG_01)
+	create_battle_opening(BATTLE_ARENA_IMG_01)
+	create_battle_opening(BATTLE_ARENA_IMG_01)
+	create_battle_opening(BATTLE_ARENA_IMG_01)
+	create_battle_opening(BATTLE_ARENA_IMG_01)
+	create_battle_opening(BATTLE_ARENA_IMG_01)
+	create_battle_opening(BATTLE_ARENA_IMG_01)
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_02)
+	create_battle_opening(BATTLE_ARENA_IMG_02)
+	create_battle_opening(BATTLE_ARENA_IMG_02)
+	create_battle_opening(BATTLE_ARENA_IMG_02)
+	create_battle_opening(BATTLE_ARENA_IMG_02)
+	create_battle_opening(BATTLE_ARENA_IMG_02)
+	create_battle_opening(BATTLE_ARENA_IMG_02)
+	create_battle_opening(BATTLE_ARENA_IMG_02)
+	create_battle_opening(BATTLE_ARENA_IMG_02)
+	create_battle_opening(BATTLE_ARENA_IMG_02)
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_03)
+	create_battle_opening(BATTLE_ARENA_IMG_03)
+	create_battle_opening(BATTLE_ARENA_IMG_03)
+	create_battle_opening(BATTLE_ARENA_IMG_03)
+	create_battle_opening(BATTLE_ARENA_IMG_03)
+	create_battle_opening(BATTLE_ARENA_IMG_03)
+	create_battle_opening(BATTLE_ARENA_IMG_03)
+	create_battle_opening(BATTLE_ARENA_IMG_03)
+	create_battle_opening(BATTLE_ARENA_IMG_03)
+	create_battle_opening(BATTLE_ARENA_IMG_03)
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_04)
+	create_battle_opening(BATTLE_ARENA_IMG_04)
+	create_battle_opening(BATTLE_ARENA_IMG_04)
+	create_battle_opening(BATTLE_ARENA_IMG_04)
+	create_battle_opening(BATTLE_ARENA_IMG_04)
+	create_battle_opening(BATTLE_ARENA_IMG_04)
+	create_battle_opening(BATTLE_ARENA_IMG_04)
+	create_battle_opening(BATTLE_ARENA_IMG_04)
+	create_battle_opening(BATTLE_ARENA_IMG_04)
+	create_battle_opening(BATTLE_ARENA_IMG_04)
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_05)
+	create_battle_opening(BATTLE_ARENA_IMG_05)
+	create_battle_opening(BATTLE_ARENA_IMG_05)
+	create_battle_opening(BATTLE_ARENA_IMG_05)
+	create_battle_opening(BATTLE_ARENA_IMG_05)
+	create_battle_opening(BATTLE_ARENA_IMG_05)
+	create_battle_opening(BATTLE_ARENA_IMG_05)
+	create_battle_opening(BATTLE_ARENA_IMG_05)
+	create_battle_opening(BATTLE_ARENA_IMG_05)
+	create_battle_opening(BATTLE_ARENA_IMG_05)
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_06)
+	create_battle_opening(BATTLE_ARENA_IMG_06)
+	create_battle_opening(BATTLE_ARENA_IMG_06)
+	create_battle_opening(BATTLE_ARENA_IMG_06)
+	create_battle_opening(BATTLE_ARENA_IMG_06)
+	create_battle_opening(BATTLE_ARENA_IMG_06)
+	create_battle_opening(BATTLE_ARENA_IMG_06)
+	create_battle_opening(BATTLE_ARENA_IMG_06)
+	create_battle_opening(BATTLE_ARENA_IMG_06)
+	create_battle_opening(BATTLE_ARENA_IMG_06)
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_07)
+	create_battle_opening(BATTLE_ARENA_IMG_07)
+	create_battle_opening(BATTLE_ARENA_IMG_07)
+	create_battle_opening(BATTLE_ARENA_IMG_07)
+	create_battle_opening(BATTLE_ARENA_IMG_07)
+	create_battle_opening(BATTLE_ARENA_IMG_07)
+	create_battle_opening(BATTLE_ARENA_IMG_07)
+	create_battle_opening(BATTLE_ARENA_IMG_07)
+	create_battle_opening(BATTLE_ARENA_IMG_07)
+	create_battle_opening(BATTLE_ARENA_IMG_07)
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_08)
+	create_battle_opening(BATTLE_ARENA_IMG_08)
+	create_battle_opening(BATTLE_ARENA_IMG_08)
+	create_battle_opening(BATTLE_ARENA_IMG_08)
+	create_battle_opening(BATTLE_ARENA_IMG_08)
+	create_battle_opening(BATTLE_ARENA_IMG_08)
+	create_battle_opening(BATTLE_ARENA_IMG_08)
+	create_battle_opening(BATTLE_ARENA_IMG_08)
+	create_battle_opening(BATTLE_ARENA_IMG_08)
+	create_battle_opening(BATTLE_ARENA_IMG_08)
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_09)
+	create_battle_opening(BATTLE_ARENA_IMG_09)
+	create_battle_opening(BATTLE_ARENA_IMG_09)
+	create_battle_opening(BATTLE_ARENA_IMG_09)
+	create_battle_opening(BATTLE_ARENA_IMG_09)
+	create_battle_opening(BATTLE_ARENA_IMG_09)
+	create_battle_opening(BATTLE_ARENA_IMG_09)
+	create_battle_opening(BATTLE_ARENA_IMG_09)
+	create_battle_opening(BATTLE_ARENA_IMG_09)
+	create_battle_opening(BATTLE_ARENA_IMG_09)
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_10)
+	create_battle_opening(BATTLE_ARENA_IMG_10)
+	create_battle_opening(BATTLE_ARENA_IMG_10)
+	create_battle_opening(BATTLE_ARENA_IMG_10)
+	create_battle_opening(BATTLE_ARENA_IMG_10)
+	create_battle_opening(BATTLE_ARENA_IMG_10)
+	create_battle_opening(BATTLE_ARENA_IMG_10)
+	create_battle_opening(BATTLE_ARENA_IMG_10)
+	create_battle_opening(BATTLE_ARENA_IMG_10)
+	create_battle_opening(BATTLE_ARENA_IMG_10)
+	
+
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_11)
+	create_battle_opening(BATTLE_ARENA_IMG_11)
+	create_battle_opening(BATTLE_ARENA_IMG_11)
+	create_battle_opening(BATTLE_ARENA_IMG_11)
+	create_battle_opening(BATTLE_ARENA_IMG_11)
+	create_battle_opening(BATTLE_ARENA_IMG_11)
+	create_battle_opening(BATTLE_ARENA_IMG_11)
+	create_battle_opening(BATTLE_ARENA_IMG_11)
+	create_battle_opening(BATTLE_ARENA_IMG_11)
+	create_battle_opening(BATTLE_ARENA_IMG_11)
+	clock.tick(15)
+
+	create_battle_opening(BATTLE_ARENA_IMG_12)
+	create_battle_opening(BATTLE_ARENA_IMG_12)
+	create_battle_opening(BATTLE_ARENA_IMG_12)
+	create_battle_opening(BATTLE_ARENA_IMG_12)
+	create_battle_opening(BATTLE_ARENA_IMG_12)
+	create_battle_opening(BATTLE_ARENA_IMG_12)
+	create_battle_opening(BATTLE_ARENA_IMG_12)
+	create_battle_opening(BATTLE_ARENA_IMG_12)
+	create_battle_opening(BATTLE_ARENA_IMG_12)
+	create_battle_opening(BATTLE_ARENA_IMG_12)
 
 
 def create_Bulbasaur(sound) :
@@ -1341,27 +1514,51 @@ def wild_pokemon (wild_appeared, sound) :
 		create_Umbreon(sound)
 
 
-def start_battle(wild,x ,y, pokemon_trainer) :
+def start_battle(wild,x ,y, pokemon_trainer, cursor_pos) :
 	GRASS_SOUND.stop()
 	BACKGROUND_SOUND.stop()
 	POKEMON_ENCOUNTER_SOUND.play()
+	time.sleep(1.2)
 	pokemon = random_pokemon()
 	sound = 0
-
-	
+	create_opening_anim()
+ 
 	keys = pygame.key.get_pressed()
 
 	while wild:
 		wild_pokemon (pokemon, sound)
 		sound +=1
 
-		for event in pygame.event.get() :
+
+		for event in pygame.event.get() : 
 
 			if event.type == pygame.KEYDOWN :
-				if event.key == pygame.K_b :
+
+				if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 400 :
 					wild = False
 					print("HAS HUIDO")
 					movement_down (pokemon_trainer, wild)
+					cursor_pos.x = 620
+
+				if event.key == pygame.K_RIGHT:
+					cursor_pos.x = 800
+
+				if event.key == pygame.K_LEFT:
+					if cursor_pos.x == 800 :
+						cursor_pos.x = 620
+
+				if event.key == pygame.K_DOWN:
+					if cursor_pos.x == 800 or cursor_pos.x == 620  :
+						cursor_pos.y = 400
+
+				if event.key == pygame.K_UP:
+					if cursor_pos.x == 800 or cursor_pos.x == 620 :
+						cursor_pos.y = 350
+
+
+
+
+				
 
 
 def movement_left (pokemon_trainer, wild) :
@@ -1392,8 +1589,6 @@ def movement_left (pokemon_trainer, wild) :
 
 		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST):
 			wild = False
-			BACKGROUND_SOUND.stop()
-			GRASS_SOUND.play()
 
 			wild_encouter = randint(1, 500) # Generate random number 1
 			wild_encounter_2 = randint(1,500) # Generate random number 2
@@ -1403,7 +1598,8 @@ def movement_left (pokemon_trainer, wild) :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
 				wild = True
-				start_battle(wild,previous_x ,previous_y, pokemon_trainer)
+				POKEMON_ENCOUNTER_SOUND.play()
+				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 
 def movement_right (pokemon_trainer, wild) :
@@ -1447,8 +1643,6 @@ def movement_right (pokemon_trainer, wild) :
 			pygame.draw.rect(WIN, WHITE, TREE_2)
 
 		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST) :
-			BACKGROUND_SOUND.stop()
-			GRASS_SOUND.play()
 
 			wild_encouter = randint(1, 300)
 
@@ -1456,7 +1650,8 @@ def movement_right (pokemon_trainer, wild) :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
 				wild = True
-				start_battle(wild,previous_x ,previous_y, pokemon_trainer)
+				POKEMON_ENCOUNTER_SOUND.play()
+				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 
 def movement_up (pokemon_trainer, wild) :
@@ -1500,16 +1695,13 @@ def movement_up (pokemon_trainer, wild) :
 			pygame.draw.rect(WIN, WHITE, TREE_2)
 
 		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST) :
-			BACKGROUND_SOUND.stop()
-			GRASS_SOUND.play()
-
 			wild_encouter = randint(1, 300)
 
 			if wild_encouter == 95 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
 				wild = True
-				start_battle(wild,previous_x ,previous_y, pokemon_trainer)
+				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 
 def movement_down (pokemon_trainer, wild) :
@@ -1541,8 +1733,6 @@ def movement_down (pokemon_trainer, wild) :
 			pygame.draw.rect(WIN, WHITE, TREE_2)
 
 		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST) :
-			BACKGROUND_SOUND.stop()
-			GRASS_SOUND.play()
 
 			wild_encouter = randint(1, 300)
 
@@ -1550,7 +1740,7 @@ def movement_down (pokemon_trainer, wild) :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
 				wild = True
-				start_battle(wild,previous_x ,previous_y, pokemon_trainer)
+				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 def bicicle_movement_left(pokemon_trainer) :
 	VEL = 4
@@ -1679,9 +1869,6 @@ def bicicle_movement_down (pokemon_trainer) :
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_2)
-
-
-
 
 def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement function
 	wild = False
