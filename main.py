@@ -70,7 +70,7 @@ HOUSE_1 = pygame.Rect(650, 20, 220, 250)
 HOUSE_2 = pygame.Rect(90, 0, 280, 180)
 TREE_1 = pygame.Rect(500, 140, 120, 120)
 TREE_2 = pygame.Rect(230, 280, 120, 120)
-GRASS_ZONE_SOUTH = pygame.Rect(320, 390, 500, 120)
+GRASS_ZONE_SOUTH = pygame.Rect(320, 400, 500, 120)
 GRASS_ZONE_SOUTH_2 = pygame.Rect(0, 274, 250, 250)
 GRASS_ZONE_WEST = pygame.Rect(0, 0, 80, 250)
 GRASS_ZONE_EAST = pygame.Rect(500, 0, 130, 130)
@@ -1647,11 +1647,6 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos) :
 						cursor_pos.y = 350
 
 
-
-
-				
-
-
 def movement_left (pokemon_trainer, wild) :
 	trainer_pokeballs = []
 
@@ -1759,7 +1754,7 @@ def movement_up (pokemon_trainer, wild) :
 
 		if pokemon_trainer.colliderect(HOUSE_1):
 			pokemon_trainer.x = previous_x - 0
-			pokemon_trainer.y = previous_y + 5
+			pokemon_trainer.y = previous_y + 3
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, HOUSE_1)
@@ -1834,7 +1829,7 @@ def movement_down (pokemon_trainer, wild) :
 				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 def bicicle_movement_left(pokemon_trainer) :
-	VEL = 4
+	VEL = 3
 	trainer_pokeballs = []
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_IMG, trainer_pokeballs) # All Foots
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
@@ -1873,7 +1868,7 @@ def bicicle_movement_left(pokemon_trainer) :
 			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 def bicicle_movement_right(pokemon_trainer) :
-	VEL = 4
+	VEL = 3
 	trainer_pokeballs = []
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_IMG, trainer_pokeballs) # All Foots
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
@@ -1926,7 +1921,7 @@ def bicicle_movement_right(pokemon_trainer) :
 			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 def bicicle_movement_up (pokemon_trainer) :
-	VEL = 4
+	VEL = 3
 	trainer_pokeballs = []
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_IMG, trainer_pokeballs ) # All Foots
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
@@ -1979,7 +1974,7 @@ def bicicle_movement_up (pokemon_trainer) :
 			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 def bicicle_movement_down (pokemon_trainer) :
-	VEL = 4
+	VEL = 3
 	trainer_pokeballs = []
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_IMG, trainer_pokeballs ) # All Foots
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
