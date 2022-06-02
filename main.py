@@ -473,6 +473,45 @@ MEOWTH_IMG_22 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/ME
 MEOWTH_IMG_23 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/MEOWTH', "frame_22_delay-0.08s.gif")), (200, 200))
 MEOWTH_IMG_24 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/MEOWTH', "frame_23_delay-0.08s.gif")), (200, 200))
 
+## Umbreon
+
+# Sound
+UMBREON_SOUND = pygame.mixer.Sound("Assets/umbreon/sound/umbreon.mp3")
+
+# Sprites
+UMBREON_IMG_02 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_02_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_03 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_03_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_04 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_04_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_05 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_05_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_06 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_06_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_07 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_07_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_08 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_08_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_09 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_09_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_11 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_11_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_12 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_12_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_13 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_13_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_14 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_14_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_15 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_15_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_16 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_16_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_17 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_17_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_18 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_18_delay-0.24s.png")), (270, 200))
+UMBREON_IMG_19 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_19_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_20 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_20_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_21 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_21_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_22 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_22_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_23 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_23_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_24 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_24_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_25 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_25_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_26 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_26_delay-0.24s.png")), (270, 200))
+UMBREON_IMG_27 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_27_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_28 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_28_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_29 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_29_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_30 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_30_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_31 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_31_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_32 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_32_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_33 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_33_delay-0.14s.png")), (270, 200))
+UMBREON_IMG_34 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/UMBREON', "frame_34_delay-0.1s.png")), (270, 200))
+
 # Background
 ROUTE_IMG = pygame.image.load(os.path.join('Assets', "background.png"))
 BATTLE_ARENA_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "battle_arena.png")), (WIDTH, HEIGHT))
@@ -858,6 +897,80 @@ def create_Meowth(sound) :
 	clock.tick(20)
 	create_area(MEOWTH_IMG_24)
 
+def create_Umbreon(sound) :
+
+	# Pokemon Sound
+
+	if sound == 0:
+		UMBREON_SOUND.play()
+		sound +=1
+
+	# Pokemon Sprites
+
+	create_area(UMBREON_IMG_02)
+	clock.tick(20)
+	create_area(UMBREON_IMG_03)
+	clock.tick(20)
+	create_area(UMBREON_IMG_04)
+	clock.tick(20)
+	create_area(UMBREON_IMG_05)
+	clock.tick(20)
+	create_area(UMBREON_IMG_06)
+	clock.tick(20)
+	create_area(UMBREON_IMG_07)
+	clock.tick(20)
+	create_area(UMBREON_IMG_08)
+	clock.tick(20)
+	create_area(UMBREON_IMG_09)
+	clock.tick(20)
+	create_area(UMBREON_IMG_11)
+	clock.tick(20)
+	create_area(UMBREON_IMG_12)
+	clock.tick(20)
+	create_area(UMBREON_IMG_13)
+	clock.tick(20)
+	create_area(UMBREON_IMG_14)
+	clock.tick(20)
+	create_area(UMBREON_IMG_15)
+	clock.tick(20)
+	create_area(UMBREON_IMG_16)
+	clock.tick(20)
+	create_area(UMBREON_IMG_17)
+	clock.tick(20)
+	create_area(UMBREON_IMG_18)
+	clock.tick(20)
+	create_area(UMBREON_IMG_19)
+	clock.tick(20)
+	create_area(UMBREON_IMG_20)
+	clock.tick(20)
+	create_area(UMBREON_IMG_21)
+	clock.tick(20)
+	create_area(UMBREON_IMG_22)
+	clock.tick(20)
+	create_area(UMBREON_IMG_23)
+	clock.tick(20)
+	create_area(UMBREON_IMG_24)
+	clock.tick(20)
+	create_area(UMBREON_IMG_25)
+	clock.tick(20)
+	create_area(UMBREON_IMG_26)
+	clock.tick(20)
+	create_area(UMBREON_IMG_27)
+	clock.tick(20)
+	create_area(UMBREON_IMG_28)
+	clock.tick(20)
+	create_area(UMBREON_IMG_29)
+	clock.tick(20)
+	create_area(UMBREON_IMG_30)
+	clock.tick(20)
+	create_area(UMBREON_IMG_31)
+	clock.tick(20)
+	create_area(UMBREON_IMG_32)
+	clock.tick(20)
+	create_area(UMBREON_IMG_33)
+	clock.tick(20)
+	create_area(UMBREON_IMG_34)
+
 
 def create_Psyduck(sound) :
 
@@ -1234,7 +1347,7 @@ def create_Pikachu (sound) :
 def random_pokemon () :
 
 	wild_appeared = 0
-	pokemon_route = [1,2,3,4,5,6]
+	pokemon_route = [7,1,2,1,4,3,2,1,4,2,5,6,2,7]
 	wild_appeared = random.choice(pokemon_route)
 
 	return wild_appeared
@@ -1258,6 +1371,9 @@ def wild_pokemon (wild_appeared, sound) :
 
 	elif wild_appeared == 6 :
 		create_Meowth(sound)
+
+	elif wild_appeared == 7 :
+		create_Umbreon(sound)
 
 
 def start_battle(wild,x ,y, pokemon_trainer) :
