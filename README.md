@@ -30,15 +30,15 @@ Pocket Monster Game Based on Python
 
 ```GNU/Linux ```
 ```
-git clone https://github.com/daviiid99/Pokemon-Little_Little_Town.git Pokemon-Little_Little_Town
-cd Pokemon-Little_Little_Town
+git clone https://github.com/daviiid99/Pokemon-Little_Little_Village.git Pokemon-Little_Little_Village
+cd Pokemon-Little_Little_Village
 python3 main.py
 ```
 <br/>
 
 ``` Microsoft Windows```
 ```
-git clone https://github.com/daviiid99/Pokemon-Little_Little_Town.git Pokemon-Little_Little_Town
-cd Pokemon-Little_Little_Town
+git clone https://github.com/daviiid99/Pokemon-Little_Little_Village.git Pokemon-Little_Little_Village
+cd Pokemon-Little_Little_Village
 python main.py
 ```
