@@ -69,6 +69,9 @@ HOUSE_2 = pygame.Rect(90, 0, 280, 180)
 TREE_1 = pygame.Rect(500, 140, 120, 120)
 TREE_2 = pygame.Rect(230, 280, 120, 120)
 GRASS_ZONE_SOUTH = pygame.Rect(320, 390, 500, 120)
+GRASS_ZONE_SOUTH_2 = pygame.Rect(0, 274, 250, 250)
+GRASS_ZONE_WEST = pygame.Rect(0, 0, 80, 250)
+GRASS_ZONE_EAST = pygame.Rect(500, 0, 130, 130)
 
 ## Character Values
 TRAINER_WIDTH, TRAINER_HEIGHT = 64, 76
@@ -534,45 +537,6 @@ POKEBALL_ITEM.convert()
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 30)
 RULES = pygame.font.SysFont('comicsans', 25)
 
-def movement_left (pokemon_trainer, wild) :
-	trainer_pokeballs = []
-
-	if not wild :
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
-
-		pokemon_trainer.x -= VEL
-		previous_x = pokemon_trainer.x
-		previous_y = pokemon_trainer.y
-
-		if pokemon_trainer.colliderect(HOUSE_2):
-			pokemon_trainer.x = previous_x + 5
-			pokemon_trainer.y = previous_y - 0
-
-			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-			pygame.draw.rect(WIN, WHITE, HOUSE_2)
-
-		if pokemon_trainer.colliderect(TREE_2):
-			pokemon_trainer.x = previous_x + 5
-			pokemon_trainer.y = previous_y - 0
-
-			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-			pygame.draw.rect(WIN, WHITE, TREE_2)
-
-		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH):
-			wild = False
-			BACKGROUND_SOUND.stop()
-			GRASS_SOUND.play()
-
-			wild_encouter = randint(1, 300)
-
-			if wild_encouter == 95 :
-				previous_x = pokemon_trainer.x
-				previous_y = pokemon_trainer.y
-				wild = True
-				start_battle(wild,previous_x ,previous_y, pokemon_trainer)
-
 
 def create_area (POKEMON) :
 
@@ -604,6 +568,7 @@ def create_area (POKEMON) :
 	WIN.blit(choice, (640, 450))
 
 	pygame.display.update()
+
 
 def create_Bulbasaur(sound) :
 
@@ -1399,6 +1364,48 @@ def start_battle(wild,x ,y, pokemon_trainer) :
 					movement_down (pokemon_trainer, wild)
 
 
+def movement_left (pokemon_trainer, wild) :
+	trainer_pokeballs = []
+
+	if not wild :
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
+
+		pokemon_trainer.x -= VEL
+		previous_x = pokemon_trainer.x
+		previous_y = pokemon_trainer.y
+
+		if pokemon_trainer.colliderect(HOUSE_2):
+			pokemon_trainer.x = previous_x + 5
+			pokemon_trainer.y = previous_y - 0
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+		if pokemon_trainer.colliderect(TREE_2):
+			pokemon_trainer.x = previous_x + 5
+			pokemon_trainer.y = previous_y - 0
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, TREE_2)
+
+		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST):
+			wild = False
+			BACKGROUND_SOUND.stop()
+			GRASS_SOUND.play()
+
+			wild_encouter = randint(1, 500) # Generate random number 1
+			wild_encounter_2 = randint(1,500) # Generate random number 2
+			lucky = wild_encouter + wild_encounter_2 # Total
+
+			if lucky == 900 :
+				previous_x = pokemon_trainer.x
+				previous_y = pokemon_trainer.y
+				wild = True
+				start_battle(wild,previous_x ,previous_y, pokemon_trainer)
+
+
 def movement_right (pokemon_trainer, wild) :
 	trainer_pokeballs = []
 
@@ -1439,7 +1446,7 @@ def movement_right (pokemon_trainer, wild) :
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, TREE_2)
 
-		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH):
+		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST) :
 			BACKGROUND_SOUND.stop()
 			GRASS_SOUND.play()
 
@@ -1492,6 +1499,18 @@ def movement_up (pokemon_trainer, wild) :
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, TREE_2)
 
+		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST) :
+			BACKGROUND_SOUND.stop()
+			GRASS_SOUND.play()
+
+			wild_encouter = randint(1, 300)
+
+			if wild_encouter == 95 :
+				previous_x = pokemon_trainer.x
+				previous_y = pokemon_trainer.y
+				wild = True
+				start_battle(wild,previous_x ,previous_y, pokemon_trainer)
+
 
 def movement_down (pokemon_trainer, wild) :
 	trainer_pokeballs = []
@@ -1520,6 +1539,18 @@ def movement_down (pokemon_trainer, wild) :
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, TREE_2)
+
+		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST) :
+			BACKGROUND_SOUND.stop()
+			GRASS_SOUND.play()
+
+			wild_encouter = randint(1, 300)
+
+			if wild_encouter == 95 :
+				previous_x = pokemon_trainer.x
+				previous_y = pokemon_trainer.y
+				wild = True
+				start_battle(wild,previous_x ,previous_y, pokemon_trainer)
 
 def bicicle_movement_left(pokemon_trainer) :
 	VEL = 4
@@ -1726,6 +1757,9 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs)
 	#pygame.draw.rect(WIN, GREEN, TREE_2) # Tree 2 building
 
 	#pygame.draw.rect(WIN, GREEN, GRASS_ZONE_SOUTH) # Grass zone south
+	#pygame.draw.rect(WIN, GREEN, GRASS_ZONE_SOUTH_2) # Grass zone south 2
+	#pygame.draw.rect(WIN, GREEN, GRASS_ZONE_WEST) # Grass zone west
+	#pygame.draw.rect(WIN, GREEN, GRASS_ZONE_EAST) # Grass zone west
 
 	date = POKEBALLS_COUNTER.render("" + str(fecha), 1, WHITE)
 	WIN.blit(date, (10, 10))
