@@ -577,6 +577,7 @@ BATTLE_ARENA_IMG_12 = pygame.transform.scale(pygame.image.load(os.path.join('Ass
 BACKGROUND_SOUND = pygame.mixer.Sound("Assets/music.mp3")
 POKEMON_ENCOUNTER_SOUND = pygame.mixer.Sound("Assets/pokemon_encounter.mp3")
 GRASS_SOUND = pygame.mixer.Sound("Assets/grass.mp3")
+SCAPE_SOUND = pygame.mixer.Sound("Assets/scape.mp3")
 
 # Pokeball
 POKEBALL_IMG = pygame.image.load(os.path.join('Assets', "pokeball.png"))
@@ -1626,6 +1627,9 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos) :
 			if event.type == pygame.KEYDOWN :
 
 				if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 400 :
+					POKEMON_ENCOUNTER_SOUND.stop()
+					SCAPE_SOUND.play()
+					time.sleep(1)
 					wild = False
 					print("HAS HUIDO")
 					movement_down (pokemon_trainer, wild)
