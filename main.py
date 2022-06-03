@@ -91,10 +91,31 @@ clock = pygame.time.Clock()
 
 ## Assets
 
+# Pikachu de Ash
+## Walking
+# --- Down Position ---
+ASH_PIKACHU_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pikachu_friend.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+ASH_PIKACHU_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pikachu_friend_2.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+
+# --- Left Position ---
+ASH_PIKACHU_LEFT_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pikachu_friend_left.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pikachu_friend_left_2.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+
+# --- Right Position ---
+ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pikachu_friend_right.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pikachu_friend_right_2.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+
+# --- Up Position ---
+ASH_PIKACHU_BACK_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pikachu_friend_back.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+ASH_PIKACHU_BACK_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pikachu_friend_back_2.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+
+
 # Trainer
 pokemon_trainer = pygame.Rect(450, 253, TRAINER_WIDTH, TRAINER_HEIGHT) # Defines player coords
+pikachu_trainer = pygame.Rect(450, 253, TRAINER_WIDTH, TRAINER_HEIGHT) # Defines player coords
 previous_x, previous_y = 450, 253
-x_change, y_change = 450, 2531
+x_change, y_change = 450, 253
+previous_pi_x, previous_pi_y= 450, 253
 
 ## Walking
 # --- Down Position ---
@@ -2203,7 +2224,7 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos) :
 					time.sleep(1)
 					wild = False
 					print("HAS HUIDO")
-					movement_down (pokemon_trainer, wild)
+					movement_down (pokemon_trainer, wild, pikachu_trainer)
 					cursor_pos.x = 620
 
 				if event.key == pygame.K_RIGHT:
@@ -2222,21 +2243,28 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos) :
 						cursor_pos.y = 350
 
 
-def movement_left (pokemon_trainer, wild) :
+def movement_left (pokemon_trainer, wild, pikachu_trainer) :
 	trainer_pokeballs = []
 
 	if not wild :
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG ) # Right foot
+
 
 		pokemon_trainer.x -= VEL
+		pikachu_trainer.x = pokemon_trainer.x + 60
+		pikachu_trainer.y = pokemon_trainer.y - 5
 		previous_x = pokemon_trainer.x
 		previous_y = pokemon_trainer.y
+		previous_pi_x = pikachu_trainer.x
+		previous_pi_y = pikachu_trainer.y
 
 		if pokemon_trainer.colliderect(HOUSE_2):
 			pokemon_trainer.x = previous_x + 5
 			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x + 5
+			pikachu_trainer.y = previous_pi_y - 0
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, HOUSE_2)
@@ -2244,6 +2272,8 @@ def movement_left (pokemon_trainer, wild) :
 		if pokemon_trainer.colliderect(TREE_2):
 			pokemon_trainer.x = previous_x + 5
 			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x + 5
+			pikachu_trainer.y = previous_pi_y - 0
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, TREE_2)
@@ -2258,26 +2288,34 @@ def movement_left (pokemon_trainer, wild) :
 			if lucky == 900 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
+				previous_pi_x = pikachu_trainer.x
+				previous_pi_y = pikachu_trainer.y
 				wild = True
 				POKEMON_ENCOUNTER_SOUND.play()
 				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 
-def movement_right (pokemon_trainer, wild) :
+def movement_right (pokemon_trainer, wild, pikachu_trainer) :
 	trainer_pokeballs = []
 
 	if not wild :
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_IMG, trainer_pokeballs ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG ) # Right foot
 
 		pokemon_trainer.x += VEL
+		pikachu_trainer.x = pokemon_trainer.x - 60
+		pikachu_trainer.y = pokemon_trainer.y + 5
 		previous_x = pokemon_trainer.x
 		previous_y = pokemon_trainer.y
+		previous_pi_x = pikachu_trainer.x
+		previous_pi_y = pikachu_trainer.y
 
 		if pokemon_trainer.colliderect(HOUSE_1):
 			pokemon_trainer.x = previous_x - 5
 			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x - 5
+			pikachu_trainer.y = previous_pi_y - 0
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, HOUSE_1)
@@ -2285,6 +2323,8 @@ def movement_right (pokemon_trainer, wild) :
 		if pokemon_trainer.colliderect(HOUSE_2):
 			pokemon_trainer.x = previous_x - 5
 			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x - 5
+			pikachu_trainer.y = previous_pi_y - 0
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, HOUSE_2)
@@ -2292,6 +2332,8 @@ def movement_right (pokemon_trainer, wild) :
 		if pokemon_trainer.colliderect(TREE_2):
 			pokemon_trainer.x = previous_x - 5
 			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x - 5
+			pikachu_trainer.y = previous_pi_y - 0
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, TREE_2)
@@ -2299,6 +2341,8 @@ def movement_right (pokemon_trainer, wild) :
 		if pokemon_trainer.colliderect(TREE_1):
 			pokemon_trainer.x = previous_x - 5
 			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x - 5
+			pikachu_trainer.y = previous_pi_y - 0
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, TREE_2)
@@ -2310,26 +2354,34 @@ def movement_right (pokemon_trainer, wild) :
 			if wild_encouter == 95 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
+				previous_pi_x = pikachu_trainer.x
+				previous_pi_y = pikachu_trainer.y
 				wild = True
 				POKEMON_ENCOUNTER_SOUND.play()
 				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 
-def movement_up (pokemon_trainer, wild) :
+def movement_up (pokemon_trainer, wild, pikachu_trainer) :
 	trainer_pokeballs = []
 
 	if not wild: 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_IMG, trainer_pokeballs ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG ) # Right foot
 
 		pokemon_trainer.y -= VEL
+		pikachu_trainer.y = pokemon_trainer.y + 60
+		pikachu_trainer.x = pokemon_trainer.x - 5
 		previous_y = pokemon_trainer.y
 		previous_x = pokemon_trainer.x
+		previous_pi_y = pikachu_trainer.y
+		previous_pi_x = pikachu_trainer.x
 
 		if pokemon_trainer.colliderect(HOUSE_1):
 			pokemon_trainer.x = previous_x - 0
 			pokemon_trainer.y = previous_y + 3
+			pikachu_trainer.x = previous_pi_x - 0
+			pikachu_trainer.y = previous_pi_y + 3
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, HOUSE_1)
@@ -2337,6 +2389,8 @@ def movement_up (pokemon_trainer, wild) :
 		if pokemon_trainer.colliderect(HOUSE_2):
 			pokemon_trainer.x = previous_x - 0
 			pokemon_trainer.y = previous_y + 5
+			pikachu_trainer.x = previous_pi_x - 0
+			pikachu_trainer.y = previous_pi_y + 5
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, HOUSE_2)
@@ -2344,6 +2398,8 @@ def movement_up (pokemon_trainer, wild) :
 		if pokemon_trainer.colliderect(TREE_1):
 			pokemon_trainer.x = previous_x - 0
 			pokemon_trainer.y = previous_y + 5
+			pikachu_trainer.x = previous_pi_x - 0
+			pikachu_trainer.y = previous_pi_y + 5
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, TREE_1)
@@ -2351,6 +2407,8 @@ def movement_up (pokemon_trainer, wild) :
 		if pokemon_trainer.colliderect(TREE_2):
 			pokemon_trainer.x = previous_x - 0
 			pokemon_trainer.y = previous_y + 5
+			pikachu_trainer.x = previous_pi_x - 0
+			pikachu_trainer.y = previous_pi_y + 5
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, TREE_2)
@@ -2361,27 +2419,35 @@ def movement_up (pokemon_trainer, wild) :
 			if wild_encouter == 95 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
+				previous_pi_x = pikachu_trainer.x
+				previous_pi_y = pikachu_trainer.y
 				wild = True
 				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 
-def movement_down (pokemon_trainer, wild) :
+def movement_down (pokemon_trainer, wild, pikachu_trainer) :
 	trainer_pokeballs = []
 	POKEMON_ENCOUNTER_SOUND.stop()
 
 	if not wild :
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG ) # Right foot
 
 		pokemon_trainer.y += VEL
+		pikachu_trainer.y = pokemon_trainer.y - 70
+		pikachu_trainer.x = pokemon_trainer.x + 5
 		previous_y = pokemon_trainer.y
 		previous_x = pokemon_trainer.x
+		previous_pi_x = pikachu_trainer.x
+		previous_pi_y = pikachu_trainer.y
 
 		if pokemon_trainer.colliderect(TREE_1):
 			pokemon_trainer.x = previous_x
 			pokemon_trainer.y = previous_y - 5
+			pikachu_trainer.x = previous_pi_x
+			pikachu_trainer.y = previous_pi_y
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, TREE_1)
@@ -2389,6 +2455,8 @@ def movement_down (pokemon_trainer, wild) :
 		if pokemon_trainer.colliderect(TREE_2):
 			pokemon_trainer.x = previous_x
 			pokemon_trainer.y = previous_y - 5
+			pikachu_trainer.x = previous_pi_x
+			pikachu_trainer.y = previous_pi_y - 5
 
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, TREE_2)
@@ -2400,23 +2468,30 @@ def movement_down (pokemon_trainer, wild) :
 			if wild_encouter == 95 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
+				previous_pi_x = pikachu_trainer.x
+				previous_pi_y = pikachu_trainer.y
 				wild = True
 				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
-def bicicle_movement_left(pokemon_trainer) :
+def bicicle_movement_left(pokemon_trainer, pikachu_trainer) :
 	VEL = 3
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_IMG, trainer_pokeballs) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_RIGHT_FOOT_IMG , trainer_pokeballs ) # Right foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_RIGHT_FOOT_IMG , trainer_pokeballs, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.x -= VEL
+	pikachu_trainer.x -= VEL
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
+	previous_pi_y = pikachu_trainer.y
+	previous_pi_x = pikachu_trainer.x
 
 	if pokemon_trainer.colliderect(HOUSE_2):
 		pokemon_trainer.x = previous_x + 5
 		pokemon_trainer.y = previous_y - 0
+		pikachu_trainer.x = previous_pi_x + 5
+		pikachu_trainer.y = previous_pi_y - 0
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, HOUSE_2)
@@ -2424,6 +2499,8 @@ def bicicle_movement_left(pokemon_trainer) :
 	if pokemon_trainer.colliderect(TREE_2):
 		pokemon_trainer.x = previous_x + 5
 		pokemon_trainer.y = previous_y - 0
+		pikachu_trainer.x = previous_pi_x + 5
+		pikachu_trainer.y = previous_pi_y - 0
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_2)
@@ -2438,24 +2515,31 @@ def bicicle_movement_left(pokemon_trainer) :
 		if lucky == 900 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
+			previous_pi_x = pikachu_trainer.x
+			previous_pi_y = pikachu_trainer.y
 			wild = True
 			POKEMON_ENCOUNTER_SOUND.play()
 			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
-def bicicle_movement_right(pokemon_trainer) :
+def bicicle_movement_right(pokemon_trainer, pikachu_trainer) :
 	VEL = 3
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_IMG, trainer_pokeballs) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_RIGHT_FOOT_IMG , trainer_pokeballs ) # Right foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_RIGHT_FOOT_IMG , trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.x += VEL
+	pikachu_trainer.x += VEL
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
+	previous_pi_x = pikachu_trainer.y
+	previous_pi_y = pikachu_trainer.x
 
 	if pokemon_trainer.colliderect(HOUSE_1):
 		pokemon_trainer.x = previous_x - 5
 		pokemon_trainer.y = previous_y - 0
+		pikachu_trainer.x = previous_pi_x - 5
+		pikachu_trainer.y = previous_pi_y - 0
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, HOUSE_1)
@@ -2463,6 +2547,8 @@ def bicicle_movement_right(pokemon_trainer) :
 	if pokemon_trainer.colliderect(HOUSE_2):
 		pokemon_trainer.x = previous_x - 5
 		pokemon_trainer.y = previous_y - 0
+		pikachu_trainer.x = previous_pi_x - 5
+		pikachu_trainer.y = previous_pi_y - 0
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, HOUSE_2)
@@ -2470,6 +2556,8 @@ def bicicle_movement_right(pokemon_trainer) :
 	if pokemon_trainer.colliderect(TREE_2):
 		pokemon_trainer.x = previous_x - 5
 		pokemon_trainer.y = previous_y - 0
+		pikachu_trainer.x = previous_pi_x - 5
+		pikachu_trainer.y = previous_pi_y - 0
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_2)
@@ -2477,6 +2565,8 @@ def bicicle_movement_right(pokemon_trainer) :
 	if pokemon_trainer.colliderect(TREE_1):
 		pokemon_trainer.x = previous_x - 5
 		pokemon_trainer.y = previous_y - 0
+		pikachu_trainer.x = previous_pi_x - 5
+		pikachu_trainer.y = previous_pi_y - 0
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_2)
@@ -2491,24 +2581,31 @@ def bicicle_movement_right(pokemon_trainer) :
 		if lucky == 900 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
+			previous_pi_x = pikachu_trainer.x
+			previous_pi_y = pikachu_trainer.y
 			wild = True
 			POKEMON_ENCOUNTER_SOUND.play()
 			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
-def bicicle_movement_up (pokemon_trainer) :
+def bicicle_movement_up (pokemon_trainer, pikachu_trainer) :
 	VEL = 3
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_IMG, trainer_pokeballs ) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.y -= VEL
+	pikachu_trainer.y -= VEL
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
+	previous_pi_x = pikachu_trainer.x
+	previous_pi_y = pikachu_trainer.y
 
 	if pokemon_trainer.colliderect(HOUSE_1):
 		pokemon_trainer.x = previous_x - 0
 		pokemon_trainer.y = previous_y + 5
+		pikachu_trainer.x = previous_pi_x - 0
+		pikachu_trainer.y = previous_pi_y + 5
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, HOUSE_1)
@@ -2516,6 +2613,8 @@ def bicicle_movement_up (pokemon_trainer) :
 	if pokemon_trainer.colliderect(HOUSE_2):
 		pokemon_trainer.x = previous_x - 0
 		pokemon_trainer.y = previous_y + 5
+		pikachu_trainer.x = previous_pi_x - 0
+		pikachu_trainer.y = previous_pi_y + 5
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, HOUSE_2)
@@ -2523,6 +2622,8 @@ def bicicle_movement_up (pokemon_trainer) :
 	if pokemon_trainer.colliderect(TREE_1):
 		pokemon_trainer.x = previous_x - 0
 		pokemon_trainer.y = previous_y + 5
+		pikachu_trainer.x = previous_pi_x - 0
+		pikachu_trainer.y = previous_pi_y + 5
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_1)
@@ -2530,6 +2631,8 @@ def bicicle_movement_up (pokemon_trainer) :
 	if pokemon_trainer.colliderect(TREE_2):
 		pokemon_trainer.x = previous_x - 0
 		pokemon_trainer.y = previous_y + 5
+		pikachu_trainer.x = previous_pi_x - 0
+		pikachu_trainer.y = previous_pi_y + 5
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_2)
@@ -2544,24 +2647,31 @@ def bicicle_movement_up (pokemon_trainer) :
 		if lucky == 900 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
+			previous_pi_x = pikachu_trainer.x
+			previous_pi_y = pikachu_trainer.y
 			wild = True
 			POKEMON_ENCOUNTER_SOUND.play()
 			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
-def bicicle_movement_down (pokemon_trainer) :
+def bicicle_movement_down (pokemon_trainer, pikachu_trainer) :
 	VEL = 3
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_IMG, trainer_pokeballs ) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_FOOT_IMG, trainer_pokeballs ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_FOOT_IMG, trainer_pokeballs ) # Right foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG ) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.y += VEL
+	pikachu_trainer.y += VEL
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
+	previous_pi_y = pikachu_trainer.y
+	previous_pi_x = pikachu_trainer.x
 
 	if pokemon_trainer.colliderect(TREE_1):
 		pokemon_trainer.x = previous_x
 		pokemon_trainer.y = previous_y - 5
+		pikachu_trainer.x = previous_pi_x
+		pikachu_trainer.y = previous_pi_y - 5
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_1)
@@ -2569,6 +2679,8 @@ def bicicle_movement_down (pokemon_trainer) :
 	if pokemon_trainer.colliderect(TREE_2):
 		pokemon_trainer.x = previous_x
 		pokemon_trainer.y = previous_y - 5
+		pikachu_trainer.x = previous_pi_x
+		pikachu_trainer.y = previous_pi_y - 5
 
 		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 		pygame.draw.rect(WIN, WHITE, TREE_2)
@@ -2583,36 +2695,38 @@ def bicicle_movement_down (pokemon_trainer) :
 		if lucky == 900 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
+			previous_pi_x = pikachu_trainer.x
+			previous_pi_y = pikachu_trainer.y
 			wild = True
 			POKEMON_ENCOUNTER_SOUND.play()
 			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
-def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement function
+def trainer_movement (keys_pressed, pokemon_trainer, pikachu_trainer) :## Trainer Movement function
 	wild = False
 	trainer_pokeballs = []
 
 	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0 :
 		fps = 0
 		while fps < 5 :
-			movement_left(pokemon_trainer, wild)
+			movement_left(pokemon_trainer, wild, pikachu_trainer)
 			fps +=1
 
 	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80:
 		fps = 0
 		while fps < 5 :
-			movement_right(pokemon_trainer, wild)
+			movement_right(pokemon_trainer, wild, pikachu_trainer)
 			fps +=1
 
 	if keys_pressed[pygame.K_UP] and pokemon_trainer.y - VEL > 0 :
 		fps = 0
 		while fps < 5 :
-			movement_up(pokemon_trainer, wild)
+			movement_up(pokemon_trainer, wild, pikachu_trainer)
 			fps +=1
 		
 	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT -100 :
 		fps = 0
 		while fps < 5 :
-			movement_down(pokemon_trainer, wild)
+			movement_down(pokemon_trainer, wild, pikachu_trainer)
 			fps +=1
 
 	if keys_pressed[pygame.K_b] :
@@ -2623,33 +2737,33 @@ def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement functi
 		TRAINER_IMG = TRAINER_BICICLE_IMG
 		fps = 0
 		while fps < 5 :
-			bicicle_movement_left(pokemon_trainer)
+			bicicle_movement_left(pokemon_trainer,pikachu_trainer)
 			fps +=1
 				
 	if keys_pressed[pygame.K_d] and pokemon_trainer.x < WIDTH - 80  :
 		TRAINER_IMG = TRAINER_BICICLE_RIGHT_IMG
 		fps = 0
 		while fps < 5 :
-			bicicle_movement_right(pokemon_trainer)
+			bicicle_movement_right(pokemon_trainer, pikachu_trainer)
 			fps +=1
 
 	if keys_pressed[pygame.K_w]  and pokemon_trainer.y - VEL > 0:
 		TRAINER_IMG = TRAINER_BICICLE_BACK_IMG
 		fps = 0
 		while fps < 5 :
-			bicicle_movement_up(pokemon_trainer)
+			bicicle_movement_up(pokemon_trainer, pikachu_trainer)
 			fps +=1
 
 	if keys_pressed[pygame.K_s] and pokemon_trainer.y - VEL < HEIGHT -100:
 		TRAINER_IMG = TRAINER_BICICLE_IMG
 		fps = 0
 		while fps < 5 :
-			bicicle_movement_down(pokemon_trainer)
+			bicicle_movement_down(pokemon_trainer, pikachu_trainer)
 			fps +=1
 
 		
 
-def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs) :
+def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU) :
 
 	now = datetime.now()
 	hora = now.strftime("%H")
@@ -2695,15 +2809,13 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs)
 		WIN.blit(POKEBALL_ITEM, (pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 1, 1))
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
+	WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
 
 	pygame.display.update()
 
 def throw_pokeball(trainer_pokeballs, pokemon_trainer) :
 	for pokeball in trainer_pokeballs:
 		pokeball.x += POKEBALL_VEL
-
-		if pokemon_trainer.collidelist(trainer_pokeballs) :
-			trainer_pokeballs.remove(pokeball)
 
 		if pokeball.x > WIDTH :
 			trainer_pokeballs.remove(pokeball)
@@ -2854,6 +2966,7 @@ def main (): ## Main function
 	clock = pygame.time.Clock()
 	run = True
 	TRAINER_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+	PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
 
 
 	while run :
@@ -2871,42 +2984,51 @@ def main (): ## Main function
 					BACKGROUND_SOUND.stop()
 					POKEBALL_SOUND.play()
 					BACKGROUND_SOUND.play()
+					free_Pikachu()
 
 			keys = pygame.key.get_pressed()
 			if keys[pygame.K_LEFT]:
 				TRAINER_IMG = TRAINER_LEFT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
 			
 			if keys[pygame.K_RIGHT]:
 				TRAINER_IMG = TRAINER_RIGHT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+				PIKACHU_IMG = ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
 
 			if keys[pygame.K_UP]:
 				TRAINER_IMG = TRAINER_BACK_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+				PIKACHU_IMG = ASH_PIKACHU_BACK_LEFT_FOOT_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
 
 			if keys[pygame.K_DOWN]:
 				TRAINER_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
 
 			if keys[pygame.K_b]:
 				TRAINER_IMG = TRAINER_BICICLE_IMG
 
 			if keys[pygame.K_a]:
 				TRAINER_IMG = TRAINER_BICICLE_LEFT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
 				
 			if keys[pygame.K_d]:
 				TRAINER_IMG = TRAINER_BICICLE_RIGHT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+				PIKACHU_IMG = ASH_PIKACHU_RIGHT_FOOT_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
 
 			if keys[pygame.K_w]:
 				TRAINER_IMG = TRAINER_BICICLE_BACK_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+				PIKACHU_IMG = ASH_PIKACHU_BACK_LEFT_FOOT_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
 
 			if keys[pygame.K_s]:
 				TRAINER_IMG = TRAINER_BICICLE_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs )
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs , PIKACHU_IMG)
 
 			if keys[pygame.K_e]:
 				BACKGROUND_SOUND.stop()
@@ -2922,9 +3044,9 @@ def main (): ## Main function
 
 		BACKGROUND_SOUND.play()
 		keys_pressed = pygame.key.get_pressed()
-		trainer_movement(keys_pressed, pokemon_trainer)
+		trainer_movement(keys_pressed, pokemon_trainer, pikachu_trainer)
 		throw_pokeball(trainer_pokeballs, pokemon_trainer )
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs)
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG)
 
 	main()
 
