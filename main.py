@@ -2481,7 +2481,8 @@ def bicicle_movement_left(pokemon_trainer, pikachu_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_RIGHT_FOOT_IMG , trainer_pokeballs, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.x -= VEL
-	pikachu_trainer.x -= VEL
+	pikachu_trainer.x = pokemon_trainer.x + 60
+	pikachu_trainer.y = pokemon_trainer.y - 5
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
 	previous_pi_y = pikachu_trainer.y
@@ -2529,7 +2530,8 @@ def bicicle_movement_right(pokemon_trainer, pikachu_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_RIGHT_FOOT_IMG , trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.x += VEL
-	pikachu_trainer.x += VEL
+	pikachu_trainer.x = pokemon_trainer.x - 60
+	pikachu_trainer.y = pokemon_trainer.y + 5
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
 	previous_pi_x = pikachu_trainer.y
@@ -2595,7 +2597,8 @@ def bicicle_movement_up (pokemon_trainer, pikachu_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.y -= VEL
-	pikachu_trainer.y -= VEL
+	pikachu_trainer.y = pokemon_trainer.y + 60
+	pikachu_trainer.x = pokemon_trainer.x - 5
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
 	previous_pi_x = pikachu_trainer.x
@@ -2661,7 +2664,8 @@ def bicicle_movement_down (pokemon_trainer, pikachu_trainer) :
 	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.y += VEL
-	pikachu_trainer.y += VEL
+	pikachu_trainer.y = pokemon_trainer.y - 70
+	pikachu_trainer.x = pokemon_trainer.x + 5
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
 	previous_pi_y = pikachu_trainer.y
@@ -3012,12 +3016,12 @@ def main (): ## Main function
 
 			if keys[pygame.K_a]:
 				TRAINER_IMG = TRAINER_BICICLE_LEFT_IMG
-				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
 				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
 				
 			if keys[pygame.K_d]:
 				TRAINER_IMG = TRAINER_BICICLE_RIGHT_IMG
-				PIKACHU_IMG = ASH_PIKACHU_RIGHT_FOOT_IMG
+				PIKACHU_IMG = ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG
 				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
 
 			if keys[pygame.K_w]:
