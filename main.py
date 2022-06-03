@@ -552,7 +552,16 @@ ROUTE_IMG_3 = pygame.image.load(os.path.join('Assets', "background_night.png"))
 BATTLE_ARENA_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "battle_arena.png")), (WIDTH, HEIGHT))
 BATTLE_ARENA_NIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "battle_arena_night.png")), (WIDTH, HEIGHT))
 ASH_BATTLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_battle_1.png")), (300,300))
+ASH_BATTLE_IMG_2 = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_battle_2.png")), (300,300))
+ASH_BATTLE_IMG_3 = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_battle_3.png")), (300,300))
+ASH_BATTLE_IMG_4 = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_battle_4.png")), (300,300))
+ASH_BATTLE_IMG_5 = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_battle_5.png")), (300,300))
+PIKACHU_BATTLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pikachu/battle', "pikachu.png")), (300,300))
+
+
 BATTLE_MENU = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "menu.png")), (260,90))
+BATTLE_DIALOG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "battle_dialog.png")), (WIDTH,130))
+
 CURSOR = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "cursor.png")), (100,100))
 cursor_pos = pygame.Rect(620, 350, 100, 100) # Defines player coords
 LIFE_MENU = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "life_menu.png")), (250,62))
@@ -590,8 +599,134 @@ POKEBALL_ITEM.convert()
 
 # Displat Fonts
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 30)
+DIALOG_FONT = pygame.font.SysFont('comicsans', 20)
 RULES = pygame.font.SysFont('comicsans', 16)
 
+
+def pre_area(POKEMON, POKEMON_NAME, ASH) :
+	now = datetime.now()
+	hora = now.strftime("%H")
+
+	# Create initial background
+	if hora <="16" and hora >="10" :
+		WIN.blit(BATTLE_ARENA_IMG, (0,0))
+
+	elif hora >="17" and hora <"20":
+		WIN.blit(BATTLE_ARENA_NIGHT_IMG, (0,0)) # Place background image
+
+	else:
+		WIN.blit(BATTLE_ARENA_NIGHT_IMG, (0,0))
+
+	# Create Wild Pokemon
+	WIN.blit(POKEMON, (640,160))
+
+
+	# Create Ash opening animation
+	WIN.blit(ASH, (0,220))
+
+	# Create Wild Pokemon Dialog 
+	WIN.blit(BATTLE_DIALOG, (0, 420))
+	dialog = DIALOG_FONT.render("" + str("A Wild Pokémon Appeared!"), 1, BLACK)
+	WIN.blit(dialog, (50, 440))
+	dialog = DIALOG_FONT.render("" + str("Let's Go Pikachu!"), 1, BLACK)
+	WIN.blit(dialog, (50, 460))
+	WIN.blit(LIFE_MENU, (0, 30))
+
+	# Display Wild Pokemon Name
+	date = RULES.render("" + str(POKEMON_NAME), 1, BLACK)
+	WIN.blit(date, (5, 35))
+
+
+	pygame.display.update()
+
+def create_ash_opening_anim (POKEMON, POKEMON_NAME) :
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	clock.tick(5)
+
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG)
+	clock.tick(5)
+
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	clock.tick(5)
+
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_2)
+	clock.tick(5)
+
+
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	clock.tick(5)
+
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_3)
+	clock.tick(5)
+
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_4)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_4)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_4)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_4)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_4)
+	clock.tick(5)
+
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_4)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_4)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_4)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_4)
+	pre_area(POKEMON, POKEMON_NAME, ASH_BATTLE_IMG_4)
+	clock.tick(5)
+	
 
 def create_area (POKEMON, POKEMON_NAME) :
 
@@ -608,17 +743,8 @@ def create_area (POKEMON, POKEMON_NAME) :
 		WIN.blit(BATTLE_ARENA_NIGHT_IMG, (0,0))
 
 
-	#pygame.draw.rect(WIN, BLUE, HOUSE_1) # House 1 building
-	#pygame.draw.rect(WIN, BLUE, HOUSE_2) # House 2 building
-
-	#pygame.draw.rect(WIN, GREEN, TREE_1) # Tree 1 building
-	#pygame.draw.rect(WIN, GREEN, TREE_2) # Tree 2 building
-
-	#pygame.draw.rect(WIN, GREEN, GRASS_ZONE_SOUTH) # Grass zone south
-
-
 	# Battle Elements
-	WIN.blit(ASH_BATTLE_IMG, (0,250))
+	WIN.blit(PIKACHU_BATTLE_IMG, (0,250))
 	WIN.blit(POKEMON, (640,160))
 	WIN.blit(BATTLE_MENU, (600,410)) # Place background image
 	WIN.blit(CURSOR, (cursor_pos.x, cursor_pos.y))
@@ -1585,7 +1711,40 @@ def random_pokemon () :
 
 	return wild_appeared
 
+
+def wild_asset (wild_appeared) :
+
+	pokemon = ""
+
+	if wild_appeared == 1 :
+		pokemon = PIKACHU_IMG_1
+
+	elif wild_appeared == 2 :
+		pokemon = SQUIRTLE_IMG_01
+
+	elif wild_appeared == 3 :
+		pokemon = CHARMANDER_IMG_01
+
+	elif wild_appeared == 4 :
+		pokemon = BULBASAUR_IMG_01
+
+	elif wild_appeared == 5 :
+		pokemon = PSYDUCK_IMG_01
+
+	elif wild_appeared == 6 :
+		pokemon = MEOWTH_IMG_01
+
+	elif wild_appeared == 7 :
+		pokemon = UMBREON_IMG_02
+
+	elif wild_appeared == 8 :
+		pokemon = GASTLY_IMG_01
+
+	return pokemon
+
 def wild_pokemon (wild_appeared, sound) :
+
+	pokemon = ""
 
 	if wild_appeared == 1 :
 		create_Pikachu(sound)
@@ -1619,14 +1778,17 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos) :
 	time.sleep(1.2)
 	pokemon = random_pokemon()
 	sound = 0
-	create_opening_anim()
+	opening = True
+
+
+	POKEMON = wild_asset(pokemon)
+	create_ash_opening_anim(POKEMON, "")
  
 	keys = pygame.key.get_pressed()
 
 	while wild:
-		wild_pokemon (pokemon, sound)
 		sound +=1
-
+		wild_pokemon (pokemon, sound) 
 
 		for event in pygame.event.get() : 
 
