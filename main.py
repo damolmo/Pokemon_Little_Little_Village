@@ -595,6 +595,9 @@ RULES = pygame.font.SysFont('comicsans', 16)
 
 def create_area (POKEMON, POKEMON_NAME) :
 
+	now = datetime.now()
+	hora = now.strftime("%H")
+
 	if hora <="16" and hora >="10" :
 		WIN.blit(BATTLE_ARENA_IMG, (0,0))
 
@@ -1568,6 +1571,8 @@ def create_Pikachu (sound) :
 def random_pokemon () :
 
 	pokemon_route = []
+	now = datetime.now()
+	hora = now.strftime("%H")
 
 	wild_appeared = 0
 	if int(hora) < 10 :
@@ -2154,6 +2159,10 @@ def welcome() :
 		create_title_screen()
 
 		for event in pygame.event.get() :
+
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
 
 			if event.type == pygame.KEYDOWN :
 				if event.key == pygame.K_a:
