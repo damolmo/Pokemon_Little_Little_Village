@@ -2120,6 +2120,10 @@ def random_pokemon () :
 	if int(hora) >= 20 :
 		pokemon_route = ["UMBREON", "GASTLY", "GENGAR"]
 
+	if int(hora) <= 00 and  int(hora) <= 9:
+		pokemon_route = ["UMBREON", "GASTLY", "GENGAR"]
+
+
 	if int(hora) >=10 and int(hora) < 20 :
 		pokemon_route = ["PIKACHU", "SQUIRTLE", "CHARMANDER", "BULBASAUR", "PSYDUCK", "MEOWTH"]
 
