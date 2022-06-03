@@ -58,6 +58,7 @@ today = date.today()
 fecha = today.strftime("%B %d, %Y")
 now = datetime.now()
 hora = now.strftime("%H")
+hora_str = now.strftime("%H:%M")
 
 
 ## Map Values
@@ -2104,6 +2105,12 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs)
 
 	date = POKEBALLS_COUNTER.render("" + str(fecha), 1, WHITE)
 	WIN.blit(date, (10, 10))
+
+	now = datetime.now()
+	hora_str = now.strftime("%H:%M")
+	
+	date = POKEBALLS_COUNTER.render("" + str(hora_str), 1, WHITE)
+	WIN.blit(date, (800, 0))
 
 	pokeball = POKEBALL_ITEM.get_rect()
 	pokeball = pygame.Rect(
