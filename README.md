@@ -32,7 +32,7 @@ Pocket Monster based game powered by Python and Pygame
 
 ```GNU/Linux ```
 ```
-git clone https://github.com/daviiid99/Pokemon_Little_Little_Village.git Pokemon-Little_Little_Village
+git clone https://github.com/daviiid99/Pokemon_Little_Little_Village.git Pokemon_Little_Little_Village
 cd Pokemon_Little_Little_Village
 python3 main.py
 ```
@@ -40,7 +40,7 @@ python3 main.py
 
 ``` Microsoft Windows```
 ```
-git clone https://github.com/daviiid99/Pokemon_Little_Little_Village.git Pokemon-Little_Little_Village
+git clone https://github.com/daviiid99/Pokemon_Little_Little_Village.git Pokemon_Little_Little_Village
 cd Pokemon_Little_Little_Village
 python main.py
 ```
