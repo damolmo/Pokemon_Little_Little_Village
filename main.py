@@ -5,6 +5,7 @@
 import os
 from random import randint
 import random
+import json
 
 os.system("pip3 install wget")
 os.system("pip3 install pygame")
@@ -60,6 +61,10 @@ now = datetime.now()
 hora = now.strftime("%H")
 hora_str = now.strftime("%H:%M")
 
+# Player values
+my_save_slot = open("save.json")
+variables = json.load(my_save_slot)
+print(variables)
 
 ## Map Values
 WIDTH, HEIGHT = 900, 507 # Map dimentions
@@ -473,6 +478,34 @@ GASTLY_IMG_16 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/ga
 GASTLY_IMG_17 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gastly', "frame_16_delay-0.06s.gif")), (200, 200))
 GASTLY_IMG_18 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gastly', "frame_17_delay-0.06s.gif")), (200, 200))
 
+## Gengar
+
+# Sound
+GENGAR_SOUND = pygame.mixer.Sound("Assets/gengar/sound/gengar.mp3")
+
+# Sprites
+GENGAR_IMG_01 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_00_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_02 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_01_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_03 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_02_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_04 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_03_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_05 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_04_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_06 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_05_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_07 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_06_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_08 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_07_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_09 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_08_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_10 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_09_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_11 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_10_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_12 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_11_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_13 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_12_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_14 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_13_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_15 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_14_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_16 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_15_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_17 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_16_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_18 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_17_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_19 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_18_delay-0.1s.gif")), (200, 200))
+GENGAR_IMG_20 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/gengar', "frame_19_delay-0.1s.gif")), (200, 200))
+
+
 ## Meowth
 
 # Sound
@@ -550,6 +583,7 @@ ROUTE_IMG_2 = pygame.image.load(os.path.join('Assets', "background_evening.png")
 ROUTE_IMG_3 = pygame.image.load(os.path.join('Assets', "background_night.png"))
 
 BATTLE_ARENA_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "battle_arena.png")), (WIDTH, HEIGHT))
+POKEMON_BAG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "inventory.png")), (WIDTH, HEIGHT))
 BATTLE_ARENA_NIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "battle_arena_night.png")), (WIDTH, HEIGHT))
 ASH_BATTLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_battle_1.png")), (300,300))
 ASH_BATTLE_IMG_2 = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash_battle_2.png")), (300,300))
@@ -566,6 +600,19 @@ CURSOR = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "cursor
 cursor_pos = pygame.Rect(620, 350, 100, 100) # Defines player coords
 LIFE_MENU = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "life_menu.png")), (250,62))
 WILD_POKEMON = "unknown"
+
+# Pokemon Bag Values
+pokemonPhoto = {
+				"PIKACHU": PIKACHU_IMG_1, 
+				"SQUIRTLE" : SQUIRTLE_IMG_01, 
+				"CHARMANDER" : CHARMANDER_IMG_01, 
+				"BULBASAUR" : BULBASAUR_IMG_01, 
+				"PSYDUCK" : PSYDUCK_IMG_01, 
+				"MEOWTH" : MEOWTH_IMG_01,
+				"UMBREON" : UMBREON_IMG_02,
+				"GASTLY" : GASTLY_IMG_01,
+				"GENGAR" : GENGAR_IMG_01 
+				}
 
 
 # Battle opening
@@ -1249,6 +1296,58 @@ def create_Meowth(sound) :
 	create_area(MEOWTH_IMG_23, "MEOWTH")
 	clock.tick(30)
 	create_area(MEOWTH_IMG_24, "MEOWTH")
+
+
+def create_Gengar(sound) :
+
+	# Pokemon Sound
+
+	if sound == 0:
+		GENGAR_SOUND.play()
+		sound +=1
+
+	# Pokemon Sprites
+
+	create_area(GENGAR_IMG_01, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_02, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_03, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_04, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_05, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_06, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_07, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_08, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_09, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_10, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_11, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_12, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_13, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_14, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_15, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_16, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_17, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_18, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_19, "GENGAR")
+	clock.tick(30)
+	create_area(GENGAR_IMG_20, "GENGAR")
+
 
 def create_Umbreon(sound) :
 
@@ -1997,11 +2096,11 @@ def random_pokemon () :
 	hora = now.strftime("%H")
 
 	wild_appeared = 0
-	if int(hora) < 10 :
-		pokemon_route = [8]
+	if int(hora) >= 20 :
+		pokemon_route = ["UMBREON", "GASTLY", "GENGAR"]
 
 	if int(hora) >=10 and int(hora) < 20 :
-		pokemon_route = [7,1,2,1,4,3,2,1,4,2,5,6,2,7]
+		pokemon_route = ["PIKACHU", "SQUIRTLE", "CHARMANDER", "BULBASAUR", "PSYDUCK", "MEOWTH"]
 
 	wild_appeared = random.choice(pokemon_route)
 
@@ -2012,29 +2111,32 @@ def wild_asset (wild_appeared) :
 
 	pokemon = ""
 
-	if wild_appeared == 1 :
+	if wild_appeared == "PIKACHU" :
 		pokemon = PIKACHU_IMG_1
 
-	elif wild_appeared == 2 :
+	elif wild_appeared == "SQUIRTLE" :
 		pokemon = SQUIRTLE_IMG_01
 
-	elif wild_appeared == 3 :
+	elif wild_appeared == "CHARMANDER" :
 		pokemon = CHARMANDER_IMG_01
 
-	elif wild_appeared == 4 :
+	elif wild_appeared == "BULBASAUR" :
 		pokemon = BULBASAUR_IMG_01
 
-	elif wild_appeared == 5 :
+	elif wild_appeared == "PSYDUCK" :
 		pokemon = PSYDUCK_IMG_01
 
-	elif wild_appeared == 6 :
+	elif wild_appeared == "MEOWTH" :
 		pokemon = MEOWTH_IMG_01
 
-	elif wild_appeared == 7 :
+	elif wild_appeared == "UMBREON" :
 		pokemon = UMBREON_IMG_02
 
-	elif wild_appeared == 8 :
+	elif wild_appeared == "GASTLY" :
 		pokemon = GASTLY_IMG_01
+
+	elif wild_appeared == "GENGAR" :
+		pokemon = GENGAR_IMG_01
 
 	return pokemon
 
@@ -2042,29 +2144,32 @@ def wild_pokemon (wild_appeared, sound) :
 
 	pokemon = ""
 
-	if wild_appeared == 1 :
+	if wild_appeared == "PIKACHU" :
 		create_Pikachu(sound)
 
-	elif wild_appeared == 2 :
+	elif wild_appeared == "SQUIRTLE" :
 		create_Squirtle(sound)
 
-	elif wild_appeared == 3 :
+	elif wild_appeared == "CHARMANDER" :
 		create_Charmander(sound)
 
-	elif wild_appeared == 4 :
+	elif wild_appeared == "BULBASAUR" :
 		create_Bulbasaur(sound)
 
-	elif wild_appeared == 5 :
+	elif wild_appeared == "PSYDUCK" :
 		create_Psyduck(sound)
 
-	elif wild_appeared == 6 :
+	elif wild_appeared == "MEOWTH":
 		create_Meowth(sound)
 
-	elif wild_appeared == 7 :
+	elif wild_appeared == "UMBREON" :
 		create_Umbreon(sound)
 
-	elif wild_appeared == 8 :
+	elif wild_appeared == "GASTLY" :
 		create_Gastly(sound)
+
+	elif wild_appeared == "GENGAR" :
+		create_Gengar(sound)
 
 
 def start_battle(wild,x ,y, pokemon_trainer, cursor_pos) :
@@ -2573,13 +2678,13 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs)
 	#pygame.draw.rect(WIN, GREEN, GRASS_ZONE_EAST) # Grass zone west
 
 	date = POKEBALLS_COUNTER.render("" + str(fecha), 1, WHITE)
-	WIN.blit(date, (10, 10))
+	WIN.blit(date, (10, 5))
 
 	now = datetime.now()
 	hora_str = now.strftime("%H:%M")
 
 	date = POKEBALLS_COUNTER.render("" + str(hora_str), 1, WHITE)
-	WIN.blit(date, (800, 10))
+	WIN.blit(date, (800, 5))
 
 	pokeball = POKEBALL_ITEM.get_rect()
 	pokeball = pygame.Rect(
@@ -2610,10 +2715,114 @@ def create_title_screen() :
 	pygame.display.update()
 
 
+def create_bag_screen() :
+
+	if variables["POKEMON_1"]["NAME"] !="NONE" :
+		pokemon_1_name = variables["POKEMON_1"]["NAME"]
+		pokemon_1_level =  variables["POKEMON_1"]["LEVEL"]
+		pokemon_1_hp =  variables["POKEMON_1"]["HP"]
+		pokemon_1_photo = pokemonPhoto[pokemon_1_name]
+
+	else :
+		pokemon_1_name = ""
+		pokemon_1_level = ""
+		pokemon_1_hp = 0
+
+	if variables["POKEMON_2"]["NAME"] !="NONE" :
+		pokemon_2_name = variables["POKEMON_2"]["NAME"]
+		pokemon_2_level =  variables["POKEMON_2"]["LEVEL"]
+		pokemon_2_hp =  variables["POKEMON_2"]["HP"]
+		pokemon_2_photo = pokemonPhoto[pokemon_2_name]
+
+	else :
+		pokemon_2_name = ""
+		pokemon_2_level = ""
+		pokemon_2_hp = 0
+
+	if variables["POKEMON_3"]["NAME"] !="NONE" :
+		pokemon_3_name = variables["POKEMON_3"]["NAME"]
+		pokemon_3_level =  variables["POKEMON_3"]["LEVEL"]
+		pokemon_3_hp =  variables["POKEMON_3"]["HP"]
+		pokemon_3_photo = pokemonPhoto[pokemon_3_name]
+
+	else :
+		pokemon_3_name = ""
+		pokemon_3_level = ""
+		pokemon_3_hp = 0
+
+	WIN.blit(POKEMON_BAG_IMG, (0,0))
+
+	# First Pokemon Slot
+
+	pokemon_1_name = POKEBALLS_COUNTER.render("" + str(pokemon_1_name), 1, WHITE)
+	WIN.blit(pokemon_1_name, (240, 55))
+
+	pokemon_1_level = POKEBALLS_COUNTER.render("" + str(pokemon_1_level), 1, WHITE)
+	WIN.blit(pokemon_1_level, (520, 55))
+
+	pokemon_1_hp = POKEBALLS_COUNTER.render("" + str(pokemon_1_hp), 1, WHITE)
+	WIN.blit(pokemon_1_hp, (255, 125))
+
+	pokemon_1_photo = pygame.transform.scale(pokemon_1_photo, (100,100))
+	WIN.blit(pokemon_1_photo, (50, 50))
+
+	# Second Pokemon Slot
+
+	pokemon_2_name = POKEBALLS_COUNTER.render("" + str(pokemon_2_name), 1, WHITE)
+	WIN.blit(pokemon_2_name, (240, 205))
+
+	pokemon_2_level = POKEBALLS_COUNTER.render("" + str(pokemon_2_level), 1, WHITE)
+	WIN.blit(pokemon_2_level, (520, 205))
+
+	pokemon_2_hp = POKEBALLS_COUNTER.render("" + str(pokemon_2_hp), 1, WHITE)
+	WIN.blit(pokemon_2_hp, (255, 275))
+
+	pokemon_2_photo = pygame.transform.scale(pokemon_2_photo, (100,100))
+	WIN.blit(pokemon_2_photo, (50, 200))
+
+	# Third Pokemon Slot
+
+	pokemon_3_name = POKEBALLS_COUNTER.render("" + str(pokemon_3_name), 1, WHITE)
+	WIN.blit(pokemon_3_name, (240, 345))
+
+	pokemon_3_level = POKEBALLS_COUNTER.render("" + str(pokemon_3_level), 1, WHITE)
+	WIN.blit(pokemon_3_level, (520, 345))
+
+	pokemon_3_hp = POKEBALLS_COUNTER.render("" + str(pokemon_3_hp), 1, WHITE)
+	WIN.blit(pokemon_3_hp, (255, 420))
+
+	pokemon_3_photo = pygame.transform.scale(pokemon_3_photo, (100,100))
+	WIN.blit(pokemon_3_photo, (50, 350))
+
+
+
+	pygame.display.update()
+
+
+
+def pokemon_bag () :
+	exit = False
+
+
+	while not exit :
+		create_bag_screen()
+
+		for event in pygame.event.get() :
+
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
+
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_x:
+					exit = True
+
+
 
 def welcome() :
 	start = False
 	BACKGROUND_SOUND.play()
+	print(variables["POKEMON_1"]["NAME"])
 
 	while not start :
 		create_title_screen()
@@ -2633,8 +2842,6 @@ def welcome() :
 def main (): ## Main function
 
 	BACKGROUND_SOUND.stop()
-
-
 	trainer_pokeballs = []
 	free_monster = []
 	pokeballs = 5
@@ -2703,7 +2910,14 @@ def main (): ## Main function
 
 			if keys[pygame.K_e]:
 				BACKGROUND_SOUND.stop()
+				my_save_slot = json.dumps(variables)
+				pokemon_1_level = variables["POKEMON_1"]["LEVEL"] = 55
+				with open('save.json', 'w') as save:
+					save.write(my_save_slot)
 				welcome()
+
+			if keys[pygame.K_x]:
+				pokemon_bag()
 
 
 		BACKGROUND_SOUND.play()
