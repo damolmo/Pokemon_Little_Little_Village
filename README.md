@@ -1,5 +1,5 @@
 <img src = "src/logo.png">  <br/>
-Pocket Monster Game Based on Python
+Pocket Monster based game powered by Python and Pygame
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
 <br/>
@@ -21,24 +21,26 @@ Pocket Monster Game Based on Python
 - [x] Define player basic moves
 - [x] Define player bicicle moves
 - [x] Basic Pokémon wild encounter
+- [x] Create time based background
+- [x] Create time based Pokémon events
 - [ ] Fully working wild encounter
-- [ ] Pokemon Inventory
-- [ ] Pokemon following the trainer
+- [ ] Pokémon Inventory
+- [ ] Pokémon following the trainer
 - [ ] Create more Pokémon
 
 # Installation
 
 ```GNU/Linux ```
 ```
-git clone https://github.com/daviiid99/Pokemon-Little_Little_Village.git Pokemon-Little_Little_Village
-cd Pokemon-Little_Little_Village
+git clone https://github.com/daviiid99/Pokemon_Little_Little_Village.git Pokemon-Little_Little_Village
+cd Pokemon_Little_Little_Village
 python3 main.py
 ```
 <br/>
 
 ``` Microsoft Windows```
 ```
-git clone https://github.com/daviiid99/Pokemon-Little_Little_Village.git Pokemon-Little_Little_Village
-cd Pokemon-Little_Little_Village
+git clone https://github.com/daviiid99/Pokemon_Little_Little_Village.git Pokemon-Little_Little_Village
+cd Pokemon_Little_Little_Village
 python main.py
 ```
