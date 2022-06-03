@@ -1569,7 +1569,7 @@ def random_pokemon () :
 	pokemon_route = []
 
 	wild_appeared = 0
-	if int(hora) >20 :
+	if int(hora) < 10 :
 		pokemon_route = [8]
 
 	if int(hora) >=10 and int(hora) < 20 :
