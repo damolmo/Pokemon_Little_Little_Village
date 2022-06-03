@@ -2081,6 +2081,10 @@ def trainer_movement (keys_pressed, pokemon_trainer) :## Trainer Movement functi
 
 def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs) :
 
+	now = datetime.now()
+	hora = now.strftime("%H")
+
+
 	if hora <="16" and hora >="10" :
 		WIN.blit(ROUTE_IMG, (0,0)) # Place background image
 
@@ -2108,9 +2112,9 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs)
 
 	now = datetime.now()
 	hora_str = now.strftime("%H:%M")
-	
+
 	date = POKEBALLS_COUNTER.render("" + str(hora_str), 1, WHITE)
-	WIN.blit(date, (800, 0))
+	WIN.blit(date, (800, 10))
 
 	pokeball = POKEBALL_ITEM.get_rect()
 	pokeball = pygame.Rect(
