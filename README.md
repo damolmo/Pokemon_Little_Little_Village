@@ -26,10 +26,11 @@ Pocket Monster based game powered by Python and Pygame
 - [x] Basic Pokémon wild encounter
 - [x] Create time based background
 - [x] Create time based Pokémon events
+- [x] Pokémon Inventory
+- [x] Pokémon following the trainer
 - [ ] Fully working wild encounter
-- [ ] Pokémon Inventory
-- [ ] Pokémon following the trainer
 - [ ] Create more Pokémon
+- [ ] Create new buildings
 
 # Installation
 
