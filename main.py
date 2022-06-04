@@ -64,7 +64,6 @@ hora_str = now.strftime("%H:%M")
 # Player values
 my_save_slot = open("save.json")
 variables = json.load(my_save_slot)
-print(variables)
 
 ## Map Values
 WIDTH, HEIGHT = 900, 507 # Map dimentions
@@ -73,8 +72,11 @@ pygame.display.set_caption("Pokémon Pi - Route")
 
 ## Map elements
 HOUSE_1 = pygame.Rect(650, 20, 220, 250)
+LAB = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "lab.png")), (HOUSE_1.width + 140, HOUSE_1.height ))
+
 HOUSE_1_DOOR = pygame.Rect(770, 250, 50, 50)
 HOUSE_2 = pygame.Rect(90, 0, 280, 180)
+HOUSE_2_DOOR = pygame.Rect(260, 135, 50, 50)
 TREE_1 = pygame.Rect(500, 140, 120, 120)
 TREE_2 = pygame.Rect(230, 280, 120, 120)
 GRASS_ZONE_SOUTH = pygame.Rect(320, 400, 500, 120)
@@ -608,8 +610,13 @@ ROUTE_IMG_2 = pygame.image.load(os.path.join('Assets', "background_evening.png")
 ROUTE_IMG_3 = pygame.image.load(os.path.join('Assets', "background_night.png"))
 
 # Oask Laboratory
-OAK_LABORATORY_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "oak_laboratory.png")), (WIDTH, WIDTH))
+OAK_LABORATORY_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "oak_laboratory.png")), (900, 900))
 OAK_THEME = pygame.mixer.Sound("Assets/oak_theme.mp3")
+
+# TRAINER OOM
+TRAINER_ROOM_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "room_day.png")), (WIDTH, HEIGHT))
+TRAINER_ROOM_NIGHT = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "room_night.png")), (WIDTH, HEIGHT))
+
 
 # Battle
 # Background
@@ -2272,15 +2279,20 @@ def movement_left_house (pokemon_trainer, pikachu_trainer) :
 	create_laboratory(TRAINER_LEFT_LEFT_FOOT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG ) # Left foot
 	create_laboratory(TRAINER_LEFT_RIGHT_FOOT_IMG, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG ) # Right foot
 
-
 	pokemon_trainer.x -= 1
-	pikachu_trainer.x = pokemon_trainer.x + 60
-	pikachu_trainer.y = pokemon_trainer.y - 5
 	previous_x = pokemon_trainer.x
 	previous_y = pokemon_trainer.y
-	previous_pi_x = pikachu_trainer.x
-	previous_pi_y = pikachu_trainer.y
 
+
+def movement_left_house_trainer (pokemon_trainer, pikachu_trainer) :
+
+	create_room(TRAINER_LEFT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG) # All Foots
+	create_room(TRAINER_LEFT_LEFT_FOOT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG ) # Left foot
+	create_room(TRAINER_LEFT_RIGHT_FOOT_IMG, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG ) # Right foot
+
+	pokemon_trainer.x -= 5
+	previous_x = pokemon_trainer.x
+	previous_y = pokemon_trainer.y
 
 
 def movement_left (pokemon_trainer, wild, pikachu_trainer) :
@@ -2342,12 +2354,18 @@ def movement_right_house (pokemon_trainer, pikachu_trainer) :
 	create_laboratory(TRAINER_RIGHT_RIGHT_FOOT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.x += 1
-	pikachu_trainer.x = pokemon_trainer.x - 60
-	pikachu_trainer.y = pokemon_trainer.y + 5
 	previous_x = pokemon_trainer.x
 	previous_y = pokemon_trainer.y
-	previous_pi_x = pikachu_trainer.x
-	previous_pi_y = pikachu_trainer.y
+
+def movement_right_house_trainer (pokemon_trainer, pikachu_trainer) :
+
+	create_room(TRAINER_RIGHT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG ) # All Foots
+	create_room(TRAINER_RIGHT_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG ) # Left foot
+	create_room(TRAINER_RIGHT_RIGHT_FOOT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG ) # Right foot
+
+	pokemon_trainer.x += 5
+	previous_x = pokemon_trainer.x
+	previous_y = pokemon_trainer.y
 
 
 def movement_right (pokemon_trainer, wild, pikachu_trainer) :
@@ -2423,12 +2441,18 @@ def movement_up_house (pokemon_trainer, pikachu_trainer) :
 	create_laboratory(TRAINER_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.y -= 1
-	pikachu_trainer.y = pokemon_trainer.y + 60
-	pikachu_trainer.x = pokemon_trainer.x - 5
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
-	previous_pi_y = pikachu_trainer.y
-	previous_pi_x = pikachu_trainer.x
+
+def movement_up_house_trainer(pokemon_trainer, pikachu_trainer) :
+
+	create_room(TRAINER_BACK_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # All Foots
+	create_room(TRAINER_BACK_LEFT_FOOT_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # Left foot
+	create_room(TRAINER_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG ) # Right foot
+
+	pokemon_trainer.y -= 5
+	previous_y = pokemon_trainer.y
+	previous_x = pokemon_trainer.x
 
 
 def movement_up (pokemon_trainer, wild, pikachu_trainer) :
@@ -2439,7 +2463,7 @@ def movement_up (pokemon_trainer, wild, pikachu_trainer) :
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # Left foot
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG ) # Right foot
 
-		pokemon_trainer.y -= 1
+		pokemon_trainer.y -= VEL
 		pikachu_trainer.y = pokemon_trainer.y + 60
 		pikachu_trainer.x = pokemon_trainer.x - 5
 		previous_y = pokemon_trainer.y
@@ -2495,7 +2519,68 @@ def movement_up (pokemon_trainer, wild, pikachu_trainer) :
 				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
 
-def access_laboratory (pokemon_trainer, pikachu_trainer, inside) :
+def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y) :
+
+	TRAINER_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+	PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
+
+	while inside :
+
+		for event in pygame.event.get() :
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
+
+			keys = pygame.key.get_pressed()
+				
+			if keys[pygame.K_LEFT]:
+				TRAINER_IMG = TRAINER_LEFT_IMG
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
+				create_room(TRAINER_IMG, PIKACHU_IMG )
+				
+			if keys[pygame.K_RIGHT]:
+				TRAINER_IMG = TRAINER_RIGHT_IMG
+				PIKACHU_IMG = ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG
+				create_room(TRAINER_IMG, PIKACHU_IMG )
+
+			if keys[pygame.K_UP]:
+				TRAINER_IMG = TRAINER_BACK_IMG
+				PIKACHU_IMG = ASH_PIKACHU_BACK_LEFT_FOOT_IMG
+				create_room(TRAINER_IMG, PIKACHU_IMG )
+
+			if keys[pygame.K_DOWN]:
+				TRAINER_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
+				create_room(TRAINER_IMG, PIKACHU_IMG )
+
+			if keys[pygame.K_e]:
+				inside = True
+				BACKGROUND_SOUND.stop()
+				my_save_slot = json.dumps(variables)
+				pokemon_1_level = variables["POKEMON_1"]["LEVEL"] = 55
+				with open('save.json', 'w') as save:
+					save.write(my_save_slot)
+				welcome()
+
+			if keys[pygame.K_x]:
+				pokemon_bag()
+
+			if keys[pygame.K_SPACE]:
+				inside = False
+				OAK_THEME.stop()
+				pokemon_trainer.x = x
+				pokemon_trainer.y = y
+				main()
+
+
+		OAK_THEME.play()
+		keys_pressed = pygame.key.get_pressed()
+		trainer_movement_house_trainer(keys_pressed, pokemon_trainer, pikachu_trainer)
+		create_room(TRAINER_IMG,ASH_PIKACHU_BACK_LEFT_FOOT_IMG)
+
+
+
+def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y) :
 
 	TRAINER_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
 	PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
@@ -2544,6 +2629,8 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside) :
 			if keys[pygame.K_SPACE]:
 				inside = False
 				OAK_THEME.stop()
+				pokemon_trainer.x = x
+				pokemon_trainer.y = y
 				main()
 
 
@@ -2553,20 +2640,23 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside) :
 		create_laboratory(TRAINER_IMG,ASH_PIKACHU_BACK_LEFT_FOOT_IMG)
 
 
-
-
 def movement_down_house(pokemon_trainer, pikachu_trainer) :
 	create_laboratory(TRAINER_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG ) # All Foots
 	create_laboratory(TRAINER_LEFT_FOOT_IMG,  ASH_PIKACHU_RIGHT_FOOT_IMG ) # Left foot
 	create_laboratory(TRAINER_IMG, ASH_PIKACHU_LEFT_FOOT_IMG ) # Right foot
 
 	pokemon_trainer.y += 1
-	pikachu_trainer.y = pokemon_trainer.y - 70
-	pikachu_trainer.x = pokemon_trainer.x + 5
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
-	previous_pi_x = pikachu_trainer.x
-	previous_pi_y = pikachu_trainer.y
+
+def movement_down_house_trainer(pokemon_trainer, pikachu_trainer) :
+	create_room(TRAINER_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG ) # All Foots
+	create_room(TRAINER_LEFT_FOOT_IMG,  ASH_PIKACHU_RIGHT_FOOT_IMG ) # Left foot
+	create_room(TRAINER_IMG, ASH_PIKACHU_LEFT_FOOT_IMG ) # Right foot
+
+	pokemon_trainer.y += 5
+	previous_y = pokemon_trainer.y
+	previous_x = pokemon_trainer.x
 
 
 def movement_down (pokemon_trainer, wild, pikachu_trainer) :
@@ -2910,6 +3000,34 @@ def trainer_movement (keys_pressed, pokemon_trainer, pikachu_trainer) :## Traine
 			bicicle_movement_down(pokemon_trainer, pikachu_trainer)
 			fps +=1
 
+def trainer_movement_house_trainer (keys_pressed, pokemon_trainer, pikachu_trainer) :## Trainer Movement function
+	wild = False
+	trainer_pokeballs = []
+
+	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0 :
+		fps = 0
+		while fps < 5 :
+			movement_left_house_trainer(pokemon_trainer, pikachu_trainer)
+			fps +=1
+
+	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80:
+		fps = 0
+		while fps < 5 :
+			movement_right_house_trainer(pokemon_trainer, pikachu_trainer)
+			fps +=1
+
+	if keys_pressed[pygame.K_UP] and pokemon_trainer.y - VEL > 0 :
+		fps = 0
+		while fps < 5 :
+			movement_up_house_trainer(pokemon_trainer, pikachu_trainer)
+			fps +=1
+		
+	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT -100 :
+		fps = 0
+		while fps < 5 :
+			movement_down_house_trainer(pokemon_trainer, pikachu_trainer)
+			fps +=1
+
 
 def trainer_movement_house (keys_pressed, pokemon_trainer, pikachu_trainer) :## Trainer Movement function
 	wild = False
@@ -2956,11 +3074,12 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs,
 		WIN.blit(ROUTE_IMG_3, (0,0)) # Place background image
 	
 
-
 	#pygame.draw.rect(WIN, BLUE, HOUSE_1) # House 1 building
+	#WIN.blit(LAB, (HOUSE_1.x  - 100, HOUSE_1.y + 30 ))
 	#pygame.draw.rect(WIN, BLUE, HOUSE_1_DOOR) # House 1 Door
 
 	#pygame.draw.rect(WIN, BLUE, HOUSE_2) # House 2 building
+	#pygame.draw.rect(WIN, BLUE, HOUSE_2_DOOR) # House 2 Door
 
 	#pygame.draw.rect(WIN, GREEN, TREE_1) # Tree 1 building
 	#pygame.draw.rect(WIN, GREEN, TREE_2) # Tree 2 building
@@ -2996,7 +3115,22 @@ def create_laboratory (TRAINER, PIKACHU) :
 
 	WIN.blit(OAK_LABORATORY_IMG, (0,0))
 
-	WIN.blit(TRAINER, (pikachu_trainer.x, pikachu_trainer.y))
+	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
+
+	pygame.display.update()
+
+def create_room (TRAINER, PIKACHU) :
+
+	now = datetime.now()
+	hora_str = now.strftime("%H")
+
+	if int(hora_str) >= 10 and int(hora_str) < 20 : 
+		WIN.blit(TRAINER_ROOM_IMG, (0,0))
+
+	else :
+		WIN.blit(TRAINER_ROOM_NIGHT, (0,0))
+
+	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
 
 	pygame.display.update()
 
@@ -3168,7 +3302,7 @@ def main (): ## Main function
 					BACKGROUND_SOUND.stop()
 					POKEBALL_SOUND.play()
 					BACKGROUND_SOUND.play()
-					create_Pikachu()
+					throw_pokeball(trainer_pokeballs, pokemon_trainer)
 
 			keys = pygame.key.get_pressed()
 			if keys[pygame.K_LEFT]:
@@ -3233,12 +3367,27 @@ def main (): ## Main function
 		throw_pokeball(trainer_pokeballs, pokemon_trainer )
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG)
 
+		keys = pygame.key.get_pressed()
+
 		if pokemon_trainer.colliderect(HOUSE_1_DOOR) :
-			BACKGROUND_SOUND.stop()
-			SCAPE_SOUND.play()
-			run = False
-			inside = True
-			access_laboratory(pokemon_trainer, pikachu_trainer, inside)
+			if keys[pygame.K_a]:
+				BACKGROUND_SOUND.stop()
+				SCAPE_SOUND.play()
+				run = False
+				inside = True
+				before_enter_house_x = pokemon_trainer.x
+				before_enter_house_y = pokemon_trainer.y
+				access_laboratory(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y)
+
+		elif pokemon_trainer.colliderect(HOUSE_2_DOOR) :
+			if keys[pygame.K_a]:
+				BACKGROUND_SOUND.stop()
+				SCAPE_SOUND.play()
+				run = False
+				inside = True
+				before_enter_house_x = pokemon_trainer.x
+				before_enter_house_y = pokemon_trainer.y
+				access_house(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y)
 
 	main()
 
