@@ -3315,12 +3315,14 @@ def main (): ## Main function
 			if event.type == pygame.KEYDOWN :
 				if event.key == pygame.K_SPACE and len(trainer_pokeballs) < MAX_POKEBALL:
 					free_pika = pokeball_out(trainer_pokeballs, free_pika)
+					PIKACHU_SOUND.play()
 
 			keys = pygame.key.get_pressed()
 			if keys[pygame.K_LEFT]:
 				TRAINER_IMG = TRAINER_LEFT_IMG
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
 				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika)
+
 			
 			if keys[pygame.K_RIGHT]:
 				TRAINER_IMG = TRAINER_RIGHT_IMG
