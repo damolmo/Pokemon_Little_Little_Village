@@ -614,9 +614,12 @@ ROUTE_IMG_3 = pygame.image.load(os.path.join('Assets', "background_night.png"))
 OAK_LABORATORY_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "oak_laboratory.png")), (900, 900))
 OAK_THEME = pygame.mixer.Sound("Assets/oak_theme.mp3")
 
-# TRAINER OOM
+# TRAINER ROOM
 TRAINER_ROOM_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "room_day.png")), (WIDTH, HEIGHT))
 TRAINER_ROOM_NIGHT = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "room_night.png")), (WIDTH, HEIGHT))
+
+# Pause Menu
+PAUSE_MENU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pause_menu.png")), (WIDTH, HEIGHT))
 
 
 # Battle
@@ -643,7 +646,11 @@ BATTLE_DIALOG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 
 
 # Cursor
 CURSOR = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "cursor.png")), (100,100))
+CURSOR_PAUSE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "pause_menu_cursor.png")), (30,35))
+
 cursor_pos = pygame.Rect(620, 350, 100, 100) # Defines player coords
+cursor_pause = pygame.Rect(700, 60, 20, 20) # Defines player coords
+
 
 # Life menu
 LIFE_MENU = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "life_menu.png")), (250,62))
@@ -2564,7 +2571,7 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y) :
 				welcome()
 
 			if keys[pygame.K_x]:
-				pokemon_bag()
+				pause_menu(cursor_pause)
 
 			if keys[pygame.K_SPACE]:
 				inside = False
@@ -2625,7 +2632,7 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y) :
 				welcome()
 
 			if keys[pygame.K_x]:
-				pokemon_bag()
+				pause_menu(cursor_pause)
 
 			if keys[pygame.K_SPACE]:
 				inside = False
@@ -3153,6 +3160,13 @@ def create_title_screen() :
 	pygame.display.update()
 
 
+def create_pause_menu () :
+
+	WIN.blit(PAUSE_MENU_IMG, (0,0))
+	WIN.blit(CURSOR_PAUSE, (cursor_pause.x, cursor_pause.y))
+	pygame.display.update()
+
+
 def create_bag_screen() :
 
 	if variables["POKEMON_1"]["NAME"] !="NONE" :
@@ -3252,9 +3266,63 @@ def pokemon_bag () :
 				pygame.quit()
 
 			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_b:
+					exit = True
+
+def pause_menu (cursor_pause) :
+	exit = False
+
+
+	while not exit :
+		create_pause_menu()
+
+		for event in pygame.event.get() :
+
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
+
+			if event.type == pygame.KEYDOWN :
 				if event.key == pygame.K_x:
 					exit = True
 
+				if cursor_pause.y == 105 and event.key == pygame.K_a:
+						pokemon_bag()
+
+				if cursor_pause.y == 285  and event.key == pygame.K_a :
+						my_save_slot = json.dumps(variables)
+						with open('save.json', 'w') as save:
+							save.write(my_save_slot)
+
+				if cursor_pause.y == 420  and event.key == pygame.K_a :
+						BACKGROUND_SOUND.stop()
+						my_save_slot = json.dumps(variables)
+						with open('save.json', 'w') as save:
+							save.write(my_save_slot)
+						welcome()
+
+
+				if event.key == pygame.K_DOWN:
+					if cursor_pause.y >= 60 and cursor_pause.y < 400   :
+						cursor_pause.y += 45
+
+
+					#if cursor.pause.y == 150 :
+
+					#if cursor.pause.y == 195 :
+
+					#if cursor.pause.y == 240 :
+			
+
+					#if cursor.pause.y == 330 :
+
+					#if cursor.pause.y == 375 :
+
+
+
+				if event.key == pygame.K_UP:
+					if cursor_pause.y > 60 :
+						cursor_pause.y -=45
 
 
 def welcome() :
@@ -3371,7 +3439,7 @@ def main (): ## Main function
 				welcome()
 
 			if keys[pygame.K_x]:
-				pokemon_bag()
+				pause_menu(cursor_pause)
 
 
 
