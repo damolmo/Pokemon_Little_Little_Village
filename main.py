@@ -60,6 +60,7 @@ fecha = today.strftime("%B %d, %Y")
 now = datetime.now()
 hora = now.strftime("%H")
 hora_str = now.strftime("%H:%M")
+free_pika = 0
 
 # Player values
 my_save_slot = open("save.json")
@@ -2254,7 +2255,7 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos) :
 					time.sleep(1)
 					wild = False
 					print("HAS HUIDO")
-					movement_down (pokemon_trainer, wild, pikachu_trainer)
+					movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika)
 					cursor_pos.x = 620
 
 				if event.key == pygame.K_RIGHT:
@@ -2295,13 +2296,13 @@ def movement_left_house_trainer (pokemon_trainer, pikachu_trainer) :
 	previous_y = pokemon_trainer.y
 
 
-def movement_left (pokemon_trainer, wild, pikachu_trainer) :
+def movement_left (pokemon_trainer, wild, pikachu_trainer, free_pika) :
 	trainer_pokeballs = []
 
 	if not wild :
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, free_pika ) # Right foot
 
 
 		pokemon_trainer.x -= VEL
@@ -2368,13 +2369,13 @@ def movement_right_house_trainer (pokemon_trainer, pikachu_trainer) :
 	previous_y = pokemon_trainer.y
 
 
-def movement_right (pokemon_trainer, wild, pikachu_trainer) :
+def movement_right (pokemon_trainer, wild, pikachu_trainer, free_pika) :
 	trainer_pokeballs = []
 
 	if not wild :
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika ) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, free_pika ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika ) # Right foot
 
 		pokemon_trainer.x += VEL
 		pikachu_trainer.x = pokemon_trainer.x - 60
@@ -2455,13 +2456,13 @@ def movement_up_house_trainer(pokemon_trainer, pikachu_trainer) :
 	previous_x = pokemon_trainer.x
 
 
-def movement_up (pokemon_trainer, wild, pikachu_trainer) :
+def movement_up (pokemon_trainer, wild, pikachu_trainer, free_pika) :
 	trainer_pokeballs = []
 
 	if not wild: 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG , free_pika) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG , free_pika) # Right foot
 
 		pokemon_trainer.y -= VEL
 		pikachu_trainer.y = pokemon_trainer.y + 60
@@ -2659,15 +2660,15 @@ def movement_down_house_trainer(pokemon_trainer, pikachu_trainer) :
 	previous_x = pokemon_trainer.x
 
 
-def movement_down (pokemon_trainer, wild, pikachu_trainer) :
+def movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika) :
 	trainer_pokeballs = []
 	POKEMON_ENCOUNTER_SOUND.stop()
 
 	if not wild :
 
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG ) # All Foots
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG ) # Left foot
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG ) # Right foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG , free_pika) # All Foots
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika ) # Left foot
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG , free_pika) # Right foot
 
 		pokemon_trainer.y += VEL
 		pikachu_trainer.y = pokemon_trainer.y - 70
@@ -2710,9 +2711,9 @@ def movement_down (pokemon_trainer, wild, pikachu_trainer) :
 def bicicle_movement_left(pokemon_trainer, pikachu_trainer) :
 	VEL = 3
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_RIGHT_FOOT_IMG , trainer_pokeballs, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG ) # Right foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_RIGHT_FOOT_IMG , trainer_pokeballs, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, free_pika ) # Right foot
 
 	pokemon_trainer.x -= VEL
 	pikachu_trainer.x = pokemon_trainer.x + 60
@@ -2759,9 +2760,9 @@ def bicicle_movement_left(pokemon_trainer, pikachu_trainer) :
 def bicicle_movement_right(pokemon_trainer, pikachu_trainer) :
 	VEL = 3
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_RIGHT_FOOT_IMG , trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG ) # Right foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, free_pika) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, free_pika ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_RIGHT_FOOT_IMG , trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika ) # Right foot
 
 	pokemon_trainer.x += VEL
 	pikachu_trainer.x = pokemon_trainer.x - 60
@@ -2827,9 +2828,9 @@ def bicicle_movement_right(pokemon_trainer, pikachu_trainer) :
 def bicicle_movement_up (pokemon_trainer, pikachu_trainer) :
 	VEL = 3
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG ) # Right foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika ) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, free_pika ) # Right foot
 
 	pokemon_trainer.y -= VEL
 	pikachu_trainer.y = pokemon_trainer.y + 60
@@ -2894,9 +2895,9 @@ def bicicle_movement_up (pokemon_trainer, pikachu_trainer) :
 def bicicle_movement_down (pokemon_trainer, pikachu_trainer) :
 	VEL = 3
 	trainer_pokeballs = []
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG ) # All Foots
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG ) # Left foot
-	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG ) # Right foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG, free_pika ) # All Foots
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG, free_pika ) # Left foot
+	create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_BICICLE_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika ) # Right foot
 
 	pokemon_trainer.y += VEL
 	pikachu_trainer.y = pokemon_trainer.y - 70
@@ -2940,32 +2941,32 @@ def bicicle_movement_down (pokemon_trainer, pikachu_trainer) :
 			POKEMON_ENCOUNTER_SOUND.play()
 			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos)
 
-def trainer_movement (keys_pressed, pokemon_trainer, pikachu_trainer) :## Trainer Movement function
+def trainer_movement (keys_pressed, pokemon_trainer, pikachu_trainer, free_pika) :## Trainer Movement function
 	wild = False
 	trainer_pokeballs = []
 
 	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0 :
 		fps = 0
 		while fps < 5 :
-			movement_left(pokemon_trainer, wild, pikachu_trainer)
+			movement_left(pokemon_trainer, wild, pikachu_trainer, free_pika)
 			fps +=1
 
 	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80:
 		fps = 0
 		while fps < 5 :
-			movement_right(pokemon_trainer, wild, pikachu_trainer)
+			movement_right(pokemon_trainer, wild, pikachu_trainer, free_pika)
 			fps +=1
 
 	if keys_pressed[pygame.K_UP] and pokemon_trainer.y - VEL > 0 :
 		fps = 0
 		while fps < 5 :
-			movement_up(pokemon_trainer, wild, pikachu_trainer)
+			movement_up(pokemon_trainer, wild, pikachu_trainer, free_pika)
 			fps +=1
 		
 	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT -100 :
 		fps = 0
 		while fps < 5 :
-			movement_down(pokemon_trainer, wild, pikachu_trainer)
+			movement_down(pokemon_trainer, wild, pikachu_trainer, free_pika)
 			fps +=1
 
 	if keys_pressed[pygame.K_b] :
@@ -3058,7 +3059,7 @@ def trainer_movement_house (keys_pressed, pokemon_trainer, pikachu_trainer) :## 
 			fps +=1
 		
 
-def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU) :
+def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika) :
 
 	now = datetime.now()
 	hora = now.strftime("%H")
@@ -3107,7 +3108,9 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs,
 		WIN.blit(POKEBALL_ITEM, (pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 1, 1))
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
-	WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
+
+	if free_pika % 2 == 1 :
+		WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
 
 	pygame.display.update()
 
@@ -3134,12 +3137,14 @@ def create_room (TRAINER, PIKACHU) :
 
 	pygame.display.update()
 
-def throw_pokeball(trainer_pokeballs, pokemon_trainer) :
+def throw_pokeball(trainer_pokeballs, pokemon_trainer, free_pika) :
 	for pokeball in trainer_pokeballs:
 		pokeball.x += POKEBALL_VEL
 
-		if pokeball.x > WIDTH :
+		if pokeball.x < WIDTH :
 			trainer_pokeballs.remove(pokeball)
+
+	free_pika +=1
 
 
 def create_title_screen() :
@@ -3271,6 +3276,19 @@ def welcome() :
 					start = True
 					main()
 				
+def pokeball_out(trainer_pokeballs, free_pika) :
+
+	pokeball = pygame.Rect(
+	pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 1, 1)
+	trainer_pokeballs.append(pokeball)
+	BACKGROUND_SOUND.stop()
+	POKEBALL_SOUND.play()
+	BACKGROUND_SOUND.play()
+	throw_pokeball(trainer_pokeballs, pokemon_trainer, free_pika)
+	free_pika +=1
+
+	return free_pika
+
 
 def main (): ## Main function
 
@@ -3278,8 +3296,8 @@ def main (): ## Main function
 	trainer_pokeballs = []
 	free_monster = []
 	pokeballs = 5
+	free_pika = 0
 	pressed = True
-
 
 	clock = pygame.time.Clock()
 	run = True
@@ -3296,34 +3314,28 @@ def main (): ## Main function
 
 			if event.type == pygame.KEYDOWN :
 				if event.key == pygame.K_SPACE and len(trainer_pokeballs) < MAX_POKEBALL:
-					pokeball = pygame.Rect(
-						pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 1, 1)
-					trainer_pokeballs.append(pokeball)
-					BACKGROUND_SOUND.stop()
-					POKEBALL_SOUND.play()
-					BACKGROUND_SOUND.play()
-					throw_pokeball(trainer_pokeballs, pokemon_trainer)
+					free_pika = pokeball_out(trainer_pokeballs, free_pika)
 
 			keys = pygame.key.get_pressed()
 			if keys[pygame.K_LEFT]:
 				TRAINER_IMG = TRAINER_LEFT_IMG
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika)
 			
 			if keys[pygame.K_RIGHT]:
 				TRAINER_IMG = TRAINER_RIGHT_IMG
 				PIKACHU_IMG = ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika)
 
 			if keys[pygame.K_UP]:
 				TRAINER_IMG = TRAINER_BACK_IMG
 				PIKACHU_IMG = ASH_PIKACHU_BACK_LEFT_FOOT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika)
 
 			if keys[pygame.K_DOWN]:
 				TRAINER_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', "ash.png")), (TRAINER_WIDTH, TRAINER_HEIGHT))
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika)
 
 			if keys[pygame.K_b]:
 				TRAINER_IMG = TRAINER_BICICLE_IMG
@@ -3331,22 +3343,22 @@ def main (): ## Main function
 			if keys[pygame.K_a]:
 				TRAINER_IMG = TRAINER_BICICLE_LEFT_IMG
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG , free_pika)
 				
 			if keys[pygame.K_d]:
 				TRAINER_IMG = TRAINER_BICICLE_RIGHT_IMG
 				PIKACHU_IMG = ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika )
 
 			if keys[pygame.K_w]:
 				TRAINER_IMG = TRAINER_BICICLE_BACK_IMG
 				PIKACHU_IMG = ASH_PIKACHU_BACK_LEFT_FOOT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG )
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika )
 
 			if keys[pygame.K_s]:
 				TRAINER_IMG = TRAINER_BICICLE_IMG
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
-				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs , PIKACHU_IMG)
+				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs , PIKACHU_IMG, free_pika)
 
 			if keys[pygame.K_e]:
 				BACKGROUND_SOUND.stop()
@@ -3363,9 +3375,8 @@ def main (): ## Main function
 
 		BACKGROUND_SOUND.play()
 		keys_pressed = pygame.key.get_pressed()
-		trainer_movement(keys_pressed, pokemon_trainer, pikachu_trainer)
-		throw_pokeball(trainer_pokeballs, pokemon_trainer )
-		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG)
+		trainer_movement(keys_pressed, pokemon_trainer, pikachu_trainer, free_pika)
+		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika)
 
 		keys = pygame.key.get_pressed()
 
