@@ -6,6 +6,7 @@ Pocket Monster based game powered by Python and Pygame
 
 # Screenshots
 <img src="src/Pokemon_Litle_Litle_Town_Title_Screen.png">
+<img src ="src/Pokemon_Litle_Litle_Town_Title_Screen_2">
 <img src = "src/Pokemon_Litle_Litle_Town.png">
 <img src = "src/Pokemon_Litle_Litle_Town_1.png">
 <img src="src/Pokemon_Litle_Litle_Town_2.png">
