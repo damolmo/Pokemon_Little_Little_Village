@@ -3605,15 +3605,15 @@ def create_room (TRAINER, PIKACHU) :
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
 
-	pygame.draw.rect(WIN, GREEN, TRAINER_HOUSE_DOOR) # House door
-	pygame.draw.rect(WIN, WHITE, TRAINER_HOUSE_WALL) # House wall
-	pygame.draw.rect(WIN, BLACK, TRAINER_HOUSE_LIMIT_1) # House limit
-	pygame.draw.rect(WIN, BLACK, TRAINER_HOUSE_LIMIT_2) # House limit
-	pygame.draw.rect(WIN, BLUE, TRAINER_HOUSE_BED) # House limit
-	pygame.draw.rect(WIN, BLUE, TRAINER_HOUSE_ESTANTERIA) # House limit
-	pygame.draw.rect(WIN, BLUE, TRAINER_HOUSE_TV) # House limit
-	pygame.draw.rect(WIN, BLUE, TRAINER_HOUSE_BOOKS) # House limit
-	pygame.draw.rect(WIN, GREEN, TRAINER_HOUSE_CONSOLE) # House limit
+	#pygame.draw.rect(WIN, GREEN, TRAINER_HOUSE_DOOR) # House door
+	#pygame.draw.rect(WIN, WHITE, TRAINER_HOUSE_WALL) # House wall
+	#pygame.draw.rect(WIN, BLACK, TRAINER_HOUSE_LIMIT_1) # House limit
+	#pygame.draw.rect(WIN, BLACK, TRAINER_HOUSE_LIMIT_2) # House limit
+	#pygame.draw.rect(WIN, BLUE, TRAINER_HOUSE_BED) # House limit
+	#pygame.draw.rect(WIN, BLUE, TRAINER_HOUSE_ESTANTERIA) # House limit
+	#pygame.draw.rect(WIN, BLUE, TRAINER_HOUSE_TV) # House limit
+	#pygame.draw.rect(WIN, BLUE, TRAINER_HOUSE_BOOKS) # House limit
+	#pygame.draw.rect(WIN, GREEN, TRAINER_HOUSE_CONSOLE) # House limit
 	
 
 
