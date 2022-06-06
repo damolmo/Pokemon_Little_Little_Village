@@ -2625,13 +2625,15 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 					if variableHP >= randomDamage: 
 						variableHP -= randomDamage
 
+						if pokemonVariableHP >= randomDamage:
+							pokemonVariableHP -= randomDamage
+
 
 					else :
-						variableHP == 0
 
+						variableHP = 0
 						# Random damage by wild Pokemon
-						randomDamage = random.randint(2,10)
-						pokemonVariableHP -= randomDamage
+						pokemonVariableHP = 0
 
 				if variableHP == 0 :
 					POKEMON_ENCOUNTER_SOUND.stop()
