@@ -4233,8 +4233,8 @@ def welcome() :
 					choose_character()
 
 def choose_character () :
+	BACKGROUND_SOUND.stop()
 	start = False
-	BACKGROUND_SOUND.play()
 	isMisty = False
 	isAsh = False
 
