@@ -267,6 +267,85 @@ OAK_BACK_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join(
 
 ### Pokemon
 
+
+## Mr Mime
+
+# Sound effect
+MRMIME_SOUND = pygame.mixer.Sound("Assets/pokemon/mrmime/sound/mrmime.mp3")
+
+# Sprites
+MRMIME_IMG_01 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_00_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_02 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_01_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_03 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_02_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_04 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_03_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_05 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_04_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_06 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_05_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_07 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_06_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_08 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_07_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_09 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_08_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_10 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_09_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_11 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_10_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_12 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_11_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_13 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_12_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_14 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_13_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_15 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_14_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_16 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_15_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_17 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_16_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_18 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_17_delay-0.05s.gif")), (200, 200))
+MRMIME_IMG_19 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/mrmime', "frame_18_delay-0.05s.gif")), (200, 200))
+
+
+## Growlithe
+
+# Sound effect
+GROWLITHE_SOUND = pygame.mixer.Sound("Assets/pokemon/growlithe/sound/growlithe.mp3")
+
+# Sprites
+GROWLITHE_IMG_01 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_00_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_02 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_01_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_03 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_02_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_04 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_03_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_05 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_04_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_06 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_05_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_07 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_06_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_08 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_07_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_09 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_08_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_10 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_09_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_11 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_10_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_12 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_11_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_13 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_12_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_14 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_13_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_15 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_14_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_16 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_15_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_17 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_16_delay-0.05s.gif")), (200, 200))
+GROWLITHE_IMG_18 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/growlithe', "frame_17_delay-0.05s.gif")), (200, 200))
+
+
+## Arcanine
+
+# Sound effect
+ARCANINE_SOUND = pygame.mixer.Sound("Assets/pokemon/arcanine/sound/arcanine.mp3")
+
+# Sprites
+ARCANINE_IMG_01 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_00_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_02 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_01_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_03 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_02_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_04 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_03_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_05 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_04_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_06 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_05_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_07 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_06_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_08 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_07_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_09 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_08_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_10 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_09_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_11 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_10_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_12 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_11_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_13 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_12_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_14 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_13_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_15 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_14_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_16 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_15_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_17 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_16_delay-0.05s.gif")), (200, 200))
+ARCANINE_IMG_18 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/arcanine', "frame_17_delay-0.05s.gif")), (200, 200))
+
 ## Pikachu
 
 # Sound effect
@@ -1452,6 +1531,149 @@ def create_Charmander(sound, variableHP, staticHP, pokemonStaticHP, pokemonVaria
 	create_area(CHARMANDER_IMG_54, "CHARMANDER", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
 
 
+def create_MrMime(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)  :
+
+	# Pokemon Sound
+
+	if sound == 0:
+		MRMIME_SOUND.play()
+		sound +=1
+
+	# Pokemon Sprites
+
+	create_area(MRMIME_IMG_01, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_02, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_03, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_04, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_05, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_06, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_07, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_08, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_09, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_10, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_11, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_12, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_13, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_14, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_15, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_16, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_17, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(MRMIME_IMG_18, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)
+	clock.tick(30)
+	create_area(MRMIME_IMG_19, "MR. MIME", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+
+
+def create_Arcanine(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)  :
+
+	# Pokemon Sound
+
+	if sound == 0:
+		ARCANINE_SOUND.play()
+		sound +=1
+
+	# Pokemon Sprites
+
+	create_area(ARCANINE_IMG_01, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_02, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_03, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_04, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_05, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_06, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_07, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_08, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_09, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_10, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_11, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_12, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_13, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_14, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_15, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_16, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_17, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(ARCANINE_IMG_18, "ARCANINE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+
+
+def create_Growlithe(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)  :
+
+	# Pokemon Sound
+
+	if sound == 0:
+		GROWLITHE_SOUND.play()
+		sound +=1
+
+	# Pokemon Sprites
+
+	create_area(GROWLITHE_IMG_01, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_02, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_03, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_04, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_05, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_06, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_07, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_08, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_09, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_10, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_11, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_12, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_13, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_14, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_15, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_16, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_17, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+	clock.tick(30)
+	create_area(GROWLITHE_IMG_18, "GROWLITHE", variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+
+
 def create_Gastly(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)  :
 
 	# Pokemon Sound
@@ -2231,14 +2453,14 @@ def random_pokemon (isTree) :
 
 	wild_appeared = 0
 	if int(hora) >= 20 and not isTree :
-		pokemon_route = ["UMBREON", "GASTLY", "GENGAR"]
+		pokemon_route = ["UMBREON", "GASTLY", "GENGAR", "ARCANINE"]
 
 	if int(hora) >= 00 and  int(hora) <= 9 and not isTree:
-		pokemon_route = ["UMBREON", "GASTLY", "GENGAR"]
+		pokemon_route = ["UMBREON", "GASTLY", "GENGAR", "ARCANINE"]
 
 
 	if int(hora) >=10 and int(hora) < 20 and not isTree :
-		pokemon_route = ["PIKACHU", "SQUIRTLE", "CHARMANDER", "BULBASAUR", "PSYDUCK", "MEOWTH", "EEVEE"]
+		pokemon_route = ["PIKACHU", "SQUIRTLE", "CHARMANDER", "BULBASAUR", "PSYDUCK", "MEOWTH", "EEVEE", "GROWLITHE", "MRMIME"]
 
 	if isTree == True :
 		pokemon_route = ["BEEDRILL", "SCYTHER"]
@@ -2289,6 +2511,15 @@ def wild_asset (wild_appeared) :
 	elif wild_appeared == "EEVEE" :
 		pokemon = EEVEE_IMG_01
 
+	elif wild_appeared == "ARCANINE" :
+		pokemon = ARCANINE_IMG_01
+
+	elif wild_appeared == "GROWLITHE" :
+		pokemon = GROWLITHE_IMG_01
+
+	elif wild_appeared == "MRMIME" :
+		pokemon = MRMIME_IMG_01
+
 	return pokemon
 
 def wild_pokemon (wild_appeared, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) :
@@ -2330,6 +2561,15 @@ def wild_pokemon (wild_appeared, sound, variableHP, staticHP, pokemonStaticHP, p
 
 	elif wild_appeared == "EEVEE":
 		create_Eevee(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+
+	elif wild_appeared == "ARCANINE":
+		create_Arcanine(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)
+
+	elif wild_appeared == "GROWLITHE":
+		create_Growlithe(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)  
+
+	elif wild_appeared == "MRMIME":
+		create_MrMime(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)  
 
 
 def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty) :
@@ -2379,13 +2619,19 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 					cursor_pos.x = 620
 
 				if event.key == pygame.K_a and cursor_pos.x == 620 and cursor_pos.y == 350 :
-					if variableHP >= 5 :
-						variableHP -= 5
-						pokemonVariableHP -= 4
+					# Random damage by Trainer Pokemon
+					randomDamage = random.randint(2,10)
 
-					if variableHP < 5 :
-						variableHP = 0
-						pokemonVariableHP -= 4
+					if variableHP >= randomDamage: 
+						variableHP -= randomDamage
+
+
+					else :
+						variableHP == 0
+
+						# Random damage by wild Pokemon
+						randomDamage = random.randint(2,10)
+						pokemonVariableHP -= randomDamage
 
 				if variableHP == 0 :
 					POKEMON_ENCOUNTER_SOUND.stop()
@@ -3874,23 +4120,26 @@ def create_laboratory (TRAINER, OAK, isTalking, isBulbasaur, isSquirtle, isCharm
 		WIN.blit(oak_phrase, (180, 400))
 		clock.tick(5)
 
-	if isSquirtle :
-		WIN.blit(DIALOG_MENU, (0, 300))
-		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Squirtle, a water type Pokémon" , 1, WHITE)
-		WIN.blit(oak_phrase, (55, 400))
-		clock.tick(20)
 
-	if isBulbasaur :
-		WIN.blit(DIALOG_MENU, (0, 300))
-		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Bulbasaur, a grash type Pokémon", 1, WHITE)
-		WIN.blit(oak_phrase, (50, 400))
-		clock.tick(20)
+	if variables["INITIAL_POKEMON"] == "NONE"  :
 
-	if isCharmander :
-		WIN.blit(DIALOG_MENU, (0, 300))
-		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Charmander, a fire type Pokémon", 1, WHITE)
-		WIN.blit(oak_phrase, (50, 400))
-		clock.tick(20)
+		if isSquirtle :
+			WIN.blit(DIALOG_MENU, (0, 300))
+			oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Squirtle, a water type Pokémon" , 1, WHITE)
+			WIN.blit(oak_phrase, (55, 400))
+			clock.tick(20)
+
+		if isBulbasaur :
+			WIN.blit(DIALOG_MENU, (0, 300))
+			oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Bulbasaur, a grash type Pokémon", 1, WHITE)
+			WIN.blit(oak_phrase, (50, 400))
+			clock.tick(20)
+
+		if isCharmander :
+			WIN.blit(DIALOG_MENU, (0, 300))
+			oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Charmander, a fire type Pokémon", 1, WHITE)
+			WIN.blit(oak_phrase, (50, 400))
+			clock.tick(20)
 
 
 	#pygame.draw.rect(WIN, GREEN, OAK_RECTANGLE) # Oak rectangle
