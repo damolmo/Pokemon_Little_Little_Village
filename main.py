@@ -3522,6 +3522,7 @@ def movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isM
 def bicicle_movement_left(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 	VEL = 3
 	trainer_pokeballs = []
+	isTree = False
 
 	if isAsh == True :
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BICICLE_LEFT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika) # All Foots
@@ -3576,11 +3577,12 @@ def bicicle_movement_left(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 			previous_pi_y = pikachu_trainer.y
 			wild = True
 			POKEMON_ENCOUNTER_SOUND.play()
-			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos, isAsh, isMisty)
+			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 
 def bicicle_movement_right(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 	VEL = 3
 	trainer_pokeballs = []
+	isTree = False
 
 	if isAsh == True :
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BICICLE_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, free_pika) # All Foots
@@ -3655,12 +3657,13 @@ def bicicle_movement_right(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 			previous_pi_y = pikachu_trainer.y
 			wild = True
 			POKEMON_ENCOUNTER_SOUND.play()
-			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos, isAsh, isMisty)
+			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 
 
 def bicicle_movement_up (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 	VEL = 3
 	trainer_pokeballs = []
+	isTree = False
 
 	if isAsh == True :
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BICICLE_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika ) # All Foots
@@ -3735,11 +3738,12 @@ def bicicle_movement_up (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 			previous_pi_y = pikachu_trainer.y
 			wild = True
 			POKEMON_ENCOUNTER_SOUND.play()
-			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos, isAsh, isMisty)
+			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 
 def bicicle_movement_down (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 	VEL = 3
 	trainer_pokeballs = []
+	isTree = False
 
 	if isAsh == True :
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BICICLE_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG, free_pika ) # All Foots
@@ -3794,7 +3798,7 @@ def bicicle_movement_down (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 			previous_pi_y = pikachu_trainer.y
 			wild = True
 			POKEMON_ENCOUNTER_SOUND.play()
-			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos, isAsh, isMisty)
+			start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 
 def trainer_movement (keys_pressed, pokemon_trainer, pikachu_trainer, free_pika, isAsh, isMisty) :## Trainer Movement function
 	wild = False
@@ -4377,7 +4381,7 @@ def main (isAsh, isMisty): ## Main function
 				if isAsh == True :
 					TRAINER_IMG = ASH_BICICLE_RIGHT_IMG
 				else :
-					TRAINER_IMG = MISTY_BICICLE_LEFT_IMG
+					TRAINER_IMG = MISTY_BICICLE_RIGHT_IMG
 
 				PIKACHU_IMG = ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG
 				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika )
