@@ -1,1 +1,1 @@
-{"NAME": "DAVID", "SEX": "MALE", "AGE": 23, "POKEMON_1": {"NAME": "SQUIRTLE", "LEVEL": 55, "HP": 75, "MOVE": "PLACAJE"}, "POKEMON_2": {"NAME": "BULBASAUR", "LEVEL": 5, "HP": 25, "MOVE": "PLACAJE"}, "POKEMON_3": {"NAME": "CHARMANDER", "LEVEL": 5, "HP": 25, "MOVE": "PLACAJE"}}
+{"NAME": "DAVID", "SEX": "MALE", "AGE": 23, "INITIAL_POKEMON": "NONE", "POKEMON_1": {"NAME": "NONE", "LEVEL": 0, "HP": 0, "MOVE": ""}, "POKEMON_2": {"NAME": "NONE", "LEVEL": 0, "HP": 0, "MOVE": ""}, "POKEMON_3": {"NAME": "NONE", "LEVEL": 0, "HP": 0, "MOVE": ""}}

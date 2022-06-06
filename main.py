@@ -2818,16 +2818,20 @@ def movement_left (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isM
 	previous_pi_x = pikachu_trainer.x
 	previous_pi_y = pikachu_trainer.y
 
-	if pokemon_trainer.colliderect(OAK_RECTANGLE_MAP):
-		oakMessage = True
-		WALL_SOUND.play()
-		pokemon_trainer.x = previous_x + 10
-		pokemon_trainer.y = previous_y - 0
-		pikachu_trainer.x = previous_pi_x + 10
-		pikachu_trainer.y = previous_pi_y - 0
+	if variables["POKEMON_1"]["NAME"] =="NONE" and variables["POKEMON_1"]["NAME"] =="NONE" and variables["POKEMON_3"]["NAME"] =="NONE" :
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, HOUSE_2)
+		if pokemon_trainer.colliderect(OAK_RECTANGLE_MAP):
+			oakMessage = True
+			WALL_SOUND.play()
+			pokemon_trainer.x = previous_x + 10
+			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x + 10
+			pikachu_trainer.y = previous_pi_y - 0
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+
 
 	if not wild :
 		if isAsh :
@@ -3210,16 +3214,17 @@ def movement_up (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMis
 	previous_pi_y = pikachu_trainer.y
 	previous_pi_x = pikachu_trainer.x
 
-	if pokemon_trainer.colliderect(OAK_RECTANGLE_MAP):
-		oakMessage = True
-		WALL_SOUND.play()
-		pokemon_trainer.x = previous_x - 0
-		pokemon_trainer.y = previous_y + 10
-		pikachu_trainer.x = previous_pi_x - 0
-		pikachu_trainer.y = previous_pi_y + 10
+	if variables["INITIAL_POKEMON"] =="NONE":
+		if pokemon_trainer.colliderect(OAK_RECTANGLE_MAP):
+			oakMessage = True
+			WALL_SOUND.play()
+			pokemon_trainer.x = previous_x - 0
+			pokemon_trainer.y = previous_y + 10
+			pikachu_trainer.x = previous_pi_x - 0
+			pikachu_trainer.y = previous_pi_y + 10
 
-		pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-		pygame.draw.rect(WIN, WHITE, HOUSE_1)
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_1)
 
 	if not wild: 
 		if isAsh :
@@ -4137,16 +4142,16 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs,
 	if free_pika % 2 == 1 :
 		WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
 
+	if variables["INITIAL_POKEMON"] =="NONE":
+		WIN.blit(OAK_IMG, (395, -10))
 
-	WIN.blit(OAK_IMG, (395, -10))
+		if oakMessage :
+			WIN.blit(DIALOG_MENU, (0, 300))
+			oak_phrase = POKEBALLS_COUNTER.render("Hey! Don't go away yet!", 1, WHITE)
+			WIN.blit(oak_phrase, (280, 400))
+			clock.tick(2)
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
-
-	if oakMessage :
-		WIN.blit(DIALOG_MENU, (0, 300))
-		oak_phrase = POKEBALLS_COUNTER.render("Hey! Don't go away yet!", 1, WHITE)
-		WIN.blit(oak_phrase, (280, 400))
-		clock.tick(2)
 
 	#pygame.draw.rect(WIN, GREEN, OAK_RECTANGLE_MAP)
 
@@ -4181,19 +4186,19 @@ def create_laboratory (TRAINER, OAK, isTalking, isBulbasaur, isSquirtle, isCharm
 		WIN.blit(DIALOG_MENU, (0, 300))
 		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Squirtle, a water type Pokémon" , 1, WHITE)
 		WIN.blit(oak_phrase, (55, 400))
-		clock.tick(3)
+		clock.tick(20)
 
 	if isBulbasaur :
 		WIN.blit(DIALOG_MENU, (0, 300))
 		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Bulbasaur, a grash type Pokémon", 1, WHITE)
 		WIN.blit(oak_phrase, (50, 400))
-		clock.tick(3)
+		clock.tick(20)
 
 	if isCharmander :
 		WIN.blit(DIALOG_MENU, (0, 300))
 		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Charmander, a fire type Pokémon", 1, WHITE)
 		WIN.blit(oak_phrase, (50, 400))
-		clock.tick(3)
+		clock.tick(20)
 
 
 	#pygame.draw.rect(WIN, GREEN, OAK_RECTANGLE) # Oak rectangle
@@ -4262,6 +4267,7 @@ def create_bag_screen() :
 		pokemon_1_name = ""
 		pokemon_1_level = ""
 		pokemon_1_hp = 0
+		pokemon_1_photo =  pokemonPhoto["MEOWTH"]
 
 	if variables["POKEMON_2"]["NAME"] !="NONE" :
 		pokemon_2_name = variables["POKEMON_2"]["NAME"]
@@ -4273,6 +4279,7 @@ def create_bag_screen() :
 		pokemon_2_name = ""
 		pokemon_2_level = ""
 		pokemon_2_hp = 0
+		pokemon_2_photo =  pokemonPhoto["MEOWTH"]
 
 	if variables["POKEMON_3"]["NAME"] !="NONE" :
 		pokemon_3_name = variables["POKEMON_3"]["NAME"]
@@ -4284,6 +4291,7 @@ def create_bag_screen() :
 		pokemon_3_name = ""
 		pokemon_3_level = ""
 		pokemon_3_hp = 0
+		pokemon_3_photo =  pokemonPhoto["MEOWTH"]
 
 	WIN.blit(POKEMON_BAG_IMG, (0,0))
 
