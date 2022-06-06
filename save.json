@@ -1,1 +1,1 @@
-{"NAME": "DAVID", "SEX": "MALE", "AGE": 23, "INITIAL_POKEMON": "NONE", "POKEMON_1": {"NAME": "NONE", "LEVEL": 0, "HP": 0, "MOVE": ""}, "POKEMON_2": {"NAME": "NONE", "LEVEL": 0, "HP": 0, "MOVE": ""}, "POKEMON_3": {"NAME": "NONE", "LEVEL": 0, "HP": 0, "MOVE": ""}}
+{"NAME": "DAVID", "INITIAL_POKEMON": "NONE", "POKEMON_1": {"NAME": "PIKACHU", "LEVEL": 10, "HP": 20, "MOVE": "LIGHTNING"}, "POKEMON_2": {"NAME": "NONE", "LEVEL": 0, "HP": 0, "MOVE": ""}, "POKEMON_3": {"NAME": "NONE", "LEVEL": 0, "HP": 0, "MOVE": ""}}
