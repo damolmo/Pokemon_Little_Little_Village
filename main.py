@@ -4263,9 +4263,24 @@ def create_laboratory (TRAINER, OAK, isTalking, isBulbasaur, isSquirtle, isCharm
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
 
-	WIN.blit(POKEBALL_ITEM, (590, 300))
-	WIN.blit(POKEBALL_ITEM, (640, 300))
-	WIN.blit(POKEBALL_ITEM, (690, 300))
+	if variables["INITIAL_POKEMON"] == "Bulbasaur" :
+		WIN.blit(POKEBALL_ITEM, (640, 300))
+		WIN.blit(POKEBALL_ITEM, (690, 300))
+
+	elif variables["INITIAL_POKEMON"] == "Charmander" :
+		WIN.blit(POKEBALL_ITEM, (590, 300))
+		WIN.blit(POKEBALL_ITEM, (690, 300))
+
+	elif variables["INITIAL_POKEMON"] == "Squirtle" :
+		WIN.blit(POKEBALL_ITEM, (590, 300))
+		WIN.blit(POKEBALL_ITEM, (640, 300))
+
+	else :
+		WIN.blit(POKEBALL_ITEM, (590, 300))
+		WIN.blit(POKEBALL_ITEM, (640, 300))
+		WIN.blit(POKEBALL_ITEM, (690, 300))
+
+	
 	#pygame.draw.rect(WIN, GREEN, OAK_TABLE) 
 	#pygame.draw.rect(WIN, GREEN, OAK_POKEBALL_1) 
 	#pygame.draw.rect(WIN, GREEN, OAK_POKEBALL_2) 
