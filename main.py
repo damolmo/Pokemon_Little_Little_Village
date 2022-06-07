@@ -3211,9 +3211,11 @@ def create_pokeball_starter_view (x, y, isSquirtle, isBulbasaur, isCharmander, i
 
 		WIN.blit(DIALOG_MENU, (0, 300))
 		oak_phrase = POKEBALLS_COUNTER.render("I choose you, %s" % choosed + "!", 1, WHITE)
+		WIN.blit(oak_phrase, (50, 350))
+		oak_phrase_2 = POKEBALLS_COUNTER.render("Press any key to exit", 1, WHITE)
+		WIN.blit(oak_phrase_2, (50, 450))
 		clock.tick(20)
 		save_game()
-		WIN.blit(oak_phrase, (50, 400))
 
 
 	pygame.display.update()
