@@ -2822,7 +2822,7 @@ def movement_left (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isM
 				pikachu_trainer.y = previous_pi_y - 0
 				wild_encouter = randint(1, 300)
 
-				if wild_encouter == 95 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
+				if wild_encouter == 95 :
 					previous_x = pokemon_trainer.x 
 					previous_y = pokemon_trainer.y
 					previous_pi_x = pikachu_trainer.x
@@ -3058,7 +3058,7 @@ def movement_right (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, is
 
 			wild_encouter = randint(1, 300)
 
-			if wild_encouter == 95 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
+			if wild_encouter == 95 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
 				previous_pi_x = pikachu_trainer.x
@@ -3424,7 +3424,7 @@ def movement_up (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMis
 		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST) :
 			wild_encouter = randint(1, 300)
 
-			if wild_encouter == 95 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
+			if wild_encouter == 95 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
 				previous_pi_x = pikachu_trainer.x
@@ -3756,7 +3756,7 @@ def movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isM
 
 			wild_encouter = randint(1, 300)
 
-			if wild_encouter == 95 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
+			if wild_encouter == 95 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
 				previous_pi_x = pikachu_trainer.x
@@ -3816,7 +3816,7 @@ def bicicle_movement_left(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		wild_encounter_2 = randint(1,500) # Generate random number 2
 		lucky = wild_encouter + wild_encounter_2 # Total
 
-		if lucky == 900 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
+		if lucky == 900 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
 			previous_pi_x = pikachu_trainer.x
@@ -3897,7 +3897,7 @@ def bicicle_movement_right(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		wild_encounter_2 = randint(1,500) # Generate random number 2
 		lucky = wild_encouter + wild_encounter_2 # Total
 
-		if lucky == 900 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
+		if lucky == 900 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
 			previous_pi_x = pikachu_trainer.x
@@ -3979,7 +3979,7 @@ def bicicle_movement_up (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		wild_encounter_2 = randint(1,500) # Generate random number 2
 		lucky = wild_encouter + wild_encounter_2 # Total
 
-		if lucky == 900 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
+		if lucky == 900 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
 			previous_pi_x = pikachu_trainer.x
@@ -4040,7 +4040,7 @@ def bicicle_movement_down (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		wild_encounter_2 = randint(1,500) # Generate random number 2
 		lucky = wild_encouter + wild_encounter_2 # Total
 
-		if lucky == 900 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
+		if lucky == 900:
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
 			previous_pi_x = pikachu_trainer.x
