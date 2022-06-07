@@ -774,7 +774,7 @@ ROUTE_IMG_3 = pygame.image.load(os.path.join('Assets/background/night', "backgro
 # Oask Laboratory
 OAK_LABORATORY_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/laboratory', "oak_laboratory.png")), (900, 900))
 OAK_LABORATORY_DOOR = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/laboratory', "oak_door.png")), (78, 36))
-
+POKEBALL_CHOOSE = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/laboratory', "pokeball_choose.png")), (WIDTH, HEIGHT))
 OAK_THEME = pygame.mixer.Sound("Assets/sounds/oak_theme.mp3")
 
 # TRAINER ROOM
@@ -863,6 +863,8 @@ POKEMON_ENCOUNTER_SOUND = pygame.mixer.Sound("Assets/sounds/pokemon_encounter.mp
 GRASS_SOUND = pygame.mixer.Sound("Assets/sounds/grass.mp3")
 SCAPE_SOUND = pygame.mixer.Sound("Assets/sounds/scape.mp3")
 WALL_SOUND = pygame.mixer.Sound("Assets/sounds/wall_bump.mp3")
+PRESS_A_SOUND = pygame.mixer.Sound("Assets/sounds/press_a.mp3")
+
 
 # Pokeball
 POKEBALL_IMG = pygame.image.load(os.path.join('Assets/items', "pokeball.png"))
@@ -2610,15 +2612,18 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 			if event.type == pygame.KEYDOWN :
 
 				if event.key == pygame.K_a and cursor_pos.x == 800 and cursor_pos.y == 400 :
+					PRESS_A_SOUND.play()
 					POKEMON_ENCOUNTER_SOUND.stop()
 					SCAPE_SOUND.play()
 					time.sleep(1)
+					variables["POKEMON_1"]["HP"] = pokemonVariableHP
 					wild = False
 					print("HAS HUIDO")
 					movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty)
 					cursor_pos.x = 620
 
 				if event.key == pygame.K_a and cursor_pos.x == 620 and cursor_pos.y == 350 :
+					PRESS_A_SOUND.play()
 					# Random damage by Trainer Pokemon
 					randomDamage = random.randint(2,10)
 
@@ -2633,9 +2638,11 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 
 						variableHP = 0
 						# Random damage by wild Pokemon
+						randomDamage = random.randint(2,10)
 						pokemonVariableHP = 0
 
-				if variableHP == 0 :
+				if variableHP == 0 or pokemonVariableHP == 0 :
+					variables["POKEMON_1"]["HP"] = pokemonVariableHP
 					POKEMON_ENCOUNTER_SOUND.stop()
 					SCAPE_SOUND.play()
 					time.sleep(1)
@@ -2758,7 +2765,7 @@ def movement_left (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isM
 	previous_pi_x = pikachu_trainer.x
 	previous_pi_y = pikachu_trainer.y
 
-	if variables["POKEMON_1"]["NAME"] =="NONE" and variables["POKEMON_1"]["NAME"] =="NONE" and variables["POKEMON_3"]["NAME"] =="NONE" :
+	if variables["INITIAL_POKEMON"] =="NONE"  :
 
 		if pokemon_trainer.colliderect(OAK_RECTANGLE_MAP):
 			oakMessage = True
@@ -2815,7 +2822,7 @@ def movement_left (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isM
 				pikachu_trainer.y = previous_pi_y - 0
 				wild_encouter = randint(1, 300)
 
-				if wild_encouter == 95 :
+				if wild_encouter == 95 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
 					previous_x = pokemon_trainer.x 
 					previous_y = pokemon_trainer.y
 					previous_pi_x = pikachu_trainer.x
@@ -2975,16 +2982,16 @@ def movement_right (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, is
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, HOUSE_2)
 
+		if variables["INITIAL_POKEMON"] =="NONE"  :
+			if pokemon_trainer.colliderect(OAK_RECTANGLE_MAP):
+				WALL_SOUND.play()
+				pokemon_trainer.x = previous_x - 5
+				pokemon_trainer.y = previous_y - 0
+				pikachu_trainer.x = previous_pi_x - 5
+				pikachu_trainer.y = previous_pi_y - 0
 
-		if pokemon_trainer.colliderect(OAK_RECTANGLE_MAP):
-			WALL_SOUND.play()
-			pokemon_trainer.x = previous_x - 5
-			pokemon_trainer.y = previous_y - 0
-			pikachu_trainer.x = previous_pi_x - 5
-			pikachu_trainer.y = previous_pi_y - 0
-
-			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
-			pygame.draw.rect(WIN, WHITE, HOUSE_2)
+				pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+				pygame.draw.rect(WIN, WHITE, HOUSE_2)
 
 
 		if pokemon_trainer.colliderect(TREE_2):
@@ -3051,7 +3058,7 @@ def movement_right (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, is
 
 			wild_encouter = randint(1, 300)
 
-			if wild_encouter == 95 :
+			if wild_encouter == 95 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
 				previous_pi_x = pikachu_trainer.x
@@ -3060,6 +3067,156 @@ def movement_right (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, is
 				POKEMON_ENCOUNTER_SOUND.play()
 				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 
+def start_pokeball_starter_view (cursor_pos) :
+	choosing = True
+	cursor_pos.x = 100
+	cursor_pos.y = 50
+	isBulbasaur = True
+	isCharmander = False
+	isSquirtle = False
+	isSelected = False
+
+	while variables["INITIAL_POKEMON"] == "NONE" :
+		create_pokeball_starter_view(cursor_pos.x, cursor_pos.y, isSquirtle, isBulbasaur, isCharmander, isSelected)
+
+		for event in pygame.event.get() :
+
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
+
+			if event.type == pygame.KEYDOWN :
+
+				if event.key == pygame.K_b :
+					choosing = False
+
+				if isSelected :
+					if isSquirtle :
+						variables["INITIAL_POKEMON"] = "Squirtle"
+						# Generate initial Pokemon Stats
+						variables["POKEMON_2"]["NAME"] = "SQUIRTLE"
+						variables["POKEMON_2"]["LEVEL"] = 5
+						variables["POKEMON_2"]["HP"] = 20
+						variables["POKEMON_2"]["MOVE"] = "Tail Whip"
+						variables["POKEMON_2"]["ATTACK"] = 13
+						variables["POKEMON_2"]["DEFENSE"] = 15
+						variables["POKEMON_2"]["SPECIAL_ATTACK"] = 11
+						variables["POKEMON_2"]["SPECIAL_DEFENSE"] = 14
+						variables["POKEMON_2"]["SPEED"] = 11
+						save_game()
+
+					if isBulbasaur :
+						variables["INITIAL_POKEMON"] = "Bulbasaur"
+						# Generate initial Pokemon Stats
+						variables["POKEMON_2"]["NAME"] = "BULBASAUR"
+						variables["POKEMON_2"]["LEVEL"] = 5
+						variables["POKEMON_2"]["HP"] = 20
+						variables["POKEMON_2"]["MOVE"] = "Tackle"
+						variables["POKEMON_2"]["ATTACK"] = 13
+						variables["POKEMON_2"]["DEFENSE"] = 11
+						variables["POKEMON_2"]["SPECIAL_ATTACK"] = 13
+						variables["POKEMON_2"]["SPECIAL_DEFENSE"] = 13
+						variables["POKEMON_2"]["SPEED"] = 13
+						save_game()
+
+					if isCharmander :
+						variables["INITIAL_POKEMON"] = "Charmander"
+						# Generate initial Pokemon Stats
+						variables["POKEMON_2"]["NAME"] = "CHARMANDER"
+						variables["POKEMON_2"]["LEVEL"] = 5
+						variables["POKEMON_2"]["HP"] = 20
+						variables["POKEMON_2"]["MOVE"] = "Scratch"
+						variables["POKEMON_2"]["ATTACK"] = 13
+						variables["POKEMON_2"]["DEFENSE"] = 11
+						variables["POKEMON_2"]["SPECIAL_ATTACK"] = 13
+						variables["POKEMON_2"]["SPECIAL_DEFENSE"] = 11
+						variables["POKEMON_2"]["SPEED"] = 15
+						save_game()
+
+				if cursor_pos.x == 100 and event.key == pygame.K_RIGHT :
+					isBulbasaur = False
+					isCharmander = True
+					isSquirtle = False	
+
+				if isCharmander and event.key == pygame.K_a :
+					isSelected = True
+
+				if cursor_pos.x == 400 and event.key == pygame.K_LEFT :
+					isCharmander = False
+					isSquirtle = False
+					isBulbasaur = True
+
+				if isBulbasaur and event.key == pygame.K_a :
+					isSelected = True
+
+				if cursor_pos.x == 400 and  event.key == pygame.K_RIGHT :
+					isSquirtle = True
+					isBulbasaur = False
+					isCharmander = False
+
+				if isSquirtle and event.key == pygame.K_a :
+					isSelected = True
+
+				if cursor_pos.x == 700 and  event.key == pygame.K_LEFT :
+					isSquirtle = False
+					isBulbasaur = False
+					isCharmander = True
+
+				if cursor_pos.x < 700 and event.key == pygame.K_RIGHT :
+					cursor_pos.x += 300
+
+				if cursor_pos.x > 100 and event.key == pygame.K_LEFT :
+					cursor_pos.x -= 300
+
+
+def create_pokeball_starter_view (x, y, isSquirtle, isBulbasaur, isCharmander, isSelected) :
+	WIN.blit(POKEBALL_CHOOSE, (0,0))
+	WIN.blit(CURSOR, (x, y))
+
+
+	if isSquirtle :
+		WIN.blit(DIALOG_MENU, (0, 300))
+		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Squirtle, a water type Pokémon" , 1, WHITE)
+		WIN.blit(oak_phrase, (55, 350))
+		oak_phrase_2 = POKEBALLS_COUNTER.render("Press (A) to choose", 1, WHITE)
+		WIN.blit(oak_phrase_2, (300, 450))
+		clock.tick(20)
+
+
+	if isBulbasaur :
+		WIN.blit(DIALOG_MENU, (0, 300))
+		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Bulbasaur, a grash type Pokémon", 1, WHITE)
+		WIN.blit(oak_phrase, (50, 350))
+		oak_phrase_2 = POKEBALLS_COUNTER.render("Press (A) to choose", 1, WHITE)
+		WIN.blit(oak_phrase_2, (300, 450))
+		clock.tick(20)
+
+	if isCharmander :
+		WIN.blit(DIALOG_MENU, (0, 300))
+		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Charmander, a fire type Pokémon", 1, WHITE)
+		WIN.blit(oak_phrase, (50, 350))
+		oak_phrase_2 = POKEBALLS_COUNTER.render("Press (A) to choose", 1, WHITE)
+		WIN.blit(oak_phrase_2, (300, 450))
+		clock.tick(20)
+
+	if isSelected :
+		choosed = ""
+
+		if isSquirtle :
+			choosed = "Squirtle"
+		elif isBulbasaur :
+			choosed = "Bulbasaur"
+		else :
+			choosed = "Charmander"
+
+		WIN.blit(DIALOG_MENU, (0, 300))
+		oak_phrase = POKEBALLS_COUNTER.render("I choose you, %s" % choosed + "!", 1, WHITE)
+		clock.tick(20)
+		save_game()
+		WIN.blit(oak_phrase, (50, 400))
+
+
+	pygame.display.update()
 
 def movement_up_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 
@@ -3079,21 +3236,19 @@ def movement_up_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		previous_x = pokemon_trainer.x
 
 	if pokemon_trainer.colliderect(OAK_TABLE):
+		start_pokeball_starter_view(cursor_pos)
 		WALL_SOUND.play()
 		pokemon_trainer.x = previous_x
 		pokemon_trainer.y = previous_y + 10
 
 	if pokemon_trainer.colliderect(OAK_POKEBALL_1):
-		pokemon_trainer.y -= 1
-		isBulbasaur = True
+		start_pokeball_starter_view(cursor_pos)
 
 	if pokemon_trainer.colliderect(OAK_POKEBALL_2):
-		pokemon_trainer.y -= 1
-		isCharmander = True
+		start_pokeball_starter_view(cursor_pos)
 
 	if pokemon_trainer.colliderect(OAK_POKEBALL_3):
-		pokemon_trainer.y -= 1
-		isSquirtle = True
+		start_pokeball_starter_view(cursor_pos)
 
 	if isAsh :
 
@@ -3269,7 +3424,7 @@ def movement_up (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMis
 		if pokemon_trainer.colliderect(GRASS_ZONE_SOUTH) or pokemon_trainer.colliderect(GRASS_ZONE_SOUTH_2) or pokemon_trainer.colliderect(GRASS_ZONE_EAST) or pokemon_trainer.colliderect(GRASS_ZONE_WEST) :
 			wild_encouter = randint(1, 300)
 
-			if wild_encouter == 95 :
+			if wild_encouter == 95 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
 				previous_pi_x = pikachu_trainer.x
@@ -3601,7 +3756,7 @@ def movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isM
 
 			wild_encouter = randint(1, 300)
 
-			if wild_encouter == 95 :
+			if wild_encouter == 95 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
 				previous_pi_x = pikachu_trainer.x
@@ -3661,7 +3816,7 @@ def bicicle_movement_left(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		wild_encounter_2 = randint(1,500) # Generate random number 2
 		lucky = wild_encouter + wild_encounter_2 # Total
 
-		if lucky == 900 :
+		if lucky == 900 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
 			previous_pi_x = pikachu_trainer.x
@@ -3742,7 +3897,7 @@ def bicicle_movement_right(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		wild_encounter_2 = randint(1,500) # Generate random number 2
 		lucky = wild_encouter + wild_encounter_2 # Total
 
-		if lucky == 900 :
+		if lucky == 900 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
 			previous_pi_x = pikachu_trainer.x
@@ -3824,7 +3979,7 @@ def bicicle_movement_up (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		wild_encounter_2 = randint(1,500) # Generate random number 2
 		lucky = wild_encouter + wild_encounter_2 # Total
 
-		if lucky == 900 :
+		if lucky == 900 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
 			previous_pi_x = pikachu_trainer.x
@@ -3885,7 +4040,7 @@ def bicicle_movement_down (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		wild_encounter_2 = randint(1,500) # Generate random number 2
 		lucky = wild_encouter + wild_encounter_2 # Total
 
-		if lucky == 900 :
+		if lucky == 900 and variables["POKEMON_1"]["HP"] > 0 or variables["POKEMON_2"]["HP"] > 0 or variables["POKEMON_3"]["HP"] > 0 :
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
 			previous_pi_x = pikachu_trainer.x
@@ -4114,13 +4269,23 @@ def create_laboratory (TRAINER, OAK, isTalking, isBulbasaur, isSquirtle, isCharm
 	#pygame.draw.rect(WIN, GREEN, OAK_TABLE) 
 	#pygame.draw.rect(WIN, GREEN, OAK_POKEBALL_1) 
 	#pygame.draw.rect(WIN, GREEN, OAK_POKEBALL_2) 
-	#pygame.draw.rect(WIN, GREEN, OAK_POKEBALL_3) 
+	#pygame.draw.rect(WIN, GREEN, OAK_POKEBALL_3)
 
 	if isTalking :
-		WIN.blit(DIALOG_MENU, (0, 300))
-		oak_phrase = POKEBALLS_COUNTER.render("" + str("Now, " + variables["NAME"].capitalize() + ", which Pokémon do you want?"), 1, WHITE)
-		WIN.blit(oak_phrase, (180, 400))
-		clock.tick(5)
+
+		if variables["INITIAL_POKEMON"] == "NONE"  :
+			WIN.blit(DIALOG_MENU, (0, 300))
+			oak_phrase = POKEBALLS_COUNTER.render("" + str("Now, " + variables["NAME"].capitalize() + ", which Pokémon do you want?"), 1, WHITE)
+			WIN.blit(oak_phrase, (180, 400))
+			clock.tick(5)
+
+		else :
+
+			WIN.blit(DIALOG_MENU, (0, 300))
+			oak_phrase = POKEBALLS_COUNTER.render("Take care of your " + variables["INITIAL_POKEMON"] + ", " + variables["NAME"].capitalize(), 1, WHITE)
+			WIN.blit(oak_phrase, (180, 400))
+			clock.tick(5)
+
 
 
 	if variables["INITIAL_POKEMON"] == "NONE"  :
@@ -4372,8 +4537,21 @@ def welcome() :
 
 			if event.type == pygame.KEYDOWN :
 				if event.key == pygame.K_a:
+					PRESS_A_SOUND.play()
 					start = True
-					choose_character()
+					if variables["CHARACTER"] == "NONE" :
+						choose_character()
+
+					elif variables["CHARACTER"] == "ASH" :
+						isAsh = True
+						isMisty = False
+						main (isAsh, isMisty)
+
+					elif variables["CHARACTER"] == "MISTY" :
+						isAsh = False
+						isMisty = True
+						main (isAsh, isMisty)
+
 
 def choose_character () :
 	BACKGROUND_SOUND.stop()
@@ -4393,13 +4571,19 @@ def choose_character () :
 			if event.type == pygame.KEYDOWN :
 
 				if cursor_menu.x == 120 and event.key == pygame.K_a :
+					PRESS_A_SOUND.play()
 					isAsh = True
 					start = True
+					variables["CHARACTER"] = "ASH"
+					save_game()
 					main(isAsh, isMisty)
 
 				if cursor_menu.x == 470 and event.key == pygame.K_a :
+					PRESS_A_SOUND.play()
 					isMisty = True
 					start = True
+					variables["CHARACTER"] = "MISTY"
+					save_game()
 					main(isAsh, isMisty)
 
 				if event.key == pygame.K_RIGHT and cursor_menu.x == 120 :
@@ -4586,4 +4770,6 @@ def main (isAsh, isMisty): ## Main function
 	main()
 
 if __name__ == "__main__":
+
 	welcome()
+
