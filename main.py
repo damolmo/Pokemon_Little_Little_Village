@@ -809,6 +809,7 @@ PIKACHU_BATTLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Asse
 # Menu
 BATTLE_MENU = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/battle', "menu.png")), (260,90))
 DIALOG_MENU = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/dialog', "dialog.png")), (900,300))
+RULES_MENU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/settings', "map_menu.png")), (WIDTH,HEIGHT))
 
 # Screen Dialog
 BATTLE_DIALOG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/battle', "battle_dialog.png")), (WIDTH,130))
@@ -4648,6 +4649,16 @@ def enter_name (isAsh, isMisty) :
 						save_game()
 						active = False
 						typing = False
+
+						rules = True
+
+						while rules :
+							create_rules_menu()
+							for event in pygame.event.get() :
+								if event.type == pygame.KEYDOWN:
+									if event.key == pygame.K_SPACE :
+										rules = False
+
 						main(isAsh, isMisty)
 
 		WIN.fill((30, 30, 30))
@@ -4676,7 +4687,15 @@ def create_character_choooser (x, y) :
 	character = POKEBALLS_COUNTER.render("" + str("Choose your character"), 1, WHITE)
 	WIN.blit(character, (290, 400))
 	pygame.display.update()
+
+def create_rules_menu () :
+	WIN.blit(RULES_MENU_IMG, (0,0))
+	exit = POKEBALLS_COUNTER.render("" + str("Press SPACE to exit"), 1, WHITE)
+	WIN.blit(exit, (330, 450))
+	pygame.display.update()
 				
+
+
 def pokeball_out(trainer_pokeballs, free_pika) :
 
 	pokeball = pygame.Rect(
