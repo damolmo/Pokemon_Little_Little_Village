@@ -780,7 +780,11 @@ TRAINER_ROOM_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets
 TRAINER_ROOM_NIGHT = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/trainer_house/night', "room_night.png")), (WIDTH, HEIGHT))
 
 # Pause Menu
-PAUSE_MENU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/settings', "pause_menu.png")), (WIDTH, HEIGHT))
+PAUSE_MENU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/settings', "pause_menu.png")), (450, 200))
+CLOCK_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/clock', "clock.png")), (200, 100))
+BAG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/clock', "bag.png")), (110, 70))
+BACK_BG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/clock', "background.png")), (130, 130))
+
 
 
 # Battle
@@ -882,7 +886,8 @@ POKEBALL_ITEM.convert()
 # Displat Fonts
 WINNER_LOOSER_DIALOG = pygame.font.SysFont('comicsans', 80)
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 30)
-DIALOG_FONT = pygame.font.SysFont('comicsans', 20)
+DIALOG_FONT = pygame.font.SysFont('comicsans', 26)
+DIALOG_MINI_FONT = pygame.font.SysFont('comicsans', 18)
 RULES = pygame.font.SysFont('comicsans', 16)
 
 
@@ -4384,15 +4389,6 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs,
 	#pygame.draw.rect(WIN, GREEN, GRASS_ZONE_WEST) # Grass zone west
 	#pygame.draw.rect(WIN, GREEN, GRASS_ZONE_EAST) # Grass zone west
 
-	date = POKEBALLS_COUNTER.render("" + str(fecha), 1, WHITE)
-	WIN.blit(date, (10, 5))
-
-	now = datetime.now()
-	hora_str = now.strftime("%H:%M")
-
-	date = POKEBALLS_COUNTER.render("" + str(hora_str), 1, WHITE)
-	WIN.blit(date, (800, 5))
-
 	pokeball = POKEBALL_ITEM.get_rect()
 	pokeball = pygame.Rect(
 		pokemon_trainer.x, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 10, 5)
@@ -4414,6 +4410,30 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs,
 			clock.tick(2)
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
+
+	fecha = today.strftime("%m %d")
+
+	date = DIALOG_FONT.render("" + str(fecha), 1, BLACK)
+	daysOfTheWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+	now = datetime.now()
+	day = now.weekday()
+	tuday = daysOfTheWeek[day]
+	hora_str = now.strftime("%H:%M")
+
+	dayofWeek = DIALOG_MINI_FONT.render("" + str(tuday), 1, BLACK)
+
+	time = POKEBALLS_COUNTER.render("" + str(hora_str), 1, WHITE)
+
+	WIN.blit(BACK_BG_IMG, (0,0))
+	WIN.blit(BAG_IMG, (5,15))
+	WIN.blit(CLOCK_IMG, (700, 0))
+	WIN.blit(date, (725, 10))
+	WIN.blit(dayofWeek, (830, 20))
+	WIN.blit(time, (750, 50))
+
+
+
 
 	#pygame.draw.rect(WIN, GREEN, OAK_RECTANGLE_MAP)
 
@@ -4540,8 +4560,8 @@ def create_title_screen() :
 
 def create_pause_menu () :
 
-	WIN.blit(PAUSE_MENU_IMG, (0,0))
-	WIN.blit(CURSOR_PAUSE, (cursor_pause.x, cursor_pause.y))
+	WIN.blit(PAUSE_MENU_IMG, (230,320))
+	WIN.blit(CURSOR, (cursor_pos.x, cursor_pos.y))
 	pygame.display.update()
 
 
@@ -4659,8 +4679,10 @@ def pokemon_bag () :
 				if event.key == pygame.K_b:
 					exit = True
 
-def pause_menu (cursor_pause) :
+def pause_menu (cursor) :
 	exit = False
+	cursor_pos.x = 300
+	cursor_pos.y = 320
 
 
 	while not exit :
@@ -4676,41 +4698,25 @@ def pause_menu (cursor_pause) :
 				if event.key == pygame.K_x:
 					exit = True
 
-				if cursor_pause.y == 105 and event.key == pygame.K_SPACE:
+				if cursor_pos.x == 300 and event.key == pygame.K_SPACE:
 						pokemon_bag()
 
-				if cursor_pause.y == 285  and event.key == pygame.K_SPACE :
+				if cursor_pos.x == 600  and event.key == pygame.K_SPACE :
 						save_game()
 
-				if cursor_pause.y == 420  and event.key == pygame.K_SPACE :
-						BACKGROUND_SOUND.stop()
-						my_save_slot = json.dumps(variables)
-						with open('save.json', 'w') as save:
-							save.write(my_save_slot)
-						welcome()
+				#if cursor_pos.x == 450  and event.key == pygame.K_SPACE :
+				#		BACKGROUND_SOUND.stop()
+				#		my_save_slot = json.dumps(variables)
+				#		with open('save.json', 'w') as save:
+				#			save.write(my_save_slot)
+				#		welcome()
 
 
-				if event.key == pygame.K_DOWN:
-					if cursor_pause.y >= 60 and cursor_pause.y < 400   :
-						cursor_pause.y += 45
+				if event.key == pygame.K_RIGHT  and cursor_pos.x < 600 :
+					cursor_pos.x += 150
 
-
-					#if cursor.pause.y == 150 :
-
-					#if cursor.pause.y == 195 :
-
-					#if cursor.pause.y == 240 :
-			
-
-					#if cursor.pause.y == 330 :
-
-					#if cursor.pause.y == 375 :
-
-
-
-				if event.key == pygame.K_UP:
-					if cursor_pause.y > 60 :
-						cursor_pause.y -=45
+				if cursor_pos.x > 300 and event.key == pygame.K_LEFT:
+					cursor_pos.x -=150
 
 
 def welcome() :
