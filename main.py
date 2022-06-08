@@ -73,6 +73,7 @@ pygame.display.set_caption("Pokémon Litle Litle Village")
 
 ## Map elements
 HOUSE_1 = pygame.Rect(650, 20, 220, 250)
+input_box = pygame.Rect(100, 50, 700, 100)
 
 # Outside Rect
 HOUSE_1_DOOR = pygame.Rect(770, 250, 50, 50)
@@ -108,11 +109,8 @@ OAK_POKEBALL_3 = pygame.Rect(690, 300, 40, 60)
 
 OAK_RECTANGLE_MAP = pygame.Rect(400, -10, 50, 70)
 
-
-
 ## Character Values
 TRAINER_WIDTH, TRAINER_HEIGHT = 64, 76
-
 
 ## Game Events
 THROW_POKEBALL = pygame.USEREVENT +1
@@ -142,7 +140,7 @@ ASH_PIKACHU_BACK_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.pa
 # Trainer
 pokemon_trainer = pygame.Rect(450, 253, TRAINER_WIDTH, TRAINER_HEIGHT) # Defines player coords
 pikachu_trainer = pygame.Rect(450, 253, TRAINER_WIDTH, TRAINER_HEIGHT) # Defines player coords
-previous_x, previous_y = 450, 253
+previous_x, previous_y = 500, 300
 x_change, y_change = 450, 253
 previous_pi_x, previous_pi_y= 450, 253
 
@@ -4595,7 +4593,7 @@ def choose_character () :
 					start = True
 					variables["CHARACTER"] = "ASH"
 					save_game()
-					main(isAsh, isMisty)
+					enter_name(isAsh, isMisty)
 
 				if cursor_menu.x == 470 and event.key == pygame.K_SPACE :
 					PRESS_A_SOUND.play()
@@ -4603,7 +4601,7 @@ def choose_character () :
 					start = True
 					variables["CHARACTER"] = "MISTY"
 					save_game()
-					main(isAsh, isMisty)
+					enter_name(isAsh, isMisty)
 
 				if event.key == pygame.K_RIGHT and cursor_menu.x == 120 :
 					cursor_menu.x += 350
@@ -4611,6 +4609,66 @@ def choose_character () :
 				if event.key == pygame.K_LEFT and cursor_menu.x == 470 :
 					cursor_menu.x -= 350
 
+def enter_name (isAsh, isMisty) :
+	typing = True
+	font = pygame.font.Font(None, 100)
+	color_inactive = pygame.Color('grey')
+	color_active = pygame.Color('white')
+	color = color_inactive
+	active = False
+	text = 'Type here your name'
+	done = False
+
+	while typing :
+
+		for event in pygame.event.get() :
+
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
+
+			if event.type == pygame.MOUSEBUTTONDOWN:
+				if input_box.collidepoint(event.pos):
+					active = not active
+				else:
+					active = False
+
+			if event.type == pygame.KEYDOWN:
+				if active:
+					if text == 'Type here your name' :
+						text = ''
+					elif event.key == pygame.K_BACKSPACE:
+						text = text[:-1]
+					else:
+						text += event.unicode
+
+					if event.key == pygame.K_RETURN :
+						text = text[:-1]
+						variables["NAME"] = text
+						save_game()
+						active = False
+						typing = False
+						main(isAsh, isMisty)
+
+		WIN.fill((30, 30, 30))
+		# Render the current text.
+		txt_surface = font.render(text, True, color)
+		# Resize the box if the text is too long.
+		width = max(200, txt_surface.get_width()+10)
+		input_box.w = width
+		# Blit the text.
+		WIN.blit(txt_surface, (input_box.x+5, input_box.y+5))
+		# Blit the input_box rect.
+		pygame.draw.rect(WIN, color, input_box, 2)
+		WIN.blit(DIALOG_MENU, (0, 300))
+		oak_phrase = POKEBALLS_COUNTER.render("Enter your name", 1, WHITE)
+		WIN.blit(oak_phrase, (50, 350))
+		if text !=  'Type here your name' :
+			oak_phrase = POKEBALLS_COUNTER.render("Press (ENTER) to continue", 1, WHITE)
+			WIN.blit(oak_phrase, (50, 400))
+
+		pygame.display.update()
+		clock.tick(30)
 
 def create_character_choooser (x, y) :
 	WIN.blit(MAIN_MENU_IMG, (0,0))
