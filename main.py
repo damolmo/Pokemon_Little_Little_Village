@@ -2577,6 +2577,8 @@ def wild_pokemon (wild_appeared, sound, variableHP, staticHP, pokemonStaticHP, p
 def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty) :
 	GRASS_SOUND.stop()
 	BACKGROUND_SOUND.stop()
+	cursor_pos.x = 620
+	cursor_pos.y = 350
 	POKEMON_ENCOUNTER_SOUND.play()
 	time.sleep(1.2)
 	pokemon = random_pokemon(isTree)
@@ -2611,7 +2613,7 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 
 			if event.type == pygame.KEYDOWN :
 
-				if event.key == pygame.K_a and cursor_pos.x == 800 and cursor_pos.y == 400 :
+				if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 400 :
 					PRESS_A_SOUND.play()
 					POKEMON_ENCOUNTER_SOUND.stop()
 					SCAPE_SOUND.play()
@@ -2622,7 +2624,7 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 					movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty)
 					cursor_pos.x = 620
 
-				if event.key == pygame.K_a and cursor_pos.x == 620 and cursor_pos.y == 350 :
+				if event.key == pygame.K_SPACE and cursor_pos.x == 620 and cursor_pos.y == 350 :
 					PRESS_A_SOUND.play()
 					# Random damage by Trainer Pokemon
 					randomDamage = random.randint(2,10)
@@ -2676,11 +2678,11 @@ def movement_left_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 	isBulbasaur = False
 
 	if pokemon_trainer.colliderect(OAK_RECTANGLE):
-		pokemon_trainer.x -= 1
+		pokemon_trainer.x += 1
 		
 		for event in pygame.event.get() :
 			if event.type == pygame.KEYDOWN :
-				if event.type == pygame.K_a:
+				if event.type == pygame.K_SPACE:
 					isTalking = False
 
 	else :
@@ -2871,7 +2873,7 @@ def movement_right_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		
 		for event in pygame.event.get() :
 			if event.type == pygame.KEYDOWN :
-				if event.type == pygame.K_a:
+				if event.type == pygame.K_SPACE:
 					isTalking = False
 
 	else :
@@ -3138,7 +3140,7 @@ def start_pokeball_starter_view (cursor_pos) :
 					isCharmander = True
 					isSquirtle = False	
 
-				if isCharmander and event.key == pygame.K_a :
+				if isCharmander and event.key == pygame.K_SPACE :
 					isSelected = True
 
 				if cursor_pos.x == 400 and event.key == pygame.K_LEFT :
@@ -3146,7 +3148,7 @@ def start_pokeball_starter_view (cursor_pos) :
 					isSquirtle = False
 					isBulbasaur = True
 
-				if isBulbasaur and event.key == pygame.K_a :
+				if isBulbasaur and event.key == pygame.K_SPACE :
 					isSelected = True
 
 				if cursor_pos.x == 400 and  event.key == pygame.K_RIGHT :
@@ -3154,7 +3156,7 @@ def start_pokeball_starter_view (cursor_pos) :
 					isBulbasaur = False
 					isCharmander = False
 
-				if isSquirtle and event.key == pygame.K_a :
+				if isSquirtle and event.key == pygame.K_SPACE :
 					isSelected = True
 
 				if cursor_pos.x == 700 and  event.key == pygame.K_LEFT :
@@ -3178,8 +3180,8 @@ def create_pokeball_starter_view (x, y, isSquirtle, isBulbasaur, isCharmander, i
 		WIN.blit(DIALOG_MENU, (0, 300))
 		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Squirtle, a water type Pokémon" , 1, WHITE)
 		WIN.blit(oak_phrase, (55, 350))
-		oak_phrase_2 = POKEBALLS_COUNTER.render("Press (A) to choose", 1, WHITE)
-		WIN.blit(oak_phrase_2, (300, 450))
+		oak_phrase_2 = POKEBALLS_COUNTER.render("Press (SPACE) to choose", 1, WHITE)
+		WIN.blit(oak_phrase_2, (280, 450))
 		clock.tick(20)
 
 
@@ -3187,16 +3189,16 @@ def create_pokeball_starter_view (x, y, isSquirtle, isBulbasaur, isCharmander, i
 		WIN.blit(DIALOG_MENU, (0, 300))
 		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Bulbasaur, a grash type Pokémon", 1, WHITE)
 		WIN.blit(oak_phrase, (50, 350))
-		oak_phrase_2 = POKEBALLS_COUNTER.render("Press (A) to choose", 1, WHITE)
-		WIN.blit(oak_phrase_2, (300, 450))
+		oak_phrase_2 = POKEBALLS_COUNTER.render("Press (SPACE) to choose", 1, WHITE)
+		WIN.blit(oak_phrase_2, (280, 450))
 		clock.tick(20)
 
 	if isCharmander :
 		WIN.blit(DIALOG_MENU, (0, 300))
 		oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Charmander, a fire type Pokémon", 1, WHITE)
 		WIN.blit(oak_phrase, (50, 350))
-		oak_phrase_2 = POKEBALLS_COUNTER.render("Press (A) to choose", 1, WHITE)
-		WIN.blit(oak_phrase_2, (300, 450))
+		oak_phrase_2 = POKEBALLS_COUNTER.render("Press (SPACE) to choose", 1, WHITE)
+		WIN.blit(oak_phrase_2, (280, 450))
 		clock.tick(20)
 
 	if isSelected :
@@ -4502,13 +4504,13 @@ def pause_menu (cursor_pause) :
 				if event.key == pygame.K_x:
 					exit = True
 
-				if cursor_pause.y == 105 and event.key == pygame.K_a:
+				if cursor_pause.y == 105 and event.key == pygame.K_SPACE:
 						pokemon_bag()
 
-				if cursor_pause.y == 285  and event.key == pygame.K_a :
+				if cursor_pause.y == 285  and event.key == pygame.K_SPACE :
 						save_game()
 
-				if cursor_pause.y == 420  and event.key == pygame.K_a :
+				if cursor_pause.y == 420  and event.key == pygame.K_SPACE :
 						BACKGROUND_SOUND.stop()
 						my_save_slot = json.dumps(variables)
 						with open('save.json', 'w') as save:
@@ -4587,7 +4589,7 @@ def choose_character () :
 
 			if event.type == pygame.KEYDOWN :
 
-				if cursor_menu.x == 120 and event.key == pygame.K_a :
+				if cursor_menu.x == 120 and event.key == pygame.K_SPACE :
 					PRESS_A_SOUND.play()
 					isAsh = True
 					start = True
@@ -4595,7 +4597,7 @@ def choose_character () :
 					save_game()
 					main(isAsh, isMisty)
 
-				if cursor_menu.x == 470 and event.key == pygame.K_a :
+				if cursor_menu.x == 470 and event.key == pygame.K_SPACE :
 					PRESS_A_SOUND.play()
 					isMisty = True
 					start = True
@@ -4661,7 +4663,7 @@ def main (isAsh, isMisty): ## Main function
 				pygame.quit()
 
 			if event.type == pygame.KEYDOWN :
-				if event.key == pygame.K_SPACE and len(trainer_pokeballs) < MAX_POKEBALL:
+				if event.key == pygame.K_p and len(trainer_pokeballs) < MAX_POKEBALL:
 					free_pika = pokeball_out(trainer_pokeballs, free_pika)
 					PIKACHU_SOUND.play()
 
@@ -4765,7 +4767,7 @@ def main (isAsh, isMisty): ## Main function
 		keys = pygame.key.get_pressed()
 
 		if pokemon_trainer.colliderect(HOUSE_1_DOOR) :
-			if keys[pygame.K_a]:
+			if keys[pygame.K_SPACE]:
 				BACKGROUND_SOUND.stop()
 				SCAPE_SOUND.play()
 				run = False
@@ -4775,7 +4777,7 @@ def main (isAsh, isMisty): ## Main function
 				access_laboratory(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty)
 
 		elif pokemon_trainer.colliderect(HOUSE_2_DOOR) :
-			if keys[pygame.K_a]:
+			if keys[pygame.K_SPACE]:
 				BACKGROUND_SOUND.stop()
 				SCAPE_SOUND.play()
 				run = False
