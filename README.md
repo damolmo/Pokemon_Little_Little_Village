@@ -26,9 +26,15 @@ Pocket Monster based game powered by Python and Pygame
 - [x] Create time based Pokémon events
 - [x] Pokémon Inventory
 - [x] Pokémon following the trainer
+- [x] Create new buildings
+- [x] Create choose Starter event
+- [x] Defined Oak and Trainer house
+- [x] Working save game slot
+- [x] Trainer bag
 - [ ] Fully working wild encounter
 - [ ] Create more Pokémon
-- [ ] Create new buildings
+- [ ] New Maps area with shop and Pokemon Center
+
 
 # Installation
 
