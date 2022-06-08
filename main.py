@@ -2807,6 +2807,16 @@ def create_victory_windows(trainer_pokemon_name, trainer_pokemon_hp, wild_pokemo
 		trainer = POKEBALLS_COUNTER.render("Press (ENTER) to exit", 1, BLACK)
 		WIN.blit(trainer, (300, 400))
 		clock.tick(20)
+		
+
+	elif trainer_pokemon_hp > 0 and wild_pokemon_hp == 0 :
+		asset = wild_asset(trainer_pokemon_name)
+		WIN.blit(asset, (380,150))
+		wild = WINNER_LOOSER_DIALOG.render(trainer_pokemon_name + " WIN!", 1, BLACK)
+		WIN.blit(wild, (150, 50))
+		trainer = POKEBALLS_COUNTER.render("Press (ENTER) to exit", 1, BLACK)
+		WIN.blit(trainer, (300, 400))
+		clock.tick(20)
 
 	# Trainer Pokemon
 	if trainer_pokemon_hp == 0 and wild_pokemon_hp > 0 :
