@@ -789,6 +789,7 @@ BATTLE_ARENA_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets
 MAIN_MENU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/choose', "choose.png")), (WIDTH, HEIGHT))
 POKEMON_BAG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/pokemon_bag', "inventory.png")), (WIDTH, HEIGHT))
 BATTLE_ARENA_NIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/battle/night', "battle_arena_night.png")), (WIDTH, HEIGHT))
+STARS = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/battle', "stars_background.jpg")), (WIDTH, HEIGHT))
 
 # Trainer
 # ASH
@@ -805,6 +806,9 @@ MISTY_BATTLE_IMG_3 = pygame.transform.scale(pygame.image.load(os.path.join('Asse
 
 # Pokemon
 PIKACHU_BATTLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/pikachu/battle', "pikachu.png")), (300,300))
+BULBASAUR_BATTLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/bulbasaur/battle', "bulbasaur.png")), (300,300))
+SQUIRTLE_BATTLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/squirtle/battle', "squirtle.png")), (300,300))
+CHARMANDER_BATTLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/pokemon/charmander/battle', "charmander.png")), (300,300))
 
 # Menu
 BATTLE_MENU = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/battle', "menu.png")), (260,90))
@@ -863,6 +867,8 @@ GRASS_SOUND = pygame.mixer.Sound("Assets/sounds/grass.mp3")
 SCAPE_SOUND = pygame.mixer.Sound("Assets/sounds/scape.mp3")
 WALL_SOUND = pygame.mixer.Sound("Assets/sounds/wall_bump.mp3")
 PRESS_A_SOUND = pygame.mixer.Sound("Assets/sounds/press_a.mp3")
+VICTORY = pygame.mixer.Sound("Assets/sounds/victory.mp3")
+
 
 
 # Pokeball
@@ -874,6 +880,7 @@ POKEBALL_VEL = 3
 POKEBALL_ITEM.convert()
 
 # Displat Fonts
+WINNER_LOOSER_DIALOG = pygame.font.SysFont('comicsans', 80)
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 30)
 DIALOG_FONT = pygame.font.SysFont('comicsans', 20)
 RULES = pygame.font.SysFont('comicsans', 16)
@@ -910,7 +917,16 @@ def pre_area(POKEMON, POKEMON_NAME, ASH) :
 	WIN.blit(BATTLE_DIALOG, (0, 420))
 	dialog = DIALOG_FONT.render("" + str("A Wild Pokémon Appeared!"), 1, BLACK)
 	WIN.blit(dialog, (50, 440))
-	dialog = DIALOG_FONT.render("" + str("Let's Go Pikachu!"), 1, BLACK)
+	if variables["POKEMON_1"]["HP"] > 0 :
+		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["POKEMON_1"]["NAME"].capitalize())  + "!"), 1, BLACK)
+
+	elif variables["POKEMON_1"]["HP"] == 0 and variables["POKEMON_2"]["HP"] > 0 :
+		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["POKEMON_2"]["NAME"].capitalize())  + "!"), 1, BLACK)
+
+
+	elif variables["POKEMON_1"]["HP"] == 0 and variables["POKEMON_2"]["HP"] == 0 and  variables["POKEMON_3"]["HP"] > 0 :
+		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["POKEMON_3"]["NAME"].capitalize())  + "!"), 1, BLACK)
+
 	WIN.blit(dialog, (50, 460))
 
 	# Display Wild Pokemon Name
@@ -1102,7 +1118,7 @@ def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, p
 
 
 	# Battle Elements
-	WIN.blit(PIKACHU_BATTLE_IMG, (0,250))
+	#WIN.blit(PIKACHU_BATTLE_IMG, (0,250))
 	WIN.blit(POKEMON, (640,160))
 	WIN.blit(BATTLE_MENU, (600,410)) # Place background image
 	WIN.blit(CURSOR, (cursor_pos.x, cursor_pos.y))
@@ -1124,21 +1140,83 @@ def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, p
 	stats = RULES.render("" + str(staticHP) , 1, BLACK)
 	WIN.blit(stats, (720, 60))
 
-	friend = RULES.render("" + str("PIKACHU"), 1, BLACK)
-	WIN.blit(friend, (5, 35))
+	if variables["POKEMON_1"]["HP"] > 0 :
 
-	stats = RULES.render("" + str(pokemonVariableHP) , 1, BLACK)
-	WIN.blit(stats, (12, 60))
+		WIN.blit(PIKACHU_BATTLE_IMG, (0,250))
 
-	separator = RULES.render("/", 1, BLACK)
-	WIN.blit(separator, (30, 60))
+		friend = RULES.render("" + str("PIKACHU"), 1, BLACK)
+		WIN.blit(friend, (5, 35))
 
-	stats = RULES.render("" + str(pokemonStaticHP), 1, BLACK)
-	WIN.blit(stats, (40, 60))
+		stats = RULES.render("" + str(pokemonVariableHP) , 1, BLACK)
+		WIN.blit(stats, (12, 60))
+
+		separator = RULES.render("/", 1, BLACK)
+		WIN.blit(separator, (30, 60))
+
+		stats = RULES.render("" + str(pokemonStaticHP), 1, BLACK)
+		WIN.blit(stats, (40, 60))
 
 
-	level = RULES.render("Lv " + str(pokemonLevel), 1, BLACK)
-	WIN.blit(level, (160, 35))
+		level = RULES.render("Lv " + str(pokemonLevel), 1, BLACK)
+		WIN.blit(level, (160, 35))
+
+	elif variables["POKEMON_1"]["HP"] == 0 :
+		if variables["POKEMON_2"]["HP"] > 0 :
+
+			if variables["POKEMON_2"]["NAME"] == "SQUIRTLE":
+				WIN.blit(SQUIRTLE_BATTLE_IMG, (0,250))
+
+			elif variables["POKEMON_2"]["NAME"] == "CHARMANDER":
+					WIN.blit(CHARMANDER_BATTLE_IMG, (0,250))
+
+			elif variables["POKEMON_2"]["NAME"] == "BULBASAUR":
+					WIN.blit(BULBASAUR_BATTLE_IMG, (0,250))
+
+
+			friend = RULES.render("" + str(variables["POKEMON_2"]["NAME"]), 1, BLACK)
+			WIN.blit(friend, (5, 35))
+
+			stats = RULES.render("" + str(pokemonVariableHP) , 1, BLACK)
+			WIN.blit(stats, (12, 60))
+
+			separator = RULES.render("/", 1, BLACK)
+			WIN.blit(separator, (30, 60))
+
+			stats = RULES.render("" + str(pokemonStaticHP), 1, BLACK)
+			WIN.blit(stats, (40, 60))
+
+
+			level = RULES.render("Lv " + str(variables["POKEMON_2"]["LEVEL"]), 1, BLACK)
+			WIN.blit(level, (160, 35))
+
+		elif variables["POKEMON_1"]["HP"] == 0 and variables["POKEMON_2"]["HP"] == 0 :
+			if variables["POKEMON_3"]["HP"] > 0 :
+
+				if variables["POKEMON_3"]["NAME"] == "SQUIRTLE":
+					WIN.blit(SQUIRTLE_BATTLE_IMG, (0,250))
+
+				elif variables["POKEMON_3"]["NAME"] == "CHARMANDER":
+						WIN.blit(CHARMANDER_BATTLE_IMG, (0,250))
+
+				elif variables["POKEMON_3"]["NAME"] == "BULBASAUR":
+						WIN.blit(BULBASAUR_BATTLE_IMG, (0,250))
+
+
+				friend = RULES.render("" + str(variables["POKEMON_3"]["NAME"]), 1, BLACK)
+				WIN.blit(friend, (5, 35))
+
+				stats = RULES.render("" + str(pokemonVariableHP) , 1, BLACK)
+				WIN.blit(stats, (12, 60))
+
+				separator = RULES.render("/", 1, BLACK)
+				WIN.blit(separator, (30, 60))
+
+				stats = RULES.render("" + str(pokemonStaticHP), 1, BLACK)
+				WIN.blit(stats, (40, 60))
+
+
+				level = RULES.render("Lv " + str(variables["POKEMON_3"]["LEVEL"]), 1, BLACK)
+				WIN.blit(level, (160, 35))
 
 
 	pygame.display.update()
@@ -2586,8 +2664,15 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 	staticHP = random.randint(10, 20)
 	randomLevel = random.randint(2, 12)
 	variableHP = staticHP
-	pokemonStaticHP = variables["POKEMON_1"]["HP"]
-	pokemonVariableHP = pokemonStaticHP
+	pokemonStaticHP = variables["POKEMON_1"]["BASE_HP"]
+	pokemonVariableHP = variables["POKEMON_1"]["HP"]
+	
+	pokemonStaticHP_2 = variables["POKEMON_2"]["BASE_HP"]
+	pokemonVariableHP_2 = variables["POKEMON_2"]["HP"]
+
+	pokemonStaticHP_3 = variables["POKEMON_3"]["BASE_HP"]
+	pokemonVariableHP_3 = variables["POKEMON_3"]["HP"]
+
 	pokemonLevel = variables["POKEMON_1"]["LEVEL"]
 
 
@@ -2605,6 +2690,20 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 	keys = pygame.key.get_pressed()
 
 	while wild:
+		if pokemonVariableHP == 0 and pokemonVariableHP == variables["POKEMON_1"]["HP"] and variables["POKEMON_2"]["HP"] > 0   :
+			pokemonVariableHP = pokemonVariableHP_2 
+			pokemonStaticHP = pokemonStaticHP_2
+
+		elif pokemonVariableHP == 0 and pokemonVariableHP == variables["POKEMON_2"]["HP"] and variables["POKEMON_2"]["HP"] == 0 and variables["POKEMON_3"]["HP"] > 0   :
+			pokemonVariableHP = pokemonVariableHP_3
+			pokemonStaticHP = pokemonStaticHP_3
+
+		elif pokemonVariableHP == 0 and pokemonVariableHP == variables["POKEMON_3"]["HP"] :
+			pokemonVariableHP = 0
+
+
+
+
 		wild_pokemon (pokemon, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
 		sound +=1
 
@@ -2618,6 +2717,9 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 					SCAPE_SOUND.play()
 					time.sleep(1)
 					variables["POKEMON_1"]["HP"] = pokemonVariableHP
+					variables["POKEMON_2"]["HP"] = pokemonVariableHP_2
+					variables["POKEMON_3"]["HP"] = pokemonVariableHP_3
+					save_game()
 					wild = False
 					print("HAS HUIDO")
 					movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty)
@@ -2625,32 +2727,54 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 
 				if event.key == pygame.K_SPACE and cursor_pos.x == 620 and cursor_pos.y == 350 :
 					PRESS_A_SOUND.play()
+
 					# Random damage by Trainer Pokemon
 					randomDamage = random.randint(2,10)
 
 					if variableHP >= randomDamage: 
 						variableHP -= randomDamage
 
-						if pokemonVariableHP >= randomDamage:
-							pokemonVariableHP -= randomDamage
+					else :
+						variableHP = 0
 
+					# Random damage by wild Pokemon
+					randomDamage = random.randint(2,10)
+
+					if pokemonVariableHP >= randomDamage:
+						pokemonVariableHP -= randomDamage
 
 					else :
-
-						variableHP = 0
-						# Random damage by wild Pokemon
-						randomDamage = random.randint(2,10)
 						pokemonVariableHP = 0
 
-				if variableHP == 0 or pokemonVariableHP == 0 :
-					variables["POKEMON_1"]["HP"] = pokemonVariableHP
+
+				if variableHP == 0 or pokemonVariableHP == 0 and pokemonVariableHP_2 == 0 and pokemonVariableHP_3 == 0 :
+					# Backup of current Pokemon HP
+					if pokemonStaticHP == variables["POKEMON_1"]["BASE_HP"] :
+						variables["POKEMON_1"]["HP"] = pokemonVariableHP
+
+					if pokemonStaticHP == variables["POKEMON_2"]["BASE_HP"] :
+						variables["POKEMON_2"]["HP"] = pokemonVariableHP
+
+					if pokemonStaticHP == variables["POKEMON_3"]["BASE_HP"] :
+						variables["POKEMON_3"]["HP"] = pokemonVariableHP
+
+					save_game()
 					POKEMON_ENCOUNTER_SOUND.stop()
 					SCAPE_SOUND.play()
 					time.sleep(1)
-					wild = False
-					print("HAS GANADO")
-					movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty)
-					cursor_pos.x = 620
+					VICTORY.play()
+
+					while wild :
+						create_victory_windows(variables["POKEMON_1"]["NAME"], pokemonVariableHP, pokemon, variableHP)
+
+						for event in pygame.event.get() : 
+
+							if event.type == pygame.KEYDOWN :
+
+								if event.key == pygame.K_RETURN :
+									wild = False
+									movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty)
+									cursor_pos.x = 620
 
 
 				if event.key == pygame.K_RIGHT:
@@ -2668,6 +2792,33 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 					if cursor_pos.x == 800 or cursor_pos.x == 620 :
 						cursor_pos.y = 350
 
+
+def create_victory_windows(trainer_pokemon_name, trainer_pokemon_hp, wild_pokemon_name, wild_pokemon_hp) :
+
+	# Wild Pokemon
+
+	WIN.blit(STARS, (0,0))
+
+	if trainer_pokemon_hp == 0 and wild_pokemon_hp == 0 :
+		asset = wild_asset(trainer_pokemon_name)
+		WIN.blit(asset, (380,150))
+		wild = WINNER_LOOSER_DIALOG.render(trainer_pokemon_name + " WIN!", 1, BLACK)
+		WIN.blit(wild, (150, 50))
+		trainer = POKEBALLS_COUNTER.render("Press (ENTER) to exit", 1, BLACK)
+		WIN.blit(trainer, (300, 400))
+		clock.tick(20)
+
+	# Trainer Pokemon
+	if trainer_pokemon_hp == 0 and wild_pokemon_hp > 0 :
+		asset = wild_asset(wild_pokemon_name)
+		WIN.blit(asset, (380,150))
+		wild = WINNER_LOOSER_DIALOG.render("YOU LOOSE!", 1, BLACK)
+		WIN.blit(wild, (210, 50))
+		trainer = POKEBALLS_COUNTER.render("Press (ENTER) to exit", 1, BLACK)
+		WIN.blit(trainer, (300, 400))
+		clock.tick(20)
+
+	pygame.display.update()
 
 def movement_left_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 
@@ -4387,36 +4538,42 @@ def create_bag_screen() :
 		pokemon_1_name = variables["POKEMON_1"]["NAME"]
 		pokemon_1_level =  variables["POKEMON_1"]["LEVEL"]
 		pokemon_1_hp =  variables["POKEMON_1"]["HP"]
+		pokemon_1_hp_base =  variables["POKEMON_1"]["BASE_HP"]
 		pokemon_1_photo = pokemonPhoto[pokemon_1_name]
 
 	else :
 		pokemon_1_name = ""
 		pokemon_1_level = ""
 		pokemon_1_hp = 0
+		pokemon_1_hp_base = 0
 		pokemon_1_photo =  pokemonPhoto["MEOWTH"]
 
 	if variables["POKEMON_2"]["NAME"] !="NONE" :
 		pokemon_2_name = variables["POKEMON_2"]["NAME"]
 		pokemon_2_level =  variables["POKEMON_2"]["LEVEL"]
 		pokemon_2_hp =  variables["POKEMON_2"]["HP"]
+		pokemon_2_hp_base =  variables["POKEMON_2"]["BASE_HP"]
 		pokemon_2_photo = pokemonPhoto[pokemon_2_name]
 
 	else :
 		pokemon_2_name = ""
 		pokemon_2_level = ""
 		pokemon_2_hp = 0
+		pokemon_2_hp_base =  0
 		pokemon_2_photo =  pokemonPhoto["MEOWTH"]
 
 	if variables["POKEMON_3"]["NAME"] !="NONE" :
 		pokemon_3_name = variables["POKEMON_3"]["NAME"]
 		pokemon_3_level =  variables["POKEMON_3"]["LEVEL"]
 		pokemon_3_hp =  variables["POKEMON_3"]["HP"]
+		pokemon_3_hp_base =  variables["POKEMON_3"]["BASE_HP"]
 		pokemon_3_photo = pokemonPhoto[pokemon_3_name]
 
 	else :
 		pokemon_3_name = ""
 		pokemon_3_level = ""
 		pokemon_3_hp = 0
+		pokemon_3_hp_base = 0
 		pokemon_3_photo =  pokemonPhoto["MEOWTH"]
 
 	WIN.blit(POKEMON_BAG_IMG, (0,0))
@@ -4430,7 +4587,10 @@ def create_bag_screen() :
 	WIN.blit(pokemon_1_level, (520, 55))
 
 	pokemon_1_hp = POKEBALLS_COUNTER.render("" + str(pokemon_1_hp), 1, WHITE)
-	WIN.blit(pokemon_1_hp, (255, 125))
+	WIN.blit(pokemon_1_hp, (275, 125))
+
+	pokemon_1_hp_base = POKEBALLS_COUNTER.render("" + str(pokemon_1_hp_base), 1, WHITE)
+	WIN.blit(pokemon_1_hp_base, (325, 125))
 
 	pokemon_1_photo = pygame.transform.scale(pokemon_1_photo, (100,100))
 	WIN.blit(pokemon_1_photo, (50, 50))
