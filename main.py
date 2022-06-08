@@ -3249,6 +3249,7 @@ def start_pokeball_starter_view (cursor_pos) :
 						variables["POKEMON_2"]["NAME"] = "SQUIRTLE"
 						variables["POKEMON_2"]["LEVEL"] = 5
 						variables["POKEMON_2"]["HP"] = 20
+						variables["POKEMON_2"]["BASE_HP"] = 20
 						variables["POKEMON_2"]["MOVE"] = "Tail Whip"
 						variables["POKEMON_2"]["ATTACK"] = 13
 						variables["POKEMON_2"]["DEFENSE"] = 15
@@ -3263,6 +3264,7 @@ def start_pokeball_starter_view (cursor_pos) :
 						variables["POKEMON_2"]["NAME"] = "BULBASAUR"
 						variables["POKEMON_2"]["LEVEL"] = 5
 						variables["POKEMON_2"]["HP"] = 20
+						variables["POKEMON_2"]["BASE_HP"] = 20
 						variables["POKEMON_2"]["MOVE"] = "Tackle"
 						variables["POKEMON_2"]["ATTACK"] = 13
 						variables["POKEMON_2"]["DEFENSE"] = 11
@@ -3277,6 +3279,7 @@ def start_pokeball_starter_view (cursor_pos) :
 						variables["POKEMON_2"]["NAME"] = "CHARMANDER"
 						variables["POKEMON_2"]["LEVEL"] = 5
 						variables["POKEMON_2"]["HP"] = 20
+						variables["POKEMON_2"]["BASE_HP"] = 20
 						variables["POKEMON_2"]["MOVE"] = "Scratch"
 						variables["POKEMON_2"]["ATTACK"] = 13
 						variables["POKEMON_2"]["DEFENSE"] = 11
