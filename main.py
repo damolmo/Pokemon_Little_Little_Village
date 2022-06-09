@@ -45,11 +45,24 @@ def check_Assets_Exist() :
 	else :
 		download_assets()
 
+def download_save() :
+	package = wget.download("https://github.com/daviiid99/Pokemon-Pi/raw/main/save.json", "save.json") #Download the platform-tools-latest-linux.zip from Google server
+
+
+def check_Save_Exist() :
+	exists = False
+	if os.path.exists("save.json") :
+		exists = True
+
+	else :
+		download_save()
+
 check_Assets_Exist()
+check_Save_Exist()
 
 ## Game Values
 FPS = 60
-VEL = 2
+VEL = 3
 VEL_CURSOR = 50
 WHITE = (255,255,255)
 BLACK = (0,0,0)
@@ -61,6 +74,10 @@ now = datetime.now()
 hora = now.strftime("%H")
 hora_str = now.strftime("%H:%M")
 free_pika = 0
+
+## App icon
+icon = pygame.image.load('Assets/items/pokeball.png')
+pygame.display.set_icon(icon)
 
 # Player values
 my_save_slot = open("save.json")
