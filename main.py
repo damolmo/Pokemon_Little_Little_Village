@@ -68,7 +68,7 @@ variables = json.load(my_save_slot)
 
 ## Map Values
 WIDTH, HEIGHT = 900, 507 # Map dimentions
-WIN = pygame.display.set_mode((WIDTH, HEIGHT)) # Draws the map with given dimentions
+WIN = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 pygame.display.set_caption("Pokémon Litle Litle Village")
 
 ## Map elements
@@ -791,7 +791,7 @@ BACK_BG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/back
 # Background
 BATTLE_ARENA_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/battle/day', "battle_arena.png")), (WIDTH, HEIGHT))
 MAIN_MENU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/choose', "choose.png")), (WIDTH, HEIGHT))
-POKEMON_BAG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/pokemon_bag', "inventory.png")), (WIDTH, HEIGHT))
+POKEMON_BAG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/pokemon_bag', "inventory.png")), (583, 361))
 BATTLE_ARENA_NIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/battle/night', "battle_arena_night.png")), (WIDTH, HEIGHT))
 STARS = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/battle', "stars_background.jpg")), (WIDTH, HEIGHT))
 
@@ -826,6 +826,10 @@ BATTLE_DIALOG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/me
 CURSOR = pygame.transform.scale(pygame.image.load(os.path.join('Assets/cursor/battle', "cursor.png")), (100,100))
 CURSOR_MENU = pygame.transform.scale(pygame.image.load(os.path.join('Assets/cursor/menu', "main_menu_cursor.png")), (312,317))
 CURSOR_PAUSE = pygame.transform.scale(pygame.image.load(os.path.join('Assets/cursor/menu', "pause_menu_cursor.png")), (30,35))
+DEFAULT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/items', "pokeball_icon.png")), (40,55))
+potions_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/items', "potion.png")), (40,55))
+pokeballs_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/items', "pokeball_icon.png")), (40,55))
+revives_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/items', "revive.png")), (40,55))
 
 cursor_pos = pygame.Rect(620, 350, 100, 100) # Defines player coords
 cursor_pause = pygame.Rect(700, 60, 20, 20) # Defines player coords
@@ -845,7 +849,8 @@ pokemonPhoto = {
 				"MEOWTH" : MEOWTH_IMG_01,
 				"UMBREON" : UMBREON_IMG_02,
 				"GASTLY" : GASTLY_IMG_01,
-				"GENGAR" : GENGAR_IMG_01 
+				"GENGAR" : GENGAR_IMG_01,
+				"DEFAULT" : DEFAULT_IMG
 				}
 
 
@@ -4565,6 +4570,74 @@ def create_pause_menu () :
 	pygame.display.update()
 
 
+
+def create_bag_objects_screen () :
+	potions_a = variables["TRAINER_BAG"]["POTIONS_AVAILABLE"]
+	pokeballs_a = variables["TRAINER_BAG"]["POKEBALLS_AVAILABLE"]
+	revives_a = variables["TRAINER_BAG"]["REVIVES_AVAILABLE"]
+
+	potions_m = variables["TRAINER_BAG"]["POTIONS_MAX"]
+	pokeballs_m = variables["TRAINER_BAG"]["POKEBALLS_MAX"]
+	revives_m = variables["TRAINER_BAG"]["REVIVES_MAX"]
+
+	WIN.blit(POKEMON_BAG_IMG, (175,-10))
+
+	# ---- Potions ----
+
+	potions_photo = pygame.transform.scale(potions_IMG, (55,62))
+	WIN.blit(potions_photo, (345, 23))
+
+	potions_str = POKEBALLS_COUNTER.render("Potions", 1, WHITE)
+	WIN.blit(potions_str, (440, 15))
+
+	potions_available = POKEBALLS_COUNTER.render("" + str(potions_a), 1, WHITE)
+	WIN.blit(potions_available, (450, 60))
+
+	separator = POKEBALLS_COUNTER.render("/", 1, WHITE)
+	WIN.blit(separator, (490, 60))
+
+	potions_max = POKEBALLS_COUNTER.render("" + str(potions_m), 1, WHITE)
+	WIN.blit(potions_max, (510, 60))
+
+
+	# ---- Pokeballs ----
+
+	pokeballs_photo = pygame.transform.scale(POKEBALL_IMG, (55,62))
+	WIN.blit(pokeballs_photo, (345, 140))
+
+	pokeballs_str = POKEBALLS_COUNTER.render("Pokeballs", 1, WHITE)
+	WIN.blit(pokeballs_str, (440, 128))
+
+	pokeballs_available = POKEBALLS_COUNTER.render("" + str(pokeballs_a), 1, WHITE)
+	WIN.blit(pokeballs_available, (450, 170))
+
+	separator = POKEBALLS_COUNTER.render("/", 1, WHITE)
+	WIN.blit(separator, (490, 170))
+
+	pokeballs_max = POKEBALLS_COUNTER.render("" + str(pokeballs_m), 1, WHITE)
+	WIN.blit(pokeballs_max, (510, 170))
+
+	# ---- Revives ----
+
+	revives_photo = pygame.transform.scale(revives_IMG, (55,62))
+	WIN.blit(revives_photo, (345, 255))
+
+	revives_str = POKEBALLS_COUNTER.render("Revives", 1, WHITE)
+	WIN.blit(revives_str, (440, 240))
+
+	revives_available = POKEBALLS_COUNTER.render("" + str(revives_a), 1, WHITE)
+	WIN.blit(revives_available, (450, 280))
+
+	separator = POKEBALLS_COUNTER.render("/", 1, WHITE)
+	WIN.blit(separator, (490, 280))
+
+	revives_max = POKEBALLS_COUNTER.render("" + str(revives_m), 1, WHITE)
+	WIN.blit(revives_max, (510, 280))
+
+	pygame.display.update()
+
+
+
 def create_bag_screen() :
 
 	if variables["POKEMON_1"]["NAME"] !="NONE" :
@@ -4579,7 +4652,7 @@ def create_bag_screen() :
 		pokemon_1_level = ""
 		pokemon_1_hp = 0
 		pokemon_1_hp_base = 0
-		pokemon_1_photo =  pokemonPhoto["MEOWTH"]
+		pokemon_1_photo =  pokemonPhoto["DEFAULT"]
 
 	if variables["POKEMON_2"]["NAME"] !="NONE" :
 		pokemon_2_name = variables["POKEMON_2"]["NAME"]
@@ -4589,11 +4662,11 @@ def create_bag_screen() :
 		pokemon_2_photo = pokemonPhoto[pokemon_2_name]
 
 	else :
-		pokemon_2_name = ""
+		pokemon_2_name = "unknown"
 		pokemon_2_level = ""
 		pokemon_2_hp = 0
 		pokemon_2_hp_base =  0
-		pokemon_2_photo =  pokemonPhoto["MEOWTH"]
+		pokemon_2_photo =  pokemonPhoto["DEFAULT"]
 
 	if variables["POKEMON_3"]["NAME"] !="NONE" :
 		pokemon_3_name = variables["POKEMON_3"]["NAME"]
@@ -4603,58 +4676,64 @@ def create_bag_screen() :
 		pokemon_3_photo = pokemonPhoto[pokemon_3_name]
 
 	else :
-		pokemon_3_name = ""
+		pokemon_3_name = "unknown"
 		pokemon_3_level = ""
 		pokemon_3_hp = 0
 		pokemon_3_hp_base = 0
-		pokemon_3_photo =  pokemonPhoto["MEOWTH"]
+		pokemon_3_photo =  pokemonPhoto["DEFAULT"]
 
-	WIN.blit(POKEMON_BAG_IMG, (0,0))
+	WIN.blit(POKEMON_BAG_IMG, (175,-10))
 
 	# First Pokemon Slot
 
-	pokemon_1_name = POKEBALLS_COUNTER.render("" + str(pokemon_1_name), 1, WHITE)
-	WIN.blit(pokemon_1_name, (240, 55))
-
-	pokemon_1_level = POKEBALLS_COUNTER.render("" + str(pokemon_1_level), 1, WHITE)
-	WIN.blit(pokemon_1_level, (520, 55))
+	pokemon_1_name = DIALOG_MINI_FONT.render("" + str(pokemon_1_name), 1, WHITE)
+	WIN.blit(pokemon_1_name, (440, 20))
 
 	pokemon_1_hp = POKEBALLS_COUNTER.render("" + str(pokemon_1_hp), 1, WHITE)
-	WIN.blit(pokemon_1_hp, (275, 125))
+	WIN.blit(pokemon_1_hp, (450, 60))
+
+	separator = POKEBALLS_COUNTER.render("/", 1, WHITE)
+	WIN.blit(separator, (490, 60))
 
 	pokemon_1_hp_base = POKEBALLS_COUNTER.render("" + str(pokemon_1_hp_base), 1, WHITE)
-	WIN.blit(pokemon_1_hp_base, (325, 125))
+	WIN.blit(pokemon_1_hp_base, (510, 60))
 
-	pokemon_1_photo = pygame.transform.scale(pokemon_1_photo, (100,100))
-	WIN.blit(pokemon_1_photo, (50, 50))
+	pokemon_1_photo = pygame.transform.scale(pokemon_1_photo, (70,70))
+	WIN.blit(pokemon_1_photo, (345, 20))
 
 	# Second Pokemon Slot
 
-	pokemon_2_name = POKEBALLS_COUNTER.render("" + str(pokemon_2_name), 1, WHITE)
-	WIN.blit(pokemon_2_name, (240, 205))
-
-	pokemon_2_level = POKEBALLS_COUNTER.render("" + str(pokemon_2_level), 1, WHITE)
-	WIN.blit(pokemon_2_level, (520, 205))
+	pokemon_2_name = DIALOG_MINI_FONT.render("" + str(pokemon_2_name), 1, WHITE)
+	WIN.blit(pokemon_2_name, (440, 135))
 
 	pokemon_2_hp = POKEBALLS_COUNTER.render("" + str(pokemon_2_hp), 1, WHITE)
-	WIN.blit(pokemon_2_hp, (255, 275))
+	WIN.blit(pokemon_2_hp, (450, 170))
 
-	pokemon_2_photo = pygame.transform.scale(pokemon_2_photo, (100,100))
-	WIN.blit(pokemon_2_photo, (50, 200))
+	separator = POKEBALLS_COUNTER.render("/", 1, WHITE)
+	WIN.blit(separator, (490, 170))
+
+	pokemon_2_hp_base = POKEBALLS_COUNTER.render("" + str(pokemon_2_hp_base), 1, WHITE)
+	WIN.blit(pokemon_1_hp_base, (510, 170))
+
+	pokemon_2_photo = pygame.transform.scale(pokemon_2_photo, (55,62))
+	WIN.blit(pokemon_2_photo, (348, 140))
 
 	# Third Pokemon Slot
 
-	pokemon_3_name = POKEBALLS_COUNTER.render("" + str(pokemon_3_name), 1, WHITE)
-	WIN.blit(pokemon_3_name, (240, 345))
-
-	pokemon_3_level = POKEBALLS_COUNTER.render("" + str(pokemon_3_level), 1, WHITE)
-	WIN.blit(pokemon_3_level, (520, 345))
+	pokemon_3_name = DIALOG_MINI_FONT.render("" + str(pokemon_3_name), 1, WHITE)
+	WIN.blit(pokemon_3_name, (440, 245))
 
 	pokemon_3_hp = POKEBALLS_COUNTER.render("" + str(pokemon_3_hp), 1, WHITE)
-	WIN.blit(pokemon_3_hp, (255, 420))
+	WIN.blit(pokemon_3_hp, (450, 280))
 
-	pokemon_3_photo = pygame.transform.scale(pokemon_3_photo, (100,100))
-	WIN.blit(pokemon_3_photo, (50, 350))
+	separator = POKEBALLS_COUNTER.render("/", 1, WHITE)
+	WIN.blit(separator, (490, 280))
+
+	pokemon_3_hp_base = POKEBALLS_COUNTER.render("" + str(pokemon_3_hp_base), 1, WHITE)
+	WIN.blit(pokemon_1_hp_base, (510, 280))
+
+	pokemon_3_photo = pygame.transform.scale(pokemon_3_photo, (55,62))
+	WIN.blit(pokemon_3_photo, (345, 255))
 
 
 
@@ -4676,8 +4755,27 @@ def pokemon_bag () :
 				pygame.quit()
 
 			if event.type == pygame.KEYDOWN :
-				if event.key == pygame.K_b:
+				if event.key == pygame.K_BACKSPACE:
 					exit = True
+
+
+def pokemon_bag_objects () :
+	exit = False
+
+
+	while not exit :
+		create_bag_objects_screen()
+
+		for event in pygame.event.get() :
+
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
+
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_BACKSPACE:
+					exit = True
+
 
 def pause_menu (cursor) :
 	exit = False
@@ -4695,21 +4793,17 @@ def pause_menu (cursor) :
 				pygame.quit()
 
 			if event.type == pygame.KEYDOWN :
-				if event.key == pygame.K_x:
+				if event.key == pygame.K_BACKSPACE:
 					exit = True
 
 				if cursor_pos.x == 300 and event.key == pygame.K_SPACE:
-						pokemon_bag()
+					pokemon_bag()
 
 				if cursor_pos.x == 600  and event.key == pygame.K_SPACE :
-						save_game()
+					save_game()
 
-				#if cursor_pos.x == 450  and event.key == pygame.K_SPACE :
-				#		BACKGROUND_SOUND.stop()
-				#		my_save_slot = json.dumps(variables)
-				#		with open('save.json', 'w') as save:
-				#			save.write(my_save_slot)
-				#		welcome()
+				if cursor_pos.x == 450  and event.key == pygame.K_SPACE :
+					pokemon_bag_objects()
 
 
 				if event.key == pygame.K_RIGHT  and cursor_pos.x < 600 :
@@ -4961,11 +5055,6 @@ def main (isAsh, isMisty): ## Main function
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
 				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage)
 
-			if keys[pygame.K_b]:
-				if isAsh :
-					TRAINER_IMG = ASH_BICICLE_IMG
-				else :
-					TRAINER_IMG = MISTY_BICICLE_IMG
 
 			if keys[pygame.K_a]:
 				if isAsh :
