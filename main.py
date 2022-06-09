@@ -4713,7 +4713,7 @@ def create_bag_screen() :
 	WIN.blit(separator, (490, 170))
 
 	pokemon_2_hp_base = POKEBALLS_COUNTER.render("" + str(pokemon_2_hp_base), 1, WHITE)
-	WIN.blit(pokemon_1_hp_base, (510, 170))
+	WIN.blit(pokemon_2_hp_base, (510, 170))
 
 	pokemon_2_photo = pygame.transform.scale(pokemon_2_photo, (55,62))
 	WIN.blit(pokemon_2_photo, (348, 140))
@@ -4730,7 +4730,7 @@ def create_bag_screen() :
 	WIN.blit(separator, (490, 280))
 
 	pokemon_3_hp_base = POKEBALLS_COUNTER.render("" + str(pokemon_3_hp_base), 1, WHITE)
-	WIN.blit(pokemon_1_hp_base, (510, 280))
+	WIN.blit(pokemon_3_hp_base, (510, 280))
 
 	pokemon_3_photo = pygame.transform.scale(pokemon_3_photo, (55,62))
 	WIN.blit(pokemon_3_photo, (345, 255))
