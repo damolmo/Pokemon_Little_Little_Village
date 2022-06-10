@@ -132,13 +132,39 @@ OAK_RECTANGLE = pygame.Rect(310, 120, 50, 80)
 OAK_DOOR = pygame.Rect(400, 480, 78, 36)
 OAK_TABLE = pygame.Rect(590, 290, 140, 40)
 
+# Oaks Lab Table
 OAK_POKEBALL_1 = pygame.Rect(590, 300, 40, 60)
 OAK_POKEBALL_2 = pygame.Rect(640, 300, 40, 60)
 OAK_POKEBALL_3 = pygame.Rect(690, 300, 40, 60)
 
+# Shopping area rect
 OAK_RECTANGLE_MAP = pygame.Rect(400, -10, 50, 70)
 SHOP_RECTANGLE_MAP = pygame.Rect(400, -20, 50, 70)
 HOME_RECT_MAP = pygame.Rect(0, 400, 100, 100)
+
+POKEMON_CENTER_RECT = pygame.Rect(100, 100, 300, 220)
+SHOP_RECT =  pygame.Rect(520, 100, 250, 220)
+ESTANQUE_RECT =  pygame.Rect(430, 200, 100, 100)
+
+TREES_RECT_WEST = pygame.Rect(0, 0, 100, 300)
+TREES_RECT_EAST = pygame.Rect(800, 0, 100, 300)
+
+SHOP_DOOR_RECT = pygame.Rect(590, 270, 70, 70)
+CENTER_DOOR_RECT =  pygame.Rect(230, 280, 70, 50)
+
+# Shop rect
+MACETA_SURESTE_RECT = pygame.Rect(20, 400, 100, 200)
+MACETA_SUROESTE_RECT = pygame.Rect(800, 320, 100, 200)
+MACETA_NORTE_RECT = pygame.Rect(800, 50, 100, 200)
+MOSTRADOR_RECT = pygame.Rect(0, 150, 190, 180)
+PUERTA_RECT = pygame.Rect(220, 450, 100, 60)
+MESA_RECT = pygame.Rect(450, 350, 230, 50)
+ESTANTERIA_CENTRO_1 = pygame.Rect(340, 240, 130, 70)
+#ESTANTERIA_CENTRO_2 = pygame.Rect(420, 240, 130, 70)
+ESTANTERIA_CENTRO_3 =pygame.Rect(595, 245, 125, 70)
+ESTANTERIA_NORTE_1 = pygame.Rect(200, 10, 120, 120)
+ESTANTERIA_NORTE_2 = pygame.Rect(350, 10, 120, 120)
+ESTANTERIA_NORTE_3 = pygame.Rect(500, 0, 300, 75)
 
 
 
@@ -855,7 +881,7 @@ RULES_MENU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/m
 SHOPPING_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone', "shopping.png")), (WIDTH,HEIGHT))
 SHOPPING_EVENING_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone', "shopping_evening.png")), (WIDTH,HEIGHT))
 SHOPPING_NIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone', "shopping_night.png")), (WIDTH,HEIGHT))
-
+SHOP_INSIDE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/shop', "shop.png")), (WIDTH,HEIGHT))
 
 # Screen Dialog
 BATTLE_DIALOG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/battle', "battle_dialog.png")), (WIDTH,130))
@@ -916,6 +942,8 @@ WALL_SOUND = pygame.mixer.Sound("Assets/sounds/wall_bump.mp3")
 PRESS_A_SOUND = pygame.mixer.Sound("Assets/sounds/press_a.mp3")
 VICTORY = pygame.mixer.Sound("Assets/sounds/victory.mp3")
 TOWN = pygame.mixer.Sound("Assets/sounds/town.mp3")
+SHOP_SOUND =  pygame.mixer.Sound("Assets/sounds/shop_sound.mp3")
+CENTER_SOUND = pygame.mixer.Sound("Assets/sounds/center_sound.mp3")
 
 
 
@@ -2710,6 +2738,7 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 	pokemon = random_pokemon(isTree)
 	sound = 0
 	opening = True
+	pause = False
 	staticHP = random.randint(10, 20)
 	randomLevel = random.randint(2, 12)
 	variableHP = staticHP
@@ -2822,7 +2851,7 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 
 								if event.key == pygame.K_RETURN :
 									wild = False
-									movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty)
+									movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause)
 									cursor_pos.x = 620
 
 
@@ -2895,7 +2924,7 @@ def movement_left_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause
 					isTalking = False
 
 	else :
-		pokemon_trainer.x -= 1
+		pokemon_trainer.x -= 4
 		previous_x = pokemon_trainer.x
 		previous_y = pokemon_trainer.y
 		pikachu_trainer.x = pokemon_trainer.x + 60
@@ -2970,6 +2999,98 @@ def movement_left_house_trainer (pokemon_trainer, pikachu_trainer, isAsh, isMist
 		pokemon_trainer.x = previous_x + 10
 		pokemon_trainer.y = previous_y
 
+def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause) :
+	trainer_pokeballs = []
+	isTree = False
+	oakMessage = False
+
+	previous_x = pokemon_trainer.x
+	previous_y = pokemon_trainer.y
+	previous_pi_x = pikachu_trainer.x
+	previous_pi_y = pikachu_trainer.y
+
+
+	if not wild :
+		if isAsh :
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG,ASH_LEFT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # All Foots
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG,ASH_LEFT_LEFT_FOOT_IMG, trainer_pokeballs,ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # Left foot
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG,ASH_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs,ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause ) # Right foot
+
+		else :
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG,MISTY_LEFT_IMG, trainer_pokeballs,ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # All Foots
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG,MISTY_LEFT_LEFT_FOOT_IMG, trainer_pokeballs,ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika, oakMessage, pause ) # Left foot
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG,MISTY_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs,ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
+
+
+		pokemon_trainer.x -= 3
+		pikachu_trainer.x = pokemon_trainer.x + 60
+		pikachu_trainer.y = pokemon_trainer.y - 5
+		previous_x = pokemon_trainer.x
+		previous_y = pokemon_trainer.y
+		previous_pi_x = pikachu_trainer.x
+		previous_pi_y = pikachu_trainer.y
+
+		if pokemon_trainer.colliderect(MOSTRADOR_RECT):
+			WALL_SOUND.play()
+			pokemon_trainer.x = previous_x + 5
+			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x + 5
+			pikachu_trainer.y = previous_pi_y - 0
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+		if pokemon_trainer.colliderect(MESA_RECT):
+			WALL_SOUND.play()
+			pokemon_trainer.x = previous_x + 5
+			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x + 5
+			pikachu_trainer.y = previous_pi_y - 0
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+		if pokemon_trainer.colliderect(ESTANTERIA_CENTRO_3):
+			WALL_SOUND.play()
+			pokemon_trainer.x = previous_x + 5
+			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x + 5
+			pikachu_trainer.y = previous_pi_y - 0
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+		if pokemon_trainer.colliderect(MACETA_SURESTE_RECT):
+			WALL_SOUND.play()
+			pokemon_trainer.x = previous_x + 5
+			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x + 5
+			pikachu_trainer.y = previous_pi_y - 0
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+		if pokemon_trainer.colliderect(ESTANTERIA_NORTE_2):
+			WALL_SOUND.play()
+			pokemon_trainer.x = previous_x + 5
+			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x + 5
+			pikachu_trainer.y = previous_pi_y - 0
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+		if pokemon_trainer.colliderect(ESTANTERIA_CENTRO_1):
+			WALL_SOUND.play()
+			pokemon_trainer.x = previous_x + 5
+			pokemon_trainer.y = previous_y - 0
+			pikachu_trainer.x = previous_pi_x + 5
+			pikachu_trainer.y = previous_pi_y - 0
+
+			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
+			pygame.draw.rect(WIN, WHITE, HOUSE_2)
+
+
 
 def movement_left_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause) :
 	trainer_pokeballs = []
@@ -2994,9 +3115,9 @@ def movement_left_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, i
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG,MISTY_LEFT_RIGHT_FOOT_IMG, trainer_pokeballs,ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
 
 
-		pokemon_trainer.x -= 6
+		pokemon_trainer.x -= 10
 		pikachu_trainer.x = pokemon_trainer.x + 60
-		pikachu_trainer.y = pokemon_trainer.y - 5
+		pikachu_trainer.y = pokemon_trainer.y - 10
 		previous_x = pokemon_trainer.x
 		previous_y = pokemon_trainer.y
 		previous_pi_x = pikachu_trainer.x
@@ -3140,7 +3261,7 @@ def movement_right_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty, paus
 					isTalking = False
 
 	else :
-		pokemon_trainer.x += 1
+		pokemon_trainer.x += 4
 		previous_x = pokemon_trainer.x
 		previous_y = pokemon_trainer.y
 		pikachu_trainer.x = pokemon_trainer.x - 60
@@ -3351,17 +3472,72 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, ASH_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
 
 		else :
-			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, pokemon_trainer, fecha,POKEBALL_IMG, MISTY_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # All Foots
+			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # All Foots
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # Left foot
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
 
-		pokemon_trainer.x += 6
+		pokemon_trainer.x += 10
+		pikachu_trainer.x = pokemon_trainer.x - 60
+		pikachu_trainer.y = pokemon_trainer.y + 10
+		previous_x = pokemon_trainer.x
+		previous_y = pokemon_trainer.y
+		previous_pi_x = pikachu_trainer.x
+		previous_pi_y = pikachu_trainer.y
+
+def movement_right_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause) :
+	trainer_pokeballs = []
+	oakMessage = False
+	isTree = False
+
+	if not wild :
+		if isAsh :
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, ASH_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # All Foots
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, ASH_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG , free_pika, oakMessage, pause) # Left foot
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, ASH_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
+
+		else :
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_RIGHT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # All Foots
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # Left foot
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
+
+		pokemon_trainer.x += 3
 		pikachu_trainer.x = pokemon_trainer.x - 60
 		pikachu_trainer.y = pokemon_trainer.y + 5
 		previous_x = pokemon_trainer.x
 		previous_y = pokemon_trainer.y
 		previous_pi_x = pikachu_trainer.x
 		previous_pi_y = pikachu_trainer.y
+
+	if pokemon_trainer.colliderect(ESTANTERIA_CENTRO_1):
+		WALL_SOUND.play()
+		pokemon_trainer.x = previous_x - 10
+		pokemon_trainer.y = previous_y 
+
+	if pokemon_trainer.colliderect(MESA_RECT):
+		WALL_SOUND.play()
+		pokemon_trainer.x = previous_x - 10
+		pokemon_trainer.y = previous_y 
+
+	if pokemon_trainer.colliderect(MACETA_SUROESTE_RECT):
+		WALL_SOUND.play()
+		pokemon_trainer.x = previous_x - 10
+		pokemon_trainer.y = previous_y 
+
+	if pokemon_trainer.colliderect(MACETA_NORTE_RECT):
+		WALL_SOUND.play()
+		pokemon_trainer.x = previous_x - 10
+		pokemon_trainer.y = previous_y
+
+	if pokemon_trainer.colliderect(ESTANTERIA_CENTRO_1):
+		WALL_SOUND.play()
+		pokemon_trainer.x = previous_x - 10
+		pokemon_trainer.y = previous_y
+
+	if pokemon_trainer.colliderect(ESTANTERIA_CENTRO_3):
+		WALL_SOUND.play()
+		pokemon_trainer.x = previous_x - 10
+		pokemon_trainer.y = previous_y
+
 
 
 def start_pokeball_starter_view (cursor_pos) :
@@ -3533,7 +3709,7 @@ def movement_up_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, 
 
 	else :
 
-		pokemon_trainer.y -= 1
+		pokemon_trainer.y -= 4
 		previous_y = pokemon_trainer.y
 		previous_x = pokemon_trainer.x
 		pikachu_trainer.y = pokemon_trainer.y + 60
@@ -3658,6 +3834,16 @@ def create_shopping_area (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer
 	WIN.blit(dayofWeek, (830, 20))
 	WIN.blit(time, (750, 50))
 
+	#pygame.draw.rect(WIN, GREEN, POKEMON_CENTER_RECT)
+	#pygame.draw.rect(WIN, GREEN, SHOP_RECT)
+	#pygame.draw.rect(WIN, BLUE, ESTANQUE_RECT)
+	#pygame.draw.rect(WIN, BLUE, TREES_RECT_EAST)
+	#pygame.draw.rect(WIN, BLUE, TREES_RECT_WEST)
+	#pygame.draw.rect(WIN, BLUE, SHOP_DOOR_RECT)
+	#pygame.draw.rect(WIN, BLUE, CENTER_DOOR_RECT)
+	
+	
+
 	pygame.display.update()
 
 def trainer_movement_shopping (keys_pressed, pokemon_trainer, pikachu_trainer, free_pika, isAsh, isMisty, pause) :
@@ -3747,6 +3933,8 @@ def access_shopping_area (pokemon_trainer, pikachu_trainer, inside, before_enter
 	trainer_pokeballs = []
 	oakMessage = False
 	pause = -1
+	pokemon_trainer.x = before_enter_house_x
+	pokemon_trainer.y = before_enter_house_y
 	free_pika = 0
 
 	if isAsh :
@@ -3850,11 +4038,109 @@ def access_shopping_area (pokemon_trainer, pikachu_trainer, inside, before_enter
 				pokemon_trainer.y = before_enter_house_y + 20
 				main(isAsh, isMisty)
 
+		
+
 
 		TOWN.play()
 		keys_pressed = pygame.key.get_pressed()
 		trainer_movement_shopping(keys_pressed, pokemon_trainer, pikachu_trainer, free_pika, isAsh, isMisty, pause)
 		create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause)
+
+
+
+def movement_up_shop (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause) :
+	trainer_pokeballs = []
+	isTree = False
+	oakMessage = False
+
+	previous_y = pokemon_trainer.y
+	previous_x = pokemon_trainer.x
+	previous_pi_y = pikachu_trainer.y
+	previous_pi_x = pikachu_trainer.x
+
+	
+	if not wild: 
+		if isAsh :
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # All Foots
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # Left foot
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
+
+		else :
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # All Foots
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause ) # Left foot
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
+
+
+		pokemon_trainer.y -= 3
+		pikachu_trainer.y = pokemon_trainer.y + 60
+		pikachu_trainer.x = pokemon_trainer.x - 5
+		previous_y = pokemon_trainer.y
+		previous_x = pokemon_trainer.x
+		previous_pi_y = pikachu_trainer.y
+		previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(MESA_RECT):
+			pokemon_trainer.y += 6
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(ESTANTERIA_CENTRO_1):
+			pokemon_trainer.y += 6
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(ESTANTERIA_CENTRO_3):
+			pokemon_trainer.y += 6
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(ESTANTERIA_NORTE_1):
+			pokemon_trainer.y += 6
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(ESTANTERIA_NORTE_2):
+			pokemon_trainer.y += 6
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(ESTANTERIA_NORTE_3):
+			pokemon_trainer.y += 6
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(MOSTRADOR_RECT):
+			pokemon_trainer.y += 6
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
 
 
 def movement_up_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause) :
@@ -3875,18 +4161,242 @@ def movement_up_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, isA
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
 
 		else :
-			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, free_pika, oakMessage, pause) # All Foots
+			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # All Foots
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause ) # Left foot
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
 
 
-		pokemon_trainer.y -= 6
+		pokemon_trainer.y -= 10
 		pikachu_trainer.y = pokemon_trainer.y + 60
-		pikachu_trainer.x = pokemon_trainer.x - 5
+		pikachu_trainer.x = pokemon_trainer.x - 10
 		previous_y = pokemon_trainer.y
 		previous_x = pokemon_trainer.x
 		previous_pi_y = pikachu_trainer.y
 		previous_pi_x = pikachu_trainer.x
+
+
+		if pokemon_trainer.colliderect(POKEMON_CENTER_RECT):
+			pokemon_trainer.y += 10
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(SHOP_RECT):
+			pokemon_trainer.y += 10
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(ESTANQUE_RECT):
+			pokemon_trainer.y += 10
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(TREES_RECT_EAST):
+			pokemon_trainer.y += 10
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(TREES_RECT_WEST):
+			pokemon_trainer.y += 10
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(CENTER_DOOR_RECT):
+			pokemon_trainer.y += 10
+			pikachu_trainer.y = pokemon_trainer.y + 60
+			pikachu_trainer.x = pokemon_trainer.x - 5
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(SHOP_DOOR_RECT):
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			previous_pi_y = pikachu_trainer.y
+			previous_pi_x = pikachu_trainer.x
+			inside = True
+			TOWN.stop()
+
+			access_shop(pokemon_trainer, pikachu_trainer, inside, previous_pi_x, previous_pi_y, isAsh, isMisty)
+
+def access_shop (pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty) :
+	trainer_pokeballs = []
+	oakMessage = False
+	pause = -1
+	free_pika = 0
+
+	if isAsh :
+		TRAINER_IMG = ASH_RIGHT_IMG
+	else :
+		TRAINER_IMG = MISTY_RIGHT_IMG
+
+	PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
+
+	pokemon_trainer.x = 100
+	pokemon_trainer.y = 400
+	BACKGROUND_SOUND.stop()
+
+	while inside :
+		pause = 0
+		create_shop(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause)
+
+		for event in pygame.event.get() :
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
+
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_p and len(trainer_pokeballs) < MAX_POKEBALL:
+					free_pika = pokeball_out(trainer_pokeballs, free_pika)
+					PIKACHU_SOUND.play()
+
+			keys = pygame.key.get_pressed()
+				
+			if keys[pygame.K_LEFT]:
+
+				if isAsh :
+					TRAINER_IMG = ASH_LEFT_IMG
+				else :
+					TRAINER_IMG = MISTY_LEFT_IMG
+
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
+				OAK = OAK_RIGHT_IMG
+				create_shop(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause)
+				
+			if keys[pygame.K_RIGHT]:
+				if isAsh :
+					TRAINER_IMG = ASH_RIGHT_IMG
+				else :
+					TRAINER_IMG = MISTY_RIGHT_IMG
+
+				PIKACHU_IMG = ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG
+				OAK = OAK_LEFT_IMG
+				create_shop(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause)
+
+			if keys[pygame.K_UP]:
+				if isAsh :
+					TRAINER_IMG = ASH_BACK_IMG
+				else :
+					TRAINER_IMG = MISTY_BACK_IMG
+
+				PIKACHU_IMG = ASH_PIKACHU_BACK_LEFT_FOOT_IMG
+				OAK = OAK_IMG
+				create_shop(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause)
+
+			if keys[pygame.K_DOWN]:
+				if isAsh :
+					TRAINER_IMG = ASH_IMG
+				else :
+					TRAINER_IMG = MISTY_IMG
+
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
+				OAK = OAK_BACK_IMG
+				create_shop(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause)
+
+			if keys[pygame.K_e]:
+				inside = True
+				BACKGROUND_SOUND.stop()
+				my_save_slot = json.dumps(variables)
+				pokemon_1_level = variables["POKEMON_1"]["LEVEL"] = 55
+				with open('save.json', 'w') as save:
+					save.write(my_save_slot)
+				welcome()
+
+			if pokemon_trainer.colliderect(PUERTA_RECT):
+				inside = False
+				SHOP_SOUND.stop()
+				access_shopping_area(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty)
+
+			if keys[pygame.K_x]:
+				pause += 1
+
+				if isAsh :
+					TRAINER_IMG = ASH_IMG
+				else :
+					TRAINER_IMG = MISTY_IMG
+
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
+
+				create_shop(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause)
+				pause_menu(cursor_pause, pause)
+
+		keys_pressed = pygame.key.get_pressed()
+		trainer_movement_shop(keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika)
+
+		SHOP_SOUND.play()
+
+
+def create_shop(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika, oakMessage, pause)  :
+	WIN.blit(SHOP_INSIDE_IMG, (0, 0))
+
+	if free_pika % 2 == 1 :
+		WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
+
+	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
+
+	fecha = today.strftime("%m %d")
+
+	date = DIALOG_FONT.render("" + str(fecha), 1, BLACK)
+	daysOfTheWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+	now = datetime.now()
+	day = now.weekday()
+	tuday = daysOfTheWeek[day]
+	hora_str = now.strftime("%H:%M")
+
+	dayofWeek = DIALOG_MINI_FONT.render("" + str(tuday), 1, BLACK)
+
+	time = POKEBALLS_COUNTER.render("" + str(hora_str), 1, WHITE)
+
+	
+	if pause == 0 :
+		WIN.blit(BACK_BG_IMG, (0,0))
+		WIN.blit(BAG_IMG, (5,15))
+
+	if free_pika % 2 == 0 :
+		WIN.blit(PIKA_BG_IMG, (770,377))
+
+	WIN.blit(CLOCK_IMG, (700, 0))
+	WIN.blit(date, (725, 10))
+	WIN.blit(dayofWeek, (830, 20))
+	WIN.blit(time, (750, 50))
+
+
+	#pygame.draw.rect(WIN, BLUE, MACETA_SURESTE_RECT)
+	#pygame.draw.rect(WIN, BLUE, MACETA_SUROESTE_RECT)
+	#pygame.draw.rect(WIN, BLUE, MACETA_NORTE_RECT)
+	#pygame.draw.rect(WIN, BLUE, MOSTRADOR_RECT)
+	#pygame.draw.rect(WIN, BLUE, PUERTA_RECT)
+	#pygame.draw.rect(WIN, BLUE, MESA_RECT)
+	#pygame.draw.rect(WIN, BLUE, ESTANTERIA_CENTRO_1)
+	#pygame.draw.rect(WIN, BLUE, ESTANTERIA_CENTRO_2)
+	#pygame.draw.rect(WIN, BLUE, ESTANTERIA_CENTRO_3)
+	#pygame.draw.rect(WIN, BLUE, ESTANTERIA_NORTE_1)
+	#pygame.draw.rect(WIN, BLUE, ESTANTERIA_NORTE_2)
+	#pygame.draw.rect(WIN, BLUE, ESTANTERIA_NORTE_3)
+
+
+	pygame.display.update()
 
 
 def movement_up (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause) :
@@ -4207,7 +4717,7 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, is
 					TRAINER_IMG = MISTY_IMG
 
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
-				
+
 				create_laboratory(TRAINER_IMG, PIKACHU_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika )
 				pause_menu(cursor_pause, pause)
 
@@ -4245,7 +4755,7 @@ def movement_down_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause,
 		create_laboratory( MISTY_IMG, ASH_PIKACHU_LEFT_FOOT_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Right foot
 
 
-	pokemon_trainer.y += 1
+	pokemon_trainer.y += 4
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
 	pikachu_trainer.y = pokemon_trainer.y - 70
@@ -4302,17 +4812,60 @@ def movement_down_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, i
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, ASH_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
 
 		else :
-			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika, oakMessage, pause ) # All Foots
-			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Left foot
-			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_IMG, ASH_PIKACHU_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
+			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika, oakMessage, pause ) # All Foots
+			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Left foot
+			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
 
-		pokemon_trainer.y += 6
+		pokemon_trainer.y += 10
+		pikachu_trainer.y = pokemon_trainer.y - 70
+		pikachu_trainer.x = pokemon_trainer.x + 10
+		previous_y = pokemon_trainer.y
+		previous_x = pokemon_trainer.x
+		previous_pi_x = pikachu_trainer.x
+		previous_pi_y = pikachu_trainer.y
+
+def movement_down_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause) :
+	trainer_pokeballs = []
+	POKEMON_ENCOUNTER_SOUND.stop()
+	isTree = False
+	oakMessage = False
+
+	if not wild :
+
+		if isAsh :
+
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, ASH_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG , free_pika, oakMessage, pause ) # All Foots
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, ASH_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Left foot
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, ASH_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
+
+		else :
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika, oakMessage, pause ) # All Foots
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika, oakMessage, pause) # Left foot
+			create_shop(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG, free_pika, oakMessage, pause) # Right foot
+
+		pokemon_trainer.y += 3
 		pikachu_trainer.y = pokemon_trainer.y - 70
 		pikachu_trainer.x = pokemon_trainer.x + 5
 		previous_y = pokemon_trainer.y
 		previous_x = pokemon_trainer.x
 		previous_pi_x = pikachu_trainer.x
 		previous_pi_y = pikachu_trainer.y
+
+		if pokemon_trainer.colliderect(ESTANTERIA_CENTRO_1):
+			pokemon_trainer.x = previous_x
+			pokemon_trainer.y = previous_y - 10
+
+
+		if pokemon_trainer.colliderect(ESTANTERIA_CENTRO_3):
+			pokemon_trainer.x = previous_x
+			pokemon_trainer.y = previous_y - 10
+
+		if pokemon_trainer.colliderect(MESA_RECT):
+			pokemon_trainer.x = previous_x
+			pokemon_trainer.y = previous_y - 10
+
+
+
 
 def movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause) :
 	trainer_pokeballs = []
@@ -4777,6 +5330,38 @@ def trainer_movement (keys_pressed, pokemon_trainer, pikachu_trainer, free_pika,
 			bicicle_movement_down(pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause)
 			fps +=1
 
+
+# Defines the movement inside the Shop
+
+def trainer_movement_shop(keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika) :## Trainer Movement function
+	wild = False
+	trainer_pokeballs = []
+
+	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0 :
+		fps = 0
+		while fps < 5 :
+			movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause)
+			fps +=1
+
+	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80:
+		fps = 0
+		while fps < 5 :
+			movement_right_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause)
+			fps +=1
+
+	if keys_pressed[pygame.K_UP] and pokemon_trainer.y - VEL > 0 :
+		fps = 0
+		while fps < 5 :
+			movement_up_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause)
+			fps +=1
+		
+	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT -100 :
+		fps = 0
+		while fps < 5 :
+			movement_down_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause)
+			fps +=1
+
+# Defines the movement inside the Trainer house
 def trainer_movement_house_trainer (keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty) :## Trainer Movement function
 	wild = False
 	trainer_pokeballs = []
