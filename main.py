@@ -2879,7 +2879,7 @@ def create_victory_windows(trainer_pokemon_name, trainer_pokemon_hp, wild_pokemo
 
 	pygame.display.update()
 
-def movement_left_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
+def movement_left_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika) :
 
 	isTalking = False
 	isSquirtle = False
@@ -2898,6 +2898,12 @@ def movement_left_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		pokemon_trainer.x -= 1
 		previous_x = pokemon_trainer.x
 		previous_y = pokemon_trainer.y
+		pikachu_trainer.x = pokemon_trainer.x + 60
+		pikachu_trainer.y = pokemon_trainer.y - 5
+		previous_x = pokemon_trainer.x
+		previous_y = pokemon_trainer.y
+		previous_pi_x = pikachu_trainer.x
+		previous_pi_y = pikachu_trainer.y
 
 	if pokemon_trainer.colliderect(OAK_TABLE):
 		WALL_SOUND.play()
@@ -2911,14 +2917,14 @@ def movement_left_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 
 	if isAsh :
 
-		create_laboratory( ASH_LEFT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander) # All Foots
-		create_laboratory( ASH_LEFT_LEFT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander) # Left foot
-		create_laboratory( ASH_LEFT_RIGHT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander) # Right foot
+		create_laboratory( ASH_LEFT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # All Foots
+		create_laboratory( ASH_LEFT_LEFT_FOOT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Left foot
+		create_laboratory( ASH_LEFT_RIGHT_FOOT_IMG, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Right foot
 
 	else :
-		create_laboratory( MISTY_LEFT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander) # All Foots
-		create_laboratory( MISTY_LEFT_LEFT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander) # Left foot
-		create_laboratory( MISTY_LEFT_RIGHT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander) # Right foot
+		create_laboratory( MISTY_LEFT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # All Foots
+		create_laboratory( MISTY_LEFT_LEFT_FOOT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Left foot
+		create_laboratory( MISTY_LEFT_RIGHT_FOOT_IMG, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Right foot
 
 
 def movement_left_house_trainer (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
@@ -3116,7 +3122,7 @@ def movement_left (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isM
 				start_battle(wild,previous_x ,previous_y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 
 
-def movement_right_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
+def movement_right_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika) :
 
 	isTalking = False
 	isSquirtle = False
@@ -3137,6 +3143,12 @@ def movement_right_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		pokemon_trainer.x += 1
 		previous_x = pokemon_trainer.x
 		previous_y = pokemon_trainer.y
+		pikachu_trainer.x = pokemon_trainer.x - 60
+		pikachu_trainer.y = pokemon_trainer.y + 5
+		previous_x = pokemon_trainer.x
+		previous_y = pokemon_trainer.y
+		previous_pi_x = pikachu_trainer.x
+		previous_pi_y = pikachu_trainer.y
 
 	if pokemon_trainer.colliderect(OAK_TABLE):
 		WALL_SOUND.play()
@@ -3150,14 +3162,14 @@ def movement_right_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 
 	if isAsh :
 
-		create_laboratory( ASH_RIGHT_IMG, OAK_LEFT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # All Foots
-		create_laboratory( ASH_RIGHT_LEFT_FOOT_IMG, OAK_LEFT_IMG , isTalking, isBulbasaur, isSquirtle, isCharmander) # Left foot
-		create_laboratory( ASH_RIGHT_RIGHT_FOOT_IMG, OAK_LEFT_IMG , isTalking, isBulbasaur, isSquirtle, isCharmander) # Right foot
+		create_laboratory( ASH_RIGHT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, OAK_LEFT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # All Foots
+		create_laboratory( ASH_RIGHT_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG,  OAK_LEFT_IMG , isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Left foot
+		create_laboratory( ASH_RIGHT_RIGHT_FOOT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, OAK_LEFT_IMG , isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Right foot
 
 	else :
-		create_laboratory( MISTY_RIGHT_IMG, OAK_LEFT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # All Foots
-		create_laboratory( MISTY_RIGHT_LEFT_FOOT_IMG, OAK_LEFT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # Left foot
-		create_laboratory( MISTY_RIGHT_RIGHT_FOOT_IMG, OAK_LEFT_IMG, isTalking , isBulbasaur, isSquirtle, isCharmander) # Right foot
+		create_laboratory( MISTY_RIGHT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, OAK_LEFT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # All Foots
+		create_laboratory( MISTY_RIGHT_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, OAK_LEFT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # Left foot
+		create_laboratory( MISTY_RIGHT_RIGHT_FOOT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, OAK_LEFT_IMG, isTalking , isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Right foot
 
 def movement_right_house_trainer (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 
@@ -3508,7 +3520,7 @@ def create_pokeball_starter_view (x, y, isSquirtle, isBulbasaur, isCharmander, i
 
 	pygame.display.update()
 
-def movement_up_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
+def movement_up_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika) :
 
 	isTalking = False
 	isBulbasaur = False
@@ -3524,32 +3536,44 @@ def movement_up_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 		pokemon_trainer.y -= 1
 		previous_y = pokemon_trainer.y
 		previous_x = pokemon_trainer.x
+		pikachu_trainer.y = pokemon_trainer.y + 60
+		pikachu_trainer.x = pokemon_trainer.x - 5
+		previous_y = pokemon_trainer.y
+		previous_x = pokemon_trainer.x
+		previous_pi_y = pikachu_trainer.y
+		previous_pi_x = pikachu_trainer.x
 
 	if pokemon_trainer.colliderect(OAK_TABLE):
 		start_pokeball_starter_view(cursor_pos)
 		WALL_SOUND.play()
 		pokemon_trainer.x = previous_x
-		pokemon_trainer.y = previous_y + 10
+		pokemon_trainer.y = previous_y + 20
 
 	if pokemon_trainer.colliderect(OAK_POKEBALL_1):
 		start_pokeball_starter_view(cursor_pos)
+		pokemon_trainer.y = previous_y + 20
+
 
 	if pokemon_trainer.colliderect(OAK_POKEBALL_2):
 		start_pokeball_starter_view(cursor_pos)
+		pokemon_trainer.y = previous_y + 20
+
 
 	if pokemon_trainer.colliderect(OAK_POKEBALL_3):
 		start_pokeball_starter_view(cursor_pos)
+		pokemon_trainer.y = previous_y + 20
+
 
 	if isAsh :
 
-		create_laboratory( ASH_BACK_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # All Foots
-		create_laboratory( ASH_BACK_LEFT_FOOT_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # Left foot
-		create_laboratory( ASH_BACK_RIGHT_FOOT_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # Right foot
+		create_laboratory( ASH_BACK_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # All Foots
+		create_laboratory( ASH_BACK_LEFT_FOOT_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # Left foot
+		create_laboratory( ASH_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # Right foot
 
 	else :
-		create_laboratory( MISTY_BACK_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # All Foots
-		create_laboratory( MISTY_BACK_LEFT_FOOT_IMG, OAK_IMG, isTalking , isBulbasaur, isSquirtle, isCharmander) # Left foot
-		create_laboratory( MISTY_BACK_RIGHT_FOOT_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # Right foot
+		create_laboratory( MISTY_BACK_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # All Foots
+		create_laboratory( MISTY_BACK_LEFT_FOOT_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, OAK_IMG, isTalking , isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Left foot
+		create_laboratory( MISTY_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # Right foot
 
 def movement_up_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 
@@ -4002,6 +4026,8 @@ def movement_up (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMis
 
 def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty) :
 
+	pause = -1
+
 	if isAsh :
 		TRAINER_IMG = ASH_IMG
 	else :
@@ -4013,6 +4039,8 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 	pokemon_trainer.y = 200
 
 	while inside :
+
+		pause = 0
 
 		for event in pygame.event.get() :
 			if event.type == pygame.QUIT:
@@ -4067,7 +4095,8 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 				welcome()
 
 			if keys[pygame.K_x]:
-				pause_menu(cursor_pause)
+				pause +=1
+				pause_menu(cursor_pause, pause)
 
 			if pokemon_trainer.colliderect(TRAINER_HOUSE_DOOR):
 				SCAPE_SOUND.play()
@@ -4083,12 +4112,14 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 
 
 
-def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, isMisty) :
+def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, isMisty, free_pika) :
 
 	isTalking = False
 	isBulbasaur = False
 	isSquirtle = False
 	isCharmander = False
+	pause = -1
+	trainer_pokeballs = []
 
 	if isAsh :
 		TRAINER_IMG = ASH_BACK_IMG
@@ -4097,16 +4128,23 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, is
 		TRAINER_IMG = MISTY_IMG
 
 	OAK = OAK_RIGHT_IMG
+	PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
 
 	pokemon_trainer.x = 400
 	pokemon_trainer.y = 360
 
 	while inside :
+		pause = 0
 
 		for event in pygame.event.get() :
 			if event.type == pygame.QUIT:
 				run = False
 				pygame.quit()
+
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_p and len(trainer_pokeballs) < MAX_POKEBALL:
+					free_pika = pokeball_out(trainer_pokeballs, free_pika)
+					PIKACHU_SOUND.play()
 
 			keys = pygame.key.get_pressed()
 				
@@ -4119,7 +4157,7 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, is
 
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
 				OAK = OAK_RIGHT_IMG
-				create_laboratory(TRAINER_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander)
+				create_laboratory(TRAINER_IMG, PIKACHU_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika)
 				
 			if keys[pygame.K_RIGHT]:
 				if isAsh :
@@ -4129,7 +4167,7 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, is
 
 				PIKACHU_IMG = ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG
 				OAK = OAK_LEFT_IMG
-				create_laboratory(TRAINER_IMG, OAK_LEFT_IMG , isTalking, isBulbasaur, isSquirtle, isCharmander)
+				create_laboratory(TRAINER_IMG, PIKACHU_IMG, OAK_LEFT_IMG , isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika)
 
 			if keys[pygame.K_UP]:
 				if isAsh :
@@ -4139,7 +4177,7 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, is
 
 				PIKACHU_IMG = ASH_PIKACHU_BACK_LEFT_FOOT_IMG
 				OAK = OAK_IMG
-				create_laboratory( TRAINER_IMG,OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander )
+				create_laboratory( TRAINER_IMG, PIKACHU_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika )
 
 			if keys[pygame.K_DOWN]:
 				if isAsh :
@@ -4149,7 +4187,7 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, is
 
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
 				OAK = OAK_BACK_IMG
-				create_laboratory(TRAINER_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander )
+				create_laboratory(TRAINER_IMG, PIKACHU_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika )
 
 			if keys[pygame.K_e]:
 				inside = True
@@ -4161,7 +4199,19 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, is
 				welcome()
 
 			if keys[pygame.K_x]:
-				pause_menu(cursor_pause)
+				pause +=1
+
+				if isAsh :
+					TRAINER_IMG = ASH_IMG
+				else :
+					TRAINER_IMG = MISTY_IMG
+
+				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
+				
+				create_laboratory(TRAINER_IMG, PIKACHU_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika )
+				pause_menu(cursor_pause, pause)
+
+
 
 			if pokemon_trainer.colliderect(OAK_DOOR):
 				inside = False
@@ -4173,11 +4223,11 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, is
 
 		OAK_THEME.play()
 		keys_pressed = pygame.key.get_pressed()
-		trainer_movement_house(keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty)
-		create_laboratory(TRAINER_IMG, OAK, isTalking, isBulbasaur, isSquirtle, isCharmander)
+		trainer_movement_house(keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika)
+		create_laboratory(TRAINER_IMG, PIKACHU_IMG, OAK, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika)
 
 
-def movement_down_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
+def movement_down_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika) :
 
 	isTalking = False
 	isSquirtle = False
@@ -4185,19 +4235,25 @@ def movement_down_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty) :
 	isBulbasaur = False
 
 	if isAsh :
-		create_laboratory ( ASH_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # All Foots
-		create_laboratory( ASH_LEFT_FOOT_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # Left foot
-		create_laboratory( ASH_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander) # Right foot
+		create_laboratory ( ASH_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # All Foots
+		create_laboratory( ASH_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # Left foot
+		create_laboratory( ASH_IMG, ASH_PIKACHU_LEFT_FOOT_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Right foot
 
 	else :
-		create_laboratory ( MISTY_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # All Foots
-		create_laboratory( MISTY_LEFT_FOOT_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander ) # Left foot
-		create_laboratory( MISTY_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander) # Right foot
+		create_laboratory ( MISTY_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # All Foots
+		create_laboratory( MISTY_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika ) # Left foot
+		create_laboratory( MISTY_IMG, ASH_PIKACHU_LEFT_FOOT_IMG, OAK_BACK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) # Right foot
 
 
 	pokemon_trainer.y += 1
 	previous_y = pokemon_trainer.y
 	previous_x = pokemon_trainer.x
+	pikachu_trainer.y = pokemon_trainer.y - 70
+	pikachu_trainer.x = pokemon_trainer.x + 5
+	previous_y = pokemon_trainer.y
+	previous_x = pokemon_trainer.x
+	previous_pi_x = pikachu_trainer.x
+	previous_pi_y = pikachu_trainer.y
 
 	if pokemon_trainer.colliderect(OAK_TABLE):
 		WALL_SOUND.play()
@@ -4750,32 +4806,32 @@ def trainer_movement_house_trainer (keys_pressed, pokemon_trainer, pikachu_train
 			fps +=1
 
 
-def trainer_movement_house (keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty) :## Trainer Movement function
+def trainer_movement_house (keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika) :## Trainer Movement function
 	wild = False
 	trainer_pokeballs = []
 
 	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0 :
 		fps = 0
 		while fps < 5 :
-			movement_left_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty)
+			movement_left_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika)
 			fps +=1
 
 	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80:
 		fps = 0
 		while fps < 5 :
-			movement_right_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty)
+			movement_right_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika)
 			fps +=1
 
 	if keys_pressed[pygame.K_UP] and pokemon_trainer.y - VEL > 0 :
 		fps = 0
 		while fps < 5 :
-			movement_up_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty)
+			movement_up_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika)
 			fps +=1
 		
 	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT -100 :
 		fps = 0
 		while fps < 5 :
-			movement_down_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty)
+			movement_down_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika)
 			fps +=1
 		
 
@@ -4864,14 +4920,11 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs,
 	WIN.blit(dayofWeek, (830, 20))
 	WIN.blit(time, (750, 50))
 
-
-
-
 	#pygame.draw.rect(WIN, GREEN, OAK_RECTANGLE_MAP)
 
 	pygame.display.update()
 
-def create_laboratory (TRAINER, OAK, isTalking, isBulbasaur, isSquirtle, isCharmander) :
+def create_laboratory (TRAINER, PIKACHU, OAK, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika) :
 
 	WIN.blit(OAK_LABORATORY_IMG, (0,0))
 
@@ -4941,6 +4994,35 @@ def create_laboratory (TRAINER, OAK, isTalking, isBulbasaur, isSquirtle, isCharm
 			oak_phrase = POKEBALLS_COUNTER.render("This Pokeball contains a Charmander, a fire type Pokémon", 1, WHITE)
 			WIN.blit(oak_phrase, (50, 400))
 			clock.tick(20)
+
+	if free_pika % 2 == 1 :
+		WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
+
+	fecha = today.strftime("%m %d")
+
+	date = DIALOG_FONT.render("" + str(fecha), 1, BLACK)
+	daysOfTheWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+	now = datetime.now()
+	day = now.weekday()
+	tuday = daysOfTheWeek[day]
+	hora_str = now.strftime("%H:%M")
+
+	dayofWeek = DIALOG_MINI_FONT.render("" + str(tuday), 1, BLACK)
+
+	time = POKEBALLS_COUNTER.render("" + str(hora_str), 1, WHITE)
+
+	if pause == 0 :
+		WIN.blit(BACK_BG_IMG, (0,0))
+		WIN.blit(BAG_IMG, (5,15))
+
+	if free_pika % 2 == 0 :
+		WIN.blit(PIKA_BG_IMG, (770,377))
+	
+	WIN.blit(CLOCK_IMG, (700, 0))
+	WIN.blit(date, (725, 10))
+	WIN.blit(dayofWeek, (830, 20))
+	WIN.blit(time, (750, 50))
 
 
 	#pygame.draw.rect(WIN, GREEN, OAK_RECTANGLE) # Oak rectangle
@@ -5550,7 +5632,7 @@ def main (isAsh, isMisty): ## Main function
 				inside = True
 				before_enter_house_x = pokemon_trainer.x
 				before_enter_house_y = pokemon_trainer.y
-				access_laboratory(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty)
+				access_laboratory(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty, free_pika)
 
 		elif pokemon_trainer.colliderect(HOUSE_2_DOOR) :
 			if keys[pygame.K_SPACE]:
