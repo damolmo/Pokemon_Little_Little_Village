@@ -137,7 +137,7 @@ OAK_POKEBALL_2 = pygame.Rect(640, 300, 40, 60)
 OAK_POKEBALL_3 = pygame.Rect(690, 300, 40, 60)
 
 OAK_RECTANGLE_MAP = pygame.Rect(400, -10, 50, 70)
-SHOP_RECTANGLE_MAP = pygame.Rect(400, -10, 50, 70)
+SHOP_RECTANGLE_MAP = pygame.Rect(400, -20, 50, 70)
 HOME_RECT_MAP = pygame.Rect(0, 400, 100, 100)
 
 
@@ -817,6 +817,7 @@ PAUSE_MENU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/m
 CLOCK_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/clock', "clock.png")), (200, 100))
 BAG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/clock', "bag.png")), (110, 70))
 BACK_BG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/clock', "background.png")), (130, 130))
+PIKA_BG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/clock', "background_down.png")), (130, 130))
 
 
 
@@ -3622,6 +3623,7 @@ def create_shopping_area (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer
 	time = POKEBALLS_COUNTER.render("" + str(hora_str), 1, WHITE)
 
 	WIN.blit(BACK_BG_IMG, (0,0))
+	WIN.blit(PIKA_BG_IMG, (770,375))
 	WIN.blit(BAG_IMG, (5,15))
 	WIN.blit(CLOCK_IMG, (700, 0))
 	WIN.blit(date, (725, 10))
@@ -4830,6 +4832,8 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs,
 	time = POKEBALLS_COUNTER.render("" + str(hora_str), 1, WHITE)
 
 	WIN.blit(BACK_BG_IMG, (0,0))
+	if free_pika % 2 == 0 :
+		WIN.blit(PIKA_BG_IMG, (770,377))
 	WIN.blit(BAG_IMG, (5,15))
 	WIN.blit(CLOCK_IMG, (700, 0))
 	WIN.blit(date, (725, 10))
