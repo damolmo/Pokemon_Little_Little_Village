@@ -45,7 +45,7 @@ class System_Files_Check :
 			exists = True
 
 		else :
-			download_assets()
+			System_Files_Check.download_assets()
 
 	def download_save() :
 		package = wget.download("https://github.com/daviiid99/Pokemon-Pi/raw/main/save.json", "save.json") #Download the platform-tools-latest-linux.zip from Google server
@@ -57,7 +57,7 @@ class System_Files_Check :
 			exists = True
 
 		else :
-			download_save()
+			System_Files_Check.download_save()
 
 System_Files_Check.check_Assets_Exist()
 System_Files_Check.check_Save_Exist()
