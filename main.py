@@ -3750,8 +3750,8 @@ def movement_up_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, 
 		create_room(ASH_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, VEL) # Right foot
 
 	else :
-		create_room(MISTY_BACK_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IM, VEL ) # All Foots
-		create_room(MISTY_BACK_LEFT_FOOT_IMG, ASH_PIKACHU,_BACK_LEFT_FOOT_IMG, VEL ) # Left foot
+		create_room(MISTY_BACK_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL ) # All Foots
+		create_room(MISTY_BACK_LEFT_FOOT_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL ) # Left foot
 		create_room(MISTY_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, VEL ) # Right foot
 
 	pokemon_trainer.y -= VEL
@@ -4868,7 +4868,7 @@ def movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isM
 
 		else :
 			create_map(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG , free_pika, oakMessage, pause, VEL) # All Foots
-			create_map(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL, VEL ) # Left foot
+			create_map(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # Left foot
 			create_map(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_FOOT_IMG , free_pika, oakMessage, pause, VEL) # Right foot
 
 		pokemon_trainer.y += VEL
