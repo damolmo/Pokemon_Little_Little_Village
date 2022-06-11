@@ -166,6 +166,9 @@ ESTANTERIA_NORTE_1 = pygame.Rect(200, 10, 120, 120)
 ESTANTERIA_NORTE_2 = pygame.Rect(350, 10, 120, 120)
 ESTANTERIA_NORTE_3 = pygame.Rect(500, 0, 300, 75)
 
+SHOP_DEPENDENT_RECT =  pygame.Rect(150, 120, 60, 100)
+DEPENDENT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/shop_dependent', "dependent.png")), (trainer_size.width, trainer_size.height))
+
 
 
 ## Game Events
@@ -2800,7 +2803,7 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty)
 					save_game()
 					wild = False
 					print("HAS HUIDO")
-					movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty)
+					movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause)
 					cursor_pos.x = 620
 
 				if event.key == pygame.K_SPACE and cursor_pos.x == 620 and cursor_pos.y == 350 :
@@ -3936,17 +3939,22 @@ def access_shopping_area (pokemon_trainer, pikachu_trainer, inside, before_enter
 	pokemon_trainer.x = before_enter_house_x
 	pokemon_trainer.y = before_enter_house_y
 	free_pika = 0
-
-	if isAsh :
-		TRAINER_IMG = ASH_RIGHT_IMG
-	else :
-		TRAINER_IMG = MISTY_RIGHT_IMG
-
 	PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
 
-	pokemon_trainer.x = 100
-	pokemon_trainer.y = 400
-	BACKGROUND_SOUND.stop()
+	if isAsh :
+		TRAINER_IMG = ASH_IMG
+	else :
+		TRAINER_IMG = MISTY_IMG
+
+	if inside == True :
+		pokemon_trainer.x = 100
+		pokemon_trainer.y = 400
+		BACKGROUND_SOUND.stop()
+
+		if isAsh :
+			TRAINER_IMG = ASH_RIGHT_IMG
+		else :
+			TRAINER_IMG = MISTY_RIGHT_IMG
 
 	while shopping :
 		pause = 0
@@ -4022,14 +4030,6 @@ def access_shopping_area (pokemon_trainer, pikachu_trainer, inside, before_enter
 
 				pause_menu(cursor_pause, pause)
 
-			if pokemon_trainer.colliderect(TRAINER_HOUSE_DOOR):
-				SCAPE_SOUND.play()
-				inside = False
-				OAK_THEME.stop()
-				pokemon_trainer.x = x
-				pokemon_trainer.y = y
-				main(isAsh, isMisty)
-
 			if pokemon_trainer.colliderect(HOME_RECT_MAP):
 				TOWN.stop()
 				SCAPE_SOUND.play()
@@ -4038,8 +4038,14 @@ def access_shopping_area (pokemon_trainer, pikachu_trainer, inside, before_enter
 				pokemon_trainer.y = before_enter_house_y + 20
 				main(isAsh, isMisty)
 
-		
-
+			if pokemon_trainer.colliderect(SHOP_DOOR_RECT):
+				previous_y = pokemon_trainer.y + 10
+				previous_x = pokemon_trainer.x
+				previous_pi_y = pikachu_trainer.y
+				previous_pi_x = pikachu_trainer.x
+				inside = True
+				TOWN.stop()
+				access_shop(pokemon_trainer, pikachu_trainer, inside, previous_pi_x, previous_pi_y, isAsh, isMisty)
 
 		TOWN.play()
 		keys_pressed = pygame.key.get_pressed()
@@ -4229,16 +4235,6 @@ def movement_up_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, isA
 			previous_pi_y = pikachu_trainer.y
 			previous_pi_x = pikachu_trainer.x
 
-		if pokemon_trainer.colliderect(SHOP_DOOR_RECT):
-			previous_y = pokemon_trainer.y
-			previous_x = pokemon_trainer.x
-			previous_pi_y = pikachu_trainer.y
-			previous_pi_x = pikachu_trainer.x
-			inside = True
-			TOWN.stop()
-
-			access_shop(pokemon_trainer, pikachu_trainer, inside, previous_pi_x, previous_pi_y, isAsh, isMisty)
-
 def access_shop (pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty) :
 	trainer_pokeballs = []
 	oakMessage = False
@@ -4246,14 +4242,14 @@ def access_shop (pokemon_trainer, pikachu_trainer, inside, before_enter_house_x,
 	free_pika = 0
 
 	if isAsh :
-		TRAINER_IMG = ASH_RIGHT_IMG
+		TRAINER_IMG = ASH_BACK_IMG
 	else :
-		TRAINER_IMG = MISTY_RIGHT_IMG
+		TRAINER_IMG = MISTY_BACK_IMG
 
 	PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
 
-	pokemon_trainer.x = 100
-	pokemon_trainer.y = 400
+	pokemon_trainer.x = 200
+	pokemon_trainer.y = 330
 	BACKGROUND_SOUND.stop()
 
 	while inside :
@@ -4349,6 +4345,8 @@ def access_shop (pokemon_trainer, pikachu_trainer, inside, before_enter_house_x,
 def create_shop(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika, oakMessage, pause)  :
 	WIN.blit(SHOP_INSIDE_IMG, (0, 0))
 
+	WIN.blit(DEPENDENT_IMG, (100, 150))
+
 	if free_pika % 2 == 1 :
 		WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
 
@@ -4394,6 +4392,7 @@ def create_shop(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs
 	#pygame.draw.rect(WIN, BLUE, ESTANTERIA_NORTE_1)
 	#pygame.draw.rect(WIN, BLUE, ESTANTERIA_NORTE_2)
 	#pygame.draw.rect(WIN, BLUE, ESTANTERIA_NORTE_3)
+	#pygame.draw.rect(WIN, BLACK, SHOP_DEPENDENT_RECT)
 
 
 	pygame.display.update()
