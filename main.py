@@ -2962,17 +2962,17 @@ def movement_left_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause
 		create_laboratory( MISTY_LEFT_RIGHT_FOOT_IMG, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, OAK_RIGHT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika, VEL) # Right foot
 
 
-def movement_left_house_trainer (pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL) :
+def movement_left_house_trainer (pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL, free_pika, pause) :
 
 	if isAsh :
-		create_room(ASH_LEFT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, VEL) # All Foots
-		create_room(ASH_LEFT_LEFT_FOOT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, VEL ) # Left foot
-		create_room(ASH_LEFT_RIGHT_FOOT_IMG, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, VEL ) # Right foot
+		create_room(ASH_LEFT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, VEL, free_pika, pause) # All Foots
+		create_room(ASH_LEFT_LEFT_FOOT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, VEL, free_pika, pause ) # Left foot
+		create_room(ASH_LEFT_RIGHT_FOOT_IMG, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, VEL, free_pika, pause ) # Right foot
 
 	else :
-		create_room(MISTY_LEFT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, VEL) # All Foots
-		create_room(MISTY_LEFT_LEFT_FOOT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, VEL ) # Left foot
-		create_room(MISTY_LEFT_RIGHT_FOOT_IMG, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, VEL ) # Right foot
+		create_room(MISTY_LEFT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, VEL, free_pika, pause) # All Foots
+		create_room(MISTY_LEFT_LEFT_FOOT_IMG, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, VEL, free_pika, pause ) # Left foot
+		create_room(MISTY_LEFT_RIGHT_FOOT_IMG, ASH_PIKACHU_LEFT_RIGHT_FOOT_IMG, VEL, free_pika, pause ) # Right foot
 
 	pokemon_trainer.x -= VEL
 	previous_x = pokemon_trainer.x
@@ -3282,17 +3282,17 @@ def movement_right_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty, paus
 		create_laboratory( MISTY_RIGHT_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, OAK_LEFT_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika, VEL ) # Left foot
 		create_laboratory( MISTY_RIGHT_RIGHT_FOOT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, OAK_LEFT_IMG, isTalking , isBulbasaur, isSquirtle, isCharmander, pause, free_pika, VEL) # Right foot
 
-def movement_right_house_trainer (pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL) :
+def movement_right_house_trainer (pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL, free_pika, pause) :
 
 	if isAsh :
-		create_room(ASH_RIGHT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, VEL ) # All Foots
-		create_room(ASH_RIGHT_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, VEL ) # Left foot
-		create_room(ASH_RIGHT_RIGHT_FOOT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, VEL ) # Right foot
+		create_room(ASH_RIGHT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, VEL, free_pika, pause ) # All Foots
+		create_room(ASH_RIGHT_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, VEL, free_pika, pause ) # Left foot
+		create_room(ASH_RIGHT_RIGHT_FOOT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, VEL, free_pika, pause ) # Right foot
 
 	else :
-		create_room(MISTY_RIGHT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, VEL ) # All Foots
-		create_room(MISTY_RIGHT_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, VEL ) # Left foot
-		create_room(MISTY_RIGHT_RIGHT_FOOT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, VEL ) # Right foot
+		create_room(MISTY_RIGHT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, VEL, free_pika, pause ) # All Foots
+		create_room(MISTY_RIGHT_LEFT_FOOT_IMG, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, VEL, free_pika, pause ) # Left foot
+		create_room(MISTY_RIGHT_RIGHT_FOOT_IMG, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, VEL, free_pika, pause ) # Right foot
 
 	pokemon_trainer.x += VEL
 	previous_x = pokemon_trainer.x
@@ -3741,18 +3741,18 @@ def movement_up_house (pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, 
 		create_laboratory( MISTY_BACK_LEFT_FOOT_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, OAK_IMG, isTalking , isBulbasaur, isSquirtle, isCharmander, pause, free_pika, VEL) # Left foot
 		create_laboratory( MISTY_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, OAK_IMG, isTalking, isBulbasaur, isSquirtle, isCharmander, pause, free_pika, VEL ) # Right foot
 
-def movement_up_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL) :
+def movement_up_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL, free_pika, pause) :
 
 	if isAsh :
 
-		create_room(ASH_BACK_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL ) # All Foots
-		create_room(ASH_BACK_LEFT_FOOT_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL ) # Left foot
-		create_room(ASH_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, VEL) # Right foot
+		create_room(ASH_BACK_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL, free_pika, pause ) # All Foots
+		create_room(ASH_BACK_LEFT_FOOT_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL, free_pika, pause ) # Left foot
+		create_room(ASH_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, VEL, free_pika, pause) # Right foot
 
 	else :
-		create_room(MISTY_BACK_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL ) # All Foots
-		create_room(MISTY_BACK_LEFT_FOOT_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL ) # Left foot
-		create_room(MISTY_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, VEL ) # Right foot
+		create_room(MISTY_BACK_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL, free_pika, pause ) # All Foots
+		create_room(MISTY_BACK_LEFT_FOOT_IMG, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL, free_pika, pause ) # Left foot
+		create_room(MISTY_BACK_RIGHT_FOOT_IMG, ASH_PIKACHU_BACK_RIGHT_FOOT_IMG, VEL, free_pika, pause ) # Right foot
 
 	pokemon_trainer.y -= VEL
 	previous_y = pokemon_trainer.y
@@ -4501,6 +4501,8 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 
 	VEL = 6
 	pause = -1
+	free_pika = 0
+	trainer_pokeballs = []
 
 	if isAsh :
 		TRAINER_IMG = ASH_IMG
@@ -4522,6 +4524,11 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 				pygame.quit()
 
 			keys = pygame.key.get_pressed()
+
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_p and len(trainer_pokeballs) < MAX_POKEBALL:
+					free_pika = pokeball_out(trainer_pokeballs, free_pika)
+					PIKACHU_SOUND.play()
 				
 			if keys[pygame.K_LEFT]:
 				if isAsh :
@@ -4530,7 +4537,7 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 					TRAINER_IMG = MISTY_LEFT_IMG
 
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
-				create_room(TRAINER_IMG, PIKACHU_IMG, VEL )
+				create_room(TRAINER_IMG, PIKACHU_IMG, VEL, free_pika, pause )
 				
 			if keys[pygame.K_RIGHT] :
 				if isAsh :
@@ -4539,7 +4546,7 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 					TRAINER_IMG = MISTY_RIGHT_IMG
 
 				PIKACHU_IMG = ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG
-				create_room(TRAINER_IMG, PIKACHU_IMG, VEL )
+				create_room(TRAINER_IMG, PIKACHU_IMG, VEL, free_pika, pause )
 
 			if keys[pygame.K_UP]:
 				if isAsh :
@@ -4548,7 +4555,7 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 					TRAINER_IMG = MISTY_BACK_IMG
 
 				PIKACHU_IMG = ASH_PIKACHU_BACK_LEFT_FOOT_IMG
-				create_room(TRAINER_IMG, PIKACHU_IMG, VEL)
+				create_room(TRAINER_IMG, PIKACHU_IMG, VEL, free_pika, pause)
 
 			if keys[pygame.K_DOWN]:
 				if isAsh :
@@ -4557,7 +4564,7 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 					TRAINER_IMG = MISTY_IMG
 
 				PIKACHU_IMG = ASH_PIKACHU_LEFT_FOOT_IMG
-				create_room(TRAINER_IMG, PIKACHU_IMG, VEL )
+				create_room(TRAINER_IMG, PIKACHU_IMG, VEL, free_pika, pause )
 
 			if keys[pygame.K_e]:
 				inside = True
@@ -4591,8 +4598,8 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 						VEL -=1
 
 		keys_pressed = pygame.key.get_pressed()
-		trainer_movement_house_trainer(keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL)
-		create_room(TRAINER_IMG,ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL)
+		trainer_movement_house_trainer(keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL, free_pika, pause)
+		create_room(TRAINER_IMG,ASH_PIKACHU_BACK_LEFT_FOOT_IMG, VEL, free_pika, pause)
 
 
 
@@ -4757,17 +4764,17 @@ def movement_down_house(pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause,
 
 
 
-def movement_down_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL) :
+def movement_down_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL, free_pika, pause) :
 
 	if isAsh :
-		create_room(ASH_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG, VEL) # All Foots
-		create_room(ASH_LEFT_FOOT_IMG,  ASH_PIKACHU_RIGHT_FOOT_IMG, VEL ) # Left foot
-		create_room(ASH_IMG, ASH_PIKACHU_LEFT_FOOT_IMG, VEL ) # Right foot
+		create_room(ASH_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG, VEL, free_pika, pause) # All Foots
+		create_room(ASH_LEFT_FOOT_IMG,  ASH_PIKACHU_RIGHT_FOOT_IMG, VEL, free_pika, pause ) # Left foot
+		create_room(ASH_IMG, ASH_PIKACHU_LEFT_FOOT_IMG, VEL, free_pika, pause ) # Right foot
 
 	else :
-		create_room(MISTY_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG, VEL ) # All Foots
-		create_room(MISTY_LEFT_FOOT_IMG,  ASH_PIKACHU_RIGHT_FOOT_IMG, VEL ) # Left foot
-		create_room(MISTY_IMG, ASH_PIKACHU_LEFT_FOOT_IMG, VEL ) # Right foot
+		create_room(MISTY_IMG, ASH_PIKACHU_RIGHT_FOOT_IMG, VEL, free_pika, pause ) # All Foots
+		create_room(MISTY_LEFT_FOOT_IMG,  ASH_PIKACHU_RIGHT_FOOT_IMG, VEL , free_pika, pause) # Left foot
+		create_room(MISTY_IMG, ASH_PIKACHU_LEFT_FOOT_IMG, VEL, free_pika, pause ) # Right foot
 
 	pokemon_trainer.y += VEL
 	previous_y = pokemon_trainer.y
@@ -5347,32 +5354,32 @@ def trainer_movement_shop(keys_pressed, pokemon_trainer, pikachu_trainer, isAsh,
 			fps +=1
 
 # Defines the movement inside the Trainer house
-def trainer_movement_house_trainer (keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL) :## Trainer Movement function
+def trainer_movement_house_trainer (keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL, free_pika, pause) :## Trainer Movement function
 	wild = False
 	trainer_pokeballs = []
 
 	if keys_pressed[pygame.K_LEFT] and pokemon_trainer.x >0 :
 		fps = 0
 		while fps < 5 :
-			movement_left_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL)
+			movement_left_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL, free_pika, pause)
 			fps +=1
 
 	if keys_pressed[pygame.K_RIGHT] and pokemon_trainer.x < WIDTH - 80:
 		fps = 0
 		while fps < 5 :
-			movement_right_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL)
+			movement_right_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL, free_pika, pause)
 			fps +=1
 
 	if keys_pressed[pygame.K_UP] and pokemon_trainer.y - VEL > 0 :
 		fps = 0
 		while fps < 5 :
-			movement_up_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL)
+			movement_up_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL, free_pika, pause)
 			fps +=1
 		
 	if keys_pressed[pygame.K_DOWN] and pokemon_trainer.y - VEL < HEIGHT -100 :
 		fps = 0
 		while fps < 5 :
-			movement_down_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL)
+			movement_down_house_trainer(pokemon_trainer, pikachu_trainer, isAsh, isMisty, VEL, free_pika, pause)
 			fps +=1
 
 
@@ -5526,9 +5533,6 @@ def create_laboratory (TRAINER, PIKACHU, OAK, isTalking, isBulbasaur, isSquirtle
 		WIN.blit(POKEBALL_ITEM, (640, 300))
 		WIN.blit(POKEBALL_ITEM, (690, 300))
 
-	WIN.blit(SHOES_BG_IMG, (0,377))
-	vel_counter = POKEBALLS_COUNTER.render(str(VEL), 1, GREY)
-	WIN.blit(vel_counter, (57, 392))
 
 	
 	#pygame.draw.rect(WIN, GREEN, OAK_TABLE) 
@@ -5596,6 +5600,11 @@ def create_laboratory (TRAINER, PIKACHU, OAK, isTalking, isBulbasaur, isSquirtle
 
 	if free_pika % 2 == 0 :
 		WIN.blit(PIKA_BG_IMG, (770,377))
+
+
+	WIN.blit(SHOES_BG_IMG, (0,377))
+	vel_counter = POKEBALLS_COUNTER.render(str(VEL), 1, GREY)
+	WIN.blit(vel_counter, (57, 392))
 	
 	WIN.blit(CLOCK_IMG, (700, 0))
 	WIN.blit(date, (725, 10))
@@ -5607,7 +5616,7 @@ def create_laboratory (TRAINER, PIKACHU, OAK, isTalking, isBulbasaur, isSquirtle
 
 	pygame.display.update()
 
-def create_room (TRAINER, PIKACHU, VEL) :
+def create_room (TRAINER, PIKACHU, VEL, free_pika, pause) :
 
 	now = datetime.now()
 	hora_str = now.strftime("%H")
@@ -5634,6 +5643,12 @@ def create_room (TRAINER, PIKACHU, VEL) :
 	vel_counter = POKEBALLS_COUNTER.render(str(VEL), 1, GREY)
 	WIN.blit(vel_counter, (57, 392))
 	
+	if pause == 0 :
+		WIN.blit(BACK_BG_IMG, (0,0))
+		WIN.blit(BAG_IMG, (5,15))
+
+	if free_pika % 2 == 0 :
+		WIN.blit(PIKA_BG_IMG, (770,377))
 
 
 	pygame.display.update()
