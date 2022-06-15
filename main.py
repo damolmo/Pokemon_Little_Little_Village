@@ -184,6 +184,8 @@ CENTER_STAIRS_EAST =  pygame.Rect(100, 0, 120, 300)
 LIMIT_EAST =  pygame.Rect(0, 300, 120, HEIGHT - 300)
 CENTER_DESK = pygame.Rect(250, 120, 350, 100)
 
+# Team Rocket Rect
+ROCKET_RECT = pygame.Rect(800, 300, 100, 200)
 
 ## Game Events
 THROW_POKEBALL = pygame.USEREVENT +1
@@ -335,6 +337,26 @@ OAK_BACK_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('
 OAK_BACK_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/oak/up', "oak_up_right_foot.png")), (74, 96))
 
 
+
+### Team Rocket Assets
+
+# Sound effect
+ROCKET_SOUND = pygame.mixer.Sound("Assets/sounds/team_rocket_sound.mp3")
+
+
+## Jessie
+JESSIE_IMG_01 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/jessie/down', "jessie_down.png")), (trainer_size.width, trainer_size.height))
+JESSIE_IMG_02 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/jessie/down', "jessie_down_left_foot.png")), (trainer_size.width, trainer_size.height))
+JESSIE_IMG_03 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/jessie/down', "jessie_down_right_foot.png")), (trainer_size.width, trainer_size.height))
+
+
+## James
+JAMES_IMG_01 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/james/down', "james_down.png")), (trainer_size.width, trainer_size.height))
+JAMES_IMG_02 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/james/down', "james_down_left_foot.png")), (trainer_size.width, trainer_size.height))
+JAMES_IMG_03 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/james/down', "james_down_right_foot.png")), (trainer_size.width, trainer_size.height))
+
+## Meowth
+MEOWTH_GIF = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/meowth', "meowth.gif")), (trainer_size.width, trainer_size.height))
 
 ### Pokemon
 
@@ -3564,6 +3586,23 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_RIGHT_LEFT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # Left foot
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # Right foot
 
+
+		if pokemon_trainer.colliderect(ROCKET_RECT):
+			TOWN.stop()
+			previous_x = pokemon_trainer.x
+			previous_y = pokemon_trainer.y
+
+			ROCKET_SOUND.play()
+
+			if isAsh :
+				create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # All Foots
+			else :
+				create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # All Foots
+			while (pokemon_trainer.colliderect(ROCKET_RECT)) :
+				pokemon_trainer.x = previous_x
+				pokemon_trainer.y = previous_y
+	
+
 		pokemon_trainer.x += VEL
 		pikachu_trainer.x = pokemon_trainer.x - 60
 		pikachu_trainer.y = pokemon_trainer.y + 10
@@ -3599,7 +3638,7 @@ def movement_right_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh
 	if pokemon_trainer.colliderect(ESTANTERIA_CENTRO_1):
 		WALL_SOUND.play()
 		pokemon_trainer.x = previous_x - VEL
-		pokemon_trainer.y = previous_y 
+		pokemon_trainer.y = previous_y
 
 	if pokemon_trainer.colliderect(MESA_RECT):
 		WALL_SOUND.play()
@@ -3894,6 +3933,10 @@ def create_shopping_area (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer
 	if free_pika % 2 == 1 :
 		WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
 
+		# Team Rocket assets
+	WIN.blit(JESSIE_IMG_01, (700, 300))
+	WIN.blit(JAMES_IMG_01, (770, 300))
+
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
 
 	fecha = today.strftime("%m %d")
@@ -3926,6 +3969,9 @@ def create_shopping_area (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer
 	WIN.blit(dayofWeek, (830, 20))
 	WIN.blit(time, (750, 50))
 
+
+
+	#pygame.draw.rect(WIN, GREEN, ROCKET_RECT)
 	#pygame.draw.rect(WIN, GREEN, POKEMON_CENTER_RECT)
 	#pygame.draw.rect(WIN, GREEN, SHOP_RECT)
 	#pygame.draw.rect(WIN, BLUE, ESTANQUE_RECT)
