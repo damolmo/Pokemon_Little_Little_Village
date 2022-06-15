@@ -186,6 +186,7 @@ CENTER_DESK = pygame.Rect(250, 120, 350, 100)
 
 # Team Rocket Rect
 ROCKET_RECT = pygame.Rect(800, 300, 100, 200)
+ROCKET_LOGO_RECT = pygame.Rect(0, 0, WIDTH, HEIGHT)
 
 ## Game Events
 THROW_POKEBALL = pygame.USEREVENT +1
@@ -357,6 +358,36 @@ JAMES_IMG_03 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npc
 
 ## Meowth
 MEOWTH_GIF = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/meowth', "meowth.gif")), (trainer_size.width, trainer_size.height))
+
+## Battle opening
+
+## Asset
+ROCKET_INTRO = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/intro', "jessie_james_asset.png")), (WIDTH, HEIGHT))
+
+## OPENING
+ROCKET_IMG_01 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_00_delay-0.41s.gif")), (200, 200))
+ROCKET_IMG_02 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_01_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_03 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_02_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_04 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_03_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_05 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_04_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_06 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_05_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_07 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_06_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_08 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_07_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_09 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_08_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_10 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_09_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_11 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_10_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_12 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_11_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_13 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_12_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_14 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_13_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_15 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_14_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_16 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_15_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_17 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_16_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_18 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_17_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_19 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_18_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_20 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_19_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_21 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_20_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_22 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_21_delay-0.01s.gif")), (200, 200))
+ROCKET_IMG_23 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/team_rocket/logo', "frame_22_delay-0.01s.gif")), (200, 200))
 
 ### Pokemon
 
@@ -3598,9 +3629,17 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 				create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # All Foots
 			else :
 				create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # All Foots
+			
+			pokemon_trainer.x = previous_x
+			pokemon_trainer.y = previous_y
+			time.sleep(2)
+			create_team_rocket_logo()
+			time.sleep(2)
+			create_team_rocket_intro()
 			while (pokemon_trainer.colliderect(ROCKET_RECT)) :
 				pokemon_trainer.x = previous_x
 				pokemon_trainer.y = previous_y
+				
 	
 
 		pokemon_trainer.x += VEL
@@ -3610,6 +3649,66 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 		previous_y = pokemon_trainer.y
 		previous_pi_x = pikachu_trainer.x
 		previous_pi_y = pikachu_trainer.y
+
+def create_team_rocket_intro() :
+	WIN.blit(ROCKET_INTRO, (0, 0 ))
+	WIN.blit(BATTLE_DIALOG, (0, 420))
+	dialog = DIALOG_FONT.render("" + str("Team Rocket, Jessie and James challenge you"), 1, BLACK)
+	WIN.blit(dialog, (50, 440))
+	pygame.display.update()
+
+def create_team_rocket_window(ROCKET_LOGO) :
+	pygame.draw.rect(WIN, BLACK, ROCKET_LOGO_RECT)
+	WIN.blit(ROCKET_LOGO, (350, 150 ))
+	pygame.display.update()
+
+def create_team_rocket_logo() :
+	create_team_rocket_window(ROCKET_IMG_01) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_02) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_03) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_04) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_05) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_06) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_07) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_08) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_09) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_10) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_11) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_12) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_13) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_14) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_15) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_16) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_17) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_18) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_19) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_20) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_21) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_22) 
+	clock.tick(30)
+	create_team_rocket_window(ROCKET_IMG_23) 
+
 
 def movement_right_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause, VEL) :
 	trainer_pokeballs = []
