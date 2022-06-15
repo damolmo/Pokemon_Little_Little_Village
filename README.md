@@ -35,11 +35,13 @@ Pocket Monster based game powered by Python and Pygame
 - [x] Defined Oak and Trainer house
 - [x] Working save game slot
 - [x] Trainer bag
+- [x] Create more Pokémon
+- [x] New Map area with shop and Pokemon Center
 - [ ] Fully working wild encounter
-- [ ] Create more Pokémon
-- [ ] New Maps area with shop and Pokemon Center
-
-
+- [ ] Fully working inventory
+- [ ] Fully working Pokemon Center and shop
+- [ ] New Safari Zone
+- [ ] Pokemon Bank
 # Installation
 
 ```GNU/Linux ```
