@@ -1006,6 +1006,13 @@ BATTLE_ARENA_IMG_11 = pygame.transform.scale(pygame.image.load(os.path.join('Ass
 BATTLE_ARENA_IMG_12 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/battle/opening', "grass_12.gif")), (WIDTH, HEIGHT))
 
 
+# NPC Battle
+BATTLE_INTRO = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/challenge', "battle.png")), (WIDTH, HEIGHT))
+BATTLE_ARENA =  pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/challenge', "battle_arena.png")), (WIDTH, HEIGHT))
+
+# Battle Assets
+TEAM_ROCKET = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/challenge/jessie_james', "rocket.png")), (200, 200))
+
 # Music
 BACKGROUND_SOUND = pygame.mixer.Sound("Assets/sounds/music.mp3")
 POKEMON_ENCOUNTER_SOUND = pygame.mixer.Sound("Assets/sounds/pokemon_encounter.mp3")
@@ -1022,13 +1029,13 @@ HEALING_SOUND = pygame.mixer.Sound("Assets/sounds/healing.mp3")
 
 # Pokeball
 POKEBALL_IMG = pygame.image.load(os.path.join('Assets/items', "pokeball.png"))
-POKEBALL_ITEM = pygame.image.load(os.path.join('Assets/items', "pokeball_item.png"))
+POKEBALL_ITEM = pygame.transform.scale(pygame.image.load(os.path.join('Assets/items', "pokeball_item.png")), (40,40))
 POKEBALL_SOUND = pygame.mixer.Sound("Assets/sounds/pokeball_out.mp3")
 MAX_POKEBALL = 3
 POKEBALL_VEL = 3
 POKEBALL_ITEM.convert()
 
-# Displat Fonts
+# Display Fonts
 WINNER_LOOSER_DIALOG = pygame.font.SysFont('comicsans', 80)
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 30)
 DIALOG_FONT = pygame.font.SysFont('comicsans', 26)
@@ -3636,6 +3643,17 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 			create_team_rocket_logo()
 			time.sleep(2)
 			create_team_rocket_intro()
+			time.sleep(2)
+
+			if isAsh :
+				TRAINER_IMG = ASH_BATTLE_IMG
+
+			else :
+				TRAINER_IMG = MISTY_BATTLE_IMG
+
+			#create_npc_battle_intro(TEAM_ROCKET, isAsh, TRAINER_IMG, 1, 600)
+			create_npc_transition(TEAM_ROCKET , isAsh, TRAINER_IMG, 1, 600 )
+
 			while (pokemon_trainer.colliderect(ROCKET_RECT)) :
 				pokemon_trainer.x = previous_x
 				pokemon_trainer.y = previous_y
@@ -3649,6 +3667,67 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 		previous_y = pokemon_trainer.y
 		previous_pi_x = pikachu_trainer.x
 		previous_pi_y = pikachu_trainer.y
+
+def create_npc_transition(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDTH) : 
+	if isAsh :
+		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG, NPC_POKEBALLS, NPC_WIDTH + 50  )
+		clock.tick(10)
+		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_2, NPC_POKEBALLS, NPC_WIDTH + 100  )
+		clock.tick(10)
+		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_3, NPC_POKEBALLS, NPC_WIDTH + 150  )
+		clock.tick(10)
+		create_npc_battle_intro(NPC_IMG, isAsh,  ASH_BATTLE_IMG_4, NPC_POKEBALLS, NPC_WIDTH + 200  )
+		clock.tick(10)
+		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 250  )
+		clock.tick(10)
+		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 300  )
+
+	else :
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG, NPC_POKEBALLS, NPC_WIDTH + 50  )
+		clock.tick(10)
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_2, NPC_POKEBALLS, NPC_WIDTH + 100  )
+		clock.tick(10)
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_3, NPC_POKEBALLS, NPC_WIDTH + 150  )
+		clock.tick(10)
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_4, NPC_POKEBALLS, NPC_WIDTH + 200  )
+		clock.tick(10)
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 250  )
+		clock.tick(10)
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 300  )
+		
+
+def create_npc_battle_intro(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDTH) :
+	WIN.blit(BATTLE_INTRO, (0,0))
+
+	# NPCS Transition
+	WIN.blit(NPC_IMG, (NPC_WIDTH, 50))
+	clock.tick(30)
+	
+	# Trainer Transition
+	WIN.blit(TRAINER_IMG, (100, 300))
+	clock.tick(30)
+
+	# NPC Pokeballs
+	if NPC_POKEBALLS == 1 :
+		WIN.blit(POKEBALL_ITEM, (75, 44))
+
+
+	# Trainer Available pokeballs
+	if variables["POKEMON_1"]["HP"] > 0 :
+		WIN.blit(POKEBALL_ITEM, (760, 410))
+
+	if variables["POKEMON_2"]["HP"] > 0 :
+		WIN.blit(POKEBALL_ITEM, (707, 410))
+
+	if variables["POKEMON_3"]["HP"] > 0 :
+		WIN.blit(POKEBALL_ITEM, (650, 410))
+
+	pygame.display.update()
+
+
+
+def create_npc_battle() :
+	WIN.blit(BATTLE_ARENA, (0,0))
 
 def create_team_rocket_intro() :
 	WIN.blit(ROCKET_INTRO, (0, 0 ))
