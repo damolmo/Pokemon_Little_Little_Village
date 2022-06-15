@@ -40,7 +40,7 @@ Pocket Monster based game powered by Python and Pygame
 - [ ] Fully working wild encounter
 - [ ] Fully working inventory
 - [ ] Fully working Pokemon Center and shop
-
+- [ ] New Safari Zone
 # Installation
 
 ```GNU/Linux ```
