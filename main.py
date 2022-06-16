@@ -3646,9 +3646,8 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 			pokemon_trainer.y = previous_y
 			time.sleep(2)
 			create_team_rocket_logo()
-			time.sleep(2)
 			create_team_rocket_intro()
-			time.sleep(2)
+			time.sleep(4)
 
 			if isAsh :
 				TRAINER_IMG = ASH_BATTLE_IMG
