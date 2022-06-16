@@ -3651,12 +3651,12 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 			else :
 				TRAINER_IMG = MISTY_BATTLE_IMG
 
-			#create_npc_battle_intro(TEAM_ROCKET, isAsh, TRAINER_IMG, 1, 600)
-			create_npc_transition(TEAM_ROCKET , isAsh, TRAINER_IMG, 1, 600, 100 )
+			create_npc_transition(TEAM_ROCKET , isAsh, TRAINER_IMG, 1, 600, 100, ["MEOWTH"] )
 
 			while (pokemon_trainer.colliderect(ROCKET_RECT)) :
 				pokemon_trainer.x = previous_x
 				pokemon_trainer.y = previous_y
+				create_npc_battle( ["MEOWTH"] )
 				
 	
 
@@ -3668,35 +3668,35 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 		previous_pi_x = pikachu_trainer.x
 		previous_pi_y = pikachu_trainer.y
 
-def create_npc_transition(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDTH, TRAINER_WIDTH) : 
+def create_npc_transition(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDTH, TRAINER_WIDTH, NPC_POKEMON) : 
 	if isAsh :
-		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG, NPC_POKEBALLS, NPC_WIDTH + 50, TRAINER_WIDTH - 55  )
+		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG, NPC_POKEBALLS, NPC_WIDTH + 50, TRAINER_WIDTH - 55 , NPC_POKEMON )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_2, NPC_POKEBALLS, NPC_WIDTH + 100, TRAINER_WIDTH - 110  )
+		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_2, NPC_POKEBALLS, NPC_WIDTH + 100, TRAINER_WIDTH - 110, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_3, NPC_POKEBALLS, NPC_WIDTH + 150, TRAINER_WIDTH - 165  )
+		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_3, NPC_POKEBALLS, NPC_WIDTH + 150, TRAINER_WIDTH - 165, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh,  ASH_BATTLE_IMG_4, NPC_POKEBALLS, NPC_WIDTH + 200, TRAINER_WIDTH - 215  )
+		create_npc_battle_intro(NPC_IMG, isAsh,  ASH_BATTLE_IMG_4, NPC_POKEBALLS, NPC_WIDTH + 200, TRAINER_WIDTH - 215, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 250, TRAINER_WIDTH - 265  )
+		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 250, TRAINER_WIDTH - 265, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 300, TRAINER_WIDTH - 320  )
+		create_npc_battle_intro(NPC_IMG, isAsh, ASH_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 300, TRAINER_WIDTH - 320, NPC_POKEMON  )
 
 	else :
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG, NPC_POKEBALLS, NPC_WIDTH + 50, TRAINER_WIDTH - 55  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG, NPC_POKEBALLS, NPC_WIDTH + 50, TRAINER_WIDTH - 55, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_2, NPC_POKEBALLS, NPC_WIDTH + 100, TRAINER_WIDTH - 110  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_2, NPC_POKEBALLS, NPC_WIDTH + 100, TRAINER_WIDTH - 110, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_3, NPC_POKEBALLS, NPC_WIDTH + 150, TRAINER_WIDTH - 165  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_3, NPC_POKEBALLS, NPC_WIDTH + 150, TRAINER_WIDTH - 165, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_4, NPC_POKEBALLS, NPC_WIDTH + 200, TRAINER_WIDTH - 215  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_4, NPC_POKEBALLS, NPC_WIDTH + 200, TRAINER_WIDTH - 215, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 250, TRAINER_WIDTH - 265  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 250, TRAINER_WIDTH - 265, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 300, TRAINER_WIDTH - 320  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 300, TRAINER_WIDTH - 320, NPC_POKEMON  )
 		
 
-def create_npc_battle_intro(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDTH, TRAINER_WIDTH) :
+def create_npc_battle_intro(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDTH, TRAINER_WIDTH, NPC_POKEMON) :
 	WIN.blit(BATTLE_INTRO, (0,0))
 
 	# NPCS Transition
@@ -3706,6 +3706,7 @@ def create_npc_battle_intro(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDT
 	# Trainer Transition
 	WIN.blit(TRAINER_IMG, (TRAINER_WIDTH, 300))
 	clock.tick(30)
+
 
 	# NPC Pokeballs
 	if NPC_POKEBALLS == 1 :
@@ -3726,8 +3727,60 @@ def create_npc_battle_intro(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDT
 
 
 
-def create_npc_battle() :
+def create_npc_battle(NPC_POKEMON) :
 	WIN.blit(BATTLE_ARENA, (0,0))
+	WIN.blit(BATTLE_MENU, (600,410)) # Place background image
+	WIN.blit(CURSOR, (cursor_pos.x, cursor_pos.y))
+	WIN.blit(LIFE_MENU, (680, 30))
+	WIN.blit(LIFE_MENU, (0, 30))
+
+	# NPC Pokemon
+	for pokemon in NPC_POKEMON :
+		if pokemon == "MEOWTH":
+			WIN.blit(MEOWTH_IMG_01, (600, 50))
+
+	# Trainer Pokemon
+	if variables["POKEMON_1"]["HP"] > 0 :
+		if variables["POKEMON_1"]["NAME"] == "PIKACHU"  :
+			WIN.blit(PIKACHU_BATTLE_IMG, (100, 300))
+
+		elif variables["POKEMON_1"]["NAME"] == "BULBASAUR"  :
+			WIN.blit(BULBASAUR_BATTLE_IMG, (100, 300))
+
+		elif variables["POKEMON_1"]["NAME"] == "CHARMANDER"  :
+			WIN.blit(CHARMANDER_BATTLE_IMG, (100, 300))
+
+		elif variables["POKEMON_1"]["NAME"] == "SQUIRTLE"  :
+			WIN.blit(SQUIRTLE_BATTLE_IMG, (100, 300))
+
+
+	elif variables["POKEMON_1"]["HP"] == 0 and variables["POKEMON_2"]["HP"] > 0 :
+		if variables["POKEMON_2"]["NAME"] == "PIKACHU"  :
+			WIN.blit(PIKACHU_BATTLE_IMG, (100, 300))
+
+		elif variables["POKEMON_2"]["NAME"] == "BULBASAUR"  :
+			WIN.blit(BULBASAUR_BATTLE_IMG, (100, 300))
+
+		elif variables["POKEMON_2"]["NAME"] == "CHARMANDER"  :
+			WIN.blit(CHARMANDER_BATTLE_IMG, (100, 300))
+
+		elif variables["POKEMON_2"]["NAME"] == "SQUIRTLE"  :
+			WIN.blit(SQUIRTLE_BATTLE_IMG, (100, 300))
+
+	elif variables["POKEMON_2"]["HP"] == 0 and variables["POKEMON_3"]["HP"] > 0 :
+		if variables["POKEMON_3"]["NAME"] == "PIKACHU"  :
+			WIN.blit(PIKACHU_BATTLE_IMG, (100, 300))
+
+		elif variables["POKEMON_3"]["NAME"] == "BULBASAUR"  :
+			WIN.blit(BULBASAUR_BATTLE_IMG, (100, 300))
+
+		elif variables["POKEMON_3"]["NAME"] == "CHARMANDER"  :
+			WIN.blit(CHARMANDER_BATTLE_IMG, (100, 300))
+
+		elif variables["POKEMON_3"]["NAME"] == "SQUIRTLE"  :
+			WIN.blit(SQUIRTLE_BATTLE_IMG, (100, 300))
+
+	pygame.display.update()
 
 def create_team_rocket_intro() :
 	WIN.blit(ROCKET_INTRO, (0, 0 ))
