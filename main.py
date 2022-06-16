@@ -1044,7 +1044,7 @@ RULES = pygame.font.SysFont('comicsans', 16)
 
 
 def save_game () :
-	my_save_slot = json.dumps(variables)
+	my_save_slot = json.dumps(variables["TRAINER"])
 	with open('save.json', 'w') as save:
 		save.write(my_save_slot)
 
@@ -1074,15 +1074,15 @@ def pre_area(POKEMON, POKEMON_NAME, ASH) :
 	WIN.blit(BATTLE_DIALOG, (0, 420))
 	dialog = DIALOG_FONT.render("" + str("A Wild Pokémon Appeared!"), 1, BLACK)
 	WIN.blit(dialog, (50, 440))
-	if variables["POKEMON_1"]["HP"] > 0 :
-		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["POKEMON_1"]["NAME"].capitalize())  + "!"), 1, BLACK)
+	if variables["TRAINER"]["POKEMON_1"]["HP"] > 0 :
+		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_1"]["NAME"].capitalize())  + "!"), 1, BLACK)
 
-	elif variables["POKEMON_1"]["HP"] == 0 and variables["POKEMON_2"]["HP"] > 0 :
-		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["POKEMON_2"]["NAME"].capitalize())  + "!"), 1, BLACK)
+	elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] > 0 :
+		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_2"]["NAME"].capitalize())  + "!"), 1, BLACK)
 
 
-	elif variables["POKEMON_1"]["HP"] == 0 and variables["POKEMON_2"]["HP"] == 0 and  variables["POKEMON_3"]["HP"] > 0 :
-		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["POKEMON_3"]["NAME"].capitalize())  + "!"), 1, BLACK)
+	elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] == 0 and  variables["TRAINER"]["POKEMON_3"]["HP"] > 0 :
+		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_3"]["NAME"].capitalize())  + "!"), 1, BLACK)
 
 	WIN.blit(dialog, (50, 460))
 
@@ -1297,7 +1297,7 @@ def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, p
 	stats = RULES.render("" + str(staticHP) , 1, BLACK)
 	WIN.blit(stats, (720, 60))
 
-	if variables["POKEMON_1"]["HP"] > 0 :
+	if variables["TRAINER"]["POKEMON_1"]["HP"] > 0 :
 
 		WIN.blit(PIKACHU_BATTLE_IMG, (0,250))
 
@@ -1317,20 +1317,20 @@ def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, p
 		level = RULES.render("Lv " + str(pokemonLevel), 1, BLACK)
 		WIN.blit(level, (160, 35))
 
-	elif variables["POKEMON_1"]["HP"] == 0 :
-		if variables["POKEMON_2"]["HP"] > 0 :
+	elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 :
+		if variables["TRAINER"]["POKEMON_2"]["HP"] > 0 :
 
-			if variables["POKEMON_2"]["NAME"] == "SQUIRTLE":
+			if variables["TRAINER"]["POKEMON_2"]["NAME"] == "SQUIRTLE":
 				WIN.blit(SQUIRTLE_BATTLE_IMG, (0,250))
 
-			elif variables["POKEMON_2"]["NAME"] == "CHARMANDER":
+			elif variables["TRAINER"]["POKEMON_2"]["NAME"] == "CHARMANDER":
 					WIN.blit(CHARMANDER_BATTLE_IMG, (0,250))
 
-			elif variables["POKEMON_2"]["NAME"] == "BULBASAUR":
+			elif variables["TRAINER"]["POKEMON_2"]["NAME"] == "BULBASAUR":
 					WIN.blit(BULBASAUR_BATTLE_IMG, (0,250))
 
 
-			friend = RULES.render("" + str(variables["POKEMON_2"]["NAME"]), 1, BLACK)
+			friend = RULES.render("" + str(variables["TRAINER"]["POKEMON_2"]["NAME"]), 1, BLACK)
 			WIN.blit(friend, (5, 35))
 
 			stats = RULES.render("" + str(pokemonVariableHP) , 1, BLACK)
@@ -1343,23 +1343,23 @@ def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, p
 			WIN.blit(stats, (40, 60))
 
 
-			level = RULES.render("Lv " + str(variables["POKEMON_2"]["LEVEL"]), 1, BLACK)
+			level = RULES.render("Lv " + str(variables["TRAINER"]["POKEMON_2"]["LEVEL"]), 1, BLACK)
 			WIN.blit(level, (160, 35))
 
-		elif variables["POKEMON_1"]["HP"] == 0 and variables["POKEMON_2"]["HP"] == 0 :
-			if variables["POKEMON_3"]["HP"] > 0 :
+		elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] == 0 :
+			if variables["TRAINER"]["POKEMON_3"]["HP"] > 0 :
 
-				if variables["POKEMON_3"]["NAME"] == "SQUIRTLE":
+				if variables["TRAINER"]["POKEMON_3"]["NAME"] == "SQUIRTLE":
 					WIN.blit(SQUIRTLE_BATTLE_IMG, (0,250))
 
-				elif variables["POKEMON_3"]["NAME"] == "CHARMANDER":
+				elif variables["TRAINER"]["POKEMON_3"]["NAME"] == "CHARMANDER":
 						WIN.blit(CHARMANDER_BATTLE_IMG, (0,250))
 
-				elif variables["POKEMON_3"]["NAME"] == "BULBASAUR":
+				elif variables["TRAINER"]["POKEMON_3"]["NAME"] == "BULBASAUR":
 						WIN.blit(BULBASAUR_BATTLE_IMG, (0,250))
 
 
-				friend = RULES.render("" + str(variables["POKEMON_3"]["NAME"]), 1, BLACK)
+				friend = RULES.render("" + str(variables["TRAINER"]["POKEMON_3"]["NAME"]), 1, BLACK)
 				WIN.blit(friend, (5, 35))
 
 				stats = RULES.render("" + str(pokemonVariableHP) , 1, BLACK)
@@ -1372,7 +1372,7 @@ def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, p
 				WIN.blit(stats, (40, 60))
 
 
-				level = RULES.render("Lv " + str(variables["POKEMON_3"]["LEVEL"]), 1, BLACK)
+				level = RULES.render("Lv " + str(variables["TRAINER"]["POKEMON_3"]["LEVEL"]), 1, BLACK)
 				WIN.blit(level, (160, 35))
 
 
@@ -2822,16 +2822,16 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 	staticHP = random.randint(10, 20)
 	randomLevel = random.randint(2, 12)
 	variableHP = staticHP
-	pokemonStaticHP = variables["POKEMON_1"]["BASE_HP"]
-	pokemonVariableHP = variables["POKEMON_1"]["HP"]
+	pokemonStaticHP = variables["TRAINER"]["POKEMON_1"]["BASE_HP"]
+	pokemonVariableHP = variables["TRAINER"]["POKEMON_1"]["HP"]
 	
-	pokemonStaticHP_2 = variables["POKEMON_2"]["BASE_HP"]
-	pokemonVariableHP_2 = variables["POKEMON_2"]["HP"]
+	pokemonStaticHP_2 = variables["TRAINER"]["POKEMON_2"]["BASE_HP"]
+	pokemonVariableHP_2 = variables["TRAINER"]["POKEMON_2"]["HP"]
 
-	pokemonStaticHP_3 = variables["POKEMON_3"]["BASE_HP"]
-	pokemonVariableHP_3 = variables["POKEMON_3"]["HP"]
+	pokemonStaticHP_3 = variables["TRAINER"]["POKEMON_3"]["BASE_HP"]
+	pokemonVariableHP_3 = variables["TRAINER"]["POKEMON_3"]["HP"]
 
-	pokemonLevel = variables["POKEMON_1"]["LEVEL"]
+	pokemonLevel = variables["TRAINER"]["POKEMON_1"]["LEVEL"]
 
 
 	POKEMON = wild_asset(pokemon)
@@ -2848,15 +2848,15 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 	keys = pygame.key.get_pressed()
 
 	while wild:
-		if pokemonVariableHP == 0 and pokemonVariableHP == variables["POKEMON_1"]["HP"] and variables["POKEMON_2"]["HP"] > 0   :
+		if pokemonVariableHP == 0 and pokemonVariableHP == variables["TRAINER"]["POKEMON_1"]["HP"] and variables["TRAINER"]["POKEMON_2"]["HP"] > 0   :
 			pokemonVariableHP = pokemonVariableHP_2 
 			pokemonStaticHP = pokemonStaticHP_2
 
-		elif pokemonVariableHP == 0 and pokemonVariableHP == variables["POKEMON_2"]["HP"] and variables["POKEMON_2"]["HP"] == 0 and variables["POKEMON_3"]["HP"] > 0   :
+		elif pokemonVariableHP == 0 and pokemonVariableHP == variables["TRAINER"]["POKEMON_2"]["HP"] and variables["TRAINER"]["POKEMON_2"]["HP"] == 0 and variables["TRAINER"]["POKEMON_3"]["HP"] > 0   :
 			pokemonVariableHP = pokemonVariableHP_3
 			pokemonStaticHP = pokemonStaticHP_3
 
-		elif pokemonVariableHP == 0 and pokemonVariableHP == variables["POKEMON_3"]["HP"] :
+		elif pokemonVariableHP == 0 and pokemonVariableHP == variables["TRAINER"]["POKEMON_3"]["HP"] :
 			pokemonVariableHP = 0
 
 
@@ -2874,9 +2874,9 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 					POKEMON_ENCOUNTER_SOUND.stop()
 					SCAPE_SOUND.play()
 					time.sleep(1)
-					variables["POKEMON_1"]["HP"] = pokemonVariableHP
-					variables["POKEMON_2"]["HP"] = pokemonVariableHP_2
-					variables["POKEMON_3"]["HP"] = pokemonVariableHP_3
+					variables["TRAINER"]["POKEMON_1"]["HP"] = pokemonVariableHP
+					variables["TRAINER"]["POKEMON_2"]["HP"] = pokemonVariableHP_2
+					variables["TRAINER"]["POKEMON_3"]["HP"] = pokemonVariableHP_3
 					save_game()
 					wild = False
 					print("HAS HUIDO")
@@ -2907,14 +2907,14 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 
 				if variableHP == 0 or pokemonVariableHP == 0 and pokemonVariableHP_2 == 0 and pokemonVariableHP_3 == 0 :
 					# Backup of current Pokemon HP
-					if pokemonStaticHP == variables["POKEMON_1"]["BASE_HP"] :
-						variables["POKEMON_1"]["HP"] = pokemonVariableHP
+					if pokemonStaticHP == variables["TRAINER"]["POKEMON_1"]["BASE_HP"] :
+						variables["TRAINER"]["POKEMON_1"]["HP"] = pokemonVariableHP
 
-					if pokemonStaticHP == variables["POKEMON_2"]["BASE_HP"] :
-						variables["POKEMON_2"]["HP"] = pokemonVariableHP
+					if pokemonStaticHP == variables["TRAINER"]["POKEMON_2"]["BASE_HP"] :
+						variables["TRAINER"]["POKEMON_2"]["HP"] = pokemonVariableHP
 
-					if pokemonStaticHP == variables["POKEMON_3"]["BASE_HP"] :
-						variables["POKEMON_3"]["HP"] = pokemonVariableHP
+					if pokemonStaticHP == variables["TRAINER"]["POKEMON_3"]["BASE_HP"] :
+						variables["TRAINER"]["POKEMON_3"]["HP"] = pokemonVariableHP
 
 					save_game()
 					POKEMON_ENCOUNTER_SOUND.stop()
@@ -2923,7 +2923,7 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 					VICTORY.play()
 
 					while wild :
-						create_victory_windows(variables["POKEMON_1"]["NAME"], pokemonVariableHP, pokemon, variableHP)
+						create_victory_windows(variables["TRAINER"]["POKEMON_1"]["NAME"], pokemonVariableHP, pokemon, variableHP)
 
 						for event in pygame.event.get() : 
 
@@ -3251,7 +3251,7 @@ def movement_left (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isM
 	previous_pi_x = pikachu_trainer.x
 	previous_pi_y = pikachu_trainer.y
 
-	if variables["INITIAL_POKEMON"] =="NONE"  :
+	if variables["TRAINER"]["INITIAL_POKEMON"] =="NONE"  :
 
 		if pokemon_trainer.colliderect(OAK_RECTANGLE_MAP):
 			oakMessage = True
@@ -3474,7 +3474,7 @@ def movement_right (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, is
 			pygame.draw.rect(WIN, WHITE, pokemon_trainer)
 			pygame.draw.rect(WIN, WHITE, HOUSE_2)
 
-		if variables["INITIAL_POKEMON"] =="NONE"  :
+		if variables["TRAINER"]["INITIAL_POKEMON"] =="NONE"  :
 			if pokemon_trainer.colliderect(OAK_RECTANGLE_MAP):
 				WALL_SOUND.play()
 				pokemon_trainer.x = previous_x - VEL
@@ -3750,13 +3750,13 @@ def create_npc_battle_intro(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDT
 
 
 	# Trainer Available pokeballs
-	if variables["POKEMON_1"]["HP"] > 0 :
+	if variables["TRAINER"]["POKEMON_1"]["HP"] > 0 :
 		WIN.blit(POKEBALL_ITEM, (760, 410))
 
-	if variables["POKEMON_2"]["HP"] > 0 :
+	if variables["TRAINER"]["POKEMON_2"]["HP"] > 0 :
 		WIN.blit(POKEBALL_ITEM, (707, 410))
 
-	if variables["POKEMON_3"]["HP"] > 0 :
+	if variables["TRAINER"]["POKEMON_3"]["HP"] > 0 :
 		WIN.blit(POKEBALL_ITEM, (650, 410))
 
 	pygame.display.update()
@@ -3776,92 +3776,92 @@ def create_npc_battle(NPC_POKEMON) :
 			WIN.blit(MEOWTH_IMG_01, (600, 50))
 
 	# Trainer Pokemon
-	if variables["POKEMON_1"]["HP"] > 0 :
-		if variables["POKEMON_1"]["NAME"] == "PIKACHU"  :
+	if variables["TRAINER"]["POKEMON_1"]["HP"] > 0 :
+		if variables["TRAINER"]["POKEMON_1"]["NAME"] == "PIKACHU"  :
 			WIN.blit(PIKACHU_BATTLE_IMG, (100, 300))
 
-		elif variables["POKEMON_1"]["NAME"] == "BULBASAUR"  :
+		elif variables["TRAINER"]["POKEMON_1"]["NAME"] == "BULBASAUR"  :
 			WIN.blit(BULBASAUR_BATTLE_IMG, (100, 300))
 
-		elif variables["POKEMON_1"]["NAME"] == "CHARMANDER"  :
+		elif variables["TRAINER"]["POKEMON_1"]["NAME"] == "CHARMANDER"  :
 			WIN.blit(CHARMANDER_BATTLE_IMG, (100, 300))
 
-		elif variables["POKEMON_1"]["NAME"] == "SQUIRTLE"  :
+		elif variables["TRAINER"]["POKEMON_1"]["NAME"] == "SQUIRTLE"  :
 			WIN.blit(SQUIRTLE_BATTLE_IMG, (100, 300))
 
-		friend = RULES.render("" + str(variables["POKEMON_1"]["NAME"]), 1, BLACK)
+		friend = RULES.render("" + str(variables["TRAINER"]["POKEMON_1"]["NAME"]), 1, BLACK)
 		WIN.blit(friend, (5, 35))
 
-		stats = RULES.render("" + str(variables["POKEMON_1"]["HP"]) , 1, BLACK)
+		stats = RULES.render("" + str(variables["TRAINER"]["POKEMON_1"]["HP"]) , 1, BLACK)
 		WIN.blit(stats, (12, 60))
 
 		separator = RULES.render("/", 1, BLACK)
 		WIN.blit(separator, (30, 60))
 
-		stats = RULES.render("" + str(variables["POKEMON_1"]["BASE_HP"]), 1, BLACK)
+		stats = RULES.render("" + str(variables["TRAINER"]["POKEMON_1"]["BASE_HP"]), 1, BLACK)
 		WIN.blit(stats, (40, 60))
 
 
-		level = RULES.render("Lv " + str(variables["POKEMON_1"]["LEVEL"]), 1, BLACK)
+		level = RULES.render("Lv " + str(variables["TRAINER"]["POKEMON_1"]["LEVEL"]), 1, BLACK)
 		WIN.blit(level, (160, 35))
 
 
-	elif variables["POKEMON_1"]["HP"] == 0 and variables["POKEMON_2"]["HP"] > 0 :
-		if variables["POKEMON_2"]["NAME"] == "PIKACHU"  :
+	elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] > 0 :
+		if variables["TRAINER"]["POKEMON_2"]["NAME"] == "PIKACHU"  :
 			WIN.blit(PIKACHU_BATTLE_IMG, (100, 300))
 
-		elif variables["POKEMON_2"]["NAME"] == "BULBASAUR"  :
+		elif variables["TRAINER"]["POKEMON_2"]["NAME"] == "BULBASAUR"  :
 			WIN.blit(BULBASAUR_BATTLE_IMG, (100, 300))
 
-		elif variables["POKEMON_2"]["NAME"] == "CHARMANDER"  :
+		elif variables["TRAINER"]["POKEMON_2"]["NAME"] == "CHARMANDER"  :
 			WIN.blit(CHARMANDER_BATTLE_IMG, (100, 300))
 
-		elif variables["POKEMON_2"]["NAME"] == "SQUIRTLE"  :
+		elif variables["TRAINER"]["POKEMON_2"]["NAME"] == "SQUIRTLE"  :
 			WIN.blit(SQUIRTLE_BATTLE_IMG, (100, 300))
 
-		friend = RULES.render("" + str(variables["POKEMON_2"]["NAME"]), 1, BLACK)
+		friend = RULES.render("" + str(variables["TRAINER"]["POKEMON_2"]["NAME"]), 1, BLACK)
 		WIN.blit(friend, (5, 35))
 
-		stats = RULES.render("" + str(variables["POKEMON_2"]["HP"]) , 1, BLACK)
+		stats = RULES.render("" + str(variables["TRAINER"]["POKEMON_2"]["HP"]) , 1, BLACK)
 		WIN.blit(stats, (12, 60))
 
 		separator = RULES.render("/", 1, BLACK)
 		WIN.blit(separator, (30, 60))
 
-		stats = RULES.render("" + str(variables["POKEMON_2"]["BASE_HP"]), 1, BLACK)
+		stats = RULES.render("" + str(variables["TRAINER"]["POKEMON_2"]["BASE_HP"]), 1, BLACK)
 		WIN.blit(stats, (40, 60))
 
 
-		level = RULES.render("Lv " + str(variables["POKEMON_2"]["LEVEL"]), 1, BLACK)
+		level = RULES.render("Lv " + str(variables["TRAINER"]["POKEMON_2"]["LEVEL"]), 1, BLACK)
 		WIN.blit(level, (160, 35))
 
-	elif variables["POKEMON_2"]["HP"] == 0 and variables["POKEMON_3"]["HP"] > 0 :
-		if variables["POKEMON_3"]["NAME"] == "PIKACHU"  :
+	elif variables["TRAINER"]["POKEMON_2"]["HP"] == 0 and variables["TRAINER"]["POKEMON_3"]["HP"] > 0 :
+		if variables["TRAINER"]["POKEMON_3"]["NAME"] == "PIKACHU"  :
 			WIN.blit(PIKACHU_BATTLE_IMG, (100, 300))
 
-		elif variables["POKEMON_3"]["NAME"] == "BULBASAUR"  :
+		elif variables["TRAINER"]["POKEMON_3"]["NAME"] == "BULBASAUR"  :
 			WIN.blit(BULBASAUR_BATTLE_IMG, (100, 300))
 
-		elif variables["POKEMON_3"]["NAME"] == "CHARMANDER"  :
+		elif variables["TRAINER"]["POKEMON_3"]["NAME"] == "CHARMANDER"  :
 			WIN.blit(CHARMANDER_BATTLE_IMG, (100, 300))
 
-		elif variables["POKEMON_3"]["NAME"] == "SQUIRTLE"  :
+		elif variables["TRAINER"]["POKEMON_3"]["NAME"] == "SQUIRTLE"  :
 			WIN.blit(SQUIRTLE_BATTLE_IMG, (100, 300))
 
-		friend = RULES.render("" + str(variables["POKEMON_3"]["NAME"]), 1, BLACK)
+		friend = RULES.render("" + str(variables["TRAINER"]["POKEMON_3"]["NAME"]), 1, BLACK)
 		WIN.blit(friend, (5, 35))
 
-		stats = RULES.render("" + str(variables["POKEMON_3"]["HP"]) , 1, BLACK)
+		stats = RULES.render("" + str(variables["TRAINER"]["POKEMON_3"]["HP"]) , 1, BLACK)
 		WIN.blit(stats, (12, 60))
 
 		separator = RULES.render("/", 1, BLACK)
 		WIN.blit(separator, (30, 60))
 
-		stats = RULES.render("" + str(variables["POKEMON_3"]["BASE_HP"]), 1, BLACK)
+		stats = RULES.render("" + str(variables["TRAINER"]["POKEMON_3"]["BASE_HP"]), 1, BLACK)
 		WIN.blit(stats, (40, 60))
 
 
-		level = RULES.render("Lv " + str(variables["POKEMON_3"]["LEVEL"]), 1, BLACK)
+		level = RULES.render("Lv " + str(variables["TRAINER"]["POKEMON_3"]["LEVEL"]), 1, BLACK)
 		WIN.blit(level, (160, 35))
 
 	pygame.display.update()
@@ -3991,7 +3991,7 @@ def start_pokeball_starter_view (cursor_pos) :
 	isSquirtle = False
 	isSelected = False
 
-	while variables["INITIAL_POKEMON"] == "NONE" :
+	while variables["TRAINER"]["INITIAL_POKEMON"] == "NONE" :
 		create_pokeball_starter_view(cursor_pos.x, cursor_pos.y, isSquirtle, isBulbasaur, isCharmander, isSelected)
 
 		for event in pygame.event.get() :
@@ -4007,48 +4007,48 @@ def start_pokeball_starter_view (cursor_pos) :
 
 				if isSelected :
 					if isSquirtle :
-						variables["INITIAL_POKEMON"] = "Squirtle"
+						variables["TRAINER"]["INITIAL_POKEMON"] = "Squirtle"
 						# Generate initial Pokemon Stats
-						variables["POKEMON_2"]["NAME"] = "SQUIRTLE"
-						variables["POKEMON_2"]["LEVEL"] = 5
-						variables["POKEMON_2"]["HP"] = 20
-						variables["POKEMON_2"]["BASE_HP"] = 20
-						variables["POKEMON_2"]["MOVE"] = "Tail Whip"
-						variables["POKEMON_2"]["ATTACK"] = 13
-						variables["POKEMON_2"]["DEFENSE"] = 15
-						variables["POKEMON_2"]["SPECIAL_ATTACK"] = 11
-						variables["POKEMON_2"]["SPECIAL_DEFENSE"] = 14
-						variables["POKEMON_2"]["SPEED"] = 11
+						variables["TRAINER"]["POKEMON_2"]["NAME"] = "SQUIRTLE"
+						variables["TRAINER"]["POKEMON_2"]["LEVEL"] = 5
+						variables["TRAINER"]["POKEMON_2"]["HP"] = 20
+						variables["TRAINER"]["POKEMON_2"]["BASE_HP"] = 20
+						variables["TRAINER"]["POKEMON_2"]["MOVE"] = "Tail Whip"
+						variables["TRAINER"]["POKEMON_2"]["ATTACK"] = 13
+						variables["TRAINER"]["POKEMON_2"]["DEFENSE"] = 15
+						variables["TRAINER"]["POKEMON_2"]["SPECIAL_ATTACK"] = 11
+						variables["TRAINER"]["POKEMON_2"]["SPECIAL_DEFENSE"] = 14
+						variables["TRAINER"]["POKEMON_2"]["SPEED"] = 11
 						save_game()
 
 					if isBulbasaur :
-						variables["INITIAL_POKEMON"] = "Bulbasaur"
+						variables["TRAINER"]["INITIAL_POKEMON"] = "Bulbasaur"
 						# Generate initial Pokemon Stats
-						variables["POKEMON_2"]["NAME"] = "BULBASAUR"
-						variables["POKEMON_2"]["LEVEL"] = 5
-						variables["POKEMON_2"]["HP"] = 20
-						variables["POKEMON_2"]["BASE_HP"] = 20
-						variables["POKEMON_2"]["MOVE"] = "Tackle"
-						variables["POKEMON_2"]["ATTACK"] = 13
-						variables["POKEMON_2"]["DEFENSE"] = 11
-						variables["POKEMON_2"]["SPECIAL_ATTACK"] = 13
-						variables["POKEMON_2"]["SPECIAL_DEFENSE"] = 13
-						variables["POKEMON_2"]["SPEED"] = 13
+						variables["TRAINER"]["POKEMON_2"]["NAME"] = "BULBASAUR"
+						variables["TRAINER"]["POKEMON_2"]["LEVEL"] = 5
+						variables["TRAINER"]["POKEMON_2"]["HP"] = 20
+						variables["TRAINER"]["POKEMON_2"]["BASE_HP"] = 20
+						variables["TRAINER"]["POKEMON_2"]["MOVE"] = "Tackle"
+						variables["TRAINER"]["POKEMON_2"]["ATTACK"] = 13
+						variables["TRAINER"]["POKEMON_2"]["DEFENSE"] = 11
+						variables["TRAINER"]["POKEMON_2"]["SPECIAL_ATTACK"] = 13
+						variables["TRAINER"]["POKEMON_2"]["SPECIAL_DEFENSE"] = 13
+						variables["TRAINER"]["POKEMON_2"]["SPEED"] = 13
 						save_game()
 
 					if isCharmander :
-						variables["INITIAL_POKEMON"] = "Charmander"
+						variables["TRAINER"]["INITIAL_POKEMON"] = "Charmander"
 						# Generate initial Pokemon Stats
-						variables["POKEMON_2"]["NAME"] = "CHARMANDER"
-						variables["POKEMON_2"]["LEVEL"] = 5
-						variables["POKEMON_2"]["HP"] = 20
-						variables["POKEMON_2"]["BASE_HP"] = 20
-						variables["POKEMON_2"]["MOVE"] = "Scratch"
-						variables["POKEMON_2"]["ATTACK"] = 13
-						variables["POKEMON_2"]["DEFENSE"] = 11
-						variables["POKEMON_2"]["SPECIAL_ATTACK"] = 13
-						variables["POKEMON_2"]["SPECIAL_DEFENSE"] = 11
-						variables["POKEMON_2"]["SPEED"] = 15
+						variables["TRAINER"]["POKEMON_2"]["NAME"] = "CHARMANDER"
+						variables["TRAINER"]["POKEMON_2"]["LEVEL"] = 5
+						variables["TRAINER"]["POKEMON_2"]["HP"] = 20
+						variables["TRAINER"]["POKEMON_2"]["BASE_HP"] = 20
+						variables["TRAINER"]["POKEMON_2"]["MOVE"] = "Scratch"
+						variables["TRAINER"]["POKEMON_2"]["ATTACK"] = 13
+						variables["TRAINER"]["POKEMON_2"]["DEFENSE"] = 11
+						variables["TRAINER"]["POKEMON_2"]["SPECIAL_ATTACK"] = 13
+						variables["TRAINER"]["POKEMON_2"]["SPECIAL_DEFENSE"] = 11
+						variables["TRAINER"]["POKEMON_2"]["SPEED"] = 15
 						save_game()
 
 				if cursor_pos.x == 100 and event.key == pygame.K_RIGHT :
@@ -4409,8 +4409,8 @@ def access_shopping_area (pokemon_trainer, pikachu_trainer, inside, before_enter
 			if keys[pygame.K_e]:
 				inside = True
 				BACKGROUND_SOUND.stop()
-				my_save_slot = json.dumps(variables)
-				pokemon_1_level = variables["POKEMON_1"]["LEVEL"] = 55
+				my_save_slot = json.dumps(variables["TRAINER"])
+				pokemon_1_level = variables["TRAINER"]["POKEMON_1"]["LEVEL"] = 55
 				with open('save.json', 'w') as save:
 					save.write(my_save_slot)
 				welcome()
@@ -4790,8 +4790,8 @@ def access_center (pokemon_trainer, pikachu_trainer, inside, before_enter_house_
 			if keys[pygame.K_e]:
 				inside = True
 				BACKGROUND_SOUND.stop()
-				my_save_slot = json.dumps(variables)
-				pokemon_1_level = variables["POKEMON_1"]["LEVEL"] = 55
+				my_save_slot = json.dumps(variables["TRAINER"])
+				pokemon_1_level = variables["TRAINER"]["POKEMON_1"]["LEVEL"] = 55
 				with open('save.json', 'w') as save:
 					save.write(my_save_slot)
 				welcome()
@@ -4909,8 +4909,8 @@ def access_shop (pokemon_trainer, pikachu_trainer, inside, before_enter_house_x,
 			if keys[pygame.K_e]:
 				inside = True
 				BACKGROUND_SOUND.stop()
-				my_save_slot = json.dumps(variables)
-				pokemon_1_level = variables["POKEMON_1"]["LEVEL"] = 55
+				my_save_slot = json.dumps(variables["TRAINER"])
+				pokemon_1_level = variables["TRAINER"]["POKEMON_1"]["LEVEL"] = 55
 				with open('save.json', 'w') as save:
 					save.write(my_save_slot)
 				welcome()
@@ -5073,7 +5073,7 @@ def movement_up (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMis
 	previous_pi_y = pikachu_trainer.y
 	previous_pi_x = pikachu_trainer.x
 
-	if variables["INITIAL_POKEMON"] =="NONE":
+	if variables["TRAINER"]["INITIAL_POKEMON"] =="NONE":
 		if pokemon_trainer.colliderect(OAK_RECTANGLE_MAP):
 			oakMessage = True
 			WALL_SOUND.play()
@@ -5270,8 +5270,8 @@ def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty)
 			if keys[pygame.K_e]:
 				inside = True
 				BACKGROUND_SOUND.stop()
-				my_save_slot = json.dumps(variables)
-				pokemon_1_level = variables["POKEMON_1"]["LEVEL"] = 55
+				my_save_slot = json.dumps(variables["TRAINER"])
+				pokemon_1_level = variables["TRAINER"]["POKEMON_1"]["LEVEL"] = 55
 				with open('save.json', 'w') as save:
 					save.write(my_save_slot)
 				welcome()
@@ -5385,8 +5385,8 @@ def access_laboratory (pokemon_trainer, pikachu_trainer, inside, x, y, isAsh, is
 			if keys[pygame.K_e]:
 				inside = True
 				BACKGROUND_SOUND.stop()
-				my_save_slot = json.dumps(variables)
-				pokemon_1_level = variables["POKEMON_1"]["LEVEL"] = 55
+				my_save_slot = json.dumps(variables["TRAINER"])
+				pokemon_1_level = variables["TRAINER"]["POKEMON_1"]["LEVEL"] = 55
 				with open('save.json', 'w') as save:
 					save.write(my_save_slot)
 				welcome()
@@ -6226,7 +6226,7 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs,
 	if free_pika % 2 == 1 :
 		WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
 
-	if variables["INITIAL_POKEMON"] =="NONE":
+	if variables["TRAINER"]["INITIAL_POKEMON"] =="NONE":
 		WIN.blit(OAK_IMG, (395, -10))
 
 		if oakMessage :
@@ -6281,15 +6281,15 @@ def create_laboratory (TRAINER, PIKACHU, OAK, isTalking, isBulbasaur, isSquirtle
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
 
-	if variables["INITIAL_POKEMON"] == "Bulbasaur" :
+	if variables["TRAINER"]["INITIAL_POKEMON"] == "Bulbasaur" :
 		WIN.blit(POKEBALL_ITEM, (640, 300))
 		WIN.blit(POKEBALL_ITEM, (690, 300))
 
-	elif variables["INITIAL_POKEMON"] == "Charmander" :
+	elif variables["TRAINER"]["INITIAL_POKEMON"] == "Charmander" :
 		WIN.blit(POKEBALL_ITEM, (590, 300))
 		WIN.blit(POKEBALL_ITEM, (690, 300))
 
-	elif variables["INITIAL_POKEMON"] == "Squirtle" :
+	elif variables["TRAINER"]["INITIAL_POKEMON"] == "Squirtle" :
 		WIN.blit(POKEBALL_ITEM, (590, 300))
 		WIN.blit(POKEBALL_ITEM, (640, 300))
 
@@ -6307,22 +6307,22 @@ def create_laboratory (TRAINER, PIKACHU, OAK, isTalking, isBulbasaur, isSquirtle
 
 	if isTalking :
 
-		if variables["INITIAL_POKEMON"] == "NONE"  :
+		if variables["TRAINER"]["INITIAL_POKEMON"] == "NONE"  :
 			WIN.blit(DIALOG_MENU, (0, 300))
-			oak_phrase = POKEBALLS_COUNTER.render("" + str("Now, " + variables["NAME"].capitalize() + ", which Pokémon do you want?"), 1, WHITE)
+			oak_phrase = POKEBALLS_COUNTER.render("" + str("Now, " + variables["TRAINER"]["NAME"].capitalize() + ", which Pokémon do you want?"), 1, WHITE)
 			WIN.blit(oak_phrase, (180, 400))
 			clock.tick(5)
 
 		else :
 
 			WIN.blit(DIALOG_MENU, (0, 300))
-			oak_phrase = POKEBALLS_COUNTER.render("Take care of your " + variables["INITIAL_POKEMON"] + ", " + variables["NAME"].capitalize(), 1, WHITE)
+			oak_phrase = POKEBALLS_COUNTER.render("Take care of your " + variables["TRAINER"]["INITIAL_POKEMON"] + ", " + variables["TRAINER"]["NAME"].capitalize(), 1, WHITE)
 			WIN.blit(oak_phrase, (180, 400))
 			clock.tick(5)
 
 
 
-	if variables["INITIAL_POKEMON"] == "NONE"  :
+	if variables["TRAINER"]["INITIAL_POKEMON"] == "NONE"  :
 
 		if isSquirtle :
 			WIN.blit(DIALOG_MENU, (0, 300))
@@ -6443,13 +6443,13 @@ def create_pause_menu () :
 
 
 def create_bag_objects_screen () :
-	potions_a = variables["TRAINER_BAG"]["POTIONS_AVAILABLE"]
-	pokeballs_a = variables["TRAINER_BAG"]["POKEBALLS_AVAILABLE"]
-	revives_a = variables["TRAINER_BAG"]["REVIVES_AVAILABLE"]
+	potions_a = variables["TRAINER"]["TRAINER_BAG"]["POTIONS_AVAILABLE"]
+	pokeballs_a = variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_AVAILABLE"]
+	revives_a = variables["TRAINER"]["TRAINER_BAG"]["REVIVES_AVAILABLE"]
 
-	potions_m = variables["TRAINER_BAG"]["POTIONS_MAX"]
-	pokeballs_m = variables["TRAINER_BAG"]["POKEBALLS_MAX"]
-	revives_m = variables["TRAINER_BAG"]["REVIVES_MAX"]
+	potions_m = variables["TRAINER"]["TRAINER_BAG"]["POTIONS_MAX"]
+	pokeballs_m = variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_MAX"]
+	revives_m = variables["TRAINER"]["TRAINER_BAG"]["REVIVES_MAX"]
 
 	WIN.blit(POKEMON_BAG_IMG, (175,-10))
 
@@ -6511,11 +6511,11 @@ def create_bag_objects_screen () :
 
 def create_bag_screen() :
 
-	if variables["POKEMON_1"]["NAME"] !="NONE" :
-		pokemon_1_name = variables["POKEMON_1"]["NAME"]
-		pokemon_1_level =  variables["POKEMON_1"]["LEVEL"]
-		pokemon_1_hp =  variables["POKEMON_1"]["HP"]
-		pokemon_1_hp_base =  variables["POKEMON_1"]["BASE_HP"]
+	if variables["TRAINER"]["POKEMON_1"]["NAME"] !="NONE" :
+		pokemon_1_name = variables["TRAINER"]["POKEMON_1"]["NAME"]
+		pokemon_1_level =  variables["TRAINER"]["POKEMON_1"]["LEVEL"]
+		pokemon_1_hp =  variables["TRAINER"]["POKEMON_1"]["HP"]
+		pokemon_1_hp_base =  variables["TRAINER"]["POKEMON_1"]["BASE_HP"]
 		pokemon_1_photo = pokemonPhoto[pokemon_1_name]
 
 	else :
@@ -6525,11 +6525,11 @@ def create_bag_screen() :
 		pokemon_1_hp_base = 0
 		pokemon_1_photo =  pokemonPhoto["DEFAULT"]
 
-	if variables["POKEMON_2"]["NAME"] !="NONE" :
-		pokemon_2_name = variables["POKEMON_2"]["NAME"]
-		pokemon_2_level =  variables["POKEMON_2"]["LEVEL"]
-		pokemon_2_hp =  variables["POKEMON_2"]["HP"]
-		pokemon_2_hp_base =  variables["POKEMON_2"]["BASE_HP"]
+	if variables["TRAINER"]["POKEMON_2"]["NAME"] !="NONE" :
+		pokemon_2_name = variables["TRAINER"]["POKEMON_2"]["NAME"]
+		pokemon_2_level =  variables["TRAINER"]["POKEMON_2"]["LEVEL"]
+		pokemon_2_hp =  variables["TRAINER"]["POKEMON_2"]["HP"]
+		pokemon_2_hp_base =  variables["TRAINER"]["POKEMON_2"]["BASE_HP"]
 		pokemon_2_photo = pokemonPhoto[pokemon_2_name]
 
 	else :
@@ -6539,11 +6539,11 @@ def create_bag_screen() :
 		pokemon_2_hp_base =  0
 		pokemon_2_photo =  pokemonPhoto["DEFAULT"]
 
-	if variables["POKEMON_3"]["NAME"] !="NONE" :
-		pokemon_3_name = variables["POKEMON_3"]["NAME"]
-		pokemon_3_level =  variables["POKEMON_3"]["LEVEL"]
-		pokemon_3_hp =  variables["POKEMON_3"]["HP"]
-		pokemon_3_hp_base =  variables["POKEMON_3"]["BASE_HP"]
+	if variables["TRAINER"]["POKEMON_3"]["NAME"] !="NONE" :
+		pokemon_3_name = variables["TRAINER"]["POKEMON_3"]["NAME"]
+		pokemon_3_level =  variables["TRAINER"]["POKEMON_3"]["LEVEL"]
+		pokemon_3_hp =  variables["TRAINER"]["POKEMON_3"]["HP"]
+		pokemon_3_hp_base =  variables["TRAINER"]["POKEMON_3"]["BASE_HP"]
 		pokemon_3_photo = pokemonPhoto[pokemon_3_name]
 
 	else :
@@ -6701,15 +6701,15 @@ def welcome() :
 				if event.key == pygame.K_a:
 					PRESS_A_SOUND.play()
 					start = True
-					if variables["CHARACTER"] == "NONE" :
+					if variables["TRAINER"]["CHARACTER"] == "NONE" :
 						choose_character()
 
-					elif variables["CHARACTER"] == "ASH" :
+					elif variables["TRAINER"]["CHARACTER"] == "ASH" :
 						isAsh = True
 						isMisty = False
 						main (isAsh, isMisty)
 
-					elif variables["CHARACTER"] == "MISTY" :
+					elif variables["TRAINER"]["CHARACTER"] == "MISTY" :
 						isAsh = False
 						isMisty = True
 						main (isAsh, isMisty)
@@ -6736,7 +6736,7 @@ def choose_character () :
 					PRESS_A_SOUND.play()
 					isAsh = True
 					start = True
-					variables["CHARACTER"] = "ASH"
+					variables["TRAINER"]["CHARACTER"] = "ASH"
 					save_game()
 					enter_name(isAsh, isMisty)
 
@@ -6744,7 +6744,7 @@ def choose_character () :
 					PRESS_A_SOUND.play()
 					isMisty = True
 					start = True
-					variables["CHARACTER"] = "MISTY"
+					variables["TRAINER"]["CHARACTER"] = "MISTY"
 					save_game()
 					enter_name(isAsh, isMisty)
 
@@ -6789,7 +6789,7 @@ def enter_name (isAsh, isMisty) :
 
 					if event.key == pygame.K_RETURN :
 						text = text[:-1]
-						variables["NAME"] = text
+						variables["TRAINER"]["NAME"] = text
 						save_game()
 						active = False
 						typing = False
@@ -6968,7 +6968,7 @@ def main (isAsh, isMisty): ## Main function
 
 			if keys[pygame.K_e]:
 				BACKGROUND_SOUND.stop()
-				my_save_slot = json.dumps(variables)
+				my_save_slot = json.dumps(variables["TRAINER"])
 				with open('save.json', 'w') as save:
 					save.write(my_save_slot)
 				welcome()
