@@ -1044,7 +1044,7 @@ RULES = pygame.font.SysFont('comicsans', 16)
 
 
 def save_game () :
-	my_save_slot = json.dumps(variables["TRAINER"])
+	my_save_slot = json.dumps(variables)
 	with open('save.json', 'w') as save:
 		save.write(my_save_slot)
 
@@ -3629,72 +3629,72 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 
 
 		if pokemon_trainer.colliderect(ROCKET_RECT):
-			challenge = True
-			TOWN.stop()
-			ROCKET_SOUND.play()
-			previous_x = pokemon_trainer.x
-			previous_y = pokemon_trainer.y
+			# The event will only happen one time if completed
+			if variables["BATTLE_EVENTS"]["TEAM_ROCKET_EVENT"] == "NOT COMPLETED" :
+				challenge = True
+				previous_x = pokemon_trainer.x
+				previous_y = pokemon_trainer.y
+				TOWN.stop()
+				ROCKET_SOUND.play()
 
+				if isAsh :
+					create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # All Foots
+				else :
+					create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # All Foots
+				
+				pokemon_trainer.x = previous_x
+				pokemon_trainer.y = previous_y
+				time.sleep(2)
 
+				# Start of battle opening animation
+				create_team_rocket_logo()
+				create_team_rocket_intro()
+				time.sleep(4)
 
-			if isAsh :
-				create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # All Foots
-			else :
-				create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # All Foots
-			
-			pokemon_trainer.x = previous_x
-			pokemon_trainer.y = previous_y
-			time.sleep(2)
-			create_team_rocket_logo()
-			create_team_rocket_intro()
-			time.sleep(4)
+				if isAsh :
+					TRAINER_IMG = ASH_BATTLE_IMG
+				else :
+					TRAINER_IMG = MISTY_BATTLE_IMG
 
-			if isAsh :
-				TRAINER_IMG = ASH_BATTLE_IMG
+				# Start of battle opening
+				create_npc_transition(TEAM_ROCKET , isAsh, TRAINER_IMG, 1, 600, 100, ["MEOWTH"] )
 
-			else :
-				TRAINER_IMG = MISTY_BATTLE_IMG
+				# Start of battle
+				while (challenge) :
+					create_npc_battle( ["MEOWTH"] )
 
-			create_npc_transition(TEAM_ROCKET , isAsh, TRAINER_IMG, 1, 600, 100, ["MEOWTH"] )
+					for event in pygame.event.get() : 
 
-			while (challenge) :
-				create_npc_battle( ["MEOWTH"] )
+						if event.type == pygame.KEYDOWN :
 
-				for event in pygame.event.get() : 
-
-					if event.type == pygame.KEYDOWN :
-
-						if event.key == pygame.K_RETURN :
-							movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause, VEL)
-							cursor_pos.x = 620
-
-
-						if event.key == pygame.K_RIGHT:
-							cursor_pos.x = 800
-
-						if event.key == pygame.K_LEFT:
-							if cursor_pos.x == 800 :
+							if event.key == pygame.K_RETURN :
+								movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause, VEL)
 								cursor_pos.x = 620
 
-						if event.key == pygame.K_DOWN:
-							if cursor_pos.x == 800 or cursor_pos.x == 620  :
-								cursor_pos.y = 400
 
-						if event.key == pygame.K_UP:
-							if cursor_pos.x == 800 or cursor_pos.x == 620 :
-								cursor_pos.y = 350
+							if event.key == pygame.K_RIGHT:
+								cursor_pos.x = 800
 
-						if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 400 :
-							PRESS_A_SOUND.play()
-							ROCKET_SOUND.stop()
-							SCAPE_SOUND.play()
-							time.sleep(1)
-							challenge = False
-							pokemon_trainer.x = previous_x - 200
-							pokemon_trainer.y = previous_y
+							if event.key == pygame.K_LEFT:
+								if cursor_pos.x == 800 :
+									cursor_pos.x = 620
 
+							if event.key == pygame.K_DOWN:
+								if cursor_pos.x == 800 or cursor_pos.x == 620  :
+									cursor_pos.y = 400
 
-	
+							if event.key == pygame.K_UP:
+								if cursor_pos.x == 800 or cursor_pos.x == 620 :
+									cursor_pos.y = 350
+
+							if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 400 :
+								PRESS_A_SOUND.play()
+								ROCKET_SOUND.stop()
+								SCAPE_SOUND.play()
+								time.sleep(1)
+								challenge = False
+								pokemon_trainer.x = previous_x - 200
+								pokemon_trainer.y = previous_y
 
 		pokemon_trainer.x += VEL
 		pikachu_trainer.x = pokemon_trainer.x - 60
@@ -4248,9 +4248,10 @@ def create_shopping_area (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer
 	if free_pika % 2 == 1 :
 		WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
 
-		# Team Rocket assets
-	WIN.blit(JESSIE_IMG_01, (700, 300))
-	WIN.blit(JAMES_IMG_01, (770, 300))
+	if variables["BATTLE_EVENTS"]["TEAM_ROCKET_EVENT"] == "NOT COMPLETED" :
+		# Team Rocket event
+		WIN.blit(JESSIE_IMG_01, (700, 300))
+		WIN.blit(JAMES_IMG_01, (770, 300))
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
 
