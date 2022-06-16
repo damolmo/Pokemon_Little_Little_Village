@@ -3657,7 +3657,7 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 				pokemon_trainer.x = previous_x
 				pokemon_trainer.y = previous_y
 				create_npc_battle( ["MEOWTH"] )
-				
+
 	
 
 		pokemon_trainer.x += VEL
@@ -3685,15 +3685,15 @@ def create_npc_transition(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDTH,
 	else :
 		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG, NPC_POKEBALLS, NPC_WIDTH + 50, TRAINER_WIDTH - 55, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_2, NPC_POKEBALLS, NPC_WIDTH + 100, TRAINER_WIDTH - 110, NPC_POKEMON  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG, NPC_POKEBALLS, NPC_WIDTH + 100, TRAINER_WIDTH - 110, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_3, NPC_POKEBALLS, NPC_WIDTH + 150, TRAINER_WIDTH - 165, NPC_POKEMON  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_2, NPC_POKEBALLS, NPC_WIDTH + 150, TRAINER_WIDTH - 165, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_4, NPC_POKEBALLS, NPC_WIDTH + 200, TRAINER_WIDTH - 215, NPC_POKEMON  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_2, NPC_POKEBALLS, NPC_WIDTH + 200, TRAINER_WIDTH - 215, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 250, TRAINER_WIDTH - 265, NPC_POKEMON  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_3, NPC_POKEBALLS, NPC_WIDTH + 250, TRAINER_WIDTH - 265, NPC_POKEMON  )
 		clock.tick(10)
-		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_5, NPC_POKEBALLS, NPC_WIDTH + 300, TRAINER_WIDTH - 320, NPC_POKEMON  )
+		create_npc_battle_intro(NPC_IMG, isAsh, MISTY_BATTLE_IMG_3, NPC_POKEBALLS, NPC_WIDTH + 300, TRAINER_WIDTH - 320, NPC_POKEMON  )
 		
 
 def create_npc_battle_intro(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDTH, TRAINER_WIDTH, NPC_POKEMON) :
