@@ -3631,6 +3631,7 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 		if pokemon_trainer.colliderect(ROCKET_RECT):
 			challenge = True
 			TOWN.stop()
+			ROCKET_SOUND.play()
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
 
@@ -3658,8 +3659,6 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 			create_npc_transition(TEAM_ROCKET , isAsh, TRAINER_IMG, 1, 600, 100, ["MEOWTH"] )
 
 			while (challenge) :
-				pokemon_trainer.x = previous_x
-				pokemon_trainer.y = previous_y
 				create_npc_battle( ["MEOWTH"] )
 
 				for event in pygame.event.get() : 
@@ -3688,14 +3687,13 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 
 						if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 400 :
 							PRESS_A_SOUND.play()
-							ROCKET_SOUND
+							ROCKET_SOUND.stop()
 							SCAPE_SOUND.play()
 							time.sleep(1)
 							challenge = False
 							pokemon_trainer.x = previous_x - 200
 							pokemon_trainer.y = previous_y
 
-				ROCKET_SOUND.play()
 
 	
 
