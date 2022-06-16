@@ -6,7 +6,7 @@ Pocket Monster based game powered by Python and Pygame
 
 # Video Preview
 
-<a href="https://www.youtube.com/watch?v=ek1j272iAmc"><img src="src/Pokemon_Litle_Litle_Town_Title_Screen.png"/></a>
+<a href="https://youtu.be/nNwWvz-fez8"><img src="src/Pokemon_Litle_Litle_Town_Title_Screen.png"/></a>
 
 
 <br/>
