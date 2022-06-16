@@ -4,14 +4,10 @@ Pocket Monster based game powered by Python and Pygame
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
 <br/>
 
-# Screenshots
-<img src="src/Pokemon_Litle_Litle_Town_Title_Screen.png">
-<img src="src/Pokemon_Litle_Litle_Town_3.png">
-<img src="src/Pokemon_Litle_Litle_Town_4.png">
-<img src="src/Pokemon_Litle_Litle_Town_5.png">
-<img src="src/Pokemon_Litle_Litle_Town_6.png">
-<img src="src/Pokemon_Litle_Litle_Town_7.png">
-<img src="src/Pokemon_Litle_Litle_Town_2.png">
+# Video Preview
+
+[![Demo CountPages alpha](https://github.com/daviiid99/Pokemon_Little_Little_Village/blob/main/src/Pokemon_Litle_Litle_Town_Title_Screen.png)]([https://www.youtube.com/watch?v=ek1j272iAmc](https://youtu.be/nNwWvz-fez8))
+
 
 <br/>
 
