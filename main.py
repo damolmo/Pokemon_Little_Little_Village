@@ -3612,6 +3612,9 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 	trainer_pokeballs = []
 	oakMessage = False
 	isTree = False
+	cursor_pos.x = 620
+	cursor_pos.y = 350
+	challenge = False
 
 	if not wild :
 		if isAsh :
@@ -3626,11 +3629,12 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 
 
 		if pokemon_trainer.colliderect(ROCKET_RECT):
+			challenge = True
 			TOWN.stop()
 			previous_x = pokemon_trainer.x
 			previous_y = pokemon_trainer.y
 
-			ROCKET_SOUND.play()
+
 
 			if isAsh :
 				create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # All Foots
@@ -3653,10 +3657,45 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 
 			create_npc_transition(TEAM_ROCKET , isAsh, TRAINER_IMG, 1, 600, 100, ["MEOWTH"] )
 
-			while (pokemon_trainer.colliderect(ROCKET_RECT)) :
+			while (challenge) :
 				pokemon_trainer.x = previous_x
 				pokemon_trainer.y = previous_y
 				create_npc_battle( ["MEOWTH"] )
+
+				for event in pygame.event.get() : 
+
+					if event.type == pygame.KEYDOWN :
+
+						if event.key == pygame.K_RETURN :
+							movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause, VEL)
+							cursor_pos.x = 620
+
+
+						if event.key == pygame.K_RIGHT:
+							cursor_pos.x = 800
+
+						if event.key == pygame.K_LEFT:
+							if cursor_pos.x == 800 :
+								cursor_pos.x = 620
+
+						if event.key == pygame.K_DOWN:
+							if cursor_pos.x == 800 or cursor_pos.x == 620  :
+								cursor_pos.y = 400
+
+						if event.key == pygame.K_UP:
+							if cursor_pos.x == 800 or cursor_pos.x == 620 :
+								cursor_pos.y = 350
+
+						if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 400 :
+							PRESS_A_SOUND.play()
+							ROCKET_SOUND
+							SCAPE_SOUND.play()
+							time.sleep(1)
+							challenge = False
+							pokemon_trainer.x = previous_x - 200
+							pokemon_trainer.y = previous_y
+
+				ROCKET_SOUND.play()
 
 	
 
@@ -3753,6 +3792,22 @@ def create_npc_battle(NPC_POKEMON) :
 		elif variables["POKEMON_1"]["NAME"] == "SQUIRTLE"  :
 			WIN.blit(SQUIRTLE_BATTLE_IMG, (100, 300))
 
+		friend = RULES.render("" + str(variables["POKEMON_1"]["NAME"]), 1, BLACK)
+		WIN.blit(friend, (5, 35))
+
+		stats = RULES.render("" + str(variables["POKEMON_1"]["HP"]) , 1, BLACK)
+		WIN.blit(stats, (12, 60))
+
+		separator = RULES.render("/", 1, BLACK)
+		WIN.blit(separator, (30, 60))
+
+		stats = RULES.render("" + str(variables["POKEMON_1"]["BASE_HP"]), 1, BLACK)
+		WIN.blit(stats, (40, 60))
+
+
+		level = RULES.render("Lv " + str(variables["POKEMON_1"]["LEVEL"]), 1, BLACK)
+		WIN.blit(level, (160, 35))
+
 
 	elif variables["POKEMON_1"]["HP"] == 0 and variables["POKEMON_2"]["HP"] > 0 :
 		if variables["POKEMON_2"]["NAME"] == "PIKACHU"  :
@@ -3767,6 +3822,22 @@ def create_npc_battle(NPC_POKEMON) :
 		elif variables["POKEMON_2"]["NAME"] == "SQUIRTLE"  :
 			WIN.blit(SQUIRTLE_BATTLE_IMG, (100, 300))
 
+		friend = RULES.render("" + str(variables["POKEMON_1"]["NAME"]), 1, BLACK)
+		WIN.blit(friend, (5, 35))
+
+		stats = RULES.render("" + str(variables["POKEMON_1"]["HP"]) , 1, BLACK)
+		WIN.blit(stats, (12, 60))
+
+		separator = RULES.render("/", 1, BLACK)
+		WIN.blit(separator, (30, 60))
+
+		stats = RULES.render("" + str(variables["POKEMON_1"]["BASE_HP"]), 1, BLACK)
+		WIN.blit(stats, (40, 60))
+
+
+		level = RULES.render("Lv " + str(variables["POKEMON_1"]["LEVEL"]), 1, BLACK)
+		WIN.blit(level, (160, 35))
+
 	elif variables["POKEMON_2"]["HP"] == 0 and variables["POKEMON_3"]["HP"] > 0 :
 		if variables["POKEMON_3"]["NAME"] == "PIKACHU"  :
 			WIN.blit(PIKACHU_BATTLE_IMG, (100, 300))
@@ -3779,6 +3850,22 @@ def create_npc_battle(NPC_POKEMON) :
 
 		elif variables["POKEMON_3"]["NAME"] == "SQUIRTLE"  :
 			WIN.blit(SQUIRTLE_BATTLE_IMG, (100, 300))
+
+		friend = RULES.render("" + str(variables["POKEMON_1"]["NAME"]), 1, BLACK)
+		WIN.blit(friend, (5, 35))
+
+		stats = RULES.render("" + str(variables["POKEMON_1"]["HP"]) , 1, BLACK)
+		WIN.blit(stats, (12, 60))
+
+		separator = RULES.render("/", 1, BLACK)
+		WIN.blit(separator, (30, 60))
+
+		stats = RULES.render("" + str(variables["POKEMON_1"]["BASE_HP"]), 1, BLACK)
+		WIN.blit(stats, (40, 60))
+
+
+		level = RULES.render("Lv " + str(variables["POKEMON_1"]["LEVEL"]), 1, BLACK)
+		WIN.blit(level, (160, 35))
 
 	pygame.display.update()
 
