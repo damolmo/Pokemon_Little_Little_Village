@@ -174,6 +174,7 @@ DEPENDENT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/np
 # Pokemon Center rect
 JOY_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/joy/down', "joy_down.png")), (trainer_size.width, trainer_size.height))
 JOY_UP_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/joy/up', "joy_up.png")), (trainer_size.width, trainer_size.height))
+JOY_LEFT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/joy/left', "joy_left.png")), (trainer_size.width, trainer_size.height))
 JOY_RECT = pygame.Rect(420, 190, 60, 40)
 CENTER_DOOR = pygame.Rect(410, 460, 90, 40)
 CENTER_PLANTS = pygame.Rect(700, 250, 120, 40)
@@ -4511,6 +4512,47 @@ def movement_up_center (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh
 			previous_pi_y = pikachu_trainer.y
 			previous_pi_x = pikachu_trainer.x
 
+		if pokemon_trainer.colliderect(JOY_RECT):
+			previous_y = pokemon_trainer.y
+			previous_x = pokemon_trainer.x
+			isHealthTime = 0
+
+			CENTER_SOUND.stop()
+			if isAsh : 
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL,JOY_IMG, isHealthTime)
+				time.sleep(1)
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, JOY_UP_IMG, isHealthTime)
+				time.sleep(1)
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, JOY_LEFT_IMG, isHealthTime)
+				isHealthTime = 1
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, JOY_LEFT_IMG, isHealthTime)
+				isHealthTime = 2
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, JOY_LEFT_IMG, isHealthTime)
+				isHealthTime = 3
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, ASH_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, JOY_LEFT_IMG, isHealthTime)
+				HEALING_SOUND.play()
+				health_pokemon()
+				time.sleep(3)
+				pokemon_trainer.y = previous_y + 50
+
+			else :
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL,JOY_IMG, isHealthTime )
+				time.sleep(1)
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, JOY_UP_IMG, isHealthTime)
+				time.sleep(1)
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, JOY_LEFT_IMG, isHealthTime)
+				isHealthTime = 1
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, JOY_LEFT_IMG, isHealthTime)
+				isHealthTime = 2
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, JOY_LEFT_IMG, isHealthTime)
+				isHealthTime = 3
+				create_joy_animation(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_BACK_IMG, trainer_pokeballs, ASH_PIKACHU_BACK_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, JOY_LEFT_IMG, isHealthTime)
+				HEALING_SOUND.play()
+				health_pokemon()
+				time.sleep(3)
+				pokemon_trainer.y = previous_y + 50
+
+
 		if pokemon_trainer.colliderect(CENTER_STAIRS_EAST):
 			pokemon_trainer.y += VEL
 			pikachu_trainer.y = pokemon_trainer.y + VEL
@@ -4537,6 +4579,87 @@ def movement_up_center (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh
 			previous_x = pokemon_trainer.x
 			previous_pi_y = pikachu_trainer.y
 			previous_pi_x = pikachu_trainer.x
+
+def health_pokemon() :
+
+	# Health the HP of all the trainer Pokemon
+
+	# Slot 1
+	variables["TRAINER"]["POKEMON_1"]["HP"] = variables["TRAINER"]["POKEMON_1"]["BASE_HP"]
+
+	# Slot 2
+	variables["TRAINER"]["POKEMON_2"]["HP"] = variables["TRAINER"]["POKEMON_2"]["BASE_HP"]
+
+	# Slot 3
+	variables["TRAINER"]["POKEMON_3"]["HP"] = variables["TRAINER"]["POKEMON_3"]["BASE_HP"]
+	
+
+def create_joy_animation (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika, oakMessage, pause, VEL, JOY, isHealthTime) :
+
+	WIN.blit(CENTER_INSIDE_IMG, (0, 0)) # Background layout
+	WIN.blit(JOY, (420, 115 ))
+	if free_pika % 2 == 1 :
+		WIN.blit(PIKACHU, (pikachu_trainer.x, pikachu_trainer.y ))
+
+	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
+
+	# Trainer Available pokeballs
+
+	pokeball = pygame.transform.scale(POKEBALL_ITEM, (20,20))
+
+	if isHealthTime == 1 :
+
+		if variables["TRAINER"]["POKEMON_1"]["NAME"] != "NONE" :
+			WIN.blit(pokeball, (380, 130))
+
+	if isHealthTime == 2 :
+
+		if variables["TRAINER"]["POKEMON_1"]["NAME"] != "NONE" :
+			WIN.blit(pokeball, (380, 130))
+
+		if variables["TRAINER"]["POKEMON_2"]["NAME"] != "NONE" :
+			WIN.blit(pokeball, (400, 130))
+
+	if isHealthTime == 3 :
+		if variables["TRAINER"]["POKEMON_1"]["NAME"] != "NONE" :
+			WIN.blit(pokeball, (380, 130))
+
+		if variables["TRAINER"]["POKEMON_2"]["NAME"] != "NONE" :
+			WIN.blit(pokeball, (400, 130))
+
+		if variables["TRAINER"]["POKEMON_3"]["NAME"] != "NONE" :
+			WIN.blit(pokeball, (400, 150))
+
+	fecha = today.strftime("%m %d")
+
+	date = DIALOG_FONT.render("" + str(fecha), 1, BLACK)
+	daysOfTheWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+	now = datetime.now()
+	day = now.weekday()
+	tuday = daysOfTheWeek[day]
+	hora_str = now.strftime("%H:%M")
+
+	dayofWeek = DIALOG_MINI_FONT.render("" + str(tuday), 1, BLACK)
+
+	time = POKEBALLS_COUNTER.render("" + str(hora_str), 1, WHITE)
+
+	if pause == 0 :
+		WIN.blit(BACK_BG_IMG, (0,0))
+		WIN.blit(BAG_IMG, (5,15))
+
+	if free_pika % 2 == 0 :
+		WIN.blit(PIKA_BG_IMG, (770,377))
+
+	WIN.blit(SHOES_BG_IMG, (0,377))
+	vel_counter = POKEBALLS_COUNTER.render(str(VEL), 1, GREY)
+	WIN.blit(vel_counter, (57, 392))
+
+	WIN.blit(CLOCK_IMG, (700, 0))
+	WIN.blit(date, (725, 10))
+	WIN.blit(dayofWeek, (830, 20))
+	WIN.blit(time, (750, 50))
+	pygame.display.update()
 
 
 def movement_up_shop (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause, VEL) :
