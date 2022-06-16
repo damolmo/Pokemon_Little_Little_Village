@@ -3790,20 +3790,20 @@ def create_npc_battle(NPC_POKEMON) :
 		elif variables["POKEMON_1"]["NAME"] == "SQUIRTLE"  :
 			WIN.blit(SQUIRTLE_BATTLE_IMG, (100, 300))
 
-		friend = RULES.render("" + str(variables["POKEMON_3"]["NAME"]), 1, BLACK)
+		friend = RULES.render("" + str(variables["POKEMON_1"]["NAME"]), 1, BLACK)
 		WIN.blit(friend, (5, 35))
 
-		stats = RULES.render("" + str(variables["POKEMON_3"]["HP"]) , 1, BLACK)
+		stats = RULES.render("" + str(variables["POKEMON_1"]["HP"]) , 1, BLACK)
 		WIN.blit(stats, (12, 60))
 
 		separator = RULES.render("/", 1, BLACK)
 		WIN.blit(separator, (30, 60))
 
-		stats = RULES.render("" + str(variables["POKEMON_3"]["BASE_HP"]), 1, BLACK)
+		stats = RULES.render("" + str(variables["POKEMON_1"]["BASE_HP"]), 1, BLACK)
 		WIN.blit(stats, (40, 60))
 
 
-		level = RULES.render("Lv " + str(variables["POKEMON_3"]["LEVEL"]), 1, BLACK)
+		level = RULES.render("Lv " + str(variables["POKEMON_1"]["LEVEL"]), 1, BLACK)
 		WIN.blit(level, (160, 35))
 
 
