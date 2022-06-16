@@ -6,7 +6,7 @@ Pocket Monster based game powered by Python and Pygame
 
 # Video Preview
 
-[![Demo CountPages alpha](https://github.com/daviiid99/Pokemon_Little_Little_Village/blob/main/src/Pokemon_Litle_Litle_Town_Title_Screen.png)]([https://www.youtube.com/watch?v=ek1j272iAmc](https://youtu.be/nNwWvz-fez8))
+<a href="https://www.youtube.com/watch?v=ek1j272iAmc"><img src="src/Pokemon_Litle_Litle_Town_Title_Screen.png"/></a>
 
 
 <br/>
