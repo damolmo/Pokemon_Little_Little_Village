@@ -913,6 +913,7 @@ SHOPPING_EVENING_IMG = pygame.transform.scale(pygame.image.load(os.path.join('As
 SHOPPING_NIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone', "shopping_night.png")), (WIDTH,HEIGHT))
 SHOP_INSIDE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/shop', "shop.png")), (WIDTH,HEIGHT))
 CENTER_INSIDE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/shop', "center.png")), (WIDTH,HEIGHT))
+SHOP_ITEMS_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/shop', "pokemon_shop_items.png")), (WIDTH,HEIGHT))
 
 # Screen Dialog
 BATTLE_DIALOG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/battle', "battle_dialog.png")), (WIDTH,130))
@@ -995,6 +996,7 @@ POKEBALL_ITEM.convert()
 
 # Display Fonts
 WINNER_LOOSER_DIALOG = pygame.font.SysFont('comicsans', 80)
+SHOP_FONT = pygame.font.SysFont('comicsans', 60)
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 30)
 DIALOG_FONT = pygame.font.SysFont('comicsans', 26)
 DIALOG_MINI_FONT = pygame.font.SysFont('comicsans', 18)

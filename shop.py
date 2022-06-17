@@ -3,6 +3,10 @@ from bag import *
 from save_game import *
 from pika import *
 
+counter_potions = 1
+counter_revives = 1
+counter_pokeballs = 1
+
 def create_shop(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika, oakMessage, pause, VEL)  :
 	WIN.blit(SHOP_INSIDE_IMG, (0, 0))
 
@@ -100,6 +104,7 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 	isTree = False
 	oakMessage = False
 
+
 	previous_x = pokemon_trainer.x
 	previous_y = pokemon_trainer.y
 	previous_pi_x = pikachu_trainer.x
@@ -167,6 +172,107 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 			pokemon_trainer.y = previous_y - 0
 			pikachu_trainer.x = previous_pi_x + VEL
 			pikachu_trainer.y = previous_pi_y - 0
+
+		if pokemon_trainer.colliderect(SHOP_DEPENDENT_RECT):
+			choosing = True
+			cursor_pos.x = 715
+			cursor_pos.y = 10
+			counter_potions = 1
+			counter_revives = 1
+			counter_pokeballs = 1
+
+			while (choosing) :
+				if isAsh :
+					choose_items(pokemon_trainer, fecha,POKEBALL_IMG,ASH_LEFT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, counter_pokeballs, counter_revives, counter_potions)
+				else :
+					choose_items(pokemon_trainer, fecha,POKEBALL_IMG,MISTY_LEFT_IMG, trainer_pokeballs,ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, counter_pokeballs, counter_revives, counter_potions)
+
+				for event in pygame.event.get() : 
+
+					if event.type == pygame.KEYDOWN :
+
+						if event.key == pygame.K_UP and cursor_pos.x == 800 and cursor_pos.y == 50 :
+							PRESS_A_SOUND.play()
+							
+
+						if event.key == pygame.K_DOWN and cursor_pos.x == 800 and cursor_pos.y == 50 :
+							PRESS_A_SOUND.play()
+
+						if event.key == pygame.K_UP and cursor_pos.y > 10  :
+							cursor_pos.y-=70 
+
+						if event.key == pygame.K_DOWN and cursor_pos.y < 360  :
+							cursor_pos.y+=70
+
+						if cursor_pos.y == 10 and event.key == pygame.K_a  :
+							counter_pokeballs +=1
+
+						if cursor_pos.y == 80 and event.key == pygame.K_a  :
+							if counter_pokeballs > 0 :
+								counter_pokeballs -=1
+
+						if cursor_pos.y == 150 and event.key == pygame.K_a  :
+							counter_potions +=1
+
+						if cursor_pos.y == 220 and event.key == pygame.K_a  :
+							if counter_potions > 0 :
+								counter_potions -=1
+
+						if cursor_pos.y == 290 and event.key == pygame.K_a  :
+							counter_revives +=1
+
+						if cursor_pos.y == 360 and event.key == pygame.K_a  :
+							if counter_revives > 0 :
+								counter_revives -=1
+
+						if event.key == pygame.K_b :
+							choosing = False
+
+						if event.key == pygame.K_SPACE :
+							buy_items (counter_revives, counter_potions, counter_pokeballs)
+							choosing = False
+
+
+def buy_items (counter_revives, counter_potions, counter_pokeballs) :
+
+	available_pokeballs = variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_AVAILABLE"]
+	available_potions = variables["TRAINER"]["TRAINER_BAG"]["POTIONS_AVAILABLE"]
+	available_revives = variables["TRAINER"]["TRAINER_BAG"]["REVIVES_AVAILABLE"]
+
+	max_pokeballs = variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_MAX"]
+	max_potions = variables["TRAINER"]["TRAINER_BAG"]["POTIONS_MAX"]
+	max_revives = variables["TRAINER"]["TRAINER_BAG"]["REVIVES_MAX"]
+
+	pokeball_price = 200
+	revives_price = 500
+	potions_price = 350
+
+	pokeballs_buying_price = counter_pokeballs * pokeball_price
+	potions_buying_price = counter_potions * potions_price
+	revives_buying_price = counter_revives * revives_price
+
+	total_buying = pokeballs_buying_price + potions_buying_price + revives_buying_price
+
+	trainer_money = variables["TRAINER"]["POKECOINS"]
+
+	# Buy Pokeballs
+
+	if total_buying <= trainer_money :
+		variables["TRAINER"]["POKECOINS"] -= total_buying
+
+		if counter_pokeballs > 0:
+			if counter_pokeballs + available_pokeballs <= max_pokeballs :
+				variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_AVAILABLE"] = available_pokeballs + counter_pokeballs
+
+		if counter_potions > 0:
+			if counter_potions + available_potions <= max_potions :
+				variables["TRAINER"]["TRAINER_BAG"]["POTIONS_AVAILABLE"] = available_potions + counter_potions
+
+		if counter_revives > 0:
+			if counter_revives + available_revives <= max_revives :
+				variables["TRAINER"]["TRAINER_BAG"]["REVIVES_AVAILABLE"] = available_revives + counter_revives
+
+			
 
 def movement_right_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause, VEL) :
 	trainer_pokeballs = []
@@ -471,3 +577,31 @@ def access_shop (pokemon_trainer, pikachu_trainer, inside, before_enter_house_x,
 		trainer_movement_shop(keys_pressed, pokemon_trainer, pikachu_trainer, isAsh, isMisty, pause, free_pika, VEL)
 
 		SHOP_SOUND.play()
+
+
+def choose_items (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika, oakMessage, pause, VEL, counter_pokeballs, counter_revives, counter_potions) :
+
+	WIN.blit(SHOP_ITEMS_IMG, (0,0))
+	WIN.blit(CURSOR, (cursor_pos.x, cursor_pos.y))
+
+	pokeballs = WINNER_LOOSER_DIALOG.render("" + str(counter_pokeballs), 1, WHITE)
+	WIN.blit(pokeballs, (580, 50))
+
+	pokeballs_price = SHOP_FONT.render("200¥", 1, WHITE)
+	WIN.blit(pokeballs_price, (410, 50))
+
+	potions = WINNER_LOOSER_DIALOG.render("" + str(counter_potions), 1, WHITE)
+	WIN.blit(potions, (580, 200))
+
+	potions_price = SHOP_FONT.render("350¥", 1, WHITE)
+	WIN.blit(potions_price, (410, 200))
+
+	revives = WINNER_LOOSER_DIALOG.render("" + str(counter_revives), 1, WHITE)
+	WIN.blit(revives, (580, 350))
+
+	revives_price = SHOP_FONT.render("500¥", 1, WHITE)
+	WIN.blit(revives_price, (410, 370))
+
+
+
+	pygame.display.update()
