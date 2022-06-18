@@ -53,6 +53,10 @@ hora = now.strftime("%H")
 hora_str = now.strftime("%H:%M")
 free_pika = 0
 
+# Player values
+my_save_slot = open("save.json")
+variables = json.load(my_save_slot)
+
 ## App icon
 icon = pygame.image.load('Assets/items/pokeball.png')
 pygame.display.set_icon(icon)
@@ -984,6 +988,7 @@ TOWN = pygame.mixer.Sound("Assets/sounds/town.mp3")
 SHOP_SOUND =  pygame.mixer.Sound("Assets/sounds/shop_sound.mp3")
 CENTER_SOUND = pygame.mixer.Sound("Assets/sounds/center_sound.mp3")
 HEALING_SOUND = pygame.mixer.Sound("Assets/sounds/healing.mp3")
+CASH_SOUND = pygame.mixer.Sound("Assets/sounds/cash.mp3")
 
 
 # Pokeball

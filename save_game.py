@@ -1,9 +1,6 @@
 import os
 import json
-
-# Player values
-my_save_slot = open("save.json")
-variables = json.load(my_save_slot)
+from resources import *
 
 def save_game () :
 	my_save_slot = json.dumps(variables)

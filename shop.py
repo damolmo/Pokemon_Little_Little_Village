@@ -174,6 +174,7 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 			pikachu_trainer.y = previous_pi_y - 0
 
 		if pokemon_trainer.colliderect(SHOP_DEPENDENT_RECT):
+
 			choosing = True
 			cursor_pos.x = 715
 			cursor_pos.y = 10
@@ -181,7 +182,7 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 			counter_revives = 1
 			counter_pokeballs = 1
 
-			while (choosing) :
+			while choosing :
 				if isAsh :
 					choose_items(pokemon_trainer, fecha,POKEBALL_IMG,ASH_LEFT_IMG, trainer_pokeballs, ASH_PIKACHU_LEFT_LEFT_FOOT_IMG, free_pika, oakMessage, pause, VEL, counter_pokeballs, counter_revives, counter_potions)
 				else :
@@ -198,41 +199,57 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 						if event.key == pygame.K_DOWN and cursor_pos.x == 800 and cursor_pos.y == 50 :
 							PRESS_A_SOUND.play()
 
-						if event.key == pygame.K_UP and cursor_pos.y > 10  :
+						if event.key == pygame.K_UP and cursor_pos.y > 10 and cursor_pos.x == 715 :
 							cursor_pos.y-=70 
 
-						if event.key == pygame.K_DOWN and cursor_pos.y < 360  :
+						if event.key == pygame.K_DOWN and cursor_pos.y < 360 and cursor_pos.x == 715 :
 							cursor_pos.y+=70
 
-						if cursor_pos.y == 10 and event.key == pygame.K_a  :
+						if cursor_pos.y == 10 and event.key == pygame.K_a and cursor_pos.x == 715  :
 							counter_pokeballs +=1
 
-						if cursor_pos.y == 80 and event.key == pygame.K_a  :
+						if cursor_pos.y == 80 and event.key == pygame.K_a and cursor_pos.x == 715  :
 							if counter_pokeballs > 0 :
 								counter_pokeballs -=1
 
-						if cursor_pos.y == 150 and event.key == pygame.K_a  :
+						if cursor_pos.y == 150 and event.key == pygame.K_a and cursor_pos.x == 715  :
 							counter_potions +=1
 
-						if cursor_pos.y == 220 and event.key == pygame.K_a  :
+						if cursor_pos.y == 220 and event.key == pygame.K_a and cursor_pos.x == 715  :
 							if counter_potions > 0 :
 								counter_potions -=1
 
-						if cursor_pos.y == 290 and event.key == pygame.K_a  :
+						if cursor_pos.y == 290 and event.key == pygame.K_a and cursor_pos.x == 715  :
 							counter_revives +=1
 
-						if cursor_pos.y == 360 and event.key == pygame.K_a  :
+						if cursor_pos.y == 360 and event.key == pygame.K_a and cursor_pos.x == 715  :
 							if counter_revives > 0 :
 								counter_revives -=1
 
-						if event.key == pygame.K_b :
-							choosing = False
+						if  cursor_pos.y <= 150 and event.key == pygame.K_RIGHT  :
+							cursor_pos.x = 800
 
-						if event.key == pygame.K_SPACE :
+						if cursor_pos.x == 800 and cursor_pos.y <= 150 and event.key == pygame.K_a :
+							SHOP_SOUND.stop()
+							CASH_SOUND.play()
 							buy_items (counter_revives, counter_potions, counter_pokeballs)
+							SHOP_SOUND.play()
+
+						if cursor_pos.x == 800 and cursor_pos.y == 320 and event.key == pygame.K_a :
 							choosing = False
+							pokemon_trainer.x = pokemon_trainer.x + 50
+
+						if cursor_pos.x == 800 and cursor_pos.y == 320 and event.key == pygame.K_UP :
+							cursor_pos.y == 150
+
+						if cursor_pos.x == 800 and cursor_pos.y <= 150 and event.key == pygame.K_DOWN  :
+							cursor_pos.y = 320
 
 
+						if event.key == pygame.K_LEFT :
+							cursor_pos.x = 715
+							
+									
 def buy_items (counter_revives, counter_potions, counter_pokeballs) :
 
 	available_pokeballs = variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_AVAILABLE"]
