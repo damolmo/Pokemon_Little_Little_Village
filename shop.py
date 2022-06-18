@@ -197,6 +197,10 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 
 					if event.type == pygame.KEYDOWN :
 
+						if event.type == pygame.QUIT:
+							run = False
+							pygame.quit()
+
 						if event.key == pygame.K_UP and cursor_pos.y > 10 and cursor_pos.x == 715 :
 							cursor_pos.y-=70 
 
@@ -567,6 +571,9 @@ def access_shop (pokemon_trainer, pikachu_trainer, inside, before_enter_house_x,
 
 			if pokemon_trainer.colliderect(PUERTA_RECT):
 				SHOP_SOUND.stop()
+				pokemon_trainer.x = 590
+				pokemon_trainer.y = 350
+				
 				inside = False
 				
 

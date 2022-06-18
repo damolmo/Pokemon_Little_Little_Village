@@ -149,6 +149,7 @@ LIMIT_WEST =  pygame.Rect(740, 160, 120, 160)
 CENTER_STAIRS_EAST =  pygame.Rect(100, 0, 120, 300)
 LIMIT_EAST =  pygame.Rect(0, 300, 120, HEIGHT - 300)
 CENTER_DESK = pygame.Rect(250, 120, 350, 100)
+BANK_RECT = pygame.Rect(550, 170, 50, 60)
 
 # Team Rocket Rect
 ROCKET_RECT = pygame.Rect(800, 300, 100, 200)
@@ -918,6 +919,8 @@ SHOPPING_EVENING_IMG = pygame.transform.scale(pygame.image.load(os.path.join('As
 SHOPPING_NIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone', "shopping_night.png")), (WIDTH,HEIGHT))
 SHOP_INSIDE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/shop', "shop.png")), (WIDTH,HEIGHT))
 CENTER_INSIDE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/shop', "center.png")), (WIDTH,HEIGHT))
+CENTER_BANK_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/pokemon_center', "bank.png")), (WIDTH,HEIGHT))
+
 SHOP_ITEMS_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/shop', "pokemon_shop_items.png")), (WIDTH,HEIGHT))
 
 # Screen Dialog

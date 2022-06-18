@@ -153,78 +153,7 @@
 
 			"POKEMON_SLOT_32" : {
 			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_33" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_34" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_35" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_36" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_37" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_38" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_39" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_40" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_41" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_42" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_43" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_44" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_45" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_46" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_47" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_48" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_49" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
-			},
-
-			"POKEMON_SLOT_50" : {
-			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
 			}
+
 }
 }

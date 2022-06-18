@@ -2,7 +2,7 @@ from resources import *
 from bag import *
 from save_game import *
 from pika import *
-
+from bank import *
 
 def access_center (pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty) :
 	trainer_pokeballs = []
@@ -87,6 +87,9 @@ def access_center (pokemon_trainer, pikachu_trainer, inside, before_enter_house_
 
 			if pokemon_trainer.colliderect(CENTER_DOOR):
 				CENTER_SOUND.stop()
+				pokemon_trainer.x = 230
+				pokemon_trainer.y = 330
+				
 				inside = False
 				
 				
@@ -166,6 +169,7 @@ def create_center (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeba
 	#pygame.draw.rect(WIN, BLUE, CENTER_STAIRS_WEST)
 	#pygame.draw.rect(WIN, BLUE, LIMIT_EAST)
 	#pygame.draw.rect(WIN, BLUE, LIMIT_WEST)
+	#pygame.draw.rect(WIN, BLUE, BANK_RECT)
 
 
 
@@ -420,6 +424,10 @@ def movement_up_center (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh
 			previous_x = pokemon_trainer.x
 			previous_pi_y = pikachu_trainer.y
 			previous_pi_x = pikachu_trainer.x
+
+		if pokemon_trainer.colliderect(BANK_RECT):
+			access_bank()
+			
 
 		if pokemon_trainer.colliderect(JOY_RECT):
 			previous_y = pokemon_trainer.y
