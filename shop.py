@@ -7,6 +7,11 @@ counter_potions = 1
 counter_revives = 1
 counter_pokeballs = 1
 
+max_pokeballs = variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_MAX"]
+max_potions = variables["TRAINER"]["TRAINER_BAG"]["POTIONS_MAX"]
+max_revives = variables["TRAINER"]["TRAINER_BAG"]["REVIVES_MAX"]
+
+
 def create_shop(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika, oakMessage, pause, VEL)  :
 	WIN.blit(SHOP_INSIDE_IMG, (0, 0))
 
@@ -200,7 +205,7 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 
 						if cursor_pos.y == 10 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
 							PRESS_A_SOUND.play()
-							if counter_pokeballs < 50 :
+							if counter_pokeballs < max_pokeballs :
 								counter_pokeballs +=1
 
 						if cursor_pos.y == 80 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
@@ -210,7 +215,7 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 
 						if cursor_pos.y == 150 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
 							PRESS_A_SOUND.play()
-							if counter_potions < 20 :
+							if counter_potions < max_potions :
 								counter_potions +=1
 
 						if cursor_pos.y == 220 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
@@ -220,7 +225,7 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 
 						if cursor_pos.y == 290 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
 							PRESS_A_SOUND.play()
-							if counter_revives < 20 :
+							if counter_revives < max_revives :
 								counter_revives +=1
 
 						if cursor_pos.y == 360 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
@@ -257,10 +262,6 @@ def buy_items (counter_revives, counter_potions, counter_pokeballs) :
 	available_pokeballs = variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_AVAILABLE"]
 	available_potions = variables["TRAINER"]["TRAINER_BAG"]["POTIONS_AVAILABLE"]
 	available_revives = variables["TRAINER"]["TRAINER_BAG"]["REVIVES_AVAILABLE"]
-
-	max_pokeballs = variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_MAX"]
-	max_potions = variables["TRAINER"]["TRAINER_BAG"]["POTIONS_MAX"]
-	max_revives = variables["TRAINER"]["TRAINER_BAG"]["REVIVES_MAX"]
 
 	pokeball_price = 200
 	revives_price = 500
