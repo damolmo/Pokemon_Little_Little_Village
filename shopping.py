@@ -88,7 +88,7 @@ def access_shopping_area (pokemon_trainer, pikachu_trainer, inside, before_enter
 	pokemon_trainer.y = before_enter_house_y + 20
 	free_pika = 0
 	PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
-	VEL = 6
+	VEL = 8
 
 	if isAsh :
 		TRAINER_IMG = ASH_IMG

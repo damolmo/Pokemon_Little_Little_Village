@@ -8,7 +8,7 @@ from trainer_movement import *
 
 def access_house (pokemon_trainer, pikachu_trainer, inside,x ,y, isAsh, isMisty) :
 
-	VEL = 6
+	VEL = 8
 	pause = -1
 	free_pika = 0
 	trainer_pokeballs = []
