@@ -3,6 +3,41 @@ from resources import *
 
 def create_pause_menu () :
 
+	WIN.blit(TRAINER_PAUSE_MENU_IMG, (0,0))
+
+	if variables["TRAINER"]["CHARACTER"] == "ASH" :
+		TRAINER_IMG = ASH_IMG
+
+	else :
+		TRAINER_IMG = MISTY_IMG
+
+	TRAINER_IMG = pygame.transform.scale(TRAINER_IMG,  (128, 156))
+
+	name = POKEBALLS_COUNTER_2.render(str("Name"), 1, BLACK)
+	WIN.blit(name, (500, 75))
+	name = POKEBALLS_COUNTER.render(str(variables["TRAINER"]["NAME"]).capitalize(), 1, WHITE)
+	WIN.blit(name, (500, 110))
+
+	wallet = POKEBALLS_COUNTER_2.render(str("Wallet"), 1, BLACK)
+	WIN.blit(wallet, (500, 160))
+
+	wallet = POKEBALLS_COUNTER.render(str(variables["TRAINER"]["POKECOINS"]) + "¥", 1, WHITE)
+	WIN.blit(wallet, (500, 200))
+
+	POKEBALL_ITEM =  pygame.transform.scale(pygame.image.load(os.path.join('Assets/items', "pokeball_item.png")), (30,30))
+
+	if variables["TRAINER"]["POKEMON_1"]["NAME"] != "NONE" :
+		WIN.blit(POKEBALL_ITEM, (500, 270))
+
+	if variables["TRAINER"]["POKEMON_2"]["NAME"] != "NONE" :
+		WIN.blit(POKEBALL_ITEM, (535, 270))
+
+	if variables["TRAINER"]["POKEMON_3"]["NAME"] != "NONE" :
+		WIN.blit(POKEBALL_ITEM, (570, 270))
+
+
+
+	WIN.blit(TRAINER_IMG, (295, 95))
 	WIN.blit(PAUSE_MENU_IMG, (230,320))
 	WIN.blit(CURSOR, (cursor_pos.x, cursor_pos.y))
 	pygame.display.update()

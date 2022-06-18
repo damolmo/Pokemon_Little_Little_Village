@@ -874,6 +874,7 @@ TRAINER_ROOM_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets
 TRAINER_ROOM_NIGHT = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/trainer_house/night', "room_night.png")), (WIDTH, HEIGHT))
 
 # Pause Menu
+TRAINER_PAUSE_MENU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/settings', "trainer_pause_menu.png")), (900, 507))
 PAUSE_MENU_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/menu/settings', "pause_menu.png")), (450, 200))
 CLOCK_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/clock', "clock.png")), (200, 100))
 BAG_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/clock', "bag.png")), (110, 70))
@@ -1003,6 +1004,7 @@ POKEBALL_ITEM.convert()
 WINNER_LOOSER_DIALOG = pygame.font.SysFont('comicsans', 80)
 SHOP_FONT = pygame.font.SysFont('comicsans', 60)
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 30)
+POKEBALLS_COUNTER_2 = pygame.font.SysFont('comicsans', 28)
 DIALOG_FONT = pygame.font.SysFont('comicsans', 26)
 DIALOG_MINI_FONT = pygame.font.SysFont('comicsans', 18)
 RULES = pygame.font.SysFont('comicsans', 16)
