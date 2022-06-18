@@ -33,9 +33,9 @@ Pocket Monster based game powered by Python and Pygame
 - [x] Trainer bag
 - [x] Create more Pokémon
 - [x] New Map area with shop and Pokemon Center
+- [x] Fully working Pokemon Center and shop
 - [ ] Fully working wild encounter
-- [ ] Fully working inventory
-- [ ] Fully working Pokemon Center and shop
+- [ ] Fully working Pokemon bag
 - [ ] New Safari Zone
 - [ ] Pokemon Bank
 # Installation
