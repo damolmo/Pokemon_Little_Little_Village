@@ -156,6 +156,7 @@ def welcome() :
 
 def choose_character () :
 	BACKGROUND_SOUND.stop()
+	OPENING_SOUND.play()
 	start = False
 	isMisty = False
 	isAsh = False
@@ -192,6 +193,7 @@ def choose_character () :
 
 				if event.key == pygame.K_LEFT and cursor_menu.x == 470 :
 					cursor_menu.x -= 350
+
 
 def enter_name (isAsh, isMisty) :
 	typing = True
@@ -287,6 +289,8 @@ def main (isAsh, isMisty): ## Main function
 	TOWN.stop()
 	OAK_THEME.stop()
 	BACKGROUND_SOUND.stop()
+	OPENING_SOUND.stop()
+	HOUSE_SOUND.stop()
 	trainer_pokeballs = []
 	free_monster = []
 	pokeballs = 5

@@ -304,6 +304,29 @@ OAK_BACK_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npc
 OAK_BACK_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/oak/up', "oak_up_left_foot.png")), (74, 96))
 OAK_BACK_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/oak/up', "oak_up_right_foot.png")), (74, 96))
 
+previous_mom_x, previous_mom_y = 400, 100
+mom = pygame.Rect(previous_mom_x, previous_mom_y, 74, 96) # Defines player coords
+
+## Walking
+# --- Down Position ---
+MOM_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/down', "mom_down.png")), (74, 96))
+MOM_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/down', "mom_down_left_foot.png")), (74, 96))
+MOM_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/down', "mom_down_right_foot.png")), (74, 96))
+
+# --- Left Position ---
+MOM_LEFT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/left', "mom_left.png")), (74, 96))
+MOM_LEFT_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/left', "mom_left_left_foot.png")), (74, 96))
+MOM_LEFT_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/left', "mom_left_right_foot.png")), (74, 96))
+
+# --- Right Position ---
+MOM_RIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/right', "mom_right.png")), (74, 96))
+MOM_RIGHT_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/right', "mom_right_right_foot.png")), (74, 96))
+MOM_RIGHT_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/right', "mom_right_left_foot.png")), (74, 96))
+
+# --- Up Position ---
+MOM_BACK_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/up', "mom_up.png")), (74, 96))
+MOM_BACK_LEFT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/up', "mom_up_left_foot.png")), (74, 96))
+MOM_BACK_RIGHT_FOOT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/npcs/mom/up', "mom_up_right_foot.png")), (74, 96))
 
 
 ### Team Rocket Assets
@@ -997,7 +1020,8 @@ SHOP_SOUND =  pygame.mixer.Sound("Assets/sounds/shop_sound.mp3")
 CENTER_SOUND = pygame.mixer.Sound("Assets/sounds/center_sound.mp3")
 HEALING_SOUND = pygame.mixer.Sound("Assets/sounds/healing.mp3")
 CASH_SOUND = pygame.mixer.Sound("Assets/sounds/cash.mp3")
-
+OPENING_SOUND = pygame.mixer.Sound("Assets/sounds/opening.mp3")
+HOUSE_SOUND = pygame.mixer.Sound("Assets/sounds/house.mp3")
 
 # Pokeball
 POKEBALL_IMG = pygame.image.load(os.path.join('Assets/items', "pokeball.png"))

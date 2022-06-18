@@ -143,6 +143,8 @@ def create_laboratory (TRAINER, PIKACHU, OAK, isTalking, isBulbasaur, isSquirtle
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
 
+	POKEBALL_ITEM =  pygame.transform.scale(pygame.image.load(os.path.join('Assets/items', "pokeball_item.png")), (30,30))
+
 	if variables["TRAINER"]["INITIAL_POKEMON"] == "Bulbasaur" :
 		WIN.blit(POKEBALL_ITEM, (640, 300))
 		WIN.blit(POKEBALL_ITEM, (690, 300))
