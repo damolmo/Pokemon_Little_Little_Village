@@ -200,7 +200,8 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 
 						if cursor_pos.y == 10 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
 							PRESS_A_SOUND.play()
-							counter_pokeballs +=1
+							if counter_pokeballs < 50 :
+								counter_pokeballs +=1
 
 						if cursor_pos.y == 80 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
 							PRESS_A_SOUND.play()
@@ -209,7 +210,8 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 
 						if cursor_pos.y == 150 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
 							PRESS_A_SOUND.play()
-							counter_potions +=1
+							if counter_potions < 20 :
+								counter_potions +=1
 
 						if cursor_pos.y == 220 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
 							PRESS_A_SOUND.play()
@@ -218,7 +220,8 @@ def movement_left_shop(pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh,
 
 						if cursor_pos.y == 290 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
 							PRESS_A_SOUND.play()
-							counter_revives +=1
+							if counter_revives < 20 :
+								counter_revives +=1
 
 						if cursor_pos.y == 360 and event.key == pygame.K_SPACE and cursor_pos.x == 715  :
 							PRESS_A_SOUND.play()
