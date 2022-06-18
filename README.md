@@ -14,8 +14,7 @@ Pokémon Little Little Village is an open-source Pocket Monster based game power
 <br/>
 
 # System Requirements
-• <a href="https://www.python.org/downloads/">Python 3.10 version or newer</a><br/>
-<br/>
+Just a computer with Windows 10/11
 
 # Status
 
