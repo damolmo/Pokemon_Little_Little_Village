@@ -58,7 +58,7 @@ my_save_slot = open("save.json")
 variables = json.load(my_save_slot)
 
 ## App icon
-icon = pygame.image.load('Assets/items/pokeball.png')
+icon = pygame.image.load('Assets/background/title_screen/logo.png')
 pygame.display.set_icon(icon)
 
 ## Map Values
@@ -855,6 +855,10 @@ UMBREON_IMG_34 = pygame.transform.scale(pygame.image.load(os.path.join('Assets/p
 
 # Background
 # Title Screen
+TITLE_SCREEN_DAY_IMG = pygame.image.load(os.path.join('Assets/background/title_screen', "day_title_screen.png"))
+TITLE_SCREEN_AFTERNOON_IMG = pygame.image.load(os.path.join('Assets/background/title_screen', "afternoon_title_screen.png"))
+TITLE_SCREEN_EVENING_IMG = pygame.image.load(os.path.join('Assets/background/title_screen', "night_title_screen.png"))
+TITLE_LOGO_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/title_screen', "title_logo.png")), (400, 400))
 
 # Map
 TITLE_SCREEN_IMG = pygame.image.load(os.path.join('Assets/background/title_screen', "welcome.png"))
@@ -1006,6 +1010,7 @@ POKEBALL_ITEM.convert()
 # Display Fonts
 WINNER_LOOSER_DIALOG = pygame.font.SysFont('comicsans', 80)
 SHOP_FONT = pygame.font.SysFont('comicsans', 60)
+TITLE_FONT = pygame.font.SysFont('comicsans', 50)
 POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 30)
 POKEBALLS_COUNTER_2 = pygame.font.SysFont('comicsans', 28)
 DIALOG_FONT = pygame.font.SysFont('comicsans', 26)

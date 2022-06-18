@@ -89,7 +89,36 @@ System_Files_Check.check_Save_Exist()
 
 def create_title_screen() :
 
-	WIN.blit(TITLE_SCREEN_IMG, (0,0)) # Place background image
+	now = datetime.now()
+	hora = now.strftime("%H")
+
+	if hora <="16" and hora >="10" :
+		WIN.blit(TITLE_SCREEN_DAY_IMG, (0,0)) # Place background image
+		
+	elif hora >="17" and hora <"20":
+		WIN.blit(TITLE_SCREEN_AFTERNOON_IMG, (0,0)) # Place background image
+	
+	elif hora >= "00" and hora <"06" :
+		WIN.blit(TITLE_SCREEN_EVENING_IMG, (0,0)) # Place background image
+
+	elif hora >= "06" and hora <"10" :
+		WIN.blit(TITLE_SCREEN_DAY_IMG, (0,0)) # Place background image
+
+	else :
+		WIN.blit(TITLE_SCREEN_EVENING_IMG, (0,0)) # Place background image
+	
+	WIN.blit(TITLE_LOGO_IMG, (250,0)) # Place background image
+
+	start = TITLE_FONT.render("Press (A) to Start", 1, WHITE)
+	WIN.blit(start, (240, 370))
+
+	version = DIALOG_MINI_FONT.render("v11.0 Alpha", 1, WHITE)
+	WIN.blit(version, (10, 10))
+
+	year = DIALOG_MINI_FONT.render("©2022", 1, WHITE)
+	WIN.blit(year, (830, 10))
+
+
 	pygame.display.update()
 
 
