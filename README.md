@@ -2,14 +2,6 @@
 
 Pokémon Little Little Village is an open-source Pocket Monster based game powered by the Python Programming Language and the Pygame framework which provides a beautiful UI
 
-This project use other open-source libs like Mixer which provides ambient sounds inside the game.
-
-<br/>
-
-This game is time based, all the events inside the game change every hour that's possible thanks to an internal clock!.
-
-If you play at evening, the background will get dark and blue and the wild encounter background will change too. Also the Pokemon will be different
-
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
 <br/>
