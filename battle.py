@@ -452,7 +452,6 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 
 								if event.key == pygame.K_RETURN :
 									wild = False
-									movement_down (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause, VEL)
 									cursor_pos.x = 620
 
 
