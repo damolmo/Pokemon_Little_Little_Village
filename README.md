@@ -14,7 +14,14 @@ Pokémon Little Little Village is an open-source Pocket Monster based game power
 <br/>
 
 # System Requirements
-Just a computer with Windows 10/11
+
+## Minimum
+• RAM: 4GB DDR3<br/>
+• iGPU: Integrated GPU of the last 4-5 years
+
+## Recommended
+• RAM: 8GB DDR4<br/>
+• iGPU: Integrated GPU of the last 2 years
 
 # Status
 
