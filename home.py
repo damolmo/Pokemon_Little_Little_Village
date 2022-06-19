@@ -6,11 +6,13 @@ from trainer_movement import *
 from laboratory import *
 from house import *
 from shopping import *
+import time
 
 def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika, oakMessage, pause, VEL) :
 
 	now = datetime.now()
 	hora = now.strftime("%H")
+	import time
 
 
 	if hora <="16" and hora >="10" :
@@ -67,6 +69,7 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs,
 
 	WIN.blit(TRAINER, (pokemon_trainer.x, pokemon_trainer.y))
 
+
 	fecha = today.strftime("%m %d")
 
 	date = DIALOG_FONT.render("" + str(fecha), 1, BLACK)
@@ -100,7 +103,53 @@ def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs,
 
 	pygame.display.update()
 
-	
+
+def daily_rewards () :
+
+	now = fecha = today.strftime("%B %d, %Y")
+	days = variables["TRAINER"]["DAYS_PLAYING"]
+	count = 0
+	your_reward = ""
+
+	if now not in days :
+		days.append(now)
+
+		for day in days  :
+			count +=1
+
+		position = str(count)
+
+		item = variables["DAILY_REWARDS"][position]["OBJECT"]
+		value = variables["DAILY_REWARDS"][position]["VALUE"]
+		variables["DAILY_REWARDS"][position]["OBTAINED"] = "YES"
+
+		your_reward = ("Daily Reward: Day %d: You obtained %d %s") % (count, value, item )
+
+		## Add the gift to trainer bag
+		if item == "POKEBALL" :
+			variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_AVAILABLE"] += value
+
+		elif item == "POTION" :
+			variables["TRAINER"]["TRAINER_BAG"]["POTIONS_AVAILABLE"] += value
+
+		elif item  == "REVIVE" :
+			variables["TRAINER"]["TRAINER_BAG"]["REVIVES_AVAILABLE"] += value
+
+	else  :
+		your_reward = "NONE"
+		save_game()
+		
+	return your_reward
+
+def create_reward_window (reward) :
+	# Daily Rewards
+
+	if reward != "NONE" :
+		WIN.blit(DIALOG_MENU, (0, 300))
+		message = POKEBALLS_COUNTER.render(reward, 1, WHITE)
+		WIN.blit(message, (180, 400))
+
+	pygame.display.update()
 
 def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) :
 

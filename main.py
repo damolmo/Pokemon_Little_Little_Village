@@ -311,10 +311,10 @@ def main (isAsh, isMisty): ## Main function
 
 	PIKACHU_IMG = ASH_PIKACHU_LEFT_LEFT_FOOT_IMG
 
-
 	while run :
 		pause = 0
 		clock.tick(FPS)
+
 		for event in pygame.event.get() :
 			if event.type == pygame.QUIT:
 				run = False
@@ -355,6 +355,11 @@ def main (isAsh, isMisty): ## Main function
 				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause, VEL)
 
 			if keys[pygame.K_DOWN]:
+				message = daily_rewards()
+				if message != "NONE" :
+					create_reward_window(message)
+					time.sleep(5)
+
 				if isAsh :
 					TRAINER_IMG = ASH_IMG
 				else :

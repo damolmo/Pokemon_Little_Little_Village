@@ -4,7 +4,8 @@
 		"NAME": "NONE", 
 		"CHARACTER": "NONE", 
 		"POKECOINS" : 1000,
-		"INITIAL_POKEMON": "NONE", 
+		"INITIAL_POKEMON": "NONE",
+		"DAYS_PLAYING" : [], 
 		"POKEMON_1": {"NAME": "PIKACHU", "LEVEL": 10, "HP": 12, "BASE_HP": 12, "MOVE": "LIGHTNING", "ATTACK": 15, "DEFENSE": 12, "SPECIAL_ATTACK": 11, "SPEED": 16}, 
 		"POKEMON_2": {"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": 0, "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPECIAL_DEFENSE": 0, "SPEED": 0}, 
 		"POKEMON_3": {"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0}, 
@@ -226,5 +227,165 @@
 			"POKEMON_SLOT_50" : {
 			"NAME": "NONE", "LEVEL": 0, "HP": 0, "BASE_HP": 0, "MOVE": "NONE", "ATTACK": "0", "DEFENSE": 0, "SPECIAL_ATTACK": 0, "SPEED": 0
 			}
+
+},
+
+
+"DAILY_REWARDS" : {
+
+			"1" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 3, "OBTAINED" : "NO"
+			
+			},
+
+			"2" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"3" : {
+			"OBJECT" : "POTION", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"4" : {
+			"OBJECT" : "POTION", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"5" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 3, "OBTAINED" : "NO"
+			
+			},
+
+			"6" : {
+			"OBJECT" : "POTION", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"7" : {
+			"OBJECT" : "REVIVE", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"8" : {
+			"OBJECT" : "REVIVE", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"9" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"10" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"11" : {
+			"OBJECT" : "POTION", "VALUE" : 2, "OBTAINED" : "NO"
+			
+			},
+
+			"12" : {
+			"OBJECT" : "POTION", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"13" : {
+			"OBJECT" : "REVIVE", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"14" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"15" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 5, "OBTAINED" : "NO"
+			
+			},
+
+			"16" : {
+			"OBJECT" : "POTION", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"17" : {
+			"OBJECT" : "POTION", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"18" : {
+			"OBJECT" : "NONE", "OBTAINED" : "NO"
+			
+			},
+
+			"19" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 3, "OBTAINED" : "NO"
+			
+			},
+
+			"2O" : {
+			"OBJECT" : "REVIVE", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"21" : {
+			"OBJECT" : "POTION", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"22" : {
+			"OBJECT" : "NONE", "OBTAINED" : "NO"
+			
+			},
+
+			"23" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 2, "OBTAINED" : "NO"
+			
+			},
+
+			"24" : {
+			"OBJECT" : "POTION", "VALUE" : 2, "OBTAINED" : "NO"
+			
+			},
+
+			"25" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"26" : {
+			"OBJECT" : "REVIVE", "VALUE" : 3, "OBTAINED" : "NO"
+			
+			},
+
+			"27" : {
+			"OBJECT" : "NONE", "OBTAINED" : "NO"
+			
+			},
+
+			"28" : {
+			"OBJECT" : "POTION", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"29" : {
+			"OBJECT" : "REVIVE", "VALUE" : 3, "OBTAINED" : "NO"
+			
+			},
+
+			"30" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 1, "OBTAINED" : "NO"
+			
+			},
+
+			"31" : {
+			"OBJECT" : "POKEBALL", "VALUE" : 10, "OBTAINED" : "NO"
+			}
+
 }
 }
