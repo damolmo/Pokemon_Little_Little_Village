@@ -399,7 +399,6 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 					variables["TRAINER"]["POKEMON_1"]["HP"] = pokemonVariableHP
 					variables["TRAINER"]["POKEMON_2"]["HP"] = pokemonVariableHP_2
 					variables["TRAINER"]["POKEMON_3"]["HP"] = pokemonVariableHP_3
-					save_game()
 					wild = False
 					print("HAS HUIDO")
 					cursor_pos.x = 620
@@ -437,7 +436,6 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 					if pokemonStaticHP == variables["TRAINER"]["POKEMON_3"]["BASE_HP"] :
 						variables["TRAINER"]["POKEMON_3"]["HP"] = pokemonVariableHP
 
-					save_game()
 					POKEMON_ENCOUNTER_SOUND.stop()
 					SCAPE_SOUND.play()
 					time.sleep(1)

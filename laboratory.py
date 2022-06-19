@@ -498,7 +498,6 @@ def start_pokeball_starter_view (cursor_pos) :
 						variables["TRAINER"]["POKEMON_2"]["SPECIAL_ATTACK"] = 11
 						variables["TRAINER"]["POKEMON_2"]["SPECIAL_DEFENSE"] = 14
 						variables["TRAINER"]["POKEMON_2"]["SPEED"] = 11
-						save_game()
 
 					if isBulbasaur :
 						variables["TRAINER"]["INITIAL_POKEMON"] = "Bulbasaur"
@@ -513,7 +512,6 @@ def start_pokeball_starter_view (cursor_pos) :
 						variables["TRAINER"]["POKEMON_2"]["SPECIAL_ATTACK"] = 13
 						variables["TRAINER"]["POKEMON_2"]["SPECIAL_DEFENSE"] = 13
 						variables["TRAINER"]["POKEMON_2"]["SPEED"] = 13
-						save_game()
 
 					if isCharmander :
 						variables["TRAINER"]["INITIAL_POKEMON"] = "Charmander"
@@ -528,7 +526,6 @@ def start_pokeball_starter_view (cursor_pos) :
 						variables["TRAINER"]["POKEMON_2"]["SPECIAL_ATTACK"] = 13
 						variables["TRAINER"]["POKEMON_2"]["SPECIAL_DEFENSE"] = 11
 						variables["TRAINER"]["POKEMON_2"]["SPEED"] = 15
-						save_game()
 
 				if cursor_pos.x == 100 and event.key == pygame.K_RIGHT :
 					isBulbasaur = False
@@ -612,7 +609,6 @@ def create_pokeball_starter_view (x, y, isSquirtle, isBulbasaur, isCharmander, i
 		oak_phrase_2 = POKEBALLS_COUNTER.render("Press any key to exit", 1, WHITE)
 		WIN.blit(oak_phrase_2, (50, 450))
 		clock.tick(20)
-		save_game()
 
 
 	pygame.display.update()

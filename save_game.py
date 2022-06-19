@@ -1,7 +1,6 @@
 import os
 import json
 from resources import *
-from main import *
 
 def save_game () :
 
