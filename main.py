@@ -112,7 +112,7 @@ def create_title_screen() :
 	start = TITLE_FONT.render("Press (A) to Start", 1, WHITE)
 	WIN.blit(start, (240, 370))
 
-	version = DIALOG_MINI_FONT.render("v11.0 Alpha", 1, WHITE)
+	version = DIALOG_MINI_FONT.render("v12.0 Alpha", 1, WHITE)
 	WIN.blit(version, (10, 10))
 
 	year = DIALOG_MINI_FONT.render("©2022", 1, WHITE)
