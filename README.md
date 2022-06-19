@@ -35,11 +35,18 @@ Just a computer with Windows 10/11
 - [x] Create more Pokémon
 - [x] New Map area with shop and Pokemon Center
 - [x] Fully working Pokemon Center and shop
+- [x] Rewards system based on days of play
 - [ ] Fully working wild encounter
 - [ ] Fully working Pokemon bag
 - [ ] New Safari Zone
 - [ ] Pokemon Bank
-# Installation
+
+# Installation 
+1.- Download the latest zip file from releases<br/>
+2.- Extract the Pokemon_Little_Little_Village dir <br/>
+3.- Launch the .exe file inside
+
+# Advanced Installation (Requires Python)
 
 ```GNU/Linux ```
 ```
