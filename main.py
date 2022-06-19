@@ -362,7 +362,7 @@ def main (isAsh, isMisty): ## Main function
 
 			if keys[pygame.K_DOWN]:
 				message = daily_rewards()
-				if message != "NONE" :
+				if message != "NONE" and message !="RECEIVED" :
 					create_reward_window(message)
 					time.sleep(5)
 					access_reward_calendar()

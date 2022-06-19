@@ -117,23 +117,27 @@ def daily_rewards () :
 		for day in days  :
 			count +=1
 
-		position = str(count)
+		if count < 31 :
 
-		item = variables["DAILY_REWARDS"][position]["OBJECT"]
-		value = variables["DAILY_REWARDS"][position]["VALUE"]
-		variables["DAILY_REWARDS"][position]["OBTAINED"] = "YES"
+			position = str(count)
+			variables["DAILY_REWARDS"][position]["OBTAINED"] = "YES"
+			item = variables["DAILY_REWARDS"][position]["OBJECT"]
+			value = variables["DAILY_REWARDS"][position]["VALUE"]
 
-		your_reward = ("Daily Reward: Day %d: You obtained %d %s") % (count, value, item )
+			your_reward = ("Daily Reward: Day %d: You obtained %d %s") % (count, value, item )
 
-		## Add the gift to trainer bag
-		if item == "POKEBALL" :
-			variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_AVAILABLE"] += value
+			## Add the gift to trainer bag
+			if item == "POKEBALL" :
+				variables["TRAINER"]["TRAINER_BAG"]["POKEBALLS_AVAILABLE"] += value
 
-		elif item == "POTION" :
-			variables["TRAINER"]["TRAINER_BAG"]["POTIONS_AVAILABLE"] += value
+			elif item == "POTION" :
+				variables["TRAINER"]["TRAINER_BAG"]["POTIONS_AVAILABLE"] += value
 
-		elif item  == "REVIVE" :
-			variables["TRAINER"]["TRAINER_BAG"]["REVIVES_AVAILABLE"] += value
+			elif item  == "REVIVE" :
+				variables["TRAINER"]["TRAINER_BAG"]["REVIVES_AVAILABLE"] += value
+
+		else : 
+			your_reward = "RECEIVED"
 
 	else  :
 		your_reward = "NONE"
@@ -268,60 +272,61 @@ def create_reward_calendar () :
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][18]), 1, BLACK)
 		WIN.blit(day_1, (30, 390))
 
-	if variables["DAILY_REWARDS"]["21"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["20"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (155, 305))
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][19]), 1, BLACK)
 		WIN.blit(day_1, (170, 390))
 
-	if variables["DAILY_REWARDS"]["22"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["21"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (295, 305))
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][20]), 1, BLACK)
 		WIN.blit(day_1, (310, 390))
 
-	if variables["DAILY_REWARDS"]["23"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["22"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (435, 305))
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][21]), 1, BLACK)
 		WIN.blit(day_1, (450, 390))
 
-	if variables["DAILY_REWARDS"]["24"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["23"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (575, 305))
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][22]), 1, BLACK)
 		WIN.blit(day_1, (590, 390))
 
-	if variables["DAILY_REWARDS"]["25"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["24"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (715, 305))
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][23]), 1, BLACK)
 		WIN.blit(day_1, (730, 390))
 
-	if variables["DAILY_REWARDS"]["26"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["25"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (15, 405))
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][24]), 1, BLACK)
 		WIN.blit(day_1, (30, 490))
 
-	if variables["DAILY_REWARDS"]["27"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["26"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (155, 405))
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][25]), 1, BLACK)
 		WIN.blit(day_1, (170, 490))
 
-	if variables["DAILY_REWARDS"]["28"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["27"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (295, 405))
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][26]), 1, BLACK)
 		WIN.blit(day_1, (310, 490))
 
-	if variables["DAILY_REWARDS"]["29"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["28"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (435, 405))
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][27]), 1, BLACK)
 		WIN.blit(day_1, (450, 490))
 
-	if variables["DAILY_REWARDS"]["30"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["29"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (575, 405))
 		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][28]), 1, BLACK)
 		WIN.blit(day_1, (590, 490))
 
-	if variables["DAILY_REWARDS"]["31"]["OBTAINED"] == "YES" :
+	if variables["DAILY_REWARDS"]["30"]["OBTAINED"] == "YES" :
 		WIN.blit(GIFT_SIGN_IMG, (715, 405))
-		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][29]), 1, BLACK)
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][28]), 1, BLACK)
 		WIN.blit(day_1, (730, 490))
+
 
 
 	pygame.display.update()

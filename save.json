@@ -379,12 +379,8 @@
 			},
 
 			"30" : {
-			"OBJECT" : "POKEBALL", "VALUE" : 1, "OBTAINED" : "NO"
-			
-			},
-
-			"31" : {
 			"OBJECT" : "POKEBALL", "VALUE" : 10, "OBTAINED" : "NO"
+			
 			}
 
 }
