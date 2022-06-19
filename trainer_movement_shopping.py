@@ -157,6 +157,21 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 				challenge = True
 				previous_x = pokemon_trainer.x
 				previous_y = pokemon_trainer.y
+				staticHP = random.randint(10, 20)
+				randomLevel = random.randint(2, 12)
+				variableHP = staticHP
+				pokemonVariableHP = variables["TRAINER"]["POKEMON_1"]["HP"]
+				pokemonStaticHP = pokemonVariableHP
+
+				pokemonStaticHP_2 = variables["TRAINER"]["POKEMON_2"]["BASE_HP"]
+				pokemonVariableHP_2 = variables["TRAINER"]["POKEMON_2"]["HP"]
+
+				pokemonStaticHP_3 = variables["TRAINER"]["POKEMON_3"]["BASE_HP"]
+				pokemonVariableHP_3 = variables["TRAINER"]["POKEMON_3"]["HP"]
+
+				pokemonLevel = variables["TRAINER"]["POKEMON_1"]["LEVEL"]
+
+
 				TOWN.stop()
 				ROCKET_SOUND.play()
 
@@ -184,7 +199,18 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 
 				# Start of battle
 				while (challenge) :
-					create_npc_battle( ["MEOWTH"] )
+					if pokemonVariableHP == 0 and pokemonVariableHP == variables["TRAINER"]["POKEMON_1"]["HP"] and variables["TRAINER"]["POKEMON_2"]["HP"] > 0   :
+						pokemonVariableHP = pokemonVariableHP_2 
+						pokemonStaticHP = pokemonStaticHP_2
+
+					elif pokemonVariableHP == 0 and pokemonVariableHP == variables["TRAINER"]["POKEMON_2"]["HP"] and variables["TRAINER"]["POKEMON_2"]["HP"] == 0 and variables["TRAINER"]["POKEMON_3"]["HP"] > 0   :
+						pokemonVariableHP = pokemonVariableHP_3
+						pokemonStaticHP = pokemonStaticHP_3
+
+					elif pokemonVariableHP == 0 and pokemonVariableHP == variables["TRAINER"]["POKEMON_3"]["HP"] :
+						pokemonVariableHP = 0
+
+					create_npc_battle( ["MEOWTH"], staticHP , variableHP, randomLevel, pokemonVariableHP  )
 
 					for event in pygame.event.get() : 
 
@@ -218,6 +244,50 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 								challenge = False
 								pokemon_trainer.x = previous_x - 200
 								pokemon_trainer.y = previous_y
+
+							if event.key == pygame.K_SPACE and cursor_pos.x == 620 and cursor_pos.y == 350 :
+								PRESS_A_SOUND.play()
+						
+								# Random damage by Trainer Pokemon
+								randomDamage = random.randint(2,10)
+
+								if variableHP >= randomDamage: 
+									variableHP -= randomDamage
+
+								else :
+									variableHP = 0
+
+								# Random damage by wild Pokemon
+								randomDamage = random.randint(2,10)
+
+								if pokemonVariableHP >= randomDamage:
+									pokemonVariableHP -= randomDamage
+
+								else :
+									pokemonVariableHP = 0
+
+
+							if variableHP == 0 :
+								if pokemonVariableHP > 0 or pokemonVariableHP_2 > 0 or pokemonVariableHP_3 > 0 : 
+									# Backup of current Pokemon HP
+									if pokemonStaticHP == variables["TRAINER"]["POKEMON_1"]["BASE_HP"] :
+										variables["TRAINER"]["POKEMON_1"]["HP"] = pokemonVariableHP
+
+									if pokemonStaticHP == variables["TRAINER"]["POKEMON_2"]["BASE_HP"] :
+										variables["TRAINER"]["POKEMON_2"]["HP"] = pokemonVariableHP
+
+									if pokemonStaticHP == variables["TRAINER"]["POKEMON_3"]["BASE_HP"] :
+										variables["TRAINER"]["POKEMON_3"]["HP"] = pokemonVariableHP
+
+									variables["BATTLE_EVENTS"]["TEAM_ROCKET_EVENT"] = "COMPLETED"
+
+									challenge = False
+
+									ROCKET_SOUND.stop()
+									SCAPE_SOUND.play()
+									time.sleep(1)
+									VICTORY.play()
+
 
 		pokemon_trainer.x += VEL
 		pikachu_trainer.x = pokemon_trainer.x - 60
@@ -453,7 +523,7 @@ def create_npc_battle_intro(NPC_IMG, isAsh, TRAINER_IMG, NPC_POKEBALLS, NPC_WIDT
 
 
 
-def create_npc_battle(NPC_POKEMON) :
+def create_npc_battle(NPC_POKEMON, staticHP , variableHP, randomLevel, pokemonVariableHP) :
 	WIN.blit(BATTLE_ARENA, (0,0))
 	WIN.blit(BATTLE_MENU, (600,410)) # Place background image
 	WIN.blit(CURSOR, (cursor_pos.x, cursor_pos.y))
@@ -464,6 +534,19 @@ def create_npc_battle(NPC_POKEMON) :
 	for pokemon in NPC_POKEMON :
 		if pokemon == "MEOWTH":
 			WIN.blit(MEOWTH_IMG_01, (600, 50))
+			wild = RULES.render("" + str(pokemon), 1, BLACK)
+			WIN.blit(wild, (685, 35))
+			level = RULES.render("Lv " + str(randomLevel), 1, BLACK)
+			WIN.blit(level, (840, 35))
+
+			stats = RULES.render("" + str(variableHP), 1, BLACK)
+			WIN.blit(stats, (692, 60))
+
+			separator = RULES.render("/", 1, BLACK)
+			WIN.blit(separator, (710, 60))
+
+			stats = RULES.render("" + str(staticHP) , 1, BLACK)
+			WIN.blit(stats, (720, 60))
 
 	# Trainer Pokemon
 	if variables["TRAINER"]["POKEMON_1"]["HP"] > 0 :
@@ -482,7 +565,7 @@ def create_npc_battle(NPC_POKEMON) :
 		friend = RULES.render("" + str(variables["TRAINER"]["POKEMON_1"]["NAME"]), 1, BLACK)
 		WIN.blit(friend, (5, 35))
 
-		stats = RULES.render("" + str(variables["TRAINER"]["POKEMON_1"]["HP"]) , 1, BLACK)
+		stats = RULES.render("" + str(pokemonVariableHP) , 1, BLACK)
 		WIN.blit(stats, (12, 60))
 
 		separator = RULES.render("/", 1, BLACK)
