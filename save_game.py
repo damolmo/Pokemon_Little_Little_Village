@@ -26,7 +26,7 @@ def create_save_windows () :
 	WIN.blit(DIALOG_MENU, (0, 300))
 	message = POKEBALLS_COUNTER.render("Saved your data...", 1, WHITE)
 	WIN.blit(message, (120, 370))
-	message = POKEBALLS_COUNTER.render("Press (A) to exit.", 1, WHITE)
+	message = POKEBALLS_COUNTER.render("Press (A) to continue.", 1, WHITE)
 	WIN.blit(message, (120, 450))
 
 	pygame.display.update()

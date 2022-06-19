@@ -141,7 +141,6 @@ def daily_rewards () :
 
 	else  :
 		your_reward = "NONE"
-		save_game()
 		
 	return your_reward
 
