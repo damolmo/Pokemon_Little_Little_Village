@@ -8,7 +8,7 @@ Pokémon Little Little Village is an open-source Pocket Monster based game power
 
 # Video Preview
 
-<a href="https://youtu.be/inee8TJ1t-o"><img src="src/1655734288617.gif"/></a>
+<a href="https://youtu.be/inee8TJ1t-o"><img src="https://github.com/daviiid99/Pokemon_Little_Little_Village/blob/main/src/1655734288617.gif" href="https://youtu.be/inee8TJ1t-o"></a>
 
 
 <br/>
