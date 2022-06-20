@@ -319,7 +319,7 @@
 			},
 
 			"18" : {
-			"OBJECT" : "NONE", "OBTAINED" : "NO"
+			"OBJECT" : "REVIVE", "VALUE" : 1, "OBTAINED" : "NO"
 			
 			},
 
@@ -339,7 +339,7 @@
 			},
 
 			"22" : {
-			"OBJECT" : "NONE", "OBTAINED" : "NO"
+			"OBJECT" : "POKEBALL", "VALUE" : 1, "OBTAINED" : "NO"
 			
 			},
 
@@ -364,7 +364,7 @@
 			},
 
 			"27" : {
-			"OBJECT" : "NONE", "OBTAINED" : "NO"
+			"OBJECT" : "POKEBALL", "VALUE" : 1, "OBTAINED" : "NO"
 			
 			},
 

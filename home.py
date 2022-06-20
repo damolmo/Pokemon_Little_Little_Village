@@ -147,9 +147,186 @@ def create_reward_window (reward) :
 	if reward != "NONE" :
 		WIN.blit(DIALOG_MENU, (0, 300))
 		message = POKEBALLS_COUNTER.render(reward, 1, WHITE)
-		WIN.blit(message, (180, 400))
+		WIN.blit(message, (165, 400))
 
 	pygame.display.update()
+
+def access_reward_calendar () :
+
+	calendar = True
+
+	while calendar :
+		create_reward_calendar ()
+
+		for event in pygame.event.get() :
+
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
+
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_BACKSPACE :
+					calendar = False
+
+
+def create_reward_calendar () :
+	WIN.blit(GIFT_CALENDAR_IMG, (0,0))
+
+
+	if variables["DAILY_REWARDS"]["1"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (15, 5))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][0]), 1, BLACK)
+		WIN.blit(day_1, (30, 90))
+
+	if variables["DAILY_REWARDS"]["2"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (155, 5))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][1]), 1, BLACK)
+		WIN.blit(day_1, (170, 90))
+
+	if variables["DAILY_REWARDS"]["3"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (295, 5))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][2]), 1, BLACK)
+		WIN.blit(day_1, (310, 90))
+
+	if variables["DAILY_REWARDS"]["4"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (435, 5))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][3]), 1, BLACK)
+		WIN.blit(day_1, (450, 90))
+
+	if variables["DAILY_REWARDS"]["5"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (575, 5))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][4]), 1, BLACK)
+		WIN.blit(day_1, (590, 90))
+
+	if variables["DAILY_REWARDS"]["6"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (715, 5))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][5]), 1, BLACK)
+		WIN.blit(day_1, (730, 90))
+
+	if variables["DAILY_REWARDS"]["7"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (15, 105))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][6]), 1, BLACK)
+		WIN.blit(day_1, (30, 190))
+
+	if variables["DAILY_REWARDS"]["8"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (155, 105))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][7]), 1, BLACK)
+		WIN.blit(day_1, (170, 190))
+
+	if variables["DAILY_REWARDS"]["9"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (295, 105))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][8]), 1, BLACK)
+		WIN.blit(day_1, (310, 190))
+
+	if variables["DAILY_REWARDS"]["10"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (435, 105))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][9]), 1, BLACK)
+		WIN.blit(day_1, (450, 190))
+
+	if variables["DAILY_REWARDS"]["11"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (575, 105))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][10]), 1, BLACK)
+		WIN.blit(day_1, (590, 190))
+
+	if variables["DAILY_REWARDS"]["12"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (715, 105))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][11]), 1, BLACK)
+		WIN.blit(day_1, (730, 190))
+
+	if variables["DAILY_REWARDS"]["13"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (15, 205))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][12]), 1, BLACK)
+		WIN.blit(day_1, (30, 290))
+
+	if variables["DAILY_REWARDS"]["14"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (155, 205))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][13]), 1, BLACK)
+		WIN.blit(day_1, (170, 290))
+
+	if variables["DAILY_REWARDS"]["15"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (295, 205))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][14]), 1, BLACK)
+		WIN.blit(day_1, (310, 290))
+
+	if variables["DAILY_REWARDS"]["16"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (435, 205))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][15]), 1, BLACK)
+		WIN.blit(day_1, (450, 290))
+
+	if variables["DAILY_REWARDS"]["17"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (575, 205))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][16]), 1, BLACK)
+		WIN.blit(day_1, (590, 290))
+
+	if variables["DAILY_REWARDS"]["18"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (715, 205))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][17]), 1, BLACK)
+		WIN.blit(day_1, (730, 290))
+
+	if variables["DAILY_REWARDS"]["19"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (15, 305))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][18]), 1, BLACK)
+		WIN.blit(day_1, (30, 390))
+
+	if variables["DAILY_REWARDS"]["21"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (155, 305))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][19]), 1, BLACK)
+		WIN.blit(day_1, (170, 390))
+
+	if variables["DAILY_REWARDS"]["22"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (295, 305))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][20]), 1, BLACK)
+		WIN.blit(day_1, (310, 390))
+
+	if variables["DAILY_REWARDS"]["23"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (435, 305))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][21]), 1, BLACK)
+		WIN.blit(day_1, (450, 390))
+
+	if variables["DAILY_REWARDS"]["24"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (575, 305))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][22]), 1, BLACK)
+		WIN.blit(day_1, (590, 390))
+
+	if variables["DAILY_REWARDS"]["25"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (715, 305))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][23]), 1, BLACK)
+		WIN.blit(day_1, (730, 390))
+
+	if variables["DAILY_REWARDS"]["26"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (15, 405))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][24]), 1, BLACK)
+		WIN.blit(day_1, (30, 490))
+
+	if variables["DAILY_REWARDS"]["27"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (155, 405))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][25]), 1, BLACK)
+		WIN.blit(day_1, (170, 490))
+
+	if variables["DAILY_REWARDS"]["28"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (295, 405))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][26]), 1, BLACK)
+		WIN.blit(day_1, (310, 490))
+
+	if variables["DAILY_REWARDS"]["29"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (435, 405))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][27]), 1, BLACK)
+		WIN.blit(day_1, (450, 490))
+
+	if variables["DAILY_REWARDS"]["30"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (575, 405))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][28]), 1, BLACK)
+		WIN.blit(day_1, (590, 490))
+
+	if variables["DAILY_REWARDS"]["31"]["OBTAINED"] == "YES" :
+		WIN.blit(GIFT_SIGN_IMG, (715, 405))
+		day_1 = GIFS.render(str(variables["TRAINER"]["DAYS_PLAYING"][29]), 1, BLACK)
+		WIN.blit(day_1, (730, 490))
+
+
+	pygame.display.update()
+
+
 
 def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) :
 

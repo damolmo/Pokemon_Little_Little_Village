@@ -947,6 +947,8 @@ SHOPPING_NIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Asse
 SHOP_INSIDE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/shop', "shop.png")), (WIDTH,HEIGHT))
 CENTER_INSIDE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/shop', "center.png")), (WIDTH,HEIGHT))
 CENTER_BANK_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/pokemon_center', "bank.png")), (WIDTH,HEIGHT))
+GIFT_CALENDAR_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/rewards', "rewards.png")), (WIDTH,HEIGHT))
+GIFT_SIGN_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/rewards', "sello.png")), (100,110))
 
 SHOP_ITEMS_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/shop', "pokemon_shop_items.png")), (WIDTH,HEIGHT))
 
@@ -1040,6 +1042,8 @@ POKEBALLS_COUNTER_2 = pygame.font.SysFont('comicsans', 28)
 DIALOG_FONT = pygame.font.SysFont('comicsans', 26)
 DIALOG_MINI_FONT = pygame.font.SysFont('comicsans', 18)
 RULES = pygame.font.SysFont('comicsans', 16)
+GIFS = pygame.font.SysFont('comicsans', 10)
+
 
 # -------------------------------------------
 

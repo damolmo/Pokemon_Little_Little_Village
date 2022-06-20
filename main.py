@@ -346,6 +346,12 @@ def main (isAsh, isMisty): ## Main function
 				create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause, VEL)
 
 			if keys[pygame.K_UP]:
+				message = daily_rewards()
+				if message != "NONE" :
+					create_reward_window(message)
+					time.sleep(5)
+					access_reward_calendar()
+
 				if isAsh :
 					TRAINER_IMG = ASH_BACK_IMG
 				else :
@@ -359,6 +365,7 @@ def main (isAsh, isMisty): ## Main function
 				if message != "NONE" :
 					create_reward_window(message)
 					time.sleep(5)
+					access_reward_calendar()
 
 				if isAsh :
 					TRAINER_IMG = ASH_IMG
@@ -409,6 +416,9 @@ def main (isAsh, isMisty): ## Main function
 				BACKGROUND_SOUND.stop()
 				save_game()
 				welcome()
+
+			if keys[pygame.K_g]:
+				access_reward_calendar()
 
 			if keys[pygame.K_x]:
 				pause += 1
