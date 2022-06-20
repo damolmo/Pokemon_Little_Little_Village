@@ -332,7 +332,7 @@ def create_reward_calendar () :
 
 
 
-def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) :
+def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) :
 
 	now = datetime.now()
 	hora = now.strftime("%H")
@@ -448,6 +448,13 @@ def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, p
 				level = RULES.render("Lv " + str(variables["TRAINER"]["POKEMON_3"]["LEVEL"]), 1, BLACK)
 				WIN.blit(level, (160, 35))
 
+
+	pokeball = POKEBALL_ITEM.get_rect()
+	pokeball = pygame.Rect(
+		pokemon_trainer.x, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 10, 5)
+
+	for pokeball in trainer_pokeballs :
+		WIN.blit(POKEBALL_ITEM, pokeball)
 
 	pygame.display.update()
 

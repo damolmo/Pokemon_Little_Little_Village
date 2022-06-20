@@ -25,20 +25,20 @@ def pre_area(POKEMON, POKEMON_NAME, ASH) :
 	WIN.blit(ASH, (0,220))
 
 	# Create Wild Pokemon Dialog 
-	WIN.blit(BATTLE_DIALOG, (0, 420))
-	dialog = DIALOG_FONT.render("" + str("A Wild Pokémon Appeared!"), 1, BLACK)
-	WIN.blit(dialog, (50, 440))
-	if variables["TRAINER"]["POKEMON_1"]["HP"] > 0 :
-		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_1"]["NAME"].capitalize())  + "!"), 1, BLACK)
+	#WIN.blit(BATTLE_DIALOG, (0, 420))
+	#dialog = DIALOG_FONT.render("" + str("A Wild Pokémon Appeared!"), 1, BLACK)
+	#WIN.blit(dialog, (50, 440))
+	#if variables["TRAINER"]["POKEMON_1"]["HP"] > 0 :
+	#	dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_1"]["NAME"].capitalize())  + "!"), 1, BLACK)
 
-	elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] > 0 :
-		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_2"]["NAME"].capitalize())  + "!"), 1, BLACK)
+	#elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] > 0 :
+	#	dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_2"]["NAME"].capitalize())  + "!"), 1, BLACK)
 
 
-	elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] == 0 and  variables["TRAINER"]["POKEMON_3"]["HP"] > 0 :
-		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_3"]["NAME"].capitalize())  + "!"), 1, BLACK)
+	#elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] == 0 and  variables["TRAINER"]["POKEMON_3"]["HP"] > 0 :
+	#	dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_3"]["NAME"].capitalize())  + "!"), 1, BLACK)
 
-	WIN.blit(dialog, (50, 460))
+	#WIN.blit(dialog, (50, 460))
 
 	# Display Wild Pokemon Name
 	date = RULES.render("" + str(POKEMON_NAME), 1, BLACK)
@@ -280,57 +280,58 @@ def wild_asset (wild_appeared) :
 
 	return pokemon
 
-def wild_pokemon (wild_appeared, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) :
+def wild_pokemon (wild_appeared, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) :
 
 	pokemon = ""
 
 	if wild_appeared == "PIKACHU" :
-		create_Pikachu(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Pikachu(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "SQUIRTLE" :
-		create_Squirtle(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Squirtle(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "CHARMANDER" :
-		create_Charmander(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Charmander(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "BULBASAUR" :
-		create_Bulbasaur(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Bulbasaur(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "PSYDUCK" :
-		create_Psyduck(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Psyduck(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "MEOWTH":
-		create_Meowth(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Meowth(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "UMBREON" :
-		create_Umbreon(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Umbreon(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "GASTLY" :
-		create_Gastly(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Gastly(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "GENGAR" :
-		create_Gengar(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Gengar(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "BEEDRILL":
-		create_Beedrill(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Beedrill(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "SCYTHER":
-		create_Scyther(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Scyther(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "EEVEE":
-		create_Eevee(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		create_Eevee(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 
 	elif wild_appeared == "ARCANINE":
-		create_Arcanine(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)
+		create_Arcanine(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs)
 
 	elif wild_appeared == "GROWLITHE":
-		create_Growlithe(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)  
+		create_Growlithe(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs)  
 
 	elif wild_appeared == "MRMIME":
-		create_MrMime(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel)  
+		create_MrMime(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs)  
 
 
 def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty, VEL) :
+	trainer_pokeballs = []
 	GRASS_SOUND.stop()
 	BACKGROUND_SOUND.stop()
 	cursor_pos.x = 620
@@ -384,7 +385,7 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 
 
 
-		wild_pokemon (pokemon, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel) 
+		wild_pokemon (pokemon, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 		sound +=1
 
 		for event in pygame.event.get() : 
@@ -402,6 +403,21 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 					wild = False
 					print("HAS HUIDO")
 					cursor_pos.x = 620
+
+				if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 350 :
+					if isAsh :
+						create_ash_opening_anim(POKEMON, "")
+					else :
+						create_misty_opening_anim(POKEMON, "")
+					time.sleep(1.5)
+
+					if  len(trainer_pokeballs) < MAX_POKEBALL:
+						pokeball = pygame.Rect(
+						pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 10, 5)
+						trainer_pokeballs.append(pokeball)
+
+					
+
 
 				if event.key == pygame.K_SPACE and cursor_pos.x == 620 and cursor_pos.y == 350 :
 					PRESS_A_SOUND.play()
@@ -467,6 +483,17 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 				if event.key == pygame.K_UP:
 					if cursor_pos.x == 800 or cursor_pos.x == 620 :
 						cursor_pos.y = 350
+
+
+def throw_pokeball_wild(trainer_pokeballs) :
+	for pokeball in trainer_pokeballs:
+		pokeball.x += POKEBALL_VEL
+
+		if pokemon_trainer.colliderect(pokeball):
+			trainer_pokeballs.remove(pokeball)
+
+		if pokeball.x > WIDTH :
+			trainer_pokeballs.remove(pokeball)
 
 
 def create_victory_windows(trainer_pokemon_name, trainer_pokemon_hp, wild_pokemon_name, wild_pokemon_hp) :

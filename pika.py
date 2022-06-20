@@ -14,6 +14,7 @@ def pokeball_out(trainer_pokeballs, free_pika) :
 
 	return free_pika
 
+
 def throw_pokeball(trainer_pokeballs, pokemon_trainer, free_pika) :
 	for pokeball in trainer_pokeballs:
 		pokeball.x += POKEBALL_VEL

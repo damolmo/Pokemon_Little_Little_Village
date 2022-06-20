@@ -87,7 +87,7 @@ System_Files_Check.check_Save_Exist()
 # ------------------------------------------------------------------------------
 
 
-def create_title_screen() :
+def create_title_screen(clouds) :
 
 	now = datetime.now()
 	hora = now.strftime("%H")
@@ -112,23 +112,36 @@ def create_title_screen() :
 	start = TITLE_FONT.render("Press (A) to Start", 1, WHITE)
 	WIN.blit(start, (240, 370))
 
-	version = DIALOG_MINI_FONT.render("v12.0 Alpha", 1, WHITE)
+	version = DIALOG_MINI_FONT.render("v12.1 Alpha", 1, WHITE)
 	WIN.blit(version, (10, 10))
 
 	year = DIALOG_MINI_FONT.render("©2022", 1, WHITE)
 	WIN.blit(year, (830, 10))
 
+	# Clouds
+	WIN.blit(clouds, (-150, -10))
+	clock.tick(5)
+	WIN.blit(clouds, (500, 20))
+	clock.tick(5)
+
 
 	pygame.display.update()
 
+def create_title_screen_animation() :
 
+	create_title_screen(SHOPPING_CLOUD_BOTTOM_IMG)
+	clock.tick(2)
+	create_title_screen(SHOPPING_CLOUD_MIDDLE_IMG)
+	clock.tick(2)
+	create_title_screen(SHOPPING_CLOUD_TOP_IMG)
+	clock.tick(2)
 
 def welcome() :
 	start = False
 	BACKGROUND_SOUND.play()
 
 	while not start :
-		create_title_screen()
+		create_title_screen_animation()
 
 		for event in pygame.event.get() :
 
@@ -467,13 +480,28 @@ def main (isAsh, isMisty): ## Main function
 				access_house(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty)
 
 		elif pokemon_trainer.colliderect(SHOP_RECTANGLE_MAP):
-			BACKGROUND_SOUND.stop()
-			SCAPE_SOUND.play()
-			run = False
-			inside = True
-			before_enter_house_x = pokemon_trainer.x
-			before_enter_house_y = pokemon_trainer.y
-			access_shopping_area(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty)
+			count = 0
+			not_inside = True
+			while (not_inside) :
+				BACKGROUND_SOUND.stop()
+				create_shopping_animation()
+
+				
+				if count > 12 :
+					MILTANK_SOUND.stop()
+
+				count +=1
+
+				for event in pygame.event.get() : 
+						if event.type == pygame.KEYDOWN :
+							if event.key == pygame.K_SPACE:
+								not_inside = False
+								SCAPE_SOUND.play()
+								inside = True
+								before_enter_house_x = pokemon_trainer.x
+								before_enter_house_y = pokemon_trainer.y
+								access_shopping_area(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty)
+
 
 	main(isAsh, isMisty)
 #-------------------------------------------------------------------------------

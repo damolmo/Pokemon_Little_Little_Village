@@ -1,4 +1,5 @@
 from shopping import *
+from mumu_farm import *
 
 def create_shopping_area (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika, oakMessage, pause, VEL) :
 	now = datetime.now()
@@ -151,6 +152,25 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 			create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, MISTY_RIGHT_RIGHT_FOOT_IMG, trainer_pokeballs, ASH_PIKACHU_RIGHT_RIGHT_FOOT_IMG, free_pika, oakMessage, pause, VEL) # Right foot
 
 
+		if pokemon_trainer.colliderect(FARM_RECT):
+			count = 0
+			not_inside = True
+			while (not_inside) :
+				TOWN.stop()
+				create_bottle_animation(MUMU_FARM_LOGO_IMG)
+				# Reproduce sound
+				MILTANK_SOUND.play()
+				
+				if count > 2 :
+					MILTANK_SOUND.stop()
+
+				count +=1
+
+				for event in pygame.event.get() : 
+						if event.type == pygame.KEYDOWN :
+							if event.key == pygame.K_SPACE:
+								not_inside = False
+
 		if pokemon_trainer.colliderect(ROCKET_RECT):
 			# The event will only happen one time if completed
 			if variables["BATTLE_EVENTS"]["TEAM_ROCKET_EVENT"] == "NOT COMPLETED" :
@@ -296,6 +316,7 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 		previous_y = pokemon_trainer.y
 		previous_pi_x = pikachu_trainer.x
 		previous_pi_y = pikachu_trainer.y
+
 
 def movement_up_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, isAsh, isMisty, pause, VEL) :
 	trainer_pokeballs = []

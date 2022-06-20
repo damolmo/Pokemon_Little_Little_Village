@@ -219,3 +219,53 @@ def access_shopping_area (pokemon_trainer, pikachu_trainer, inside, before_enter
 		create_shopping_area(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause, VEL)
 
 
+def create_shopping_intro (SHOPPING_TREE, SHOPPING_CLOUD) :
+	# Sets background color
+	WIN.blit(SHOPPING_OPENING_IMG, (0,0))
+
+	# Display first title font
+	start = TITLE_FONT.render("Welcome to", 1, WHITE)
+	WIN.blit(start, (350, 20))
+	clock.tick(20)
+
+	# Display second title font
+	start = TITLE_FONT.render("Shopping Zone", 1, WHITE)
+	WIN.blit(start, (320, 320))
+	clock.tick(20)
+
+	# Enter message
+	start = POKEBALLS_COUNTER_2.render("Press SPACE to enter", 1, WHITE)
+	WIN.blit(start, (340, 450))
+	clock.tick(20)
+
+	# Display Shopping logo
+	WIN.blit(SHOPPING_LOGO_IMG, (300, 50))
+
+	# Show the Trees in movement
+
+	# Tree left
+	WIN.blit(SHOPPING_TREE, (50, 150))
+	clock.tick(5)
+
+	# Tree right
+	WIN.blit(SHOPPING_TREE, (700, 150))
+	clock.tick(5)
+
+	# Clouds
+	WIN.blit(SHOPPING_CLOUD, (50, 20))
+	clock.tick(5)
+	WIN.blit(SHOPPING_CLOUD, (600, 20))
+	clock.tick(5)
+
+	pygame.display.update()
+
+def create_shopping_animation () :
+
+	create_shopping_intro(SHOPPING_TREE_MIDDLE_IMG, SHOPPING_CLOUD_BOTTOM_IMG)
+	create_shopping_intro(SHOPPING_TREE_LEFT_IMG, SHOPPING_CLOUD_MIDDLE_IMG)
+	create_shopping_intro(SHOPPING_TREE_RIGHT_IMG, SHOPPING_CLOUD_TOP_IMG)
+
+
+
+
+

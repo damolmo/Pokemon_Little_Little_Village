@@ -155,6 +155,10 @@ BANK_RECT = pygame.Rect(550, 170, 50, 60)
 ROCKET_RECT = pygame.Rect(800, 300, 100, 200)
 ROCKET_LOGO_RECT = pygame.Rect(0, 0, WIDTH, HEIGHT)
 
+# Mumu Farm Rect
+FARM_RECT = pygame.Rect(800, 300, 100, 300)
+
+
 ## Game Events
 THROW_POKEBALL = pygame.USEREVENT +1
 clock = pygame.time.Clock()
@@ -897,6 +901,23 @@ OAK_LABORATORY_DOOR = pygame.transform.scale(pygame.image.load(os.path.join('Ass
 POKEBALL_CHOOSE = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/laboratory', "pokeball_choose.png")), (WIDTH, HEIGHT))
 OAK_THEME = pygame.mixer.Sound("Assets/sounds/oak_theme.mp3")
 
+# Mumu Farm
+MUMU_FARM_OPENING_IMG = pygame.image.load(os.path.join('Assets/background/mumu_farm', "background.png"))
+MUMU_FARM_LOGO_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/mumu_farm', "logo.png")), (200, 200))
+MUMU_FARM_BOTTLE_MIDDLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/mumu_farm', "bottle_middle.png")), (180, 300))
+MUMU_FARM_BOTTLE_LEFT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/mumu_farm', "bottle_left.png")), (180, 300))
+MUMU_FARM_BOTTLE_RIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/mumu_farm', "bottle_right.png")), (180, 300))
+
+# Shopping Zone
+SHOPPING_OPENING_IMG = pygame.image.load(os.path.join('Assets/background/shopping_zone/animation', "background.png"))
+SHOPPING_LOGO_IMG = pygame.image.load(os.path.join('Assets/background/shopping_zone/animation', "logo.png"))
+SHOPPING_TREE_MIDDLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/animation', "tree_middle.png")), (200, 200))
+SHOPPING_TREE_LEFT_IMG =  pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/animation', "tree_left.png")), (200, 200))
+SHOPPING_TREE_RIGHT_IMG =  pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/shopping_zone/animation', "tree_right.png")), (200, 200))
+SHOPPING_CLOUD_BOTTOM_IMG = pygame.image.load(os.path.join('Assets/background/shopping_zone/animation', "cloud_bottom.png"))
+SHOPPING_CLOUD_MIDDLE_IMG = pygame.image.load(os.path.join('Assets/background/shopping_zone/animation', "cloud_middle.png"))
+SHOPPING_CLOUD_TOP_IMG = pygame.image.load(os.path.join('Assets/background/shopping_zone/animation', "cloud_top.png"))
+
 # TRAINER ROOM
 TRAINER_ROOM_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/trainer_house/day', "room_day.png")), (WIDTH, HEIGHT))
 TRAINER_ROOM_NIGHT = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/trainer_house/night', "room_night.png")), (WIDTH, HEIGHT))
@@ -1024,6 +1045,15 @@ HEALING_SOUND = pygame.mixer.Sound("Assets/sounds/healing.mp3")
 CASH_SOUND = pygame.mixer.Sound("Assets/sounds/cash.mp3")
 OPENING_SOUND = pygame.mixer.Sound("Assets/sounds/opening.mp3")
 HOUSE_SOUND = pygame.mixer.Sound("Assets/sounds/house.mp3")
+
+## Catching sounds
+CATCHING_SOUND = pygame.mixer.Sound("Assets/sounds/catching.mp3")
+TRYING_SOUND = pygame.mixer.Sound("Assets/sounds/trying.mp3")
+GOTCHA_SOUND = pygame.mixer.Sound("Assets/sounds/gotcha.mp3")
+
+## Mumu Sounds
+MILTANK_SOUND = pygame.mixer.Sound("Assets/sounds/miltank.mp3")
+
 
 # Pokeball
 POKEBALL_IMG = pygame.image.load(os.path.join('Assets/items', "pokeball.png"))
