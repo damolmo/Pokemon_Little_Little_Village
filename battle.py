@@ -25,20 +25,20 @@ def pre_area(POKEMON, POKEMON_NAME, ASH) :
 	WIN.blit(ASH, (0,220))
 
 	# Create Wild Pokemon Dialog 
-	#WIN.blit(BATTLE_DIALOG, (0, 420))
-	#dialog = DIALOG_FONT.render("" + str("A Wild Pokémon Appeared!"), 1, BLACK)
-	#WIN.blit(dialog, (50, 440))
-	#if variables["TRAINER"]["POKEMON_1"]["HP"] > 0 :
-	#	dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_1"]["NAME"].capitalize())  + "!"), 1, BLACK)
+	WIN.blit(BATTLE_DIALOG, (0, 420))
+	dialog = DIALOG_FONT.render("" + str("A Wild Pokémon Appeared!"), 1, BLACK)
+	WIN.blit(dialog, (50, 440))
+	if variables["TRAINER"]["POKEMON_1"]["HP"] > 0 :
+		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_1"]["NAME"].capitalize())  + "!"), 1, BLACK)
 
-	#elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] > 0 :
-	#	dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_2"]["NAME"].capitalize())  + "!"), 1, BLACK)
+	elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] > 0 :
+		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_2"]["NAME"].capitalize())  + "!"), 1, BLACK)
 
 
-	#elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] == 0 and  variables["TRAINER"]["POKEMON_3"]["HP"] > 0 :
-	#	dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_3"]["NAME"].capitalize())  + "!"), 1, BLACK)
+	elif variables["TRAINER"]["POKEMON_1"]["HP"] == 0 and variables["TRAINER"]["POKEMON_2"]["HP"] == 0 and  variables["TRAINER"]["POKEMON_3"]["HP"] > 0 :
+		dialog = DIALOG_FONT.render("" + str("Let's Go " +  str(variables["TRAINER"]["POKEMON_3"]["NAME"].capitalize())  + "!"), 1, BLACK)
 
-	#WIN.blit(dialog, (50, 460))
+	WIN.blit(dialog, (50, 460))
 
 	# Display Wild Pokemon Name
 	date = RULES.render("" + str(POKEMON_NAME), 1, BLACK)
