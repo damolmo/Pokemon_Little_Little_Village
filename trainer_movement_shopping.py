@@ -161,7 +161,7 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 				# Reproduce sound
 				MILTANK_SOUND.play()
 				
-				if count > 2 :
+				if count >=1 :
 					MILTANK_SOUND.stop()
 
 				count +=1

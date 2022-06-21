@@ -22,7 +22,7 @@ def create_mumu_animation (LOGO_MILTANK, MILTANK_BOTTLE) :
 	clock.tick(20)
 
 	# Display second title font
-	start = TITLE_FONT.render("Mumu Farm", 1, WHITE)
+	start = TITLE_FONT.render("Moomoo Farm", 1, WHITE)
 	WIN.blit(start, (320, 320))
 	clock.tick(20)
 

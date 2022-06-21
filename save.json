@@ -1,5 +1,9 @@
 {
 
+"THREADS": {
+		"MAIN": "NO"
+},
+
 "TRAINER": {
 		"NAME": "NONE", 
 		"CHARACTER": "NONE", 

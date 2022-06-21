@@ -2,6 +2,14 @@ import os
 import json
 from resources import *
 
+
+
+def silent_save_game () :
+	saving = True
+	my_save_slot = json.dumps(variables)
+	with open('save.json', 'w') as save:
+		save.write(my_save_slot)
+
 def save_game () :
 
 	saving = True

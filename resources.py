@@ -63,7 +63,7 @@ pygame.display.set_icon(icon)
 
 ## Map Values
 WIDTH, HEIGHT = 900, 507 # Map dimentions
-WIN = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Pokémon Little Little Village")
 
 ## Map elements

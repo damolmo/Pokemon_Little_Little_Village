@@ -10,6 +10,7 @@ import os
 from random import randint
 import random
 import json
+import threading
 
 os.system("pip3 install wget")
 os.system("pip3 install pygame")
@@ -25,6 +26,7 @@ import platform
 import zipfile
 from zipfile import ZipFile
 import wget 
+from time import perf_counter
 
 pygame.font.init() # Import font
 pygame.mixer.init() # Import sounds
@@ -123,25 +125,53 @@ def create_title_screen(clouds) :
 	clock.tick(5)
 	WIN.blit(clouds, (500, 20))
 	clock.tick(5)
-
-
 	pygame.display.update()
 
 def create_title_screen_animation() :
 
-	create_title_screen(SHOPPING_CLOUD_BOTTOM_IMG)
-	clock.tick(2)
-	create_title_screen(SHOPPING_CLOUD_MIDDLE_IMG)
-	clock.tick(2)
-	create_title_screen(SHOPPING_CLOUD_TOP_IMG)
-	clock.tick(2)
+	while variables["THREADS"]["MAIN"]  == "NO":
+
+		create_title_screen(SHOPPING_CLOUD_BOTTOM_IMG)
+		clock.tick(2)
+		create_title_screen(SHOPPING_CLOUD_MIDDLE_IMG)
+		clock.tick(2)
+		create_title_screen(SHOPPING_CLOUD_TOP_IMG)
+		clock.tick(2)
+
 
 def welcome() :
-	start = False
 	BACKGROUND_SOUND.play()
+	start = False
 
-	while not start :
-		create_title_screen_animation()
+	t2 = threading.Thread(target = press_a_to_start , name="t2")
+	t1 = threading.Thread(target = create_title_screen_animation , name="t1")
+	t1.start()
+	t2.start()
+
+	start = press_a_to_start()
+
+	while variables["THREADS"]["MAIN"]  == "NO":
+		t2.join()
+		t1.join()
+
+	if variables["TRAINER"]["CHARACTER"] == "NONE" :
+		choose_character()
+
+	elif variables["TRAINER"]["CHARACTER"] == "ASH" :
+		isAsh = True
+		isMisty = False
+		main (isAsh, isMisty)
+
+	elif variables["TRAINER"]["CHARACTER"] == "MISTY" :
+		isAsh = False
+		isMisty = True
+		main (isAsh, isMisty)
+
+		
+
+def press_a_to_start () :
+
+	while variables["THREADS"]["MAIN"]  == "NO":
 
 		for event in pygame.event.get() :
 
@@ -152,20 +182,9 @@ def welcome() :
 			if event.type == pygame.KEYDOWN :
 				if event.key == pygame.K_a:
 					PRESS_A_SOUND.play()
-					start = True
-					if variables["TRAINER"]["CHARACTER"] == "NONE" :
-						choose_character()
-
-					elif variables["TRAINER"]["CHARACTER"] == "ASH" :
-						isAsh = True
-						isMisty = False
-						main (isAsh, isMisty)
-
-					elif variables["TRAINER"]["CHARACTER"] == "MISTY" :
-						isAsh = False
-						isMisty = True
-						main (isAsh, isMisty)
-
+					variables["THREADS"]["MAIN"] = "YES"
+					silent_save_game()
+					
 
 def choose_character () :
 	BACKGROUND_SOUND.stop()
@@ -299,6 +318,7 @@ def create_rules_menu () :
 #-------------------------------------------------------------------------------
 
 def main (isAsh, isMisty): ## Main function
+	
 	TOWN.stop()
 	OAK_THEME.stop()
 	BACKGROUND_SOUND.stop()
@@ -428,6 +448,8 @@ def main (isAsh, isMisty): ## Main function
 			if keys[pygame.K_e]:
 				BACKGROUND_SOUND.stop()
 				save_game()
+				variables["THREADS"]["MAIN"]  = "NO"
+				silent_save_game()
 				welcome()
 
 			if keys[pygame.K_g]:
