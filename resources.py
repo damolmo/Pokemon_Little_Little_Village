@@ -1074,6 +1074,12 @@ DIALOG_MINI_FONT = pygame.font.SysFont('comicsans', 18)
 RULES = pygame.font.SysFont('comicsans', 16)
 GIFS = pygame.font.SysFont('comicsans', 10)
 
+# Threads
+main_thread = variables["THREADS"]["MAIN"]
+
+threads_list = []
+
+threads_list.append(main_thread)
 
 # -------------------------------------------
 

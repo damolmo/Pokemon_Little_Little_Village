@@ -37,7 +37,6 @@ pygame.mixer.init() # Import sounds
 from resources import *
 from bag import *
 from save_game import *
-from resources import *
 from home import *
 from shopping import access_shopping_area
 from center import access_center
@@ -80,6 +79,11 @@ class System_Files_Check :
 
 System_Files_Check.check_Assets_Exist()
 System_Files_Check.check_Save_Exist()
+
+
+def check_threads () :
+	variables["THREADS"]["MAIN"] = "NO"
+	silent_save_game()
 
 #-------------------------------------------------------------------------------
 
@@ -140,6 +144,7 @@ def create_title_screen_animation() :
 
 
 def welcome() :
+	check_threads()
 	BACKGROUND_SOUND.play()
 	start = False
 
