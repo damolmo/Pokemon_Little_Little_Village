@@ -4,12 +4,14 @@
 		"MAIN": "YES", 
 		"SHOPPING": "YES", 
 		"FARM": "YES", 
-		"BATTLE": "NO"
+		"BATTLE": "NO",
+		"HOME": "YES"
 },
 
 "TRAINER": {
 		"NAME": "NONE", 
 		"CHARACTER": "NONE", 
+		"PLAY_TIME": 0,
 		"POKECOINS" : 1000,
 		"INITIAL_POKEMON": "NONE",
 		"DAYS_PLAYING" : [], 

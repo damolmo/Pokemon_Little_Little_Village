@@ -8,6 +8,10 @@ from house import *
 from shopping import *
 import time
 
+def check_home_threads() :
+	variables["THREADS"]["HOME"] = "NO"
+	silent_save_game()
+
 def create_map(pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika, oakMessage, pause, VEL) :
 
 	now = datetime.now()
@@ -457,4 +461,5 @@ def create_area (POKEMON, POKEMON_NAME, variableHP, staticHP, pokemonStaticHP, p
 		WIN.blit(POKEBALL_ITEM, pokeball)
 
 	pygame.display.update()
+
 

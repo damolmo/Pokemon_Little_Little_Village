@@ -22,6 +22,9 @@ import zipfile
 from zipfile import ZipFile
 import wget 
 
+from time import perf_counter
+from datetime import timedelta
+
 pygame.font.init() # Import font
 pygame.mixer.init() # Import sounds
 #----------------------------------
@@ -52,6 +55,7 @@ now = datetime.now()
 hora = now.strftime("%H")
 hora_str = now.strftime("%H:%M")
 free_pika = 0
+play_time = time.perf_counter()
 
 # Player values
 my_save_slot = open("save.json")
@@ -900,6 +904,10 @@ OAK_LABORATORY_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Asse
 OAK_LABORATORY_DOOR = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/laboratory', "oak_door.png")), (78, 36))
 POKEBALL_CHOOSE = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/laboratory', "pokeball_choose.png")), (WIDTH, HEIGHT))
 OAK_THEME = pygame.mixer.Sound("Assets/sounds/oak_theme.mp3")
+
+# Home
+HOME_OPENING_IMG = pygame.image.load(os.path.join('Assets/background/home/animation', "background.png"))
+
 
 # Mumu Farm
 MUMU_FARM_OPENING_IMG = pygame.image.load(os.path.join('Assets/background/mumu_farm', "background.png"))

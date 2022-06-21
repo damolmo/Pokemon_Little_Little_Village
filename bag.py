@@ -245,6 +245,15 @@ def pokemon_bag_objects () :
 					exit = True
 
 
+def add_play_time () :
+	current = variables["TRAINER"]["PLAY_TIME"]
+
+	if current == 0 :
+		duration = timedelta(seconds=time.perf_counter()-play_time)
+		current= duration
+	
+
+
 def pause_menu (cursor, pause) :
 	exit = False
 	cursor_pos.x = 300
@@ -268,6 +277,7 @@ def pause_menu (cursor, pause) :
 					pokemon_bag()
 
 				if cursor_pos.x == 600  and event.key == pygame.K_SPACE :
+					add_play_time()
 					save_game()
 
 				if cursor_pos.x == 450  and event.key == pygame.K_SPACE :

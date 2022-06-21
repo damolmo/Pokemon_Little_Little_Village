@@ -27,6 +27,7 @@ import zipfile
 from zipfile import ZipFile
 import wget 
 from time import perf_counter
+from datetime import timedelta
 
 pygame.font.init() # Import font
 pygame.mixer.init() # Import sounds
@@ -341,6 +342,7 @@ def main (isAsh, isMisty): ## Main function
 	oakMessage = False
 	pause = -1
 	VEL = 3
+	play_time = time.perf_counter()
 
 	clock = pygame.time.Clock()
 	run = True
