@@ -214,7 +214,7 @@ def choose_character () :
 					isAsh = True
 					start = True
 					variables["TRAINER"]["CHARACTER"] = "ASH"
-					save_game()
+					silent_save_game()
 					enter_name(isAsh, isMisty)
 
 				if cursor_menu.x == 470 and event.key == pygame.K_SPACE :
@@ -222,7 +222,7 @@ def choose_character () :
 					isMisty = True
 					start = True
 					variables["TRAINER"]["CHARACTER"] = "MISTY"
-					save_game()
+					silent_save_game()
 					enter_name(isAsh, isMisty)
 
 				if event.key == pygame.K_RIGHT and cursor_menu.x == 120 :
@@ -268,7 +268,7 @@ def enter_name (isAsh, isMisty) :
 					if event.key == pygame.K_RETURN :
 						text = text[:-1]
 						variables["TRAINER"]["NAME"] = text
-						save_game()
+						silent_save_game()
 						active = False
 						typing = False
 
