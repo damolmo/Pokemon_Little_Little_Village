@@ -79,7 +79,7 @@ def create_shopping_area (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer
 	pygame.display.update()
 
 def access_shopping_area (pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty) :
-	
+	BACKGROUND_SOUND.stop()
 	shopping = True
 	trainer_pokeballs = []
 	oakMessage = False
@@ -261,9 +261,26 @@ def create_shopping_intro (SHOPPING_TREE, SHOPPING_CLOUD) :
 
 def create_shopping_animation () :
 
-	create_shopping_intro(SHOPPING_TREE_MIDDLE_IMG, SHOPPING_CLOUD_BOTTOM_IMG)
-	create_shopping_intro(SHOPPING_TREE_LEFT_IMG, SHOPPING_CLOUD_MIDDLE_IMG)
-	create_shopping_intro(SHOPPING_TREE_RIGHT_IMG, SHOPPING_CLOUD_TOP_IMG)
+	while variables["THREADS"]["SHOPPING"] == "NO" : 
+		create_shopping_intro(SHOPPING_TREE_MIDDLE_IMG, SHOPPING_CLOUD_BOTTOM_IMG)
+		create_shopping_intro(SHOPPING_TREE_LEFT_IMG, SHOPPING_CLOUD_MIDDLE_IMG)
+		create_shopping_intro(SHOPPING_TREE_RIGHT_IMG, SHOPPING_CLOUD_TOP_IMG)
+
+def create_shopping_animation_keyboard () :
+
+	while variables["THREADS"]["SHOPPING"]  == "NO":
+
+		for event in pygame.event.get() :
+
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
+
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_SPACE:
+					PRESS_A_SOUND.play()
+					variables["THREADS"]["SHOPPING"] = "YES"
+					silent_save_game()
 
 
 

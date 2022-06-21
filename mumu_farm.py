@@ -1,16 +1,26 @@
 from resources import *
+from save_game import *
 
-def create_bottle_animation (MUMU_FARM_LOGO_IMG) :
+def check_farm_threads () :
+	variables["THREADS"]["FARM"] = "NO"
+	silent_save_game()
 
+def create_bottle_animation () :
 
-	# Bottle middle
-	create_mumu_animation(MUMU_FARM_LOGO_IMG, MUMU_FARM_BOTTLE_MIDDLE_IMG)
+	while variables["THREADS"]["FARM"]  == "NO":
 
-	# Bottle left
-	create_mumu_animation(MUMU_FARM_LOGO_IMG, MUMU_FARM_BOTTLE_LEFT_IMG)
+		MILTANK_SOUND.play()
 
-	# Bottle right
-	create_mumu_animation(MUMU_FARM_LOGO_IMG, MUMU_FARM_BOTTLE_RIGHT_IMG)
+		# Bottle middle
+		create_mumu_animation(MUMU_FARM_LOGO_IMG, MUMU_FARM_BOTTLE_MIDDLE_IMG)
+
+		# Bottle left
+		create_mumu_animation(MUMU_FARM_LOGO_IMG, MUMU_FARM_BOTTLE_LEFT_IMG)
+
+		# Bottle right
+		create_mumu_animation(MUMU_FARM_LOGO_IMG, MUMU_FARM_BOTTLE_RIGHT_IMG)
+
+	
 
 def create_mumu_animation (LOGO_MILTANK, MILTANK_BOTTLE) :
 	# Sets background color
@@ -45,3 +55,19 @@ def create_mumu_animation (LOGO_MILTANK, MILTANK_BOTTLE) :
 	clock.tick(15)
 
 	pygame.display.update()
+
+def create_mumu_animation_keyboard () :
+
+	while variables["THREADS"]["FARM"]  == "NO":
+
+		for event in pygame.event.get() :
+
+			if event.type == pygame.QUIT:
+				run = False
+				pygame.quit()
+
+			if event.type == pygame.KEYDOWN :
+				if event.key == pygame.K_SPACE:
+					PRESS_A_SOUND.play()
+					variables["THREADS"]["FARM"] = "YES"
+					silent_save_game()

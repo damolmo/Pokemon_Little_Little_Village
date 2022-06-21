@@ -329,6 +329,10 @@ def wild_pokemon (wild_appeared, sound, variableHP, staticHP, pokemonStaticHP, p
 	elif wild_appeared == "MRMIME":
 		create_MrMime(sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs)  
 
+def check_battle_threads () :
+	variables["THREADS"]["BATTLE"] = "NO"
+	silent_save_game()
+
 
 def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty, VEL) :
 	trainer_pokeballs = []
@@ -367,10 +371,26 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 		create_misty_opening_anim(POKEMON, "")
 
 	time.sleep(1.5)
- 
-	keys = pygame.key.get_pressed()
 
-	while wild:
+	check_battle_threads()
+ 
+	t7 = threading.Thread(target = create_battle_pokemon , name="t1", args=([pokemon, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs, pokemonStaticHP_2, pokemonStaticHP_3, pokemonVariableHP_2, pokemonVariableHP_3]))
+	t8 = threading.Thread(target = create_battle_keyboard , name="t2", args=([pokemon, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs, pokemonStaticHP_2, pokemonStaticHP_3, pokemonVariableHP_2, pokemonVariableHP_3]))
+
+	t7.start()
+	t8.start()
+
+	start = create_battle_keyboard (pokemon, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs, pokemonStaticHP_2, pokemonStaticHP_3, pokemonVariableHP_2, pokemonVariableHP_3)
+
+	while variables["THREADS"]["BATTLE"] == "NO":
+		t8.join()
+		t7.join()
+
+
+def create_battle_pokemon (pokemon, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs, pokemonStaticHP_2, pokemonStaticHP_3, pokemonVariableHP_2, pokemonVariableHP_3) :
+
+	while variables["THREADS"]["BATTLE"] == "NO":
+
 		if pokemonVariableHP == 0 and pokemonVariableHP == variables["TRAINER"]["POKEMON_1"]["HP"] and variables["TRAINER"]["POKEMON_2"]["HP"] > 0   :
 			pokemonVariableHP = pokemonVariableHP_2 
 			pokemonStaticHP = pokemonStaticHP_2
@@ -383,106 +403,107 @@ def start_battle(wild,x ,y, pokemon_trainer, cursor_pos, isTree, isAsh, isMisty,
 			pokemonVariableHP = 0
 
 
-
-
 		wild_pokemon (pokemon, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs) 
 		sound +=1
 
+
+def create_battle_keyboard (pokemon, sound, variableHP, staticHP, pokemonStaticHP, pokemonVariableHP, randomLevel, pokemonLevel, trainer_pokeballs, pokemonStaticHP_2, pokemonStaticHP_3, pokemonVariableHP_2, pokemonVariableHP_3) :
+
+	while variables["THREADS"]["BATTLE"] == "NO":
+
 		for event in pygame.event.get() : 
 
-			if event.type == pygame.KEYDOWN :
+				if event.type == pygame.KEYDOWN :
 
-				if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 400 :
-					PRESS_A_SOUND.play()
-					POKEMON_ENCOUNTER_SOUND.stop()
-					SCAPE_SOUND.play()
-					time.sleep(1)
-					variables["TRAINER"]["POKEMON_1"]["HP"] = pokemonVariableHP
-					variables["TRAINER"]["POKEMON_2"]["HP"] = pokemonVariableHP_2
-					variables["TRAINER"]["POKEMON_3"]["HP"] = pokemonVariableHP_3
-					wild = False
-					print("HAS HUIDO")
-					cursor_pos.x = 620
-
-				if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 350 :
-					if isAsh :
-						create_ash_opening_anim(POKEMON, "")
-					else :
-						create_misty_opening_anim(POKEMON, "")
-					time.sleep(1.5)
-
-					if  len(trainer_pokeballs) < MAX_POKEBALL:
-						pokeball = pygame.Rect(
-						pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 10, 5)
-						trainer_pokeballs.append(pokeball)
-
-					
-
-
-				if event.key == pygame.K_SPACE and cursor_pos.x == 620 and cursor_pos.y == 350 :
-					PRESS_A_SOUND.play()
-
-					# Random damage by Trainer Pokemon
-					randomDamage = random.randint(2,10)
-
-					if variableHP >= randomDamage: 
-						variableHP -= randomDamage
-
-					else :
-						variableHP = 0
-
-					# Random damage by wild Pokemon
-					randomDamage = random.randint(2,10)
-
-					if pokemonVariableHP >= randomDamage:
-						pokemonVariableHP -= randomDamage
-
-					else :
-						pokemonVariableHP = 0
-
-
-				if variableHP == 0 or pokemonVariableHP == 0 and pokemonVariableHP_2 == 0 and pokemonVariableHP_3 == 0 :
-					# Backup of current Pokemon HP
-					if pokemonStaticHP == variables["TRAINER"]["POKEMON_1"]["BASE_HP"] :
+					if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 400 :
+						PRESS_A_SOUND.play()
+						POKEMON_ENCOUNTER_SOUND.stop()
+						SCAPE_SOUND.play()
+						time.sleep(1)
 						variables["TRAINER"]["POKEMON_1"]["HP"] = pokemonVariableHP
-
-					if pokemonStaticHP == variables["TRAINER"]["POKEMON_2"]["BASE_HP"] :
-						variables["TRAINER"]["POKEMON_2"]["HP"] = pokemonVariableHP
-
-					if pokemonStaticHP == variables["TRAINER"]["POKEMON_3"]["BASE_HP"] :
-						variables["TRAINER"]["POKEMON_3"]["HP"] = pokemonVariableHP
-
-					POKEMON_ENCOUNTER_SOUND.stop()
-					SCAPE_SOUND.play()
-					time.sleep(1)
-					VICTORY.play()
-
-					while wild :
-						create_victory_windows(variables["TRAINER"]["POKEMON_1"]["NAME"], pokemonVariableHP, pokemon, variableHP)
-
-						for event in pygame.event.get() : 
-
-							if event.type == pygame.KEYDOWN :
-
-								if event.key == pygame.K_RETURN :
-									wild = False
-									cursor_pos.x = 620
-
-
-				if event.key == pygame.K_RIGHT:
-					cursor_pos.x = 800
-
-				if event.key == pygame.K_LEFT:
-					if cursor_pos.x == 800 :
+						variables["TRAINER"]["POKEMON_2"]["HP"] = pokemonVariableHP_2
+						variables["TRAINER"]["POKEMON_3"]["HP"] = pokemonVariableHP_3
+						variables["THREADS"]["BATTLE"] = "YES"
+						print("HAS HUIDO")
 						cursor_pos.x = 620
 
-				if event.key == pygame.K_DOWN:
-					if cursor_pos.x == 800 or cursor_pos.x == 620  :
-						cursor_pos.y = 400
+					if event.key == pygame.K_SPACE and cursor_pos.x == 800 and cursor_pos.y == 350 :
+						if isAsh :
+							create_ash_opening_anim(POKEMON, "")
+						else :
+							create_misty_opening_anim(POKEMON, "")
+						time.sleep(1.5)
 
-				if event.key == pygame.K_UP:
-					if cursor_pos.x == 800 or cursor_pos.x == 620 :
-						cursor_pos.y = 350
+						if  len(trainer_pokeballs) < MAX_POKEBALL:
+							pokeball = pygame.Rect(
+							pokemon_trainer.x + pokemon_trainer.width, pokemon_trainer.y + pokemon_trainer.height//2 - 2, 10, 5)
+							trainer_pokeballs.append(pokeball)
+
+					if event.key == pygame.K_SPACE and cursor_pos.x == 620 and cursor_pos.y == 350 :
+						PRESS_A_SOUND.play()
+
+						# Random damage by Trainer Pokemon
+						randomDamage = random.randint(2,10)
+
+						if variableHP >= randomDamage: 
+							variableHP -= randomDamage
+
+						else :
+							variableHP = 0
+
+						# Random damage by wild Pokemon
+						randomDamage = random.randint(2,10)
+
+						if pokemonVariableHP >= randomDamage:
+							pokemonVariableHP -= randomDamage
+
+						else :
+							pokemonVariableHP = 0
+
+
+					if variableHP == 0 or pokemonVariableHP == 0 and pokemonVariableHP_2 == 0 and pokemonVariableHP_3 == 0 :
+						# Backup of current Pokemon HP
+						if pokemonStaticHP == variables["TRAINER"]["POKEMON_1"]["BASE_HP"] :
+							variables["TRAINER"]["POKEMON_1"]["HP"] = pokemonVariableHP
+
+						if pokemonStaticHP == variables["TRAINER"]["POKEMON_2"]["BASE_HP"] :
+							variables["TRAINER"]["POKEMON_2"]["HP"] = pokemonVariableHP
+
+						if pokemonStaticHP == variables["TRAINER"]["POKEMON_3"]["BASE_HP"] :
+							variables["TRAINER"]["POKEMON_3"]["HP"] = pokemonVariableHP
+
+						POKEMON_ENCOUNTER_SOUND.stop()
+						SCAPE_SOUND.play()
+						time.sleep(1)
+						VICTORY.play()
+						wild = True
+
+						while wild :
+							create_victory_windows(variables["TRAINER"]["POKEMON_1"]["NAME"], pokemonVariableHP, pokemon, variableHP)
+
+							for event in pygame.event.get() : 
+
+								if event.type == pygame.KEYDOWN :
+
+									if event.key == pygame.K_RETURN :
+										wild = False
+										cursor_pos.x = 620
+
+
+					if event.key == pygame.K_RIGHT:
+						cursor_pos.x = 800
+
+					if event.key == pygame.K_LEFT:
+						if cursor_pos.x == 800 :
+							cursor_pos.x = 620
+
+					if event.key == pygame.K_DOWN:
+						if cursor_pos.x == 800 or cursor_pos.x == 620  :
+							cursor_pos.y = 400
+
+					if event.key == pygame.K_UP:
+						if cursor_pos.x == 800 or cursor_pos.x == 620 :
+							cursor_pos.y = 350
 
 
 def throw_pokeball_wild(trainer_pokeballs) :

@@ -1,5 +1,7 @@
 from shopping import *
 from mumu_farm import *
+import threading
+
 
 def create_shopping_area (pokemon_trainer, fecha ,POKEBALL_IMG, TRAINER, trainer_pokeballs, PIKACHU, free_pika, oakMessage, pause, VEL) :
 	now = datetime.now()
@@ -153,24 +155,27 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 
 
 		if pokemon_trainer.colliderect(FARM_RECT):
-			count = 0
+			check_farm_threads()
 			not_inside = True
-			while (not_inside) :
-				TOWN.stop()
-				create_bottle_animation(MUMU_FARM_LOGO_IMG)
-				# Reproduce sound
+			count = 0
+			TOWN.stop()
+
+			t5 = threading.Thread(target = create_bottle_animation , name="t1")
+			t6 = threading.Thread(target = create_mumu_animation_keyboard , name="t2")
+
+			t5.start()
+			t6.start()
+
+			if count > 1:
 				MILTANK_SOUND.play()
+
+			start = create_mumu_animation_keyboard()
+
+			while variables["THREADS"]["SHOPPING"] == "NO" :
+				t6.join()
+				t5.join()
 				
-				if count >=1 :
-					MILTANK_SOUND.stop()
-
-				count +=1
-
-				for event in pygame.event.get() : 
-						if event.type == pygame.KEYDOWN :
-							if event.key == pygame.K_SPACE:
-								not_inside = False
-
+	
 		if pokemon_trainer.colliderect(ROCKET_RECT):
 			# The event will only happen one time if completed
 			if variables["BATTLE_EVENTS"]["TEAM_ROCKET_EVENT"] == "NOT COMPLETED" :

@@ -85,6 +85,10 @@ def check_threads () :
 	variables["THREADS"]["MAIN"] = "NO"
 	silent_save_game()
 
+def check_shopping_threads () :
+	variables["THREADS"]["SHOPPING"] = "NO"
+	silent_save_game()
+
 #-------------------------------------------------------------------------------
 
 # Main functions
@@ -507,28 +511,31 @@ def main (isAsh, isMisty): ## Main function
 				access_house(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty)
 
 		elif pokemon_trainer.colliderect(SHOP_RECTANGLE_MAP):
-			count = 0
+			check_shopping_threads()
+
 			not_inside = True
-			while (not_inside) :
-				BACKGROUND_SOUND.stop()
-				create_shopping_animation()
+			BACKGROUND_SOUND.stop()
 
+			t3 = threading.Thread(target = create_shopping_animation , name="t1")
+			t4 = threading.Thread(target = create_shopping_animation_keyboard , name="t2")
+
+			t3.start()
+			t4.start()
+
+			start = create_shopping_animation_keyboard()
+
+
+			while variables["THREADS"]["SHOPPING"] == "NO" :
+				t4.join()
+				t3.join()
+
+			SCAPE_SOUND.play()
+			inside = True
+			before_enter_house_x = pokemon_trainer.x
+			before_enter_house_y = pokemon_trainer.y
+			access_shopping_area(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty)
+					
 				
-				if count > 12 :
-					MILTANK_SOUND.stop()
-
-				count +=1
-
-				for event in pygame.event.get() : 
-						if event.type == pygame.KEYDOWN :
-							if event.key == pygame.K_SPACE:
-								not_inside = False
-								SCAPE_SOUND.play()
-								inside = True
-								before_enter_house_x = pokemon_trainer.x
-								before_enter_house_y = pokemon_trainer.y
-								access_shopping_area(pokemon_trainer, pikachu_trainer, inside, before_enter_house_x, before_enter_house_y, isAsh, isMisty)
-
 
 	main(isAsh, isMisty)
 #-------------------------------------------------------------------------------

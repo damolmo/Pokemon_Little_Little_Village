@@ -156,7 +156,7 @@ ROCKET_RECT = pygame.Rect(800, 300, 100, 200)
 ROCKET_LOGO_RECT = pygame.Rect(0, 0, WIDTH, HEIGHT)
 
 # Mumu Farm Rect
-FARM_RECT = pygame.Rect(800, 300, 100, 300)
+FARM_RECT = pygame.Rect(860, 300, 50, 300)
 
 
 ## Game Events
@@ -1076,10 +1076,9 @@ GIFS = pygame.font.SysFont('comicsans', 10)
 
 # Threads
 main_thread = variables["THREADS"]["MAIN"]
+shopping_thread = variables["THREADS"]["SHOPPING"]
 
-threads_list = []
-
-threads_list.append(main_thread)
+threads_list = [main_thread, shopping_thread ]
 
 # -------------------------------------------
 

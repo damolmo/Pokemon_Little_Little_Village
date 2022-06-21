@@ -1,7 +1,10 @@
 {
 
 "THREADS": {
-		"MAIN": "NO"
+		"MAIN": "YES", 
+		"SHOPPING": "YES", 
+		"FARM": "YES", 
+		"BATTLE": "NO"
 },
 
 "TRAINER": {
