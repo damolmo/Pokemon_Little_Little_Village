@@ -477,17 +477,12 @@ def create_battle_keyboard (pokemon, sound, variableHP, staticHP, pokemonStaticH
 						time.sleep(1)
 						VICTORY.play()
 						wild = True
+						variables["THREADS"]["BATTLE"] = "YES"
 
-						while wild :
-							create_victory_windows(variables["TRAINER"]["POKEMON_1"]["NAME"], pokemonVariableHP, pokemon, variableHP)
+						# Needs to be included into a third thread
 
-							for event in pygame.event.get() : 
-
-								if event.type == pygame.KEYDOWN :
-
-									if event.key == pygame.K_RETURN :
-										wild = False
-										cursor_pos.x = 620
+						#create_victory_windows(variables["TRAINER"]["POKEMON_1"]["NAME"], pokemonVariableHP, pokemon, variableHP)
+						#time.sleep(3)
 
 
 					if event.key == pygame.K_RIGHT:
@@ -528,8 +523,6 @@ def create_victory_windows(trainer_pokemon_name, trainer_pokemon_hp, wild_pokemo
 		WIN.blit(asset, (380,150))
 		wild = WINNER_LOOSER_DIALOG.render(trainer_pokemon_name + " WIN!", 1, BLACK)
 		WIN.blit(wild, (150, 50))
-		trainer = POKEBALLS_COUNTER.render("Press (ENTER) to exit", 1, BLACK)
-		WIN.blit(trainer, (300, 400))
 		clock.tick(20)
 		
 
