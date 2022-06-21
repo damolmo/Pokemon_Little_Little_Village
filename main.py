@@ -122,7 +122,7 @@ def create_title_screen(clouds) :
 	start = TITLE_FONT.render("Press (A) to Start", 1, WHITE)
 	WIN.blit(start, (240, 370))
 
-	version = DIALOG_MINI_FONT.render("v12.1 Alpha", 1, WHITE)
+	version = DIALOG_MINI_FONT.render("v13.0 Alpha", 1, WHITE)
 	WIN.blit(version, (10, 10))
 
 	year = DIALOG_MINI_FONT.render("©2022", 1, WHITE)
