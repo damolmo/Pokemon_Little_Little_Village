@@ -907,6 +907,12 @@ OAK_THEME = pygame.mixer.Sound("Assets/sounds/oak_theme.mp3")
 
 # Home
 HOME_OPENING_IMG = pygame.image.load(os.path.join('Assets/background/home/animation', "background.png"))
+TITLE_SUN_IMG = pygame.image.load(os.path.join('Assets/background/title_screen', "sun.png"))
+TITLE_SUN_2_IMG = pygame.image.load(os.path.join('Assets/background/title_screen', "sun_2.png"))
+TITLE_SUN_3_IMG = pygame.image.load(os.path.join('Assets/background/title_screen', "sun_3.png"))
+TITLE_SUN_4_IMG = pygame.image.load(os.path.join('Assets/background/title_screen', "sun_4.png"))
+TITLE_SUN_5_IMG = pygame.image.load(os.path.join('Assets/background/title_screen', "sun_5.png"))
+TITLE_SUN_6_IMG = pygame.image.load(os.path.join('Assets/background/title_screen', "sun_6.png"))
 
 
 # Mumu Farm
@@ -915,6 +921,20 @@ MUMU_FARM_LOGO_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Asse
 MUMU_FARM_BOTTLE_MIDDLE_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/mumu_farm', "bottle_middle.png")), (180, 300))
 MUMU_FARM_BOTTLE_LEFT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/mumu_farm', "bottle_left.png")), (180, 300))
 MUMU_FARM_BOTTLE_RIGHT_IMG = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/mumu_farm', "bottle_right.png")), (180, 300))
+MUMU_FARM_BACKGROUND = pygame.image.load(os.path.join('Assets/background/mumu_farm', "background.png"))
+MUMU_FARM_BACKGROUND_NIGHT = pygame.image.load(os.path.join('Assets/background/mumu_farm', "background_night.png"))
+MUMU_FARM_BACKGROUND_AFTERNOON = pygame.image.load(os.path.join('Assets/background/mumu_farm', "background_afternoon.png"))
+MILTANK_ASSET = pygame.transform.scale(pygame.image.load(os.path.join('Assets/background/mumu_farm', "miltank.png")), (120,140))
+
+STARS_ONE = pygame.image.load(os.path.join('Assets/background/mumu_farm', "stars_one.png"))
+STARS_TWO = pygame.image.load(os.path.join('Assets/background/mumu_farm', "stars_two.png"))
+STARS_THREE = pygame.image.load(os.path.join('Assets/background/mumu_farm', "stars_three.png"))
+
+
+CLOUDS_ONE = pygame.image.load(os.path.join('Assets/background/mumu_farm', "cloud.png"))
+CLOUDS_TWO = pygame.image.load(os.path.join('Assets/background/mumu_farm', "cloud_2.png"))
+CLOUDS_THREE = pygame.image.load(os.path.join('Assets/background/mumu_farm', "cloud_3.png"))
+CLOUDS_FOUR = pygame.image.load(os.path.join('Assets/background/mumu_farm', "cloud_4.png"))
 
 # Shopping Zone
 SHOPPING_OPENING_IMG = pygame.image.load(os.path.join('Assets/background/shopping_zone/animation', "background.png"))
@@ -1053,6 +1073,8 @@ HEALING_SOUND = pygame.mixer.Sound("Assets/sounds/healing.mp3")
 CASH_SOUND = pygame.mixer.Sound("Assets/sounds/cash.mp3")
 OPENING_SOUND = pygame.mixer.Sound("Assets/sounds/opening.mp3")
 HOUSE_SOUND = pygame.mixer.Sound("Assets/sounds/house.mp3")
+FARM_SOUND = pygame.mixer.Sound("Assets/sounds/farm.mp3")
+BACKGROUND_NIGHT =  pygame.mixer.Sound("Assets/sounds/night.mp3")
 
 ## Catching sounds
 CATCHING_SOUND = pygame.mixer.Sound("Assets/sounds/catching.mp3")
@@ -1079,6 +1101,7 @@ POKEBALLS_COUNTER = pygame.font.SysFont('comicsans', 30)
 POKEBALLS_COUNTER_2 = pygame.font.SysFont('comicsans', 28)
 DIALOG_FONT = pygame.font.SysFont('comicsans', 26)
 DIALOG_MINI_FONT = pygame.font.SysFont('comicsans', 18)
+COPYRIGHT_FONT = pygame.font.SysFont('comicsans', 9)
 RULES = pygame.font.SysFont('comicsans', 16)
 GIFS = pygame.font.SysFont('comicsans', 10)
 

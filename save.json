@@ -5,7 +5,8 @@
 		"SHOPPING": "YES", 
 		"FARM": "YES", 
 		"BATTLE": "NO",
-		"HOME": "YES"
+		"HOME": "YES",
+		"FARM_INSIDE" : "YES"
 },
 
 "TRAINER": {

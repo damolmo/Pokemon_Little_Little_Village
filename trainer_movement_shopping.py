@@ -174,7 +174,20 @@ def movement_right_shopping (pokemon_trainer, wild, pikachu_trainer, free_pika, 
 			while variables["THREADS"]["SHOPPING"] == "NO" :
 				t6.join()
 				t5.join()
-				
+
+			check_farm_inside_thread()
+
+			t1 = threading.Thread(target = create_farm_background , name="t1") 
+			t2 = threading.Thread(target = create_farm_control , name="t2") 
+
+			t1.start()
+			t2.start()
+
+			start = create_farm_control()
+
+			while variables["THREADS"]["FARM_INSIDE"] == "NO" :
+				t2.join()
+				t1.join()
 	
 		if pokemon_trainer.colliderect(ROCKET_RECT):
 			# The event will only happen one time if completed

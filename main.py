@@ -98,25 +98,58 @@ def check_shopping_threads () :
 # ------------------------------------------------------------------------------
 
 
-def create_title_screen(clouds) :
+def create_title_screen(clouds, STARS, SUN) :
 
 	now = datetime.now()
 	hora = now.strftime("%H")
 
 	if hora <="16" and hora >="10" :
 		WIN.blit(TITLE_SCREEN_DAY_IMG, (0,0)) # Place background image
+		WIN.blit(SUN, (300, 0))
 		
 	elif hora >="17" and hora <"20":
 		WIN.blit(TITLE_SCREEN_AFTERNOON_IMG, (0,0)) # Place background image
+		WIN.blit(SUN, (300, 0))
 	
 	elif hora >= "00" and hora <"06" :
 		WIN.blit(TITLE_SCREEN_EVENING_IMG, (0,0)) # Place background image
+
+		WIN.blit(STARS, (0, 10))
+		WIN.blit(STARS, (0, 70))
+		WIN.blit(STARS, (0, 130))
+		WIN.blit(STARS, (0, 190))
+
+		WIN.blit(STARS, (300, 10))
+		WIN.blit(STARS, (300, 70))
+		WIN.blit(STARS, (300, 130))
+		WIN.blit(STARS, (300, 190))
+
+		WIN.blit(STARS, (600, 10))
+		WIN.blit(STARS, (600, 70))
+		WIN.blit(STARS, (600, 130))
+		WIN.blit(STARS, (600, 190))
 
 	elif hora >= "06" and hora <"10" :
 		WIN.blit(TITLE_SCREEN_DAY_IMG, (0,0)) # Place background image
 
 	else :
 		WIN.blit(TITLE_SCREEN_EVENING_IMG, (0,0)) # Place background image
+			# Stars
+
+		WIN.blit(STARS, (0, 10))
+		WIN.blit(STARS, (0, 70))
+		WIN.blit(STARS, (0, 130))
+		WIN.blit(STARS, (0, 190))
+
+		WIN.blit(STARS, (300, 10))
+		WIN.blit(STARS, (300, 70))
+		WIN.blit(STARS, (300, 130))
+		WIN.blit(STARS, (300, 190))
+
+		WIN.blit(STARS, (600, 10))
+		WIN.blit(STARS, (600, 70))
+		WIN.blit(STARS, (600, 130))
+		WIN.blit(STARS, (600, 190))
 	
 	WIN.blit(TITLE_LOGO_IMG, (250,0)) # Place background image
 
@@ -134,23 +167,40 @@ def create_title_screen(clouds) :
 	clock.tick(5)
 	WIN.blit(clouds, (500, 20))
 	clock.tick(5)
+
+	copyright = COPYRIGHT_FONT.render("The Pokemon brand, assets and music are copyright of Nintendo, GAME FREAK inc and Creatures Inc", 1, WHITE)
+	WIN.blit(copyright, (230, 465))
+	copyright = COPYRIGHT_FONT.render("© 2022 Pokemon. © 1995-2022 Nintendo/Creatures Inc./GAME FREAK inc.", 1, WHITE)
+	WIN.blit(copyright, (300, 480))
+
+
 	pygame.display.update()
 
 def create_title_screen_animation() :
 
 	while variables["THREADS"]["MAIN"]  == "NO":
 
-		create_title_screen(SHOPPING_CLOUD_BOTTOM_IMG)
+		create_title_screen(SHOPPING_CLOUD_BOTTOM_IMG, STARS_ONE, TITLE_SUN_IMG)
 		clock.tick(2)
-		create_title_screen(SHOPPING_CLOUD_MIDDLE_IMG)
+		create_title_screen(SHOPPING_CLOUD_BOTTOM_IMG, STARS_ONE, TITLE_SUN_2_IMG)
 		clock.tick(2)
-		create_title_screen(SHOPPING_CLOUD_TOP_IMG)
+		create_title_screen(SHOPPING_CLOUD_MIDDLE_IMG, STARS_TWO, TITLE_SUN_3_IMG)
+		clock.tick(2)
+		create_title_screen(SHOPPING_CLOUD_MIDDLE_IMG, STARS_TWO, TITLE_SUN_4_IMG)
+		clock.tick(2)
+		create_title_screen(SHOPPING_CLOUD_TOP_IMG, STARS_THREE, TITLE_SUN_5_IMG)
+		clock.tick(2)
+		create_title_screen(SHOPPING_CLOUD_TOP_IMG, STARS_THREE, TITLE_SUN_6_IMG)
 		clock.tick(2)
 
 
 def welcome() :
 	check_threads()
-	BACKGROUND_SOUND.play()
+	if hora <"20" and hora >="10" :
+			BACKGROUND_SOUND.play()
+	else :
+		BACKGROUND_NIGHT.play()
+
 	start = False
 
 	t2 = threading.Thread(target = press_a_to_start , name="t2")
@@ -332,6 +382,7 @@ def main (isAsh, isMisty): ## Main function
 	TOWN.stop()
 	OAK_THEME.stop()
 	BACKGROUND_SOUND.stop()
+	BACKGROUND_NIGHT.stop()
 	OPENING_SOUND.stop()
 	HOUSE_SOUND.stop()
 	trainer_pokeballs = []
@@ -343,6 +394,8 @@ def main (isAsh, isMisty): ## Main function
 	pause = -1
 	VEL = 3
 	play_time = time.perf_counter()
+	now = datetime.now()
+	hora = now.strftime("%H")
 
 	clock = pygame.time.Clock()
 	run = True
@@ -486,6 +539,7 @@ def main (isAsh, isMisty): ## Main function
 
 
 		BACKGROUND_SOUND.play()
+		
 		keys_pressed = pygame.key.get_pressed()
 		trainer_movement(keys_pressed, pokemon_trainer, pikachu_trainer, free_pika, isAsh, isMisty, pause, VEL)
 		create_map(pokemon_trainer, fecha,POKEBALL_IMG, TRAINER_IMG, trainer_pokeballs, PIKACHU_IMG, free_pika, oakMessage, pause, VEL)
